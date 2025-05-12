@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+/* add new color variable */
+@theme {
+  --default-font-family: "Inter", sans-serif;
+  --color-primary: #15d0ff;
+  --spacing-prefer: 1346px;
+  --breakpoint-prefer: 1366px;
+}
