@@ -5,5 +5,8 @@ useSeoMeta({
 </script>
 
 <template>
-  <h2 class="text-center">This is home page!</h2>
+  <div>
+    <h2 class="text-center">This is home page!</h2>
+    <h3 class="text-center">This is home page subtitle!</h3>
+  </div>
 </template>
