@@ -1,10 +1,25 @@
 <script lang="ts" setup>
-const allLinks = ref([
+const allLinks = ref<Array<{ name: string; path: string }>>([
+  { name: "Home", path: "/" },
   { name: "About", path: "/about" },
   { name: "Projects", path: "/projects" },
   { name: "Certificates", path: "/certificates" },
   { name: "Blogs", path: "/blogs" },
 ]);
+// for navlink modal
+const open = ref<boolean>(false);
+
+// set the body pointer-events to none when the modal value changes to open
+watch(open, () => {
+  document.body.style.pointerEvents = open.value ? "none" : "auto";
+  document.body.style.overflowY = open.value ? "hidden" : "auto";
+});
+
+const handleClickOutside = (e: any) => {
+  if (open.value && e.target.id !== "teleports") {
+    open.value = false;
+  }
+};
 </script>
 
 <template>
@@ -42,10 +57,53 @@ const allLinks = ref([
 
       <!-- burger menu trigger button -->
       <button
+        @click="open = true"
         class="md:hidden size-7 md:size-8 border border-zinc-50/20 grid place-items-center rounded-full transition-colors duration-200 hover:bg-zinc-50/20 hover:border-transparent cursor-pointer"
       >
         <Icon name="ic:round-menu" class="text-xl" />
       </button>
+
+      <Teleport to="#teleports">
+        <Transition name="element">
+          <!-- make clicking outside below element to close the modal -->
+          <div
+            @click="handleClickOutside"
+            v-if="open"
+            class="overflow-hidden w-full h-max z-50 bg-black/40 backdrop-blur-sm fixed bottom-0 left-0 p-4 border border-zinc-50/20 rounded-2xl rounded-bl-none rounded-br-none border-b-0 !pointer-events-auto"
+          >
+            <ul
+              class="flex flex-col items-start gap-4 *:capitalize *:font-medium"
+            >
+              <li v-for="link in allLinks" :key="link.name">
+                <NuxtLink
+                  class="transition-colors duration-200 hover:text-primary"
+                  active-class="text-primary"
+                  :to="link.path"
+                  >{{ link.name }}
+                </NuxtLink>
+              </li>
+            </ul>
+
+            <Icon
+              @click="open = false"
+              name="ic:baseline-cancel"
+              class="absolute top-4 right-4 text-xl cursor-pointer text-zinc-50"
+            />
+          </div>
+        </Transition>
+      </Teleport>
     </nav>
   </header>
 </template>
+
+<style scoped>
+.element-enter-active,
+.element-leave-active {
+  @apply transition-all duration-500;
+}
+
+.element-enter-from,
+.element-leave-to {
+  @apply opacity-0 translate-y-full;
+}
+</style>
