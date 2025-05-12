@@ -11,4 +11,11 @@ export default defineNuxtConfig({
   },
 
   modules: ["@nuxt/fonts", "@nuxt/icon"],
+
+  app: {
+    pageTransition: {
+      name: "page",
+      mode: "out-in",
+    },
+  },
 });
