@@ -1,13 +1,35 @@
 @import "tailwindcss";
 
+/* custom theme */
 @theme {
   --font-sans: "Inter", sans-serif;
   --default-font-family: var(--font-sans);
   --color-primary: #15d0ff;
+  --color-dark: #09090b;
   --spacing-prefer: 1346px;
   --breakpoint-prefer: 1366px;
 }
 
+/* custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-[4px];
+}
+::-webkit-scrollbar-track {
+  @apply rounded-full bg-primary/5;
+}
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-primary;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/30;
+}
+
+/* setting stable gab for scrollbar */
+html {
+  @apply [scrollbar-gutter:stable];
+}
+
+/* pages transition styles */
 .page-enter-active,
 .page-leave-active {
   @apply transition-all duration-300;
