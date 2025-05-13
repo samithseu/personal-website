@@ -12,7 +12,7 @@ const open = ref<boolean>(false);
 // set the body pointer-events to none when the modal value changes to open
 watch(open, () => {
   document.body.style.pointerEvents = open.value ? "none" : "auto";
-  document.body.style.overflowY = open.value ? "hidden !important" : "auto";
+  document.body.style.overflowY = open.value ? "hidden" : "auto";
 });
 
 const handleClickOutside = (e: any) => {
@@ -24,7 +24,7 @@ const handleClickOutside = (e: any) => {
 
 <template>
   <header
-    class="w-full border-b border-zinc-50/10 py-4 px-4 prefer:px-0 sticky top-0 left-0 z-50 backdrop-blur-sm"
+    class="bg-dark/70 w-full border-b border-zinc-50/10 py-4 px-4 prefer:px-0 sticky top-0 left-0 z-50 backdrop-blur-sm"
   >
     <nav class="max-w-prefer mx-auto flex items-center justify-between">
       <!-- logo -->
@@ -73,7 +73,7 @@ const handleClickOutside = (e: any) => {
           <div
             v-if="open"
             @click="handleClickOutside"
-            class="overflow-hidden w-full h-max z-50 bg-black/40 backdrop-blur-sm fixed bottom-0 left-0 py-4 px-6 border border-zinc-50/20 rounded-2xl rounded-bl-none rounded-br-none border-b-0 !pointer-events-auto"
+            class="overflow-hidden w-full h-max z-50 bg-dark/70 backdrop-blur-sm fixed bottom-0 left-0 py-4 px-6 border border-zinc-50/20 rounded-2xl rounded-bl-none rounded-br-none border-b-0 !pointer-events-auto"
           >
             <ul
               class="flex flex-col items-start gap-4 *:capitalize *:font-medium *:text-xl"
