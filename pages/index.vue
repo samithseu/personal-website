@@ -19,12 +19,12 @@ defineOgImageComponent("EachPage", {
 </script>
 
 <template>
-  <div class="w-full h-max px-4 prefer:px-0 py-24 prefer:py-44">
+  <div class="w-full px-4 py-4 lg:py-0 prefer:px-0 flex items-center">
     <div
       class="max-w-prefer mx-auto grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:px-8 2xl:px-0"
     >
       <!-- left side -->
-      <div class="space-y-8 w-full">
+      <div class="space-y-8 w-full col-start-1 row-start-1">
         <!-- name -->
         <h1
           class="text-3xl font-black text-center lg:text-left lg:text-4xl xl:text-6xl md:leading-8 lg:leading-12 xl:leading-16"
@@ -36,7 +36,7 @@ defineOgImageComponent("EachPage", {
         </h1>
         <!-- short description -->
         <p
-          class="text-center text-zinc-400 md:w-3/4 mx-auto lg:text-left lg:mx-0 lg:w-full lg:text-xl"
+          class="text-center text-zinc-400 md:w-3/4 mx-auto lg:text-left lg:mx-0 lg:w-full lg:text-xl text-balance"
         >
           I build websites with modern technologies, specializing in crafting
           responsive, user-friendly and eye-catching interfaces for web
@@ -87,12 +87,14 @@ defineOgImageComponent("EachPage", {
         </div>
       </div>
       <!-- right side -->
-      <div class="hidden w-full lg:flex lg:items-center lg:justify-end">
+      <div
+        class="hidden w-full lg:flex lg:items-center lg:justify-end col-start-2 row-start-1"
+      >
         <div
-          class="lg:size-52 xl:size-64 z-30 relative flex justify-end items-center after:content-[''] after:absolute after:w-full after:h-full after:rounded-full after:bg-primary/20 after:blur-3xl after:-z-10 after:top-0 after:left-1/2 after:-translate-x-1/2 after:animate-pulse after:scale-[110%] transition duration-300 hover:scale-95"
+          class="lg:size-52 xl:size-72 z-30 relative flex justify-end items-center"
         >
           <img
-            class="object-cover h-full"
+            class="animate-pulse object-cover h-full drop-shadow-2xl drop-shadow-primary/20"
             src="@/assets/imgs/m-logo.svg"
             alt="Samith Seu's Logo"
           />
