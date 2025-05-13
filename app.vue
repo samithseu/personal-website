@@ -15,11 +15,6 @@ useHead({
 useSeoMeta({
   charset: "utf-8",
   title: "Samith Seu",
-  description: "This is Samith Seu's Personal Website.",
-  ogTitle: "Samith Seu",
-  ogDescription: "This is Samith Seu's Personal Website.",
-  twitterTitle: "Samith Seu",
-  twitterDescription: "This is Samith Seu's Personal Website.",
 });
 </script>
 
