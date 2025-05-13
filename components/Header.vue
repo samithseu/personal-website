@@ -32,7 +32,7 @@ const handleClickOutside = (e: any) => {
         to="/"
         class="text-xl font-semibold uppercase flex items-center gap-1 transition duration-200 hover:text-primary"
       >
-        <Icon name="ic:round-code" class="text-primary text-2xl" />
+        <Icon name="ic:round-code" class="text-primary text-3xl" />
         samithseu
       </NuxtLink>
 
@@ -76,11 +76,11 @@ const handleClickOutside = (e: any) => {
             class="overflow-hidden w-full h-max z-50 bg-dark/70 backdrop-blur-sm fixed bottom-0 left-0 py-4 px-6 border border-zinc-50/20 rounded-2xl rounded-bl-none rounded-br-none border-b-0 !pointer-events-auto"
           >
             <ul
-              class="flex flex-col items-start gap-4 *:capitalize *:font-medium *:text-xl"
+              class="flex flex-col items-center gap-4 *:capitalize *:font-medium *:text-xl"
             >
-              <li v-for="link in allLinks" :key="link.name">
+              <li v-for="link in allLinks" :key="link.name" class="w-full">
                 <NuxtLink
-                  class="transition-colors duration-200 hover:text-primary"
+                  class="transition-colors duration-200 hover:text-primary block w-full text-center"
                   active-class="text-primary"
                   :to="link.path"
                   >{{ link.name }}
