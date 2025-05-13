@@ -24,7 +24,7 @@ const handleClickOutside = (e: any) => {
 
 <template>
   <header
-    class="bg-dark/70 w-full border-b border-zinc-50/10 py-4 px-4 prefer:px-0 sticky top-0 left-0 z-50 backdrop-blur-sm"
+    class="bg-dark/70 w-full border-b border-zinc-50/10 py-4 px-4 prefer:px-0 sticky top-0 left-0 z-50 backdrop-blur-sm h-fit"
   >
     <nav class="max-w-prefer mx-auto flex items-center justify-between">
       <!-- logo -->
