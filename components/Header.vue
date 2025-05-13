@@ -12,7 +12,7 @@ const open = ref<boolean>(false);
 // set the body pointer-events to none when the modal value changes to open
 watch(open, () => {
   document.body.style.pointerEvents = open.value ? "none" : "auto";
-  document.body.style.overflowY = open.value ? "hidden" : "auto";
+  document.body.style.overflowY = open.value ? "hidden !important" : "auto";
 });
 
 const handleClickOutside = (e: any) => {
@@ -23,7 +23,9 @@ const handleClickOutside = (e: any) => {
 </script>
 
 <template>
-  <header class="w-full border-b border-zinc-50/10 py-4 px-4 prefer:px-0">
+  <header
+    class="w-full border-b border-zinc-50/10 py-4 px-4 prefer:px-0 sticky top-0 left-0 z-50 backdrop-blur-sm"
+  >
     <nav class="max-w-prefer mx-auto flex items-center justify-between">
       <!-- logo -->
       <NuxtLink
@@ -47,32 +49,34 @@ const handleClickOutside = (e: any) => {
       </ul>
 
       <!-- resume button -->
-      <NuxtLink
-        class="hidden md:grid size-7 md:size-8 border border-zinc-50/20 place-items-center rounded-full transition-colors duration-200 hover:bg-zinc-50/20 hover:border-transparent"
-        to="https://resume.samith.info"
-        target="_blank"
-      >
-        <Icon name="ic:baseline-attach-file" class="" />
-      </NuxtLink>
+      <div class="flex items-center gap-2">
+        <NuxtLink
+          class="grid size-7 md:size-8 border border-zinc-50/20 place-items-center rounded-full transition-colors duration-200 hover:bg-zinc-50/20 hover:border-transparent"
+          to="https://resume.samith.info"
+          target="_blank"
+        >
+          <Icon name="ic:baseline-attach-file" class="" />
+        </NuxtLink>
 
-      <!-- burger menu trigger button -->
-      <button
-        @click="open = true"
-        class="md:hidden size-7 md:size-8 border border-zinc-50/20 grid place-items-center rounded-full transition-colors duration-200 hover:bg-zinc-50/20 hover:border-transparent cursor-pointer"
-      >
-        <Icon name="ic:round-menu" class="text-xl" />
-      </button>
+        <!-- burger menu trigger button -->
+        <button
+          @click="open = true"
+          class="md:hidden size-7 md:size-8 border border-zinc-50/20 grid place-items-center rounded-full transition-colors duration-200 hover:bg-zinc-50/20 hover:border-transparent cursor-pointer"
+        >
+          <Icon name="ic:round-menu" class="text-xl" />
+        </button>
+      </div>
 
       <Teleport to="#teleports">
         <Transition name="element">
           <!-- make clicking outside below element to close the modal -->
           <div
-            @click="handleClickOutside"
             v-if="open"
-            class="overflow-hidden w-full h-max z-50 bg-black/40 backdrop-blur-sm fixed bottom-0 left-0 p-4 border border-zinc-50/20 rounded-2xl rounded-bl-none rounded-br-none border-b-0 !pointer-events-auto"
+            @click="handleClickOutside"
+            class="overflow-hidden w-full h-max z-50 bg-black/40 backdrop-blur-sm fixed bottom-0 left-0 py-4 px-6 border border-zinc-50/20 rounded-2xl rounded-bl-none rounded-br-none border-b-0 !pointer-events-auto"
           >
             <ul
-              class="flex flex-col items-start gap-4 *:capitalize *:font-medium"
+              class="flex flex-col items-start gap-4 *:capitalize *:font-medium *:text-xl"
             >
               <li v-for="link in allLinks" :key="link.name">
                 <NuxtLink
@@ -87,7 +91,7 @@ const handleClickOutside = (e: any) => {
             <Icon
               @click="open = false"
               name="ic:baseline-cancel"
-              class="absolute top-4 right-4 text-xl cursor-pointer text-zinc-50"
+              class="absolute top-4 right-6 text-2xl cursor-pointer text-zinc-50"
             />
           </div>
         </Transition>
