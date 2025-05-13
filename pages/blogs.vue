@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 // FOR SEO
-import MLogo from "@/assets/imgs/m-logo.svg";
 const desc =
   "A place where Samith Seu writes about his experiences and some technologies.";
 const ttl = "%s - Blogs";
@@ -12,12 +11,10 @@ useSeoMeta({
   ogDescription: desc,
   twitterDescription: desc,
 });
-defineOgImageComponent("NuxtSeo", {
+defineOgImageComponent("EachPage", {
+  headline: "personal website",
   title: ttl,
-  description: desc,
-  theme: "#15D0FF",
-  colorMode: "dark",
-  siteLogo: MLogo,
+  desc: desc,
 });
 </script>
 
