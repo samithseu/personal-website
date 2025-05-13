@@ -18,4 +18,9 @@ export default defineNuxtConfig({
       mode: "out-in",
     },
   },
+  ogImage: {
+    defaults: {
+      renderer: "satori",
+    },
+  },
 });
