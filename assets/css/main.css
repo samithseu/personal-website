@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --default-font-family: "Inter", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --default-font-family: var(--font-sans);
   --color-primary: #15d0ff;
   --spacing-prefer: 1346px;
   --breakpoint-prefer: 1366px;
