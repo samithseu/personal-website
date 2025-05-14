@@ -1,20 +1,11 @@
 <script lang="ts" setup>
-// FOR SEO
-const desc =
-  "Telling more information about Samith Seu also specifying his skills and technologies he's using.";
-const ttl = "%s - About";
-useSeoMeta({
-  titleTemplate: ttl,
-  ogTitle: ttl,
-  twitterTitle: ttl,
-  description: desc,
-  ogDescription: desc,
-  twitterDescription: desc,
-});
-defineOgImageComponent("EachPage", {
-  headline: "personal website",
-  title: ttl,
-  desc: desc,
+import type { useSeoProps } from "~/composables/useSeo";
+import { useSeo } from "~/composables/useSeo";
+
+useSeo<useSeoProps>({
+  title: "About",
+  description:
+    "Telling more information about Samith Seu also specifying his skills and technologies he's using",
 });
 </script>
 
