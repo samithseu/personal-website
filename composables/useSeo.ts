@@ -1,11 +1,11 @@
-export type useSeoProps = {
+export type SeoProps = {
   title: string;
   description: string;
   ogImageHeadline?: string;
   ogImageComponent?: string;
 };
 
-export const useSeo = (props: useSeoProps) => {
+export const useSeo = (props: SeoProps) => {
   const { title, description } = props;
   const ogImageHeadline = props.ogImageHeadline ?? "personal website";
   const ogImageComponent = props.ogImageComponent ?? "EachPage";
