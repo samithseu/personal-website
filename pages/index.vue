@@ -49,6 +49,8 @@ useSeo<useSeoProps>({
           class="flex flex-wrap items-center justify-center gap-2 *:border *:py-2 *:px-6 *:rounded-full *:capitalize *:text-sm lg:justify-start"
         >
           <NuxtLink
+            aria-label=" This will go to projects page"
+            title="Projects"
             to="/projects"
             class="group flex items-center gap-1 bg-primary text-dark transition-colors duration-200 hover:bg-primary/70"
           >
@@ -59,6 +61,8 @@ useSeo<useSeoProps>({
             />
           </NuxtLink>
           <NuxtLink
+            aria-label="This will go to about page"
+            title="About"
             to="/about"
             class="text-nowrap transition-colors duration-200 border-zinc-50/20 hover:bg-zinc-50/20 hover:border-transparent"
             >about me</NuxtLink
@@ -68,22 +72,44 @@ useSeo<useSeoProps>({
         <div
           class="flex items-center gap-4 lg:gap-6 *:text-xl justify-center *:transition-colors *:duration-200 *:hover:text-primary lg:justify-start lg:*:text-xl *:text-zinc-400"
         >
-          <NuxtLink target="_blank" to="https://github.com/samithseu">
+          <NuxtLink
+            title="GitHub"
+            aria-label="This is Samith's GitHub"
+            target="_blank"
+            to="https://github.com/samithseu"
+          >
             <Icon name="lucide:github" />
           </NuxtLink>
           <NuxtLink
+            title="LinkedIn"
+            aria-label="This is Samith's LinkedIn"
             target="_blank"
             to="https://www.linkedin.com/in/samith-seu-500193205/"
           >
             <Icon name="lucide:linkedin" />
           </NuxtLink>
-          <NuxtLink target="_blank" to="https://twitter.com/seumith">
+          <NuxtLink
+            title="Twitter/X"
+            aria-label="This is Samith's Twitter/X"
+            target="_blank"
+            to="https://twitter.com/seumith"
+          >
             <Icon name="prime:twitter" />
           </NuxtLink>
-          <NuxtLink target="_blank" to="https://t.me/samithseu">
+          <NuxtLink
+            title="Telegram"
+            aria-label="This is Samith's Telegram"
+            target="_blank"
+            to="https://t.me/samithseu"
+          >
             <Icon name="hugeicons:telegram" />
           </NuxtLink>
-          <NuxtLink target="_blank" to="mailto:seusamith@gmail.com">
+          <NuxtLink
+            title="Email"
+            aria-label="This is Samith's Email"
+            target="_blank"
+            to="mailto:seusamith@gmail.com"
+          >
             <Icon name="lucide:mail" />
           </NuxtLink>
         </div>
