@@ -1,10 +1,18 @@
 <script lang="ts" setup>
-const allLinks = ref<Array<{ name: string; path: string }>>([
-  { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
-  { name: "Projects", path: "/projects" },
-  { name: "Certificates", path: "/certificates" },
-  { name: "Blogs", path: "/blogs" },
+const allLinks = ref<Array<{ label: string; name: string; path: string }>>([
+  { label: "This will go to home page", name: "Home", path: "/" },
+  { label: "This will go to about page", name: "About", path: "/about" },
+  {
+    label: "This will go to projects page",
+    name: "Projects",
+    path: "/projects",
+  },
+  {
+    label: "This will go to certificates page",
+    name: "Certificates",
+    path: "/certificates",
+  },
+  { label: "This will go to blogs page", name: "Blogs", path: "/blogs" },
 ]);
 // for navlink modal
 const open = ref<boolean>(false);
@@ -29,6 +37,8 @@ const handleClickOutside = (e: any) => {
     <nav class="max-w-prefer mx-auto flex items-center justify-between">
       <!-- logo -->
       <NuxtLink
+        aria-label="This will go to home page"
+        title="Home page"
         to="/"
         class="text-xl font-semibold uppercase flex items-center gap-1 transition duration-200 hover:text-primary"
       >
@@ -40,6 +50,8 @@ const handleClickOutside = (e: any) => {
       <ul class="hidden md:flex items-center gap-6 *:capitalize *:font-medium">
         <li v-for="link in allLinks" :key="link.name">
           <NuxtLink
+            :aria-label="link.label"
+            :title="link.name"
             class="transition-colors duration-200 hover:text-primary"
             active-class="text-primary"
             :to="link.path"
@@ -51,6 +63,8 @@ const handleClickOutside = (e: any) => {
       <!-- resume button -->
       <div class="flex items-center gap-2">
         <NuxtLink
+          aria-label="This will go to resume page"
+          title="Resume page"
           class="grid size-7 md:size-8 border border-zinc-50/20 place-items-center rounded-full transition-colors duration-200 hover:bg-zinc-50/20 hover:border-transparent"
           to="https://resume.samith.info"
           target="_blank"
@@ -80,6 +94,8 @@ const handleClickOutside = (e: any) => {
             >
               <li v-for="link in allLinks" :key="link.name" class="w-full">
                 <NuxtLink
+                  :aria-label="link.label"
+                  :title="link.name"
                   class="transition-colors duration-200 hover:text-primary block w-full text-center"
                   active-class="text-primary"
                   :to="link.path"
