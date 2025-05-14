@@ -16,15 +16,26 @@ useSeo<useSeoProps>({
     >
       <!-- left side -->
       <div class="space-y-8 w-full col-start-1 row-start-1">
-        <!-- name -->
-        <h1
-          class="text-3xl font-black text-center lg:text-left lg:text-4xl xl:text-6xl md:leading-8 lg:leading-12 xl:leading-16"
-        >
-          <span class="block"
-            >I'm <span class="text-primary">Samith</span></span
+        <div class="space-y-3 lg:space-y-2">
+          <!-- badge -->
+          <p
+            class="mx-auto lg:mx-0 w-max h-max text-xs text-primary border rounded-full px-3 py-1 bg-primary/10 border-primary/30 flex items-center gap-2"
           >
-          <span class="text-zinc-400">Web Developer</span>
-        </h1>
+            <span
+              class="block z-20 isolate size-2 bg-primary rounded-full relative before:content-[''] before:absolute before:inset-0 before:bg-primary before:rounded-full before:animate-ping"
+            ></span>
+            <span>Available for work</span>
+          </p>
+          <!-- name -->
+          <h1
+            class="text-3xl font-black text-center lg:text-left lg:text-4xl xl:text-6xl md:leading-8 lg:leading-12 xl:leading-16"
+          >
+            <span class="block"
+              >I'm <span class="text-primary">Samith</span></span
+            >
+            <span class="text-zinc-400">Web Developer</span>
+          </h1>
+        </div>
         <!-- short description -->
         <p
           class="text-center text-zinc-400 md:w-3/4 mx-auto lg:text-left lg:mx-0 lg:w-full lg:text-xl text-balance"
