@@ -7,14 +7,22 @@ useSeo({
     "Telling more information about Samith Seu also specifying his skills and technologies he's using",
 });
 
-const open = ref<boolean>(false);
-const dataDialog = ref<"opening" | "closing">("closing");
+const showBackdrop = ref<boolean>(false);
+const showModal = ref<boolean>(false);
 
-const handleAnimationEnd = () => {
-  if (open.value === true && dataDialog.value === "opening") {
-    open.value = false;
-  }
-};
+async function open() {
+  showBackdrop.value = true;
+  await nextTick();
+  showModal.value = true;
+}
+
+function close() {
+  showModal.value = false;
+}
+
+function onModalAfterLeave() {
+  showBackdrop.value = false;
+}
 </script>
 
 <template>
@@ -23,33 +31,44 @@ const handleAnimationEnd = () => {
       class="max-w-prefer mx-auto lg:px-8 2xl:px-0 w-full flex justify-center"
     >
       <button
-        @click="open = true"
+        @click="open"
         class="px-4 py-2 border rounded-lg cursor-pointer border-zinc-50/20 text-white transition-colors duration-200 hover:bg-zinc-50/20 hover:border-transparent"
         role="button"
         aria-label="Opening modal"
       >
         Open Modal
       </button>
-      <!-- TODO: Create a proper dialog/modal component -->
+
       <Teleport to="#teleports">
         <Transition name="backdrop">
           <div
-            v-if="open"
-            @click.self="open = false"
-            class="w-screen h-screen bg-zinc-950/40 fixed inset-0 z-50 flex items-center justify-center top-0 left-0 backdrop-blur-md backdrop-brightness-50"
+            v-if="showBackdrop"
+            class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm grid place-items-center px-4 prefer:px-0"
+            @click="close"
           >
-            <div
-              :data-state="dataDialog"
-              :class="dataDialog === 'closing' ? 'open' : 'close'"
-              @animationend="handleAnimationEnd"
+            <Transition
+              @after-leave="onModalAfterLeave"
+              name="modal"
+              appear
+              mode="out-in"
             >
-              <h1 class="text-center text-3xl">Hello from Modal!</h1>
-            </div>
-            <Icon
-              @click="dataDialog = 'opening'"
-              name="ic:baseline-cancel"
-              class="absolute top-4 right-6 text-2xl cursor-pointer text-zinc-50"
-            />
+              <div
+                v-if="showModal"
+                @click.stop
+                class="max-w-lg p-4 border border-zinc-50/20 rounded-lg"
+              >
+                <h4 class="text-2xl mb-4 font-bold text-white text-center">
+                  Custom Dialog
+                </h4>
+                <p class="text-zinc-400 text-pretty">
+                  THis is the custom
+                  <code class="font-mono text-primary">Dialog</code>
+                  component which I created manually using Vue 3 Composition
+                  API. So I'm really excited about it because I'll use it later
+                  in this website.
+                </p>
+              </div>
+            </Transition>
           </div>
         </Transition>
       </Teleport>
@@ -60,7 +79,7 @@ const handleAnimationEnd = () => {
 <style scoped>
 .backdrop-enter-active,
 .backdrop-leave-active {
-  @apply transition-all duration-500;
+  @apply transition-all duration-300;
 }
 
 .backdrop-enter-from,
@@ -75,35 +94,6 @@ const handleAnimationEnd = () => {
 
 .modal-enter-from,
 .modal-leave-to {
-  @apply opacity-0 translate-x-full;
-}
-
-.open {
-  @apply transition duration-200 animate-[goIn_200ms_ease-out];
-}
-.close {
-  @apply transition duration-200 animate-[goOut_200ms_ease-out];
-}
-
-@keyframes goIn {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0%);
-    opacity: 1;
-  }
-}
-
-@keyframes goOut {
-  from {
-    transform: translateX(0%);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(100%);
-    opacity: 0;
-  }
+  @apply opacity-0 scale-95 -translate-y-1/2;
 }
 </style>
