@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import type { useSeoProps } from "~/composables/useSeo";
 import { useSeo } from "~/composables/useSeo";
 
-useSeo<useSeoProps>({
+useSeo({
   title: "About",
   description:
     "Telling more information about Samith Seu also specifying his skills and technologies he's using",
