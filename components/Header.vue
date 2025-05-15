@@ -16,18 +16,15 @@ const allLinks = ref<Array<{ label: string; name: string; path: string }>>([
 ]);
 // for navlink modal
 const open = ref<boolean>(false);
+const route = useRoute();
 
-// set the body pointer-events to none when the modal value changes to open
-watch(open, () => {
-  document.body.style.pointerEvents = open.value ? "none" : "auto";
-  document.body.style.overflowY = open.value ? "hidden" : "auto";
-});
-
-const handleClickOutside = (e: any) => {
-  if (open.value && e.target.id !== "teleports") {
+// change `open` state to false when route value changes
+watch(
+  () => route.name,
+  () => {
     open.value = false;
   }
-};
+);
 </script>
 
 <template>
@@ -83,49 +80,22 @@ const handleClickOutside = (e: any) => {
         </button>
       </div>
 
-      <Teleport to="#teleports">
-        <Transition name="element">
-          <!-- make clicking outside below element to close the modal -->
-          <div
-            v-if="open"
-            @click="handleClickOutside"
-            class="overflow-hidden w-full h-max z-50 bg-dark/70 backdrop-blur-sm fixed bottom-0 left-0 py-4 px-6 border border-zinc-50/20 rounded-2xl rounded-bl-none rounded-br-none border-b-0 !pointer-events-auto"
-          >
-            <ul
-              class="flex flex-col items-center gap-4 *:capitalize *:font-medium *:text-xl"
-            >
-              <li v-for="link in allLinks" :key="link.name" class="w-full">
-                <NuxtLink
-                  :aria-label="link.label"
-                  :title="link.name"
-                  class="transition-colors duration-200 hover:text-primary block w-full text-center"
-                  active-class="text-primary"
-                  :to="link.path"
-                  >{{ link.name }}
-                </NuxtLink>
-              </li>
-            </ul>
-
-            <Icon
-              @click="open = false"
-              name="ic:baseline-cancel"
-              class="absolute top-4 right-6 text-2xl cursor-pointer text-zinc-50"
-            />
-          </div>
-        </Transition>
-      </Teleport>
+      <Dialog v-model="open" modal-classes="grid place-items-center">
+        <ul
+          class="flex flex-col items-center gap-7 *:capitalize *:font-medium *:text-2xl"
+        >
+          <li v-for="link in allLinks" :key="link.name">
+            <NuxtLink
+              :aria-label="link.label"
+              :title="link.name"
+              class="transition-colors duration-200 hover:text-primary"
+              active-class="text-primary"
+              :to="link.path"
+              >{{ link.name }}
+            </NuxtLink>
+          </li>
+        </ul>
+      </Dialog>
     </nav>
   </header>
 </template>
-
-<style scoped>
-.element-enter-active,
-.element-leave-active {
-  @apply transition-all duration-500;
-}
-
-.element-enter-from,
-.element-leave-to {
-  @apply opacity-0 translate-y-full;
-}
-</style>
