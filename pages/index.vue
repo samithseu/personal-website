@@ -117,16 +117,9 @@ useSeo({
       <div
         class="hidden w-full lg:flex lg:items-center lg:justify-end col-start-2 row-start-1"
       >
-        <div
-          class="lg:size-52 xl:size-72 z-30 relative flex justify-end items-center"
-        >
-          <!-- TODO: make the logo from <M> to original logo with animation -->
-          <img
-            class="animate-pulse object-cover h-full drop-shadow-2xl drop-shadow-primary/20"
-            src="@/assets/imgs/m-logo.svg"
-            alt="Samith Seu's Logo"
-          />
-        </div>
+        <M
+          class="lg:size-52 xl:size-80 [&>path]:stroke-[4] [&>path]:stroke-primary [&>path]:fill-primary/0 [&>path]:transition-all [&>path]:duration-[400ms] [&:hover_path]:fill-primary"
+        />
       </div>
     </div>
   </div>
