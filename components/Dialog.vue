@@ -21,8 +21,7 @@ import { ref, watch } from "vue";
 
 const props = defineProps<{
   modelValue: boolean;
-  // make the modalClasses as string with default values
-  modalClasses?: string;
+  modalClasses?: String;
 }>();
 const emit = defineEmits<{
   (e: "update:modelValue", value: boolean): void;
