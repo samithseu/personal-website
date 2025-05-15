@@ -9,5 +9,7 @@ useSeo({
 </script>
 
 <template>
-  <h2 class="text-center">This is projects page!</h2>
+  <div class="w-full h-fit grid place-items-center">
+    <h1>Hello from projects page!</h1>
+  </div>
 </template>
