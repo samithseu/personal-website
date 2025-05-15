@@ -24,9 +24,9 @@ const showDialog = ref<boolean>(false);
         Open Modal
       </button>
 
-      <Dialog v-model="showDialog">
+      <LazyDialog v-model="showDialog">
         <h1>Hello from about page!</h1>
-      </Dialog>
+      </LazyDialog>
     </div>
   </div>
 </template>

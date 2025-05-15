@@ -80,7 +80,7 @@ watch(
         </button>
       </div>
 
-      <Dialog v-model="open" modal-classes="grid place-items-center">
+      <LazyDialog v-model="open" modal-classes="grid place-items-center">
         <ul
           class="flex flex-col items-center gap-7 *:capitalize *:font-medium *:text-2xl"
         >
@@ -95,7 +95,7 @@ watch(
             </NuxtLink>
           </li>
         </ul>
-      </Dialog>
+      </LazyDialog>
     </nav>
   </header>
 </template>
