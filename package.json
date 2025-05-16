@@ -13,6 +13,7 @@
   "dependencies": {
     "@nuxt/fonts": "^0.11.3",
     "@nuxt/icon": "^1.12.0",
+    "@nuxt/image": "^1.10.0",
     "@tailwindcss/vite": "^4.1.6",
     "@unhead/vue": "^2.0.8",
     "nuxt": "^3.17.2",
