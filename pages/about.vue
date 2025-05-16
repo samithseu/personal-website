@@ -9,18 +9,25 @@ useSeo({
 </script>
 
 <template>
-  <div class="w-full px-4 py-4 lg:py-0 prefer:px-0 flex items-center">
-    <div class="max-w-prefer mx-auto lg:px-8 2xl:px-0">
+  <div
+    class="w-full px-4 py-4 sm:py-6 sm:px-14 md:px-6 lg:px-8 lg:py-16 xl:py-24 prefer:px-0"
+  >
+    <div class="max-w-prefer mx-auto">
       <!-- 2 col wrapper -->
-      <div class="grid grid-cols-1 md:grid-cols-2 md:items-center">
+      <div
+        class="grid grid-cols-1 md:grid-cols-[1fr_2fr] md:items-start gap-4 lg:gap-16"
+      >
         <!-- left side -->
-        <div class="w-full col-start-1 row-start-1">
-          <div>
-            <img
-              src="@/assets/imgs/about-pic.jpg"
-              alt="Samith Seu's AI generated photo"
-            />
-          </div>
+        <div
+          class="w-full col-start-1 row-start-1 aspect-square overflow-hidden rounded-2xl"
+        >
+          <NuxtImg
+            loading="lazy"
+            class="w-full object-cover"
+            src="/mith-gen-photo.jpg"
+            alt="Samith Seu's AI generated photo with Ghibli style"
+          />
+
           <!-- social medias-->
           <!-- <div
             class="flex items-center gap-4 lg:gap-6 *:text-xl justify-center *:transition-colors *:duration-200 *:hover:text-primary lg:justify-start lg:*:text-xl *:text-zinc-400"
@@ -68,17 +75,41 @@ useSeo({
           </div> -->
         </div>
         <!-- right side -->
-        <div class="">
+        <div class="*:text-zinc-400 *:text-lg space-y-4 lg:space-y-6">
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-            odit eos fuga inventore! Facilis perferendis velit nesciunt
-            voluptates, iusto quo eveniet eaque id eligendi qui dolorum ratione
-            eum aut nulla dolorem accusamus repellendus officiis temporibus
-            voluptatum voluptas dolore. Qui, numquam quaerat rem cupiditate
-            pariatur error quis id illum dolor tempora libero ut, cumque et
-            necessitatibus doloribus autem eaque ea quidem impedit deserunt nemo
-            ab! Excepturi mollitia iure tempora facere ratione nam nostrum
-            corporis enim exercitatio
+            I don't know if I'm good enough to be called a developer, but when I
+            was a student in high school, I was always fascinated by the world
+            of technology specially in programming. When 2020 had come, learning
+            through online classes really pushed me more to be curious about
+            technologies and how they work. After having those curiosity again
+            and again, I decided to learn more about computer and programming.
+          </p>
+          <p>
+            My programming journey started when I was in
+            <NuxtLink
+              class="transition-colors duration-200 hover:text-primary"
+              to="https://www.facebook.com/brachnasastraBTI/"
+              target="_blank"
+              >college</NuxtLink
+            >, 2<sup>nd</sup>
+            year, where I was learning a subject related to Database and SQL
+            from professor who is a software engineer and also working as a
+            full-stack developer for a government institution. He demonstrated
+            one of his projects to me,
+            <NuxtLink
+              class="transition-colors duration-200 hover:text-primary"
+              to="https://laravel.com"
+              target="_blank"
+              >Laravel</NuxtLink
+            >
+            web application, and I was so impressed by his coding skiils. After
+            that moment, I've started learning more about programming specially
+            in Web Development.
+          </p>
+          <p>
+            Right now, I can say that I'm comfortable with creating UI elements
+            on the web with technologies like React.JS and Vue.JS and also keep
+            learning more about backend technologies as well.
           </p>
         </div>
       </div>
