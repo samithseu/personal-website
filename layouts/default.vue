@@ -11,7 +11,6 @@ const { isChanging, lock, unlock } = useScrollLock();
           class="overflow-y-auto transition-[overflow]"
           :class="{
             '!overflow-y-hidden': isChanging,
-            'hide-scrollbar': isChanging,
           }"
         >
           <component :is="Component" />
