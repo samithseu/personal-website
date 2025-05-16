@@ -12,7 +12,7 @@
 
 /* custom scrollbar */
 ::-webkit-scrollbar {
-  @apply w-[4px] h-[4px];
+  @apply w-[3px] h-[3px];
 }
 ::-webkit-scrollbar-track {
   @apply rounded-full bg-primary/5;
