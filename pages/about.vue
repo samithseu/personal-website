@@ -9,22 +9,23 @@ useSeo({
 </script>
 
 <template>
-  <div
-    class="w-full px-4 py-4 sm:py-6 sm:px-14 md:px-6 lg:px-8 lg:py-16 xl:py-24 prefer:px-0"
-  >
-    <div class="max-w-prefer mx-auto">
+  <div class="w-full px-4 py-4 sm:px-14 md:px-6 lg:px-8 prefer:px-0">
+    <div
+      class="max-w-prefer mx-auto sm:mt-4 md:mt-8 lg:mt-12 xl:mt-16 2xl:mt-28 3xl:mt-32"
+    >
       <!-- 2 col wrapper -->
       <div
         class="grid grid-cols-1 md:grid-cols-[1fr_2fr] md:items-start gap-4 lg:gap-16"
       >
         <!-- left side -->
         <div
-          class="w-full col-start-1 row-start-1 aspect-square overflow-hidden rounded-2xl"
+          class="w-full col-start-1 row-start-1 aspect-square overflow-hidden rounded-2xl group"
         >
           <NuxtImg
-            loading="lazy"
-            class="w-full object-cover"
+            class="group-hover:scale-105 transition-transform duration-400 w-full object-cover"
             src="/mith-gen-photo.jpg"
+            format="webp"
+            sizes="350px sm:500px md:800px lg:1024px"
             alt="Samith Seu's AI generated photo with Ghibli style"
           />
 

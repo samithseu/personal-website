@@ -9,9 +9,9 @@ useSeo({
 </script>
 
 <template>
-  <div class="w-full h-full px-4 py-4 lg:py-0 prefer:px-0 flex items-center">
+  <div class="w-full px-4 py-4 lg:py-0 prefer:px-0 flex items-center">
     <div
-      class="max-w-prefer mx-auto grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:px-8 2xl:px-0 lg:gap-0 gap-12"
+      class="max-w-prefer mx-auto grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:px-8 2xl:px-0 lg:gap-0 gap-12 sm:mt-4 md:mt-8 lg:mt-12 xl:mt-16 2xl:mt-28 3xl:mt-32"
     >
       <!-- left side -->
       <div
