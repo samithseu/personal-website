@@ -11,7 +11,7 @@ useSeo({
 <template>
   <div class="w-full px-4 py-4 lg:py-0 prefer:px-0 flex items-center">
     <div
-      class="max-w-prefer mx-auto grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:px-8 2xl:px-0 lg:gap-0 gap-4 sm:gap-6 md:gap-8 mt-4 sm:mt-4 md:mt-8 lg:mt-12 xl:mt-16 2xl:mt-28 3xl:mt-32"
+      class="max-w-prefer mx-auto grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:px-8 2xl:px-0 lg:gap-0 gap-4 sm:gap-6 md:gap-8 mt-24 sm:mt-28 md:mt-30 lg:mt-24 xl:mt-28 2xl:mt-30 3xl:mt-32"
     >
       <!-- left side -->
       <div
@@ -29,7 +29,7 @@ useSeo({
           </p>
           <!-- name -->
           <h1
-            class="text-3xl font-black text-center lg:text-left lg:text-4xl xl:text-6xl md:leading-8 lg:leading-12 xl:leading-16"
+            class="text-3xl md:text-4xl md:leading-10 font-black text-center lg:text-left lg:text-4xl xl:text-6xl lg:leading-12 xl:leading-16"
           >
             <span class="block"
               >I'm <span class="text-primary">Samith</span></span
@@ -120,7 +120,7 @@ useSeo({
         class="lg:w-full col-start-1 row-start-1 lg:flex lg:items-center lg:justify-end lg:col-start-2 lg:row-start-1"
       >
         <M
-          class="size-24 mx-auto lg:mx-0 lg:size-60 xl:size-80 [&>path]:stroke-[4] [&>path]:stroke-primary lg:[&>path]:fill-primary/0 lg:[&>path]:transition-all lg:[&>path]:duration-[400ms] lg:[&:hover_path]:fill-primary [&>path]:fill-primary/10"
+          class="size-24 sm:size-32 md:size-40 mx-auto lg:mx-0 lg:size-60 xl:size-80 [&>path]:stroke-[4] [&>path]:stroke-primary lg:[&>path]:fill-primary/0 lg:[&>path]:transition-all lg:[&>path]:duration-[400ms] lg:[&:hover_path]:fill-primary [&>path]:fill-primary/10"
         />
       </div>
     </div>
