@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useSeo } from "~/composables/useSeo";
+const { allContacts } = useContacts();
 
 useSeo({
   title: "Home",
@@ -15,7 +16,7 @@ useSeo({
     >
       <!-- left side -->
       <div
-        class="space-y-4 md:space-y-6 lg:space-y-8 w-full lg:col-start-1 lg:row-start-1 col-start-1 row-start-2"
+        class="space-y-5 md:space-y-6 lg:space-y-8 w-full lg:col-start-1 lg:row-start-1 col-start-1 row-start-2"
       >
         <div class="space-y-3 lg:space-y-2">
           <!-- badge -->
@@ -71,47 +72,16 @@ useSeo({
         </div>
         <!-- social medias-->
         <div
-          class="flex items-center gap-4 lg:gap-6 *:text-xl justify-center *:transition-colors *:duration-200 *:hover:text-primary lg:justify-start lg:*:text-xl *:text-zinc-400"
+          class="flex items-center gap-5 *:text-2xl justify-center *:transition-all *:duration-200 *:hover:text-primary lg:justify-start *:text-zinc-400 *:hover:scale-105 lg:*:hover:scale-110"
         >
           <NuxtLink
-            title="GitHub"
-            aria-label="This is Samith's GitHub"
-            target="_blank"
-            to="https://github.com/samithseu"
+            v-for="contact in allContacts"
+            :key="contact.name"
+            :to="contact.link"
+            :title="contact.name"
+            :aria-label="`This is Samith's ${contact.name}`"
           >
-            <Icon name="lucide:github" />
-          </NuxtLink>
-          <NuxtLink
-            title="LinkedIn"
-            aria-label="This is Samith's LinkedIn"
-            target="_blank"
-            to="https://www.linkedin.com/in/samith-seu-500193205/"
-          >
-            <Icon name="lucide:linkedin" />
-          </NuxtLink>
-          <NuxtLink
-            title="Twitter/X"
-            aria-label="This is Samith's Twitter/X"
-            target="_blank"
-            to="https://twitter.com/seumith"
-          >
-            <Icon name="prime:twitter" />
-          </NuxtLink>
-          <NuxtLink
-            title="Telegram"
-            aria-label="This is Samith's Telegram"
-            target="_blank"
-            to="https://t.me/samithseu"
-          >
-            <Icon name="hugeicons:telegram" />
-          </NuxtLink>
-          <NuxtLink
-            title="Email"
-            aria-label="This is Samith's Email"
-            target="_blank"
-            to="mailto:seusamith@gmail.com"
-          >
-            <Icon name="lucide:mail" />
+            <Icon :name="contact.iconName" />
           </NuxtLink>
         </div>
       </div>
