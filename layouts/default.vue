@@ -1,18 +1,11 @@
-<script lang="ts" setup>
-const { isChanging, lock, unlock } = useScrollLock();
-</script>
+<script lang="ts" setup></script>
 
 <template>
-  <div class="h-screen grid grid-rows-[auto_1fr]">
+  <div class="h-fit grid grid-rows-[auto_1fr]">
     <Header />
-    <NuxtPage :transition="{ onBeforeLeave: lock, onAfterEnter: unlock }">
+    <NuxtPage>
       <template #default="{ Component }">
-        <main
-          class="overflow-y-auto transition-[overflow]"
-          :class="{
-            '!overflow-y-hidden': isChanging,
-          }"
-        >
+        <main>
           <component :is="Component" />
         </main>
       </template>
