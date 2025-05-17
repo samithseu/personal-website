@@ -11,11 +11,11 @@ useSeo({
 <template>
   <div class="w-full px-4 py-4 lg:py-0 prefer:px-0 flex items-center">
     <div
-      class="max-w-prefer mx-auto grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:px-8 2xl:px-0 lg:gap-0 gap-12 sm:mt-4 md:mt-8 lg:mt-12 xl:mt-16 2xl:mt-28 3xl:mt-32"
+      class="max-w-prefer mx-auto grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:px-8 2xl:px-0 lg:gap-0 gap-4 sm:gap-6 md:gap-8 mt-4 sm:mt-4 md:mt-8 lg:mt-12 xl:mt-16 2xl:mt-28 3xl:mt-32"
     >
       <!-- left side -->
       <div
-        class="space-y-8 w-full lg:col-start-1 lg:row-start-1 col-start-1 row-start-2"
+        class="space-y-4 md:space-y-6 lg:space-y-8 w-full lg:col-start-1 lg:row-start-1 col-start-1 row-start-2"
       >
         <div class="space-y-3 lg:space-y-2">
           <!-- badge -->
@@ -120,7 +120,7 @@ useSeo({
         class="lg:w-full col-start-1 row-start-1 lg:flex lg:items-center lg:justify-end lg:col-start-2 lg:row-start-1"
       >
         <M
-          class="size-36 mx-auto lg:mx-0 lg:size-60 xl:size-80 [&>path]:stroke-[4] [&>path]:stroke-primary lg:[&>path]:fill-primary/0 lg:[&>path]:transition-all lg:[&>path]:duration-[400ms] lg:[&:hover_path]:fill-primary [&>path]:fill-primary/10"
+          class="size-24 mx-auto lg:mx-0 lg:size-60 xl:size-80 [&>path]:stroke-[4] [&>path]:stroke-primary lg:[&>path]:fill-primary/0 lg:[&>path]:transition-all lg:[&>path]:duration-[400ms] lg:[&:hover_path]:fill-primary [&>path]:fill-primary/10"
         />
       </div>
     </div>

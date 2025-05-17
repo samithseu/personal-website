@@ -11,7 +11,7 @@ useSeo({
 <template>
   <div class="w-full px-4 py-4 sm:px-14 md:px-6 lg:px-8 prefer:px-0">
     <div
-      class="max-w-prefer mx-auto sm:mt-4 md:mt-8 lg:mt-12 xl:mt-16 2xl:mt-28 3xl:mt-32"
+      class="max-w-prefer mx-auto mb-8 sm:mt-4 md:mt-8 lg:mt-12 xl:mt-16 2xl:mt-28 3xl:mt-32"
     >
       <!-- 2 col wrapper -->
       <div
