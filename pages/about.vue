@@ -12,11 +12,11 @@ useSeo({
 <template>
   <div class="w-full px-4 py-4 sm:px-14 md:px-6 lg:px-8 prefer:px-0">
     <div
-      class="max-w-prefer mx-auto mb-8 sm:mt-4 md:mt-8 lg:mt-12 xl:mt-16 3xl:mt-32"
+      class="max-w-prefer mx-auto my-4 lg:my-12 xl:my-14 space-y-4 md:space-y-6 lg:space-y-12 xl:space-y-14 2xl:space-y-16"
     >
       <!-- 2 col wrapper -->
       <div
-        class="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] md:items-start gap-4 lg:gap-16"
+        class="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] md:items-start gap-4 md:gap-6 lg:gap-16"
       >
         <!-- left side -->
         <div
@@ -86,6 +86,26 @@ useSeo({
             <Icon name="tabler:external-link" class="text-lg" />
           </NuxtLink>
         </div>
+      </div>
+      <!-- education -->
+      <div class="space-y-4 md:space-y-6">
+        <h2 class="capitalize text-3xl font-bold">education</h2>
+        <ul
+          class="grid grid-cols-1 lg:grid-cols-2 lg:items-start gap-6 lg:gap-8"
+        >
+          <LazyListItem
+            title="Bachelor of Information Technology"
+            subtitle-left="Brachñāsāstra Technology Institute"
+            subtitle-right="2021 - 2025"
+            description="Studied about software, hardware and also focus on web development, algorithms, and software engineering as well."
+          />
+          <LazyListItem
+            title="Baccalaureate Degree"
+            subtitle-left="Kampong Speu High School"
+            subtitle-right="2017 - 2020"
+            description="Studied about Khmer Literature, Mathematics, Foreign Language, Social Studies (History...) to get high school diploma from MoEYS."
+          />
+        </ul>
       </div>
     </div>
   </div>
