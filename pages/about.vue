@@ -25,7 +25,8 @@ useSeo({
             class="group-hover:scale-105 transition-transform duration-400 w-full object-cover"
             src="/mith-gen-photo.jpg"
             format="webp"
-            sizes="350px sm:500px md:800px lg:1024px"
+            quality="80"
+            sizes="300px sm:400px md:600px lg:800px xl:1000px xxl:1024px"
             alt="Samith Seu's AI generated photo with Ghibli style"
           />
 
