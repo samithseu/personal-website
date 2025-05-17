@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useSeo } from "~/composables/useSeo";
+const img = useImage();
 
 useSeo({
   title: "About",
@@ -22,6 +23,9 @@ useSeo({
           class="w-full col-start-1 row-start-1 aspect-square overflow-hidden rounded-2xl group"
         >
           <NuxtImg
+            :placeholder="
+              img(`/mith-gen-photo.jpg`, { h: 10, f: 'png', blur: 1, q: 40 })
+            "
             class="group-hover:scale-105 transition-transform duration-400 w-full object-cover"
             src="/mith-gen-photo.jpg"
             format="webp"
