@@ -7,6 +7,7 @@
   --color-primary: #15d0ff;
   --color-dark: #09090b;
   --spacing-prefer: 1346px;
+  --breakpoint-3xl: 120rem;
   --breakpoint-prefer: 1366px;
 }
 
