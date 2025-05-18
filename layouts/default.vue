@@ -1,5 +1,3 @@
-<script lang="ts" setup></script>
-
 <template>
   <div class="h-fit grid grid-rows-[auto_1fr]">
     <Header />
