@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useSeo } from "~/composables/useSeo";
+const { allContacts } = useContacts();
 const img = useImage();
 
 useSeo({
@@ -132,6 +133,33 @@ useSeo({
             <li>Vercel / Netlify</li>
             <li>Figma / Adobe XD</li>
           </LazyListSubList>
+        </ul>
+      </div>
+      <!-- working together? -->
+      <div
+        class="rounded-xl lg:rounded-2xl p-6 md:p-8 lg:p-12 border border-primary/50 flex flex-col items-center gap-4 lg:gap-5 bg-primary/5"
+      >
+        <h2 class="capitalize text-2xl font-bold text-primary text-center">
+          interested in working together?
+        </h2>
+        <p class="text-zinc-300 text-center">
+          I'm always open to discuss about new projects or opportunities. <br />
+          Feel free to reach out to me via:
+        </p>
+        <ul class="flex flex-wrap justify-center items-center gap-4">
+          <li v-for="c in allContacts" :key="c.name">
+            <NuxtLink
+              :aria-label="c.name"
+              :title="c.name"
+              :to="c.link"
+              class="grid place-items-center border border-primary/50 aspect-square w-8 rounded-full hover:*:text-primary"
+            >
+              <Icon
+                :name="c.iconName"
+                class="transition-all duration-200 text-xl"
+              />
+            </NuxtLink>
+          </li>
         </ul>
       </div>
     </div>
