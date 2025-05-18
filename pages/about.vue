@@ -12,7 +12,7 @@ useSeo({
 <template>
   <div class="w-full px-4 py-4 sm:px-14 md:px-6 lg:px-8 prefer:px-0">
     <div
-      class="max-w-prefer mx-auto my-4 lg:my-12 xl:my-14 space-y-4 md:space-y-6 lg:space-y-12 xl:space-y-14 2xl:space-y-16"
+      class="max-w-prefer mx-auto my-4 lg:my-12 xl:my-14 space-y-10 lg:space-y-12 xl:space-y-14 2xl:space-y-16"
     >
       <!-- 2 col wrapper -->
       <div
@@ -23,6 +23,7 @@ useSeo({
           class="w-full col-start-1 row-start-1 aspect-square overflow-hidden rounded-2xl group"
         >
           <NuxtImg
+            preload
             :placeholder="
               img(`/mith-gen-photo.jpg`, { h: 10, f: 'png', blur: 1, q: 40 })
             "
@@ -88,7 +89,7 @@ useSeo({
         </div>
       </div>
       <!-- education -->
-      <div class="space-y-4 md:space-y-6">
+      <div class="space-y-6 md:space-y-8">
         <h2 class="capitalize text-3xl font-bold">education</h2>
         <ul
           class="grid grid-cols-1 lg:grid-cols-2 lg:items-start gap-6 lg:gap-8"
@@ -105,6 +106,32 @@ useSeo({
             subtitle-right="2017 - 2020"
             description="Studied about Khmer Literature, Mathematics, Foreign Language, Social Studies (History...) to get high school diploma from MoEYS."
           />
+        </ul>
+      </div>
+      <!-- skills & technologies -->
+      <div class="space-y-6 md:space-y-8">
+        <h2 class="capitalize text-3xl font-bold">Skills & Technologies</h2>
+        <ul
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
+        >
+          <LazyListSubList title="frontend">
+            <li>Vue / Nuxt.JS</li>
+            <li>Astro / SSG</li>
+            <li>TypeScript / JavaScript</li>
+            <li>TailwindCSS / Styled Components</li>
+          </LazyListSubList>
+          <LazyListSubList title="backend">
+            <li>Node.js / Laravel</li>
+            <li>REST API Design</li>
+            <li>SQL / PostgreSQL</li>
+            <li>Supabase</li>
+          </LazyListSubList>
+          <LazyListSubList title="tools & others">
+            <li>Git / GitHub</li>
+            <li>Docker / CI/CD</li>
+            <li>Vercel / Netlify</li>
+            <li>Figma / Adobe XD</li>
+          </LazyListSubList>
         </ul>
       </div>
     </div>
