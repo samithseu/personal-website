@@ -19,10 +19,10 @@
   @apply rounded-full bg-primary/5;
 }
 ::-webkit-scrollbar-thumb {
-  @apply rounded-full bg-primary;
+  @apply rounded-full bg-primary/15;
 }
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary/30;
+  @apply bg-primary/50;
 }
 
 /* setting stable gab for scrollbar */
@@ -37,9 +37,9 @@ html {
 }
 .page-enter-from,
 .page-leave-to {
-  @apply opacity-0 blur-lg translate-y-1;
+  @apply opacity-0 blur-lg translate-y-5;
 }
 
 body {
-  @apply bg-dark bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px];
+  @apply bg-dark bg-[radial-gradient(circle,rgb(from_var(--color-primary)_r_g_b_/_0.15)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem];
 }
