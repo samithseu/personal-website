@@ -12,7 +12,7 @@ useSeo({
 <template>
   <div class="w-full px-4 py-4 lg:py-0 prefer:px-0 flex items-center">
     <div
-      class="max-w-prefer mx-auto grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:px-8 2xl:px-0 lg:gap-0 gap-4 sm:gap-6 md:gap-8 mt-24 sm:mt-28 md:mt-30 lg:mt-24 xl:mt-28 2xl:mt-30 3xl:mt-32"
+      class="max-w-prefer mx-auto grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:px-8 2xl:px-0 lg:gap-0 gap-4 sm:gap-6 md:gap-8 mt-24 sm:mt-28 md:mt-30 lg:mt-24 xl:mt-28 2xl:mt-30 3xl:mt-40"
     >
       <!-- left side -->
       <div
