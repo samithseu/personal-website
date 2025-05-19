@@ -41,5 +41,5 @@ html {
 }
 
 body {
-  @apply bg-dark bg-[radial-gradient(circle,rgb(from_var(--color-primary)_r_g_b_/_0.15)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem];
+  @apply bg-dark bg-[radial-gradient(circle,rgb(from_var(--color-primary)_r_g_b_/_0.12)_1px,transparent_1px)] bg-[size:1.2rem_1.2rem];
 }
