@@ -25,21 +25,23 @@ useSeo({
         >
           <NuxtImg
             preload
+            fetchpriority="high"
+            width="800"
             :placeholder="
               img(`/mith-gen-photo.jpg`, { h: 10, f: 'png', blur: 1, q: 40 })
             "
-            class="group-hover:scale-105 transition-transform duration-400 w-full object-cover"
+            class="group-hover:scale-105 transition-transform duration-400 w-full object-cover object-[center_top]"
             src="/mith-gen-photo.jpg"
             format="webp"
             quality="80"
-            sizes="300px sm:400px md:600px lg:800px xl:1000px xxl:1024px"
+            sizes="300px sm:400px md:600px lg:800px"
             alt="Samith Seu's AI generated photo with Ghibli style"
           />
         </div>
         <!-- right side -->
         <div class="space-y-4 lg:space-y-6">
           <h2
-            class="capitalize text-center md:text-left mt-4 md:mt-0 text-3xl font-black"
+            class="capitalize text-center md:text-left mt-4 md:mt-0 text-3xl font-black italic"
           >
             Little bit about me...
           </h2>
