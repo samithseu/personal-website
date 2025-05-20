@@ -30,7 +30,7 @@ useSeo({
             :placeholder="
               img(`/about-picture.jpg`, { h: 10, f: 'png', blur: 1, q: 30 })
             "
-            class="group-hover:scale-105 transition-transform duration-400 w-full object-cover object-[center_top]"
+            class="group-hover:scale-105 transition-transform duration-400 w-full object-cover"
             src="/about-picture.jpg"
             format="webp"
             quality="80"
@@ -40,11 +40,17 @@ useSeo({
         </div>
         <!-- right side -->
         <div class="space-y-4 lg:space-y-6">
-          <h2
-            class="capitalize text-center md:text-left mt-4 md:mt-0 text-3xl font-black italic"
-          >
-            Little bit about me...
-          </h2>
+          <!-- badge & title -->
+          <div class="space-y-2 lg:space-y-3">
+            <LazySimpleBadge>
+              <span>About</span>
+            </LazySimpleBadge>
+            <h2
+              class="capitalize text-center md:text-left mt-4 md:mt-0 text-3xl font-black italic"
+            >
+              Hi, I'm Samith Seu
+            </h2>
+          </div>
           <div class="*:text-zinc-400 *:text-lg space-y-4 lg:space-y-6">
             <p>
               When I was a student in high school, I was always fascinated by

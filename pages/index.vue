@@ -20,16 +20,14 @@ useSeo({
         <div
           class="space-y-5 md:space-y-6 lg:space-y-8 w-full lg:col-start-1 lg:row-start-1 col-start-1 row-start-2"
         >
-          <div class="space-y-3 lg:space-y-2">
+          <div class="space-y-2 lg:space-y-3">
             <!-- badge -->
-            <p
-              class="mx-auto lg:mx-0 w-max h-max text-xs text-primary border rounded-full px-3 py-1 bg-primary/10 border-primary/30 flex items-center gap-2"
-            >
+            <SimpleBadge>
               <span
                 class="block z-20 isolate size-2 bg-primary rounded-full relative before:content-[''] before:absolute before:inset-0 before:bg-primary before:rounded-full before:animate-ping"
               ></span>
               <span>Available for work</span>
-            </p>
+            </SimpleBadge>
             <!-- name -->
             <h1
               class="text-3xl md:text-4xl md:leading-10 font-black text-center lg:text-left lg:text-4xl xl:text-6xl lg:leading-12 xl:leading-16"
