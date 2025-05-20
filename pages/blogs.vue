@@ -7,5 +7,11 @@ useSeo({
 </script>
 
 <template>
-  <h2 class="text-center">This is blogs page!</h2>
+  <div class="w-full h-full px-4 py-4 lg:py-0 prefer:px-0 flex items-center">
+    <div class="max-w-prefer mx-auto lg:px-8 2xl:px-0">
+      <PageState icon="tabler:building-cog">
+        <h1 class="text-xl">Blogs page is under progress...</h1>
+      </PageState>
+    </div>
+  </div>
 </template>
