@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useSeo } from "~/composables/useSeo";
 const { allContacts } = useContacts();
 
 useSeo({

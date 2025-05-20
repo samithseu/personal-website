@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { useSeo } from "~/composables/useSeo";
-
 useSeo({
   title: "Certificates",
   description:
