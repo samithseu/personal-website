@@ -26,11 +26,12 @@ useSeo({
             preload
             fetchpriority="high"
             width="800"
+            height="800"
             :placeholder="
-              img(`/mith-gen-photo.jpg`, { h: 10, f: 'png', blur: 1, q: 40 })
+              img(`/about-picture.jpg`, { h: 10, f: 'png', blur: 1, q: 30 })
             "
             class="group-hover:scale-105 transition-transform duration-400 w-full object-cover object-[center_top]"
-            src="/mith-gen-photo.jpg"
+            src="/about-picture.jpg"
             format="webp"
             quality="80"
             sizes="300px sm:400px md:600px lg:800px"
