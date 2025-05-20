@@ -12,7 +12,7 @@ defineProps<{
 <template>
   <li
     v-if="imageUrl !== undefined"
-    class="border border-zinc-50/20 rounded-xl lg:rounded-2xl overflow-hidden group hover:border-primary transition-colors duration-200"
+    class="border border-zinc-50/20 rounded-xl lg:rounded-2xl overflow-hidden group hover:border-primary transition-colors duration-200 h-full"
   >
     <!-- card image -->
     <div class="h-48 overflow-hidden">
@@ -70,7 +70,7 @@ defineProps<{
   </li>
   <li
     v-else
-    class="border border-zinc-50/20 rounded-xl lg:rounded-2xl overflow-hidden group hover:border-primary transition-colors duration-200"
+    class="border border-zinc-50/20 rounded-xl lg:rounded-2xl overflow-hidden group hover:border-primary transition-colors duration-200 h-full"
   >
     <!-- card content -->
     <div class="p-4 lg:p-6 space-y-4 lg:space-y-5">
