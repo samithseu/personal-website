@@ -40,7 +40,7 @@ watch(
         class="text-xl font-semibold uppercase flex items-center gap-1 transition duration-200 hover:text-primary"
       >
         <Icon name="ic:round-code" class="text-primary text-3xl" />
-        samithseu
+        <span>samithseu</span>
       </NuxtLink>
 
       <!-- nav links -->
