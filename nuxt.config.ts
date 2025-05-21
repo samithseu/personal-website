@@ -10,7 +10,13 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
-  modules: ["@nuxt/fonts", "@nuxt/icon", "nuxt-og-image", "@nuxt/image"],
+  modules: [
+    "@nuxt/fonts",
+    "@nuxt/icon",
+    "nuxt-og-image",
+    "@nuxt/image",
+    "@nuxt/content",
+  ],
 
   app: {
     pageTransition: {
