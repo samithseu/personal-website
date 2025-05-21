@@ -1,17 +1,72 @@
 <script lang="ts" setup>
+const { allContacts } = useContacts();
+
 useSeo({
   title: "Certificates",
   description:
     "A place where all certificates that Samith Seu has earned throughout his career and studies.",
 });
+
+const { data: certificates } = await useFetch("/api/certificates");
 </script>
 
 <template>
-  <div class="w-full h-full px-4 py-4 lg:py-0 prefer:px-0 flex items-center">
-    <div class="max-w-prefer mx-auto lg:px-8 2xl:px-0">
-      <LazyPageState icon="tabler:award">
-        <h1 class="text-xl">Certificates page is under progress...</h1>
-      </LazyPageState>
+  <div class="w-full h-fit px-4 py-4 prefer:px-0">
+    <div
+      class="max-w-prefer mx-auto my-4 lg:my-12 xl:my-14 space-y-10 lg:space-y-12 xl:space-y-14 2xl:space-y-16"
+    >
+      <div class="space-y-4 md:space-y-6 lg:space-y-8">
+        <!-- project title & subtitle -->
+        <div class="space-y-2 lg:space-y-3">
+          <LazySimpleBadge class="md:mx-0">
+            <span>Qualifications</span>
+          </LazySimpleBadge>
+          <h2 class="capitalize text-center md:text-left text-3xl font-bold">
+            Certificates
+          </h2>
+          <p class="text-zinc-400 text-pretty text-center md:text-left">
+            A collection of certificates and qualifications I've earned
+            throughout my career.
+          </p>
+        </div>
+        <!-- certificates list -->
+        <ul
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
+        >
+          <LazyCertCard
+            v-for="c in certificates"
+            :key="c.id"
+            :image-url="c.image"
+            :date="c.issueDate"
+            :title="c.subject"
+            :org="c.id"
+          />
+        </ul>
+      </div>
+      <!-- Have a project in mind? -->
+      <LazyAskingEnd>
+        <h2 class="text-2xl font-bold text-primary text-center">
+          Need a skilled developer? 😁
+        </h2>
+        <p class="text-zinc-300 text-center">
+          Let's talk how we work together to bring your ideas to life!
+        </p>
+        <ul class="flex flex-wrap justify-center items-center gap-4">
+          <li v-for="c in allContacts" :key="c.name">
+            <NuxtLink
+              :aria-label="c.name"
+              :title="c.name"
+              :to="c.link"
+              class="grid place-items-center border border-primary/50 aspect-square w-8 rounded-full hover:*:text-primary"
+            >
+              <Icon
+                :name="c.iconName"
+                class="transition-all duration-200 text-xl"
+              />
+            </NuxtLink>
+          </li>
+        </ul>
+      </LazyAskingEnd>
     </div>
   </div>
 </template>
