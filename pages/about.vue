@@ -28,7 +28,7 @@ useSeo({
             width="800"
             height="800"
             :placeholder="
-              img(`/about-picture.jpg`, { h: 10, f: 'png', blur: 1, q: 30 })
+              img(`/about-picture.jpg`, { h: 10, f: 'webp', blur: 1, q: 30 })
             "
             class="group-hover:scale-105 transition-transform duration-400 w-full object-cover"
             src="/about-picture.jpg"
