@@ -50,7 +50,7 @@ const { data: projects } = await useFetch<Project[]>("/api/projects");
           Have a project in mind?
         </h2>
         <p class="text-zinc-300 text-center">
-          Feel free to reach out to me via:
+          Let's talk how we work together to bring your ideas to life!
         </p>
         <ul class="flex flex-wrap justify-center items-center gap-4">
           <li v-for="c in allContacts" :key="c.name">
