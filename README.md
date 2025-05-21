@@ -1,21 +1,13 @@
-# New Personal Website
+# Personal Website
 
-This is my new personal website built with NuxtJS.
+😀 I've recreated my personal website because I want to have the SSR and SEO features along side the minimal looks.
 
-## Setup
+## Technologies
 
-Make sure to install dependencies:
+- Nuxt.js <img src="https://api.iconify.design/logos:nuxt-icon.svg" height=12 alt="Nuxt Logo" />
+- Tailwind CSS <img src="https://api.iconify.design/logos:tailwindcss-icon.svg" height=12 alt="Tailwind CSS Logo" />
+- Nuxt modules (icon, image, og-image, fonts...)
 
-```bash
-npm install
-```
+---
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-npm run dev
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+New look! 😎 <a href="https://samith.info">samith.info</a>
