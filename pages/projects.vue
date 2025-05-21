@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+const { allContacts } = useContacts();
+
 useSeo({
   title: "Projects",
   description:
@@ -17,7 +19,7 @@ const { data: projects } = await useFetch<Project[]>("/api/projects");
         <!-- project title & subtitle -->
         <div class="space-y-2 lg:space-y-3">
           <LazySimpleBadge class="md:mx-0">
-            <span>Projects</span>
+            <span>My works</span>
           </LazySimpleBadge>
           <h2 class="capitalize text-center md:text-left text-3xl font-bold">
             Projects
@@ -42,6 +44,30 @@ const { data: projects } = await useFetch<Project[]>("/api/projects");
           />
         </ul>
       </div>
+      <!-- Have a project in mind? -->
+      <LazyAskingEnd>
+        <h2 class="text-2xl font-bold text-primary text-center">
+          Have a project in mind?
+        </h2>
+        <p class="text-zinc-300 text-center">
+          Feel free to reach out to me via:
+        </p>
+        <ul class="flex flex-wrap justify-center items-center gap-4">
+          <li v-for="c in allContacts" :key="c.name">
+            <NuxtLink
+              :aria-label="c.name"
+              :title="c.name"
+              :to="c.link"
+              class="grid place-items-center border border-primary/50 aspect-square w-8 rounded-full hover:*:text-primary"
+            >
+              <Icon
+                :name="c.iconName"
+                class="transition-all duration-200 text-xl"
+              />
+            </NuxtLink>
+          </li>
+        </ul>
+      </LazyAskingEnd>
     </div>
   </div>
 </template>

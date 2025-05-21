@@ -43,7 +43,7 @@ useSeo({
           <!-- badge & title -->
           <div class="space-y-2 lg:space-y-3">
             <LazySimpleBadge>
-              <span>About</span>
+              <span>About me</span>
             </LazySimpleBadge>
             <h2
               class="capitalize text-center md:text-left mt-4 md:mt-0 text-3xl font-black italic"
@@ -144,9 +144,7 @@ useSeo({
         </ul>
       </div>
       <!-- working together? -->
-      <div
-        class="rounded-xl lg:rounded-2xl p-6 md:p-8 lg:p-12 border border-primary/50 flex flex-col items-center gap-4 lg:gap-5 bg-primary/5"
-      >
+      <LazyAskingEnd>
         <h2 class="capitalize text-2xl font-bold text-primary text-center">
           interested in working together?
         </h2>
@@ -169,7 +167,7 @@ useSeo({
             </NuxtLink>
           </li>
         </ul>
-      </div>
+      </LazyAskingEnd>
     </div>
   </div>
 </template>
