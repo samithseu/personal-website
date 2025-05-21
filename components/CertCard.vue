@@ -1,15 +1,11 @@
 <script lang="ts" setup>
 const img = useImage();
-const { org } = defineProps<{
+defineProps<{
   imageUrl: string;
   date: string;
   title: string;
   org: string;
 }>();
-
-const updatedOrg = computed(() => {
-  return org.includes("BTI") ? "BTI" : "HackerRank";
-});
 </script>
 
 <template>
@@ -42,12 +38,12 @@ const updatedOrg = computed(() => {
         >
           {{ title }}
         </h3>
-        <p class="text-sm text-zinc-400">Issued by {{ updatedOrg }}</p>
+        <p class="text-sm text-zinc-400">Issued by {{ org }}</p>
       </div>
       <!-- content body -->
       <p class="text-zinc-400 line-clamp-2 text-sm lg:text-[1rem]">
-        This certificate is issued to me by {{ updatedOrg }} to certify my
-        skills and knowledge in {{ title }}.
+        This certificate is issued to me by {{ org }} to certify my skills and
+        knowledge in {{ title }}.
       </p>
       <!-- content footer -->
       <NuxtLink

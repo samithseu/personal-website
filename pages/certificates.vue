@@ -7,7 +7,9 @@ useSeo({
     "A place where all certificates that Samith Seu has earned throughout his career and studies.",
 });
 
-const { data: certificates } = await useFetch("/api/certificates");
+const { data: certs } = await useAsyncData("certificates", () => {
+  return queryCollection("certificates").order("issue_date", "DESC").all();
+});
 </script>
 
 <template>
@@ -34,12 +36,12 @@ const { data: certificates } = await useFetch("/api/certificates");
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
         >
           <LazyCertCard
-            v-for="c in certificates"
+            v-for="c in certs"
             :key="c.id"
-            :image-url="c.image"
-            :date="c.issueDate"
-            :title="c.subject"
-            :org="c.id"
+            :image-url="`/certs/${c.url}`"
+            :date="c.issue_date"
+            :title="c.title"
+            :org="c.org"
           />
         </ul>
       </div>
