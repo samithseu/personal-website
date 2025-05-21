@@ -23,7 +23,7 @@ defineProps<{
         :placeholder="img(imageUrl, { h: 10, f: 'webp', blur: 1, q: 30 })"
         format="webp"
         class="aspect-video object-cover h-full object-top"
-        alt="sample image"
+        :alt="`${title} certificate image`"
       />
     </div>
     <div class="p-4 lg:p-6 space-y-4 lg:space-y-3">
