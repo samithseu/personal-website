@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-defineProps<{
+const { title } = defineProps<{
   imageUrl?: string;
   title: string;
   description: string;
@@ -7,6 +7,10 @@ defineProps<{
   liveUrl: string;
   sourceUrl: string;
 }>();
+
+const cleanedTitle = computed(() => {
+  return title.replaceAll("-", " ");
+});
 </script>
 
 <template>
@@ -33,7 +37,7 @@ defineProps<{
       <h3
         class="text-sm lg:text-xl font-semibold transition-colors duration-200 group-hover:text-primary"
       >
-        {{ title }}
+        {{ cleanedTitle }}
       </h3>
       <p class="text-sm lg:text-[1rem] line-clamp-2 text-zinc-400">
         {{ description }}
@@ -77,7 +81,7 @@ defineProps<{
       <h3
         class="text-sm lg:text-xl font-semibold transition-colors duration-200 group-hover:text-primary"
       >
-        {{ title }}
+        {{ cleanedTitle }}
       </h3>
       <p class="text-sm lg:text-[1rem] line-clamp-2 text-zinc-400">
         {{ description }}
