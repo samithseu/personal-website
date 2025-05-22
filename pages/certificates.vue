@@ -7,9 +7,23 @@ useSeo({
     "A place where all certificates that Samith Seu has earned throughout his career and studies.",
 });
 
-const { data: certs } = await useAsyncData("certificates", async () => {
-  return await queryCollection("certificates").order("org", "DESC").all();
-});
+// query all certificates
+async function fetchingCertificates() {
+  const otherOrgs = await queryCollection("certificates")
+    .where("org", "NOT LIKE", "BTI")
+    .all();
+  const myCollege = await queryCollection("certificates")
+    .where("org", "LIKE", "BTI")
+    .order("issue_date", "DESC")
+    .all();
+
+  return [...otherOrgs, ...myCollege];
+}
+
+const { data: certs } = await useAsyncData(
+  "certificates",
+  fetchingCertificates
+);
 </script>
 
 <template>
