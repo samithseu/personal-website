@@ -40,7 +40,7 @@ useSeo({
           </div>
           <!-- short description -->
           <p
-            class="text-center text-zinc-400 md:w-3/4 mx-auto lg:text-left lg:mx-0 lg:w-full lg:text-xl text-balance"
+            class="text-center text-zinc-400 md:w-3/4 mx-auto lg:text-left lg:mx-0 lg:w-full lg:text-xl text-balance relative after:content-[''] after:absolute after:inset-4 after:w-1/2 after:bg-primary/15 after:-z-1 after:left-1/2 after:-translate-x-1/2 lg:after:left-0 lg:after:translate-x-0 after:blur-3xl"
           >
             I build websites with modern technologies, specializing in crafting
             responsive, user-friendly and eye-catching interfaces for web
