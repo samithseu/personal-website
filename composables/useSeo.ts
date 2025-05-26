@@ -13,10 +13,12 @@ export const useSeo = (props: SeoProps) => {
 
   useSeoMeta({
     titleTemplate,
-    ogTitle: titleTemplate,
-    twitterTitle: titleTemplate,
     description,
+    ogSiteName: "samith.info",
+    ogTitle: titleTemplate,
     ogDescription: description,
+    twitterTitle: titleTemplate,
+    twitterSite: "samith.info",
     twitterDescription: description,
   });
 
