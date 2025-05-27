@@ -41,5 +41,8 @@ html {
 }
 
 body {
-  @apply bg-dark bg-[radial-gradient(circle,rgb(from_var(--color-primary)_r_g_b_/_0.12)_1px,transparent_1px)] bg-[size:1.2rem_1.2rem];
+  /* dotted background */
+  @apply bg-dark bg-[radial-gradient(circle,rgb(from_var(--color-zinc-50)_r_g_b_/_0.02)_1px,transparent_1px)] bg-[size:0.5rem_0.5rem];
+  /* grid background */
+  /* @apply bg-dark bg-[linear-gradient(rgb(from_var(--color-primary)_r_g_b_/_0.02)_1px,_transparent_1px),linear-gradient(to_right,_rgb(from_var(--color-primary)_r_g_b_/_0.02)_1px,_transparent_1px)] bg-[size:1.3rem_1.3rem]; */
 }
