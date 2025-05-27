@@ -101,3 +101,12 @@ type Project = {
   watchers: number;
   default_branch: string;
 };
+
+type GitHubRepo = {
+  id: number;
+  name: string;
+  description: string;
+  topics: Array<string>;
+  homepage: string;
+  html_url: string;
+};
