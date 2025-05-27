@@ -18,7 +18,7 @@ export default defineNuxtConfig({
     "@nuxt/content",
   ],
   image: {
-    provider: "ipx",
+    provider: "static",
     dir: "public",
   },
   app: {
