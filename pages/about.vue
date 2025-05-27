@@ -73,7 +73,7 @@ useSeo({
                 >college</NuxtLink
               >, 2<sup>nd</sup>
               year, where I was learning with a professor who is a software
-              engineer a government institution. He showed me one of his
+              engineer at a government institution. He showed me one of his
               projects,
               <NuxtLink
                 class="transition-colors duration-200 hover:text-primary"
@@ -84,9 +84,16 @@ useSeo({
               learning more about programming specially in Web Development.
             </p>
             <p>
-              Right now, I can say that I'm comfortable with creating UI
-              elements on the web with technologies like React.JS and Vue.JS and
-              also keep learning more about backend technologies as well.
+              Nowadays, I can say that I'm comfortable with creating UI elements
+              on the web with technologies like React.JS and Vue.JS and also
+              keep learning more about backend technologies as well. Right now,
+              I'm based at
+              <NuxtLink
+                class="transition-colors duration-200 hover:text-primary"
+                to="https://maps.app.goo.gl/z5ZxjHL4ckZqSiVs9"
+                target="_blank"
+                >Chbarmon municipality</NuxtLink
+              >.
             </p>
           </div>
           <!-- view resume button -->
