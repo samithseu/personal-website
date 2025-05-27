@@ -61,7 +61,7 @@ watch(
       <div class="flex items-center gap-2">
         <NuxtLink
           aria-label="This will go to resume page"
-          title="Samith Seu's Resume"
+          title="Resume"
           class="grid size-7 md:size-8 border border-zinc-50/20 place-items-center rounded-full transition-colors duration-200 hover:bg-zinc-50/20 hover:border-transparent"
           to="https://resume.samith.info"
           target="_blank"
