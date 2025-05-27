@@ -49,11 +49,17 @@ useSeo({
           </div>
           <div class="*:text-zinc-400 *:text-lg space-y-4 lg:space-y-6">
             <p>
-              When I was a student in high school, I was always fascinated by
-              the world of technology especially in programming. When 2020 had
-              come, learning through online classes really pushed me more to be
-              curious about technologies. After constantly having those
-              curiosity, I decided to learn programming.
+              When I was a student in
+              <NuxtLink
+                class="transition-colors duration-200 hover:text-primary"
+                to="https://maps.app.goo.gl/v2CP1f6JuUVK6pUm8"
+                target="_blank"
+                >high school</NuxtLink
+              >, I was always fascinated by the world of technology especially
+              in programming. When 2020 had come, learning through online
+              classes really pushed me more to be curious about technologies.
+              After constantly having those curiosity, I decided to learn
+              programming.
             </p>
             <p>
               My programming journey started when I was in
