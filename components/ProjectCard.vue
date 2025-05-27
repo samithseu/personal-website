@@ -16,7 +16,7 @@ const cleanedTitle = computed(() => {
 <template>
   <li
     v-if="imageUrl !== undefined"
-    class="border border-zinc-50/20 rounded-xl lg:rounded-2xl overflow-hidden group hover:border-primary transition-colors duration-200 h-full"
+    class="border border-zinc-50/20 rounded-xl lg:rounded-2xl overflow-hidden group hover:border-primary transition-colors duration-200 h-full backdrop-blur-sm"
   >
     <!-- card image -->
     <div class="h-48 overflow-hidden">
@@ -74,7 +74,7 @@ const cleanedTitle = computed(() => {
   </li>
   <li
     v-else
-    class="border border-zinc-50/20 rounded-xl lg:rounded-2xl overflow-hidden group hover:border-primary transition-colors duration-200 h-full"
+    class="border border-zinc-50/20 rounded-xl lg:rounded-2xl overflow-hidden group hover:border-primary transition-colors duration-200 h-full backdrop-blur-sm"
   >
     <!-- card content -->
     <div class="p-4 lg:p-6 space-y-4 lg:space-y-5">

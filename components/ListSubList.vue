@@ -6,7 +6,7 @@ defineProps<{
 
 <template>
   <li
-    class="border border-zinc-50/20 p-4 lg:p-6 rounded-xl lg:rounded-2xl bg-primary/0 transition-all duration-300 hover:bg-primary/5 hover:border-primary/70"
+    class="border border-zinc-50/20 p-4 lg:p-6 rounded-xl lg:rounded-2xl bg-primary/0 transition-all duration-300 hover:bg-primary/5 hover:border-primary/70 backdrop-blur-sm"
   >
     <h3 class="capitalize text-xl font-bold text-primary mb-2 lg:mb-3">
       {{ title }}
