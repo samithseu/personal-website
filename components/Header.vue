@@ -80,7 +80,11 @@ watch(
         </button>
       </div>
 
-      <LazySimpleDialog v-model="open" modal-classes="grid place-items-center">
+      <LazySimpleDialog
+        hydrate-on-media-query="(width <= 768px)"
+        v-model="open"
+        modal-classes="grid place-items-center"
+      >
         <ul
           class="flex flex-col items-center gap-7 *:capitalize *:font-medium *:text-2xl"
         >
