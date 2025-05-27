@@ -17,10 +17,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/content",
   ],
-  image: {
-    provider: "static",
-    dir: "public",
-  },
+
   app: {
     pageTransition: {
       name: "page",
