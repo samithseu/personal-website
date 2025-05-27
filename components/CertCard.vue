@@ -16,10 +16,9 @@ defineProps<{
     <div class="h-48 overflow-hidden">
       <NuxtImg
         :src="imageUrl"
-        loading="lazy"
         width="600"
         sizes="300px sm:400px md:500px lg:600px"
-        quality="80"
+        quality="65"
         :placeholder="img(imageUrl, { h: 10, f: 'webp', blur: 1, q: 30 })"
         format="webp"
         class="aspect-video object-cover h-full object-top"
