@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const { allContacts } = useContacts();
+const img = useImage();
 
 useSeo({
   title: "About",
@@ -25,7 +26,9 @@ useSeo({
             preload
             width="750"
             height="750"
-            placeholder="blur"
+            :placeholder="
+              img(`/about-picture.jpg`, { h: 10, f: 'webp', blur: 1, q: 30 })
+            "
             class="group-hover:scale-105 transition-transform duration-400 w-full object-cover"
             src="/about-picture.jpg"
             format="webp"
