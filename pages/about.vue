@@ -23,7 +23,8 @@ useSeo({
           class="w-full col-start-1 row-start-1 aspect-square overflow-hidden rounded-2xl group"
         >
           <NuxtImg
-            fetchPriority="high"
+            preload
+            fetchpriority="high"
             width="800"
             height="800"
             :placeholder="

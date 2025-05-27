@@ -16,6 +16,7 @@ defineProps<{
     <div class="h-48 overflow-hidden">
       <NuxtImg
         :src="imageUrl"
+        loading="lazy"
         width="600"
         sizes="300px sm:400px md:500px lg:600px"
         quality="65"
