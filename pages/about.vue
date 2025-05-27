@@ -42,7 +42,7 @@ useSeo({
         <div class="space-y-4 lg:space-y-6">
           <!-- badge & title -->
           <div class="space-y-2 lg:space-y-3">
-            <LazySimpleBadge hydrate-never>
+            <LazySimpleBadge>
               <span>About me</span>
             </LazySimpleBadge>
             <h2
@@ -104,14 +104,12 @@ useSeo({
           class="grid grid-cols-1 lg:grid-cols-2 lg:items-start gap-6 lg:gap-8"
         >
           <LazyListItem
-            hydrate-never
             title="Bachelor of Information Technology"
             subtitle-left="Brachñāsāstra Technology Institute"
             subtitle-right="2021 - 2025"
             description="Studied about software, hardware and also focus on web development, algorithms, and software engineering as well."
           />
           <LazyListItem
-            hydrate-never
             title="Baccalaureate Degree"
             subtitle-left="Kampong Speu High School"
             subtitle-right="2017 - 2020"
@@ -125,19 +123,19 @@ useSeo({
         <ul
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
         >
-          <LazyListSubList hydrate-never title="frontend">
+          <LazyListSubList title="frontend">
             <li>Vue / Nuxt.JS</li>
             <li>Astro / SSG</li>
             <li>TypeScript / JavaScript</li>
             <li>TailwindCSS / Styled Components</li>
           </LazyListSubList>
-          <LazyListSubList hydrate-never title="backend">
+          <LazyListSubList title="backend">
             <li>Node.js / Laravel</li>
             <li>REST API Design</li>
             <li>SQL / PostgreSQL</li>
             <li>Supabase</li>
           </LazyListSubList>
-          <LazyListSubList hydrate-never title="tools & others">
+          <LazyListSubList title="tools & others">
             <li>Git / GitHub</li>
             <li>Docker / CI/CD</li>
             <li>Vercel / Netlify</li>

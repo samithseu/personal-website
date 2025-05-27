@@ -35,7 +35,7 @@ const { data: certs } = await useAsyncData(
       <div class="space-y-4 md:space-y-6 lg:space-y-8">
         <!-- project title & subtitle -->
         <div class="space-y-2 lg:space-y-3">
-          <LazySimpleBadge hydrate-never class="md:mx-0">
+          <LazySimpleBadge class="md:mx-0">
             <span>Qualifications</span>
           </LazySimpleBadge>
           <h2 class="capitalize text-center md:text-left text-3xl font-bold">
@@ -51,7 +51,6 @@ const { data: certs } = await useAsyncData(
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
         >
           <LazyCertCard
-            hydrate-never
             v-for="c in certs"
             :key="c.id"
             :image-url="`/certs/${c.url}`"
