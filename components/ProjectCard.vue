@@ -87,8 +87,14 @@ const cleanedTitle = computed(() => {
         {{ description }}
       </p>
       <div class="flex flex-wrap items-center justify-start gap-2">
-        <SimpleBadge v-for="t in tags" :key="t" class="!mx-0 select-none" small>
-          {{ t }}</SimpleBadge
+        <LazySimpleBadge
+          hydrate-on-visible
+          v-for="t in tags"
+          :key="t"
+          class="!mx-0 select-none"
+          small
+        >
+          {{ t }}</LazySimpleBadge
         >
       </div>
       <!-- buttons -->

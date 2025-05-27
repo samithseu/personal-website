@@ -18,7 +18,7 @@ const { data: projects } = await useFetch<Project[]>("/api/projects");
       <div class="space-y-4 md:space-y-6 lg:space-y-8">
         <!-- project title & subtitle -->
         <div class="space-y-2 lg:space-y-3">
-          <LazySimpleBadge class="md:mx-0">
+          <LazySimpleBadge hydrate-never class="md:mx-0">
             <span>My works</span>
           </LazySimpleBadge>
           <h2 class="capitalize text-center md:text-left text-3xl font-bold">
@@ -34,6 +34,7 @@ const { data: projects } = await useFetch<Project[]>("/api/projects");
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
         >
           <LazyProjectCard
+            hydrate-never
             v-for="p in projects"
             :key="p.id"
             :title="p.name"
@@ -45,7 +46,7 @@ const { data: projects } = await useFetch<Project[]>("/api/projects");
         </ul>
       </div>
       <!-- Have a project in mind? -->
-      <LazyAskingEnd>
+      <LazyAskingEnd hydrate-never>
         <h2 class="text-2xl font-bold text-primary text-center">
           Have a project in mind?
         </h2>
