@@ -90,7 +90,7 @@ useSeo({
           class="lg:w-full col-start-1 row-start-1 lg:flex lg:items-center lg:justify-end lg:col-start-2 lg:row-start-1"
         >
           <M
-            class="size-24 sm:size-32 md:size-40 mx-auto lg:mx-0 lg:size-60 xl:size-80 [&>path]:stroke-[4] [&>path]:stroke-primary lg:[&>path]:fill-primary/0 lg:[&>path]:transition-all lg:[&>path]:duration-[400ms] lg:[&:hover_path]:fill-primary [&>path]:fill-primary/10"
+            class="size-24 sm:size-32 md:size-40 mx-auto lg:mx-0 lg:size-60 xl:size-80 [&>path]:stroke-[4] [&>path]:stroke-primary lg:[&>path]:fill-primary/0 lg:[&>path]:transition-all lg:[&>path]:duration-[400ms] lg:[&:hover_path]:fill-primary [&>path]:fill-primary/10 lg:animate-pulse hover:animate-none"
           />
         </div>
       </div>
