@@ -24,8 +24,8 @@ useSeo({
         >
           <NuxtImg
             preload
-            width="750"
-            height="750"
+            width="700"
+            height="700"
             :placeholder="
               img(`/about-picture.jpg`, { h: 10, f: 'webp', blur: 1, q: 30 })
             "
@@ -33,7 +33,7 @@ useSeo({
             src="/about-picture.jpg"
             format="webp"
             quality="80"
-            sizes="300px sm:400px md:600px lg:750px"
+            sizes="300px sm:400px md:600px lg:700px"
             alt="Samith Seu's AI generated photo with Ghibli style"
           />
         </div>
