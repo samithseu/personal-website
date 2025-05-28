@@ -1,5 +1,7 @@
 # Personal Website
 
+<img src="https://github.com/user-attachments/assets/cb5409ad-7136-4513-b65a-cafcac3f7f4e" alt="personal website cover"/>
+
 😀 I've recreated my personal website because I want to have the SSR and SEO features along side the minimal looks.
 
 ## Technologies
