@@ -17,6 +17,13 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/content",
   ],
+  routeRules: {
+    "/": { static: true },
+    "/about": { static: true },
+    "/projects": { isr: 3600 },
+    "/certificates": { static: true },
+    "/blogs": { static: true },
+  },
 
   experimental: {
     viewTransition: true,
@@ -28,5 +35,9 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     githubToken: "",
+  },
+  image: {
+    provider: "vercel",
+    domains: [],
   },
 });
