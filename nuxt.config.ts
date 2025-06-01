@@ -18,11 +18,8 @@ export default defineNuxtConfig({
     "@nuxt/content",
   ],
 
-  app: {
-    pageTransition: {
-      name: "page",
-      mode: "out-in",
-    },
+  experimental: {
+    viewTransition: true,
   },
   ogImage: {
     defaults: {
