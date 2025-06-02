@@ -33,7 +33,7 @@ useSeo({
             src="/about-picture.jpg"
             format="webp"
             quality="80"
-            sizes="300px sm:400px md:600px lg:700px"
+            sizes="sm:350px md:600px lg:700px"
             alt="Samith Seu's AI generated photo with Ghibli style"
           />
         </div>

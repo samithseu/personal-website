@@ -19,7 +19,7 @@ defineProps<{
         loading="lazy"
         decoding="async"
         width="550"
-        sizes="300px sm:400px md:500px lg:550px"
+        sizes="sm:300px md:500px lg:550px"
         quality="65"
         :placeholder="img(imageUrl, { h: 10, f: 'webp', blur: 1, q: 30 })"
         format="webp"
