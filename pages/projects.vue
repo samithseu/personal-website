@@ -37,7 +37,7 @@ const { data: projects, error, pending } = useFetch<Project[]>("/api/projects");
           </p>
         </div>
         <!-- projects list -->
-        <Transition name="fade" mode="out-in">
+        <Transition name="fade">
           <ul
             v-if="!pending"
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"

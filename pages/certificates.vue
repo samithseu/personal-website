@@ -54,7 +54,7 @@ const {
           </p>
         </div>
         <!-- certificates list -->
-        <Transition name="fade" mode="out-in">
+        <Transition name="fade">
           <ul
             v-if="!pending"
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
