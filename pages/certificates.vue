@@ -21,11 +21,10 @@ async function fetchingCertificates() {
   return [...otherOrgs, ...myCollege];
 }
 
-const {
-  data: certs,
-  error,
-  pending,
-} = useAsyncData("certificates", fetchingCertificates);
+const { data: certs, error } = await useAsyncData(
+  "certificates",
+  fetchingCertificates
+);
 </script>
 
 <template>
@@ -53,9 +52,7 @@ const {
             {{ error?.message ?? "Cannot fetch all certificates!" }}
           </p>
         </div>
-        <!-- certificates list -->
         <ul
-          v-if="!pending"
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
         >
           <LazyCertCard
@@ -67,9 +64,6 @@ const {
             :org="c.org"
           />
         </ul>
-        <div v-else class="w-full h-max grid place-items-center">
-          <LazySimpleLoader />
-        </div>
       </div>
       <!-- Have a project in mind? -->
       <LazyAskingEnd hydrate-never>
