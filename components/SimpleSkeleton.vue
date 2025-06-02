@@ -7,6 +7,6 @@ const props = defineProps<{
 <template>
   <li
     :class="props.class"
-    class="border border-zinc-50/20 rounded-xl lg:rounded-2xl overflow-hidden transition-colors duration-200 h-full aspect-video bg-primary/20 animate-pulse"
+    class="border border-zinc-50/10 rounded-xl lg:rounded-2xl overflow-hidden transition-colors duration-200 h-full aspect-video bg-primary/20 animate-pulse"
   ></li>
 </template>
