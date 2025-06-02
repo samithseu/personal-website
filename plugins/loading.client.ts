@@ -5,10 +5,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     throttle: 100,
   });
   // force start/finish on client-side
-  nuxtApp.hook("page:start", () => {
+  nuxtApp.hook("page:loading:start", () => {
     start({ force: true });
   });
-  nuxtApp.hook("page:finish", () => {
+  nuxtApp.hook("page:loading:end", () => {
     finish({ force: true });
   });
 });
