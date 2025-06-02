@@ -11,6 +11,18 @@
   --breakpoint-3xl: 120rem;
   --breakpoint-prefer: 1366px;
 }
+@utility fade-enter-active {
+  @apply transition-opacity ease-initial duration-200;
+}
+@utility fade-leave-active {
+  @apply transition-opacity ease-initial duration-200;
+}
+@utility fade-enter-from {
+  @apply opacity-0;
+}
+@utility fade-leave-to {
+  @apply opacity-0;
+}
 
 /* custom scrollbar */
 ::-webkit-scrollbar {
