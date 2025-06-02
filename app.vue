@@ -20,8 +20,8 @@ useSeoMeta({
 
 <template>
   <div>
-    <NuxtLoadingIndicator :hide-delay="200" :throttle="300" color="#15d0ff" />
     <NuxtLayout>
+      <NuxtLoadingIndicator :throttle="250" color="#15d0ff" />
       <NuxtPage />
     </NuxtLayout>
   </div>
