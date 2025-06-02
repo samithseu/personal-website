@@ -21,7 +21,7 @@ async function fetchingCertificates() {
   return [...otherOrgs, ...myCollege];
 }
 
-const { data: certs } = await useAsyncData(
+const { data: certs, error } = useAsyncData(
   "certificates",
   fetchingCertificates
 );
@@ -45,20 +45,38 @@ const { data: certs } = await useAsyncData(
             A collection of certificates and qualifications I've earned
             throughout my career.
           </p>
+          <p
+            v-if="error"
+            class="text-red-500 text-pretty text-center md:text-left"
+          >
+            {{ error?.message ?? "Cannot fetch all certificates!" }}
+          </p>
         </div>
         <!-- certificates list -->
-        <ul
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
-        >
-          <LazyCertCard
-            v-for="c in certs"
-            :key="c.id"
-            :image-url="`/certs/${c.url}`"
-            :date="c.issue_date"
-            :title="c.title"
-            :org="c.org"
-          />
-        </ul>
+        <Suspense>
+          <ul
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
+          >
+            <LazyCertCard
+              v-for="c in certs"
+              :key="c.id"
+              :image-url="`/certs/${c.url}`"
+              :date="c.issue_date"
+              :title="c.title"
+              :org="c.org"
+            />
+          </ul>
+
+          <template #fallback>
+            <ul
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
+            >
+              <LazySimpleSkeleton />
+              <LazySimpleSkeleton />
+              <LazySimpleSkeleton />
+            </ul>
+          </template>
+        </Suspense>
       </div>
       <!-- Have a project in mind? -->
       <LazyAskingEnd hydrate-never>

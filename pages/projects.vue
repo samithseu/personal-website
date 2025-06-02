@@ -7,7 +7,7 @@ useSeo({
     "Showing all projects that Samith Seu has done in the free time whether it's small or large.",
 });
 
-const { data: projects } = await useFetch<Project[]>("/api/projects");
+const { data: projects, error } = useFetch<Project[]>("/api/projects");
 </script>
 
 <template>
@@ -28,21 +28,40 @@ const { data: projects } = await useFetch<Project[]>("/api/projects");
             A collection of projects I've worked on, from web applications to
             websites and little tools.
           </p>
+          <!-- error -->
+          <p
+            v-if="error"
+            class="text-red-500 text-pretty text-center md:text-left"
+          >
+            {{ error?.message ?? "Cannot fetch all projects!" }}
+          </p>
         </div>
         <!-- projects list -->
-        <ul
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
-        >
-          <LazyProjectCard
-            v-for="p in projects"
-            :key="p.id"
-            :title="p.name"
-            :description="p.description"
-            :tags="p.topics"
-            :live-url="p.homepage"
-            :source-url="p.html_url"
-          />
-        </ul>
+        <Suspense>
+          <ul
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
+          >
+            <LazyProjectCard
+              v-for="p in projects"
+              :key="p.id"
+              :title="p.name"
+              :description="p.description"
+              :tags="p.topics"
+              :live-url="p.homepage"
+              :source-url="p.html_url"
+            />
+          </ul>
+
+          <template #fallback>
+            <ul
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
+            >
+              <LazySimpleSkeleton />
+              <LazySimpleSkeleton />
+              <LazySimpleSkeleton />
+            </ul>
+          </template>
+        </Suspense>
       </div>
       <!-- Have a project in mind? -->
       <LazyAskingEnd hydrate-never>
