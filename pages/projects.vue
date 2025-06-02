@@ -7,7 +7,7 @@ useSeo({
     "Showing all projects that Samith Seu has done in the free time whether it's small or large.",
 });
 
-const { data: projects, error } = useFetch<Project[]>("/api/projects");
+const { data: projects, error, pending } = useFetch<Project[]>("/api/projects");
 </script>
 
 <template>
@@ -37,8 +37,9 @@ const { data: projects, error } = useFetch<Project[]>("/api/projects");
           </p>
         </div>
         <!-- projects list -->
-        <Suspense>
+        <Transition name="fade" mode="out-in">
           <ul
+            v-if="!pending"
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
           >
             <LazyProjectCard
@@ -51,17 +52,15 @@ const { data: projects, error } = useFetch<Project[]>("/api/projects");
               :source-url="p.html_url"
             />
           </ul>
-
-          <template #fallback>
-            <ul
-              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
-            >
-              <LazySimpleSkeleton />
-              <LazySimpleSkeleton />
-              <LazySimpleSkeleton />
-            </ul>
-          </template>
-        </Suspense>
+          <ul
+            v-else
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
+          >
+            <LazySimpleSkeleton />
+            <LazySimpleSkeleton />
+            <LazySimpleSkeleton />
+          </ul>
+        </Transition>
       </div>
       <!-- Have a project in mind? -->
       <LazyAskingEnd hydrate-never>

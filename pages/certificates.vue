@@ -21,10 +21,11 @@ async function fetchingCertificates() {
   return [...otherOrgs, ...myCollege];
 }
 
-const { data: certs, error } = useAsyncData(
-  "certificates",
-  fetchingCertificates
-);
+const {
+  data: certs,
+  error,
+  pending,
+} = useAsyncData("certificates", fetchingCertificates);
 </script>
 
 <template>
@@ -53,8 +54,9 @@ const { data: certs, error } = useAsyncData(
           </p>
         </div>
         <!-- certificates list -->
-        <Suspense>
+        <Transition name="fade" mode="out-in">
           <ul
+            v-if="!pending"
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
           >
             <LazyCertCard
@@ -66,17 +68,15 @@ const { data: certs, error } = useAsyncData(
               :org="c.org"
             />
           </ul>
-
-          <template #fallback>
-            <ul
-              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
-            >
-              <LazySimpleSkeleton />
-              <LazySimpleSkeleton />
-              <LazySimpleSkeleton />
-            </ul>
-          </template>
-        </Suspense>
+          <ul
+            v-else
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
+          >
+            <LazySimpleSkeleton />
+            <LazySimpleSkeleton />
+            <LazySimpleSkeleton />
+          </ul>
+        </Transition>
       </div>
       <!-- Have a project in mind? -->
       <LazyAskingEnd hydrate-never>
