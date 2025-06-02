@@ -37,30 +37,23 @@ const { data: projects, error, pending } = useFetch<Project[]>("/api/projects");
           </p>
         </div>
         <!-- projects list -->
-        <Transition name="fade">
-          <ul
-            v-if="!pending"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
-          >
-            <LazyProjectCard
-              v-for="p in projects"
-              :key="p.id"
-              :title="p.name"
-              :description="p.description"
-              :tags="p.topics"
-              :live-url="p.homepage"
-              :source-url="p.html_url"
-            />
-          </ul>
-          <ul
-            v-else
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
-          >
-            <LazySimpleSkeleton />
-            <LazySimpleSkeleton />
-            <LazySimpleSkeleton />
-          </ul>
-        </Transition>
+        <ul
+          v-if="!pending"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
+        >
+          <LazyProjectCard
+            v-for="p in projects"
+            :key="p.id"
+            :title="p.name"
+            :description="p.description"
+            :tags="p.topics"
+            :live-url="p.homepage"
+            :source-url="p.html_url"
+          />
+        </ul>
+        <div v-else class="w-full h-max grid place-items-center">
+          <LazySimpleLoader />
+        </div>
       </div>
       <!-- Have a project in mind? -->
       <LazyAskingEnd hydrate-never>

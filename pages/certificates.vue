@@ -54,29 +54,22 @@ const {
           </p>
         </div>
         <!-- certificates list -->
-        <Transition name="fade">
-          <ul
-            v-if="!pending"
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
-          >
-            <LazyCertCard
-              v-for="c in certs"
-              :key="c.id"
-              :image-url="`/certs/${c.url}`"
-              :date="c.issue_date"
-              :title="c.title"
-              :org="c.org"
-            />
-          </ul>
-          <ul
-            v-else
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
-          >
-            <LazySimpleSkeleton />
-            <LazySimpleSkeleton />
-            <LazySimpleSkeleton />
-          </ul>
-        </Transition>
+        <ul
+          v-if="!pending"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
+        >
+          <LazyCertCard
+            v-for="c in certs"
+            :key="c.id"
+            :image-url="`/certs/${c.url}`"
+            :date="c.issue_date"
+            :title="c.title"
+            :org="c.org"
+          />
+        </ul>
+        <div v-else class="w-full h-max grid place-items-center">
+          <LazySimpleLoader />
+        </div>
       </div>
       <!-- Have a project in mind? -->
       <LazyAskingEnd hydrate-never>
