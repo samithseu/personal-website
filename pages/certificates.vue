@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { fetchingCertificates } from "~/lib/fetchCertificates";
 const { allContacts } = useContacts();
 
 useSeo({
@@ -6,20 +7,6 @@ useSeo({
   description:
     "A place where all certificates that Samith Seu has earned throughout his career and studies.",
 });
-
-// query all certificates
-async function fetchingCertificates() {
-  const otherOrgs = await queryCollection("certificates")
-    .where("org", "NOT LIKE", "BTI")
-    .order("issue_date", "DESC")
-    .all();
-  const myCollege = await queryCollection("certificates")
-    .where("org", "LIKE", "BTI")
-    .order("issue_date", "DESC")
-    .all();
-
-  return [...otherOrgs, ...myCollege];
-}
 
 const { data: certs, error } = await useAsyncData(
   "certificates",
