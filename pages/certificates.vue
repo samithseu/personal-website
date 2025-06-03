@@ -29,8 +29,9 @@ const { data: certs, error } = await useAsyncData(
             Certificates
           </h2>
           <p class="text-zinc-400 text-pretty text-center md:text-left">
-            A collection of certificates and qualifications I've earned
-            throughout my career.
+            A collection of
+            <span class="text-primary">{{ certs?.length }}</span> certificates
+            and qualifications I've earned throughout my career.
           </p>
           <p
             v-if="error"

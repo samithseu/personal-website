@@ -27,8 +27,9 @@ const { data: projects, error } = await useAsyncData("projects", () =>
             Projects
           </h2>
           <p class="text-zinc-400 text-pretty text-center md:text-left">
-            A collection of projects I've worked on, from web applications to
-            websites and little tools.
+            A collection of
+            <span class="text-primary">{{ projects?.length }}</span> projects
+            I've worked on, from web applications to websites and little tools.
           </p>
           <!-- error -->
           <p
