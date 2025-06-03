@@ -1,18 +1,32 @@
 <script lang="ts" setup>
-const allLinks = ref<Array<{ label: string; name: string; path: string }>>([
-  { label: "This will go to home page", name: "Home", path: "/" },
-  { label: "This will go to about page", name: "About", path: "/about" },
+const allLinks = ref<
+  Array<{ label: string; name: string; path: string; pf: boolean }>
+>([
+  { label: "This will go to home page", name: "Home", path: "/", pf: false },
+  {
+    label: "This will go to about page",
+    name: "About",
+    path: "/about",
+    pf: false,
+  },
   {
     label: "This will go to projects page",
     name: "Projects",
     path: "/projects",
+    pf: true,
   },
   {
     label: "This will go to certificates page",
     name: "Certificates",
     path: "/certificates",
+    pf: true,
   },
-  { label: "This will go to blogs page", name: "Blogs", path: "/blogs" },
+  {
+    label: "This will go to blogs page",
+    name: "Blogs",
+    path: "/blogs",
+    pf: false,
+  },
 ]);
 // for navlink modal
 const open = ref<boolean>(false);
@@ -49,6 +63,7 @@ watch(
           <NuxtLink
             :aria-label="link.label"
             :title="link.name"
+            :prefetch="link.pf"
             class="transition-colors duration-200 hover:text-primary"
             active-class="text-primary"
             :to="link.path"
@@ -92,6 +107,7 @@ watch(
             <NuxtLink
               :aria-label="link.label"
               :title="link.name"
+              :prefetch="link.pf"
               class="transition-colors duration-200 hover:text-primary"
               active-class="text-primary"
               :to="link.path"
