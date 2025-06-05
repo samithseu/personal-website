@@ -1,16 +1,20 @@
-export type SeoProps = {
+export interface SeoProps {
   title: string;
   description: string;
   ogImageHeadline?: string;
   ogImageComponent?: string;
-};
+}
 
-export const useSeo = (props: SeoProps) => {
-  const { title, description } = props;
-  const ogImageHeadline = props.ogImageHeadline ?? "personal website";
-  const ogImageComponent = props.ogImageComponent ?? "EachPage";
+export const useSeo = ({
+  title,
+  description,
+  ogImageHeadline = "personal website",
+  ogImageComponent = "EachPage",
+}: SeoProps) => {
+  // Build the title template:
   const titleTemplate = `%s - ${title}`;
 
+  // Inject SEO tags as before:
   useSeoMeta({
     titleTemplate,
     description,
@@ -22,6 +26,7 @@ export const useSeo = (props: SeoProps) => {
     twitterDescription: description,
   });
 
+  // Render the Open Graph image component:
   defineOgImageComponent(ogImageComponent, {
     headline: ogImageHeadline,
     title: titleTemplate,
