@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 const { allContacts } = useContacts();
+definePageMeta({
+  layout: "without-footer",
+});
 
 useSeo({
   title: "Home",
