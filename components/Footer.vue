@@ -13,7 +13,7 @@
       >
         Made with
         <NuxtLink
-          title="A Vue.js framework used for creating this website"
+          title="Nuxt.js official website"
           aria-label="This will go to Nuxt.js official website"
           target="_blank"
           to="https://nuxt.com"
@@ -23,7 +23,7 @@
         <Icon name="tabler:heart-filled" size="medium" />
         <NuxtLink
           class="font-mono"
-          title="This website source code is available on GitHub"
+          title="Source code"
           aria-label="This will go to this website source code on github"
           target="_blank"
           to="https://github.com/samithseu/personal-website"
