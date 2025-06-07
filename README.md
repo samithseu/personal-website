@@ -1,8 +1,9 @@
 # Personal Website
 
-<img src="https://github.com/user-attachments/assets/cb5409ad-7136-4513-b65a-cafcac3f7f4e" alt="personal website cover"/>
-
 😀 I've recreated my personal website because I want to have the SSR and SEO features along side the minimal looks.
+
+
+<a href="https://samith.info"><img src="https://github.com/user-attachments/assets/b8625d97-2460-4aad-8fea-d6f034a3e557" alt="personal website cover"/></a>
 
 ## Technologies
 
@@ -12,4 +13,4 @@
 
 ---
 
-New look! 😎 <a href="https://samith.info">samith.info</a>
+You can give it a look here! 😎 <a href="https://samith.info">samith.info</a>
