@@ -9,39 +9,44 @@
   --color-dark: #09090b;
   --spacing-prefer: 1346px;
   --breakpoint-3xl: 120rem;
-  --breakpoint-prefer: 1366px;
+  --breakpoint-prefer: calc(var(--spacing-prefer) + 20px);
 }
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
+/* custom utilities */
+@utility scroll-gutter-stable {
+  scrollbar-gutter: stable;
 }
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+@utility scroll-width-thin {
+  scrollbar-width: thin;
 }
-
-/* custom scrollbar */
-::-webkit-scrollbar {
-  @apply w-[3px] h-[3px];
+@utility scroll-color-* {
+  scrollbar-color: --value(--color- *) var(--color-dark);
 }
-::-webkit-scrollbar-track {
-  @apply rounded-full bg-primary/5;
+@utility bg-dotted-* {
+  background-image: radial-gradient(
+    circle,
+    rgb(from var(--color-zinc-50) r g b / 0.02) 1px,
+    transparent 1px
+  );
+  --_spacing: calc(var(--spacing) * --value(number));
+  background-size: var(--_spacing) var(--_spacing);
 }
-::-webkit-scrollbar-thumb {
-  @apply rounded-full bg-primary/15;
+@utility bg-grid-* {
+  background-image: linear-gradient(
+      rgb(from var(--color-primary) r g b / 0.02) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to right,
+      rgb(from var(--color-primary) r g b / 0.02) 1px,
+      transparent 1px
+    );
+  --_spacing: calc(var(--spacing) * --value(number));
+  background-size: var(--_spacing) var(--_spacing);
 }
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary/50;
-}
-
-/* setting stable gab for scrollbar */
+/* custom styles */
 html {
-  @apply [scrollbar-gutter:stable];
+  @apply scroll-width-thin scroll-gutter-stable scroll-color-primary;
 }
-
 body {
-  /* dotted background */
-  @apply bg-dark bg-[radial-gradient(circle,rgb(from_var(--color-zinc-50)_r_g_b_/_0.02)_1px,transparent_1px)] bg-[size:0.5rem_0.5rem];
-  /* grid background */
-  /* @apply bg-dark bg-[linear-gradient(rgb(from_var(--color-primary)_r_g_b_/_0.02)_1px,_transparent_1px),linear-gradient(to_right,_rgb(from_var(--color-primary)_r_g_b_/_0.02)_1px,_transparent_1px)] bg-[size:1.3rem_1.3rem]; */
+  @apply bg-dark bg-dotted-3;
 }
