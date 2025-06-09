@@ -57,6 +57,8 @@ useSeo({
                 class="transition-colors duration-200 hover:text-primary"
                 to="https://maps.app.goo.gl/v2CP1f6JuUVK6pUm8"
                 target="_blank"
+                title="Kampong Speu High School"
+                aria-label="Kampong Speu High School"
                 >high school</NuxtLink
               >, I was always fascinated by the world of technology especially
               in programming. When 2020 had come, learning through online
@@ -69,6 +71,8 @@ useSeo({
               <NuxtLink
                 class="transition-colors duration-200 hover:text-primary"
                 to="https://www.facebook.com/brachnasastraBTI/"
+                title="Brachñāsāstra Technology Institute"
+                aria-label="This links will go to Brachñāsāstra Technology Institute facebook page"
                 target="_blank"
                 >college</NuxtLink
               >, 2<sup>nd</sup>
@@ -90,7 +94,9 @@ useSeo({
               I'm based at
               <NuxtLink
                 class="transition-colors duration-200 hover:text-primary"
-                to="https://maps.app.goo.gl/z5ZxjHL4ckZqSiVs9"
+                to="https://en.wikipedia.org/wiki/Chbar_Mon_Municipality"
+                title="Chbarmon municipality"
+                aria-label="This link will go to Chbarmon municipality wiki page for more information"
                 target="_blank"
                 >Chbarmon municipality</NuxtLink
               >.
