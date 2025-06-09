@@ -45,7 +45,7 @@ useSeo({
               <span>About me</span>
             </LazySimpleBadge>
             <h2
-              class="capitalize text-center md:text-left mt-4 md:mt-0 text-3xl font-black italic"
+              class="text-white lg:text-zinc-200 lg:transition-colors lg:duration-200 lg:hover:text-white capitalize text-center md:text-left mt-4 md:mt-0 text-xl sm:text-2xl md:text-3xl font-semibold font-mono tracking-tight"
             >
               Hi, I'm Samith Seu
             </h2>
@@ -82,6 +82,8 @@ useSeo({
               <NuxtLink
                 class="transition-colors duration-200 hover:text-primary"
                 to="https://laravel.com"
+                title="Laravel"
+                aria-label="This link will go to Laravel official website"
                 target="_blank"
                 >Laravel web application</NuxtLink
               >, and I was so impressed. After that moment, I've started
