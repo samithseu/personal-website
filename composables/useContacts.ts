@@ -14,7 +14,7 @@ export const useContacts = () => {
     {
       name: "LinkedIn",
       iconName: "tabler:brand-linkedin",
-      link: "https://www.linkedin.com/in/samith-seu-500193205/",
+      link: "https://linkedin.com/in/samith-seu/",
     },
     {
       name: "Twitter/X",
