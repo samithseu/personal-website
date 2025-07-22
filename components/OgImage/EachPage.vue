@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import MLogo from "@/assets/imgs/m-logo.svg";
+// import MLogo from "@/assets/imgs/m-logo.svg";
 
 defineProps<{
   headline: string;
@@ -30,11 +30,9 @@ defineProps<{
         {{ desc }}
       </p>
 
-      <img
-        class="h-28 absolute bottom-0 right-0"
-        :src="MLogo"
-        alt="Samith Seu's Logo"
-      />
+      <div class="w-[6.5rem] h-28 absolute bottom-0 right-0">
+        <M class="w-full h-full" />
+      </div>
 
       <svg
         class="absolute -right-16 -top-16"
