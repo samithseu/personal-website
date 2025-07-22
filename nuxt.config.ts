@@ -16,11 +16,11 @@ export default defineNuxtConfig({
     "@nuxt/content",
   ],
   routeRules: {
-    "/": { static: true },
+    "/": { prerender: true },
     "/about": { static: true },
     "/projects": { isr: 3600 },
     "/certificates": { static: true },
-    "/blogs": { static: true },
+    "/blogs": { prerender: true },
   },
   experimental: {
     viewTransition: true,
