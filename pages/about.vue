@@ -67,7 +67,7 @@ useSeo({
               programming.
             </p>
             <p>
-              My programming journey started when I was in
+              My first coding experience started when I was in
               <NuxtLink
                 class="transition-colors duration-200 hover:text-primary"
                 to="https://www.facebook.com/brachnasastraBTI/"
