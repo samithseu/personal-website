@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
     return new Response(svgContent, {
       headers: {
         "Content-Type": "image/svg+xml",
-        "Cache-Control": "public, max-age=300, s-maxage=300", // 5 minutes
+        "Cache-Control": "public, max-age=3600, s-maxage=3600", // 1 hour
       },
     });
   } catch (error: any) {
