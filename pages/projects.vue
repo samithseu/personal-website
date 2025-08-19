@@ -23,7 +23,10 @@ const { data: projects, error } = await useAsyncData("projects", () =>
           <LazySimpleBadge class="md:mx-0">
             <span>My works</span>
           </LazySimpleBadge>
-          <h2 class="capitalize text-center md:text-left text-3xl font-bold">
+          <h2
+            style="view-transition-name: title"
+            class="capitalize text-center md:text-left text-3xl font-bold"
+          >
             Projects
           </h2>
           <p class="text-zinc-400 text-pretty text-center md:text-left">

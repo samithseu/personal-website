@@ -25,7 +25,10 @@ const { data: certs, error } = await useAsyncData(
           <LazySimpleBadge class="md:mx-0">
             <span>Qualifications</span>
           </LazySimpleBadge>
-          <h2 class="capitalize text-center md:text-left text-3xl font-bold">
+          <h2
+            style="view-transition-name: title"
+            class="capitalize text-center md:text-left text-3xl font-bold"
+          >
             Certificates
           </h2>
           <p class="text-zinc-400 text-pretty text-center md:text-left">

@@ -45,6 +45,7 @@ useSeo({
               <span>About me</span>
             </LazySimpleBadge>
             <h2
+              style="view-transition-name: title"
               class="text-white lg:text-zinc-200 lg:transition-colors lg:duration-200 lg:hover:text-white capitalize text-center md:text-left mt-4 md:mt-0 text-xl sm:text-2xl md:text-3xl font-semibold font-mono tracking-tight"
             >
               Hi, I'm Samith Seu
@@ -78,7 +79,7 @@ useSeo({
               >, 2<sup>nd</sup>
               year, where I was learning with a professor who is a software
               engineer at a government institution. He showed me one of his
-              projects,
+              <span style="view-transition-name: project">projects</span>,
               <NuxtLink
                 class="transition-colors duration-200 hover:text-primary"
                 to="https://laravel.com"
@@ -87,7 +88,8 @@ useSeo({
                 target="_blank"
                 >Laravel web application</NuxtLink
               >, and I was so impressed. After that moment, I've started
-              learning more about programming specially in Web Development.
+              learning more about programming specially in
+              <span>Web Development</span>.
             </p>
             <p>
               Nowadays, I can say that I'm comfortable with creating UI elements

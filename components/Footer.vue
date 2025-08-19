@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="w-full h-fit px-4 prefer:px-0 py-4 border-t border-dashed border-zinc-50/10 bg-dark *:text-center"
+    class="w-full h-fit px-4 prefer:px-0 py-4 border-t border-zinc-50/5 bg-dark *:text-center"
   >
     <div
       class="max-w-prefer mx-auto flex flex-col md:flex-row gap-3 md:gap-0 md:justify-between"
