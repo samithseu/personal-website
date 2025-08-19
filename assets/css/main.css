@@ -44,9 +44,12 @@
   background-size: var(--_spacing) var(--_spacing);
 }
 /* custom styles */
+::selection {
+  @apply bg-primary/20 text-white;
+}
 html {
   @apply scroll-width-thin scroll-gutter-stable scroll-color-primary;
 }
 body {
-  @apply bg-dark bg-dotted-3;
+  @apply bg-dark bg-grid-8;
 }
