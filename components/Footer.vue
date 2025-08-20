@@ -6,7 +6,7 @@
       class="max-w-prefer mx-auto flex flex-col md:flex-row gap-3 md:gap-0 md:justify-between"
     >
       <p class="text-zinc-400 text-sm">
-        &copy; {{ new Date().getFullYear() }} Samith Seu - Personal Website
+        {{ new Date().getFullYear() }} Samith Seu &mdash; Personal Website
       </p>
       <p
         class="text-zinc-400 text-sm [&:has(span)_span]:text-primary flex items-center gap-1 mx-auto md:mx-0 [&:has(a)_a:hover]:text-primary [&:has(a)_a]:transition-colors [&:has(a)_a]:duration-200"
