@@ -14,11 +14,11 @@ useSeo({
   >
     <div class="max-w-prefer mx-auto lg:px-8 2xl:px-0">
       <div
-        class="mt-20 sm:mt-24 lg:mt-0 grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:gap-0 gap-4 sm:gap-6 md:gap-8"
+        class="mt-20 sm:mt-24 lg:mt-0 grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:gap-0 gap-6 md:gap-8"
       >
         <!-- left side -->
         <div
-          class="space-y-5 md:space-y-6 lg:space-y-8 w-full lg:col-start-1 lg:row-start-1 col-start-1 row-start-2"
+          class="space-y-5 md:space-y-6 lg:space-y-7 w-full lg:col-start-1 lg:row-start-1 col-start-1 row-start-2"
         >
           <div class="space-y-2 lg:space-y-3">
             <!-- badge -->
@@ -43,8 +43,7 @@ useSeo({
             class="text-center text-zinc-400 md:w-3/4 mx-auto lg:text-left lg:mx-0 lg:w-full lg:text-xl text-balance relative after:content-[''] after:absolute after:inset-4 after:w-2/3 after:bg-primary/5 after:-z-1 after:left-1/2 after:-translate-x-1/2 lg:after:left-0 lg:after:translate-x-0 after:blur-3xl"
           >
             I build websites with modern technologies, specializing in crafting
-            responsive, user-friendly and eye-catching interfaces for web
-            applications.
+            responsive and user-friendly interfaces for web applications.
           </p>
           <!-- cta -->
           <div
@@ -91,7 +90,7 @@ useSeo({
         >
           <M
             style="view-transition-name: title"
-            class="size-24 sm:size-32 md:size-40 mx-auto lg:mx-0 lg:size-60 xl:size-80 [&>path]:stroke-[4] [&>path]:stroke-primary lg:[&>path]:fill-primary/0 lg:[&>path]:transition-all lg:[&>path]:duration-[400ms] lg:[&:hover_path]:fill-primary [&>path]:fill-primary/10"
+            class="size-24 sm:size-32 md:size-40 mx-auto lg:mx-0 lg:size-60 xl:size-72 [&>path]:stroke-[4] [&>path]:stroke-primary lg:[&>path]:fill-primary/0 lg:[&>path]:transition-all lg:[&>path]:duration-[400ms] lg:[&:hover_path]:fill-primary [&>path]:fill-primary/10"
           />
         </div>
       </div>
