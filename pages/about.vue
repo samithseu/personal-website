@@ -53,7 +53,7 @@ useSeo({
           </div>
           <div class="*:text-zinc-400 *:text-lg space-y-4 lg:space-y-6">
             <p>
-              When I was a student in
+              When I was a
               <NuxtLink
                 class="transition-colors duration-200 hover:text-primary"
                 to="https://maps.app.goo.gl/v2CP1f6JuUVK6pUm8"
@@ -61,24 +61,23 @@ useSeo({
                 title="Kampong Speu High School"
                 aria-label="Kampong Speu High School"
                 >high school</NuxtLink
-              >, I was always fascinated by the world of technology especially
-              in programming. When 2020 had come, learning through online
-              classes really pushed me more to be curious about technologies.
-              After constantly having those curiosity, I decided to learn
-              programming.
+              >
+              student, I was always fascinated by technology, especially
+              programming. In 2020, learning through online classes sparked my
+              curiosity about technology even more. Driven by this curiosity, I
+              decided to learn programming.
             </p>
             <p>
-              My first coding experience started when I was in
+              My first coding experience began in my
               <NuxtLink
                 class="transition-colors duration-200 hover:text-primary"
                 to="https://www.facebook.com/brachnasastraBTI/"
                 title="Brachñāsāstra Technology Institute"
                 aria-label="This links will go to Brachñāsāstra Technology Institute facebook page"
                 target="_blank"
-                >college</NuxtLink
-              >, 2<sup>nd</sup>
-              year, where I was learning with a professor who is a software
-              engineer at a government institution. He showed me one of his
+                >2nd year of college</NuxtLink
+              >, where I learned from a professor who is a software engineer at
+              a government institution. He showed me one of his
               <span style="view-transition-name: project">projects</span>,
               <NuxtLink
                 class="transition-colors duration-200 hover:text-primary"
@@ -86,16 +85,16 @@ useSeo({
                 title="Laravel"
                 aria-label="This link will go to Laravel official website"
                 target="_blank"
-                >Laravel web application</NuxtLink
-              >, and I was so impressed. After that moment, I've started
-              learning more about programming specially in
+                >a Laravel web application</NuxtLink
+              >, and I was truly impressed. That moment inspired me to delve
+              deeper into programming, particularly in
               <span>Web Development</span>.
             </p>
             <p>
-              Nowadays, I can say that I'm comfortable with creating UI elements
-              on the web with technologies like React.JS and Vue.JS and also
-              keep learning more about backend technologies as well. Right now,
-              I'm based at
+              Today, I feel comfortable working on frontend part of websites
+              whether it's about API integration or creating UI elements with
+              React.js and Vue.js, while also continuing to learn about backend
+              technologies as well. Currently, I am based in
               <NuxtLink
                 class="transition-colors duration-200 hover:text-primary"
                 to="https://en.wikipedia.org/wiki/Chbar_Mon_Municipality"
