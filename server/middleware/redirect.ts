@@ -4,7 +4,7 @@ export default defineEventHandler((event) => {
     linkedin: "https://linkedin.com/in/samith-seu/",
     x: "https://x.com/seumith",
     telegram: "https://t.me/samithseu",
-    mail: "mailto:seusamith@gmail.com",
+    email: "mailto:seusamith@gmail.com",
   };
 
   const path = event.node.req.url?.slice(1);

@@ -71,6 +71,7 @@ const { data: certs, error } = await useAsyncData(
               :title="c.name"
               :to="c.link"
               class="grid place-items-center border border-primary/50 aspect-square w-8 rounded-full hover:*:text-primary"
+              external
             >
               <Icon
                 :name="c.iconName"

@@ -79,6 +79,7 @@ useSeo({
               :to="contact.link"
               :title="contact.name"
               :aria-label="`This is Samith's ${contact.name}`"
+              external
             >
               <Icon :name="contact.iconName" />
             </NuxtLink>
