@@ -3,6 +3,7 @@ export interface SeoProps {
   description: string;
   ogImageHeadline?: string;
   ogImageComponent?: string;
+  noPrefix?: boolean;
 }
 
 export const useSeo = ({
@@ -10,9 +11,10 @@ export const useSeo = ({
   description,
   ogImageHeadline = "personal website",
   ogImageComponent = "EachPage",
+  noPrefix = false,
 }: SeoProps) => {
   // Build the title template:
-  const titleTemplate = `%s - ${title}`;
+  const titleTemplate = noPrefix ? title : `%s - ${title}`;
 
   // Inject SEO tags as before:
   useSeoMeta({
