@@ -77,7 +77,7 @@ watch(
         <NuxtLink
           aria-label="This will go to resume page"
           title="Resume"
-          class="grid size-7 md:size-8 border border-zinc-50/20 place-items-center rounded-full transition-colors duration-200 hover:bg-zinc-50/20 hover:border-transparent"
+          class="grid size-7 md:size-8 border border-zinc-50/15 place-items-center transition-colors duration-200 hover:bg-zinc-50/15 hover:border-transparent"
           to="https://resume.samith.info"
           target="_blank"
         >
@@ -89,7 +89,7 @@ watch(
           title="Open menu"
           aria-label="This will open the menu"
           @click="open = true"
-          class="md:hidden size-7 md:size-8 border border-zinc-50/20 grid place-items-center rounded-full transition-colors duration-200 hover:bg-zinc-50/20 hover:border-transparent cursor-pointer"
+          class="md:hidden size-7 md:size-8 border border-zinc-50/15 grid place-items-center transition-colors duration-200 hover:bg-zinc-50/15 hover:border-transparent cursor-pointer"
         >
           <Icon name="ic:round-menu" class="text-xl" />
         </button>

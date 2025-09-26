@@ -16,7 +16,7 @@ const cleanedTitle = computed(() => {
 <template>
   <li
     v-if="imageUrl !== undefined"
-    class="border border-zinc-50/20 rounded-xl lg:rounded-2xl overflow-hidden group hover:border-primary transition-colors duration-200 h-full backdrop-blur-sm"
+    class="border border-zinc-50/15 overflow-hidden group hover:border-primary transition-colors duration-200 h-full backdrop-blur-sm"
   >
     <!-- card image -->
     <div class="h-48 overflow-hidden">
@@ -54,7 +54,7 @@ const cleanedTitle = computed(() => {
           title="Resume"
           target="_blank"
           :to="liveUrl"
-          class="flex items-center gap-2 bg-primary text-dark transition-colors duration-200 hover:bg-primary/70 w-fit border py-1 lg:py-1.5 px-4 rounded-full capitalize text-sm"
+          class="flex items-center gap-2 bg-primary text-dark transition-colors duration-200 hover:bg-primary/70 w-fit border py-1 lg:py-1.5 px-4 capitalize text-sm"
         >
           <span class="text-nowrap">live</span>
           <Icon name="tabler:external-link" class="text-lg" />
@@ -64,7 +64,7 @@ const cleanedTitle = computed(() => {
           title="Resume"
           target="_blank"
           :to="sourceUrl"
-          class="border border-zinc-50/20 flex items-center gap-2 text-white transition-colors duration-200 hover:bg-zinc-50/20 hover:border-transparent w-fit py-1 lg:py-1.5 px-4 rounded-full capitalize text-sm"
+          class="border border-zinc-50/15 flex items-center gap-2 text-white transition-colors duration-200 hover:bg-zinc-50/15 hover:border-transparent w-fit py-1 lg:py-1.5 px-4 capitalize text-sm"
         >
           <Icon name="tabler:brand-github" class="text-lg" />
           <span class="text-nowrap">source</span>
@@ -74,7 +74,7 @@ const cleanedTitle = computed(() => {
   </li>
   <li
     v-else
-    class="border border-zinc-50/20 rounded-xl lg:rounded-2xl overflow-hidden group hover:border-primary transition-colors duration-200 h-full backdrop-blur-sm"
+    class="border border-zinc-50/15 overflow-hidden group hover:border-primary transition-colors duration-200 h-full backdrop-blur-sm"
   >
     <!-- card content -->
     <div class="p-4 lg:p-6 space-y-4 lg:space-y-5">
@@ -104,7 +104,7 @@ const cleanedTitle = computed(() => {
           title="Resume"
           target="_blank"
           :to="liveUrl"
-          class="flex items-center gap-2 bg-primary text-dark transition-colors duration-200 hover:bg-primary/70 w-fit border py-1 lg:py-1.5 px-4 rounded-full capitalize text-sm"
+          class="flex items-center gap-2 bg-primary text-dark transition-colors duration-200 hover:bg-primary/70 w-fit border py-1 lg:py-1.5 px-4 capitalize text-sm"
         >
           <span class="text-nowrap">live</span>
           <Icon name="tabler:external-link" class="text-lg" />
@@ -114,7 +114,7 @@ const cleanedTitle = computed(() => {
           title="Resume"
           target="_blank"
           :to="sourceUrl"
-          class="border border-zinc-50/20 flex items-center gap-2 text-white transition-colors duration-200 hover:bg-zinc-50/20 hover:border-transparent w-fit py-1 lg:py-1.5 px-4 rounded-full capitalize text-sm"
+          class="border border-zinc-50/15 flex items-center gap-2 text-white transition-colors duration-200 hover:bg-zinc-50/15 hover:border-transparent w-fit py-1 lg:py-1.5 px-4 capitalize text-sm"
         >
           <Icon name="tabler:brand-github" class="text-lg" />
           <span class="text-nowrap">source</span>

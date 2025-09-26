@@ -33,12 +33,12 @@
 @utility bg-grid-* {
   background-image:
     linear-gradient(
-      rgb(from var(--color-primary) r g b / 0.02) 1px,
+      rgb(from var(--color-primary) r g b / 0.025) 1px,
       transparent 1px
     ),
     linear-gradient(
       to right,
-      rgb(from var(--color-primary) r g b / 0.02) 1px,
+      rgb(from var(--color-primary) r g b / 0.025) 1px,
       transparent 1px
     );
   --_spacing: calc(var(--spacing) * --value(number));

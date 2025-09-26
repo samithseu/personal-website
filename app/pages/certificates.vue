@@ -69,7 +69,7 @@ const { data: certs, error } = await useAsyncData(
               :aria-label="c.name"
               :title="c.name"
               :to="c.link"
-              class="grid place-items-center border border-primary/50 aspect-square w-8 rounded-full hover:*:text-primary"
+              class="grid place-items-center border border-primary/20 aspect-square w-8 hover:*:text-primary"
               external
             >
               <Icon

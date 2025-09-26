@@ -16,7 +16,6 @@ export const useSeo = ({
   // Build the title template:
   const titleTemplate = noPrefix ? title : `%s - ${title}`;
 
-  // Inject SEO tags as before:
   useSeoMeta({
     titleTemplate,
     description,

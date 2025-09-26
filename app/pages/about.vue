@@ -20,7 +20,7 @@ useSeo({
       >
         <!-- left side -->
         <div
-          class="w-full col-start-1 row-start-1 aspect-square overflow-hidden rounded-2xl group"
+          class="w-full col-start-1 row-start-1 aspect-square overflow-hidden group"
         >
           <NuxtImg
             preload
@@ -111,7 +111,7 @@ useSeo({
             title="Resume"
             target="_blank"
             to="https://resume.samith.info"
-            class="flex items-center gap-2 bg-primary text-dark transition-colors duration-200 hover:bg-primary/70 w-fit border py-2 px-4 rounded-full capitalize text-sm mx-auto md:mx-0"
+            class="flex items-center gap-2 bg-primary text-dark transition-colors duration-200 hover:bg-primary/70 w-fit border py-2 px-4 capitalize text-sm mx-auto md:mx-0"
           >
             <span class="text-nowrap">view resume</span>
             <Icon name="tabler:external-link" class="text-lg" />
@@ -179,7 +179,7 @@ useSeo({
               :aria-label="c.name"
               :title="c.name"
               :to="c.link"
-              class="grid place-items-center border border-primary/50 aspect-square w-8 rounded-full hover:*:text-primary"
+              class="grid place-items-center border border-primary/20 aspect-square w-8 hover:*:text-primary"
               external
             >
               <Icon

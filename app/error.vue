@@ -27,7 +27,7 @@ useSeo({
       {{ props.error?.statusMessage }}
     </p>
     <NuxtLink
-      class="text-sm border-2 border-red-500/50 rounded-xl hover:border-red-500 px-4 py-2 flex items-center gap-2 border-light transition duration-200"
+      class="text-sm border-2 border-red-500/50 hover:border-red-500 px-4 py-2 flex items-center gap-2 border-light transition duration-200"
       to="/"
     >
       <Icon name="tabler:arrow-left" class="text-xl" />

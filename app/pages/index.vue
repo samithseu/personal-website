@@ -23,19 +23,19 @@ useSeo({
           <div class="space-y-2 lg:space-y-3">
             <!-- badge -->
             <SimpleBadge>
-              <span
-                class="block z-20 isolate size-2 bg-primary rounded-full relative before:content-[''] before:absolute before:inset-0 before:bg-primary before:rounded-full before:animate-ping"
-              ></span>
+              <PulseAlert />
               <span>Available for work</span>
             </SimpleBadge>
             <!-- name -->
             <h1
               class="text-3xl md:text-4xl md:leading-10 font-black text-center lg:text-left lg:text-4xl xl:text-6xl lg:leading-12 xl:leading-16"
             >
-              <span class="block"
-                >I'm <span class="text-primary">Samith</span></span
+              <span class="block font-mono tracking-tight text-white">
+                I'm <span class="text-primary">Samith</span>,
+              </span>
+              <span class="text-zinc-400 font-mono tracking-tight"
+                >Web Developer</span
               >
-              <span class="text-zinc-400">Web Developer</span>
             </h1>
           </div>
           <!-- short description -->
@@ -47,7 +47,7 @@ useSeo({
           </p>
           <!-- cta -->
           <div
-            class="flex flex-wrap items-center justify-center gap-2 *:border *:py-2 *:px-6 *:rounded-full *:capitalize *:text-sm lg:justify-start"
+            class="flex flex-wrap items-center justify-center gap-2 *:border *:py-2 *:px-6 *:capitalize *:text-sm lg:justify-start"
           >
             <NuxtLink
               aria-label=" This will go to projects page"
@@ -55,7 +55,7 @@ useSeo({
               to="/projects"
               class="group flex items-center gap-1 bg-primary text-dark transition-colors duration-200 hover:bg-primary/70"
             >
-              <span class="text-nowrap">view my work</span>
+              <span class="text-nowrap">my works</span>
               <Icon
                 name="material-symbols:arrow-right-alt-rounded"
                 class="text-lg group-hover:translate-x-1 transition-transform duration-200"
@@ -65,7 +65,7 @@ useSeo({
               aria-label="This will go to about page"
               title="About"
               to="/about"
-              class="text-nowrap transition-colors duration-200 border-zinc-50/20 hover:bg-zinc-50/20 hover:border-transparent"
+              class="text-nowrap transition-colors duration-200 border-zinc-50/15 hover:bg-zinc-50/15 hover:border-transparent"
               >about me</NuxtLink
             >
           </div>
