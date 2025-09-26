@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import favSVG from "@/assets/imgs/m-logo.svg";
+import favicon from "/favicon.ico";
 
 useHead({
   htmlAttrs: {
@@ -9,7 +9,7 @@ useHead({
     { name: "viewport", content: "width=device-width, initial-scale=1.0" },
     { name: "color-scheme", content: "dark" },
   ],
-  link: [{ rel: "icon", type: "image/svg+xml", href: favSVG }],
+  link: [{ rel: "icon", type: "image/svg+xml", href: favicon }],
 });
 
 useSeoMeta({

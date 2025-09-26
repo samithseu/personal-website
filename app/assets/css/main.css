@@ -19,7 +19,7 @@
   scrollbar-width: thin;
 }
 @utility scroll-color-* {
-  scrollbar-color: --value(--color- *) var(--color-dark);
+  scrollbar-color: --value(--color-*) var(--color-dark);
 }
 @utility bg-dotted-* {
   background-image: radial-gradient(
@@ -31,7 +31,8 @@
   background-size: var(--_spacing) var(--_spacing);
 }
 @utility bg-grid-* {
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       rgb(from var(--color-primary) r g b / 0.02) 1px,
       transparent 1px
     ),
@@ -48,7 +49,7 @@
   @apply bg-primary/20 text-white;
 }
 html {
-  @apply scroll-width-thin scroll-gutter-stable scroll-color-primary;
+  @apply scroll-gutter-stable scroll-width-thin scroll-color-primary;
 }
 body {
   @apply bg-dark bg-grid-8;

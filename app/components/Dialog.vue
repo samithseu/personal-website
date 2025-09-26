@@ -66,18 +66,21 @@ function onBackdropAfterLeave() {
 <style scoped>
 .backdrop-enter-active,
 .backdrop-leave-active {
-  @apply transition-all duration-300;
+  transition-property: all;
+  transition-duration: 300ms;
 }
 .backdrop-enter-from,
 .backdrop-leave-to {
-  @apply opacity-0;
+  opacity: 0;
 }
 .modal-enter-active,
 .modal-leave-active {
-  @apply transition-all duration-500;
+  transition-property: all;
+  transition-duration: 500ms;
 }
 .modal-enter-from,
 .modal-leave-to {
-  @apply opacity-0 scale-95 -translate-y-1/2;
+  opacity: 0;
+  transform: scale(0.95) translateY(-50%);
 }
 </style>

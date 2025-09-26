@@ -26,6 +26,7 @@ export const useSeo = ({
     twitterTitle: titleTemplate,
     twitterSite: "samith.info",
     twitterDescription: description,
+    ogType: "website",
   });
 
   // Render the Open Graph image component:

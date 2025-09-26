@@ -1,10 +1,8 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
-
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-  css: ["@/assets/css/main.css"],
+  css: ["~/assets/css/main.css"],
   vite: {
     plugins: [tailwindcss()],
   },
@@ -17,7 +15,7 @@ export default defineNuxtConfig({
   ],
   routeRules: {
     "/": { prerender: true },
-    "/about": { static: true },
+    "/about": { prerender: true },
     "/projects": { isr: 3600 },
     "/certificates": { static: true },
     "/blogs": { prerender: true },

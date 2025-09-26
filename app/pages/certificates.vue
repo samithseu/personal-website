@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { fetchingCertificates } from "~/lib/fetchCertificates";
 const { allContacts } = useContacts();
 
 useSeo({

@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-// import MLogo from "@/assets/imgs/m-logo.svg";
-
-defineProps<{
+const props = defineProps<{
   headline: string;
   title: string;
   desc: string;
@@ -15,19 +13,19 @@ defineProps<{
         id="headline"
         class="uppercase font-bold font-mono text-3xl text-[#15d0ff]"
       >
-        {{ headline }}
+        {{ props.headline }}
       </h3>
       <h4
         id="title"
         class="text-5xl w-3/4 text-pretty leading-11 font-bold text-white"
       >
-        {{ title }}
+        {{ props.title }}
       </h4>
       <p
         id="desc"
         class="text-3xl w-2/3 line-clamp-3 text-zinc-400 text-pretty"
       >
-        {{ desc }}
+        {{ props.desc }}
       </p>
 
       <div class="w-[6.5rem] h-28 absolute bottom-0 right-0">
