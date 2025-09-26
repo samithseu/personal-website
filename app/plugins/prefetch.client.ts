@@ -4,19 +4,19 @@ export default defineNuxtPlugin((nuxtApp) => {
     () => $fetch("/api/projects"),
     { lazy: true }
   );
-  const certificatesPrefetch = useAsyncData(
-    "certificates",
-    () => fetchingCertificates(),
-    { lazy: true }
-  );
+  // const certificatesPrefetch = useAsyncData(
+  //   "certificates",
+  //   () => fetchingCertificates(),
+  //   { lazy: true }
+  // );
   // wait until the Nuxt app is fully mounted in the browser, then .execute()
   nuxtApp.hook("app:mounted", () => {
-    // kick off both prefetch requests in parallel
+    // start prefetching requests
     projectsPrefetch.execute().catch((err) => {
       console.warn("[prefetch] /api/projects failed:", err);
     });
-    certificatesPrefetch.execute().catch((err) => {
-      console.warn("[prefetch] fetching certificates failed:", err);
-    });
+    // certificatesPrefetch.execute().catch((err) => {
+    //   console.warn("[prefetch] fetching certificates failed:", err);
+    // });
   });
 });

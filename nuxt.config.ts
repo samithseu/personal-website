@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     "/": { prerender: true },
     "/about": { prerender: true },
     "/projects": { isr: 3600 },
-    "/certificates": { static: true },
+    "/certificates": { prerender: true },
     "/blogs": { prerender: true },
   },
   experimental: {
