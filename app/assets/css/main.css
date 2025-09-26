@@ -18,8 +18,9 @@
 @utility scroll-width-thin {
   scrollbar-width: thin;
 }
-@utility scroll-color-* {
-  scrollbar-color: --value(--color-*) var(--color-dark);
+@utility scroll-color-primary {
+  --_reduced-opc: hsl(from var(--color-primary) h s l / 0.2);
+  scrollbar-color: var(--_reduced-opc) var(--color-dark);
 }
 @utility bg-dotted-* {
   background-image: radial-gradient(
@@ -46,7 +47,7 @@
 }
 /* custom styles */
 ::selection {
-  @apply bg-primary/20 text-white;
+  @apply bg-primary/20 text-current;
 }
 html {
   @apply scroll-gutter-stable scroll-width-thin scroll-color-primary;

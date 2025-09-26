@@ -31,7 +31,7 @@ useSeo({
               class="text-3xl md:text-4xl md:leading-10 font-black text-center lg:text-left lg:text-4xl xl:text-6xl lg:leading-12 xl:leading-16"
             >
               <span class="block font-mono tracking-tight text-white">
-                I'm <span class="text-primary">Samith</span>,
+                I&apos;m <span class="text-primary">Samith</span>,
               </span>
               <span class="text-zinc-400 font-mono tracking-tight"
                 >Web Developer</span
