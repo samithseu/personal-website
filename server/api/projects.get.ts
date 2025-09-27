@@ -53,7 +53,9 @@ export default defineCachedEventHandler(
         topics: p.topics,
         homepage: p.homepage,
         html_url: p.html_url,
-      }));
+        updated_at: p.updated_at,
+      }))
+      .sort((a, b) => b.updated_at.localeCompare(a.updated_at));
 
     // caching for client-side/CDN
     setResponseHeader(

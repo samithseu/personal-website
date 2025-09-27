@@ -109,4 +109,5 @@ type GitHubRepo = {
   topics: Array<string>;
   homepage: string;
   html_url: string;
+  updated_at: string;
 };
