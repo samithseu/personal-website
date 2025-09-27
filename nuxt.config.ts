@@ -19,7 +19,6 @@ export default defineNuxtConfig({
     "/projects": { isr: 3600 },
     "/certificates": { prerender: true },
     "/blogs": { prerender: true },
-    "/projects-isr": { redirect: "/projects" }, // temporary redirect for ISR
   },
   experimental: {
     viewTransition: true,
