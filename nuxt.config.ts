@@ -30,6 +30,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     githubToken: "",
+    public: {
+      baseUrl:
+        process.env.NUXT_PUBLIC_BASE_URL || "https://samithseu.vercel.app",
+    },
   },
   image: {
     provider: "vercel",
