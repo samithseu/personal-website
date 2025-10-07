@@ -28,11 +28,21 @@ export default defineNuxtConfig({
       renderer: "satori",
     },
   },
-  runtimeConfig: {
-    githubToken: "",
-    public: {
-      siteUrl:
-        process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
+  $development: {
+    runtimeConfig: {
+      githubToken: "",
+      public: {
+        siteUrl: "http://localhost:3000",
+      },
+    },
+  },
+  $production: {
+    runtimeConfig: {
+      githubToken: "",
+      public: {
+        siteUrl:
+          process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
+      },
     },
   },
   image: {
