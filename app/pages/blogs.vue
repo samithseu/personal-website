@@ -2,7 +2,7 @@
 useSeo({
   title: "Blogs",
   description:
-    "A place where Samith Seu writes about his experiences and some technologies.",
+    "Thoughts, tutorials, and deep dives are stuff that will get shared here!",
 });
 </script>
 

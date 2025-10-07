@@ -4,7 +4,7 @@ const { allContacts } = useContacts();
 useSeo({
   title: "Certificates",
   description:
-    "A place where all certificates that Samith Seu has earned throughout his career and studies.",
+    "Proof of learning! View my verified certificates and credentials.",
 });
 
 const { data: certs, error } = await useAsyncData(

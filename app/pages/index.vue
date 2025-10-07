@@ -4,7 +4,7 @@ const { allContacts } = useContacts();
 useSeo({
   title: "Home",
   description:
-    "First page of the website which telling brief information about Samith Seu.",
+    "Welcome to my digital space. Explore my work, read the blog, and learn about my journey as a developer.",
 });
 </script>
 

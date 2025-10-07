@@ -4,7 +4,7 @@ const { allContacts } = useContacts();
 useSeo({
   title: "Projects",
   description:
-    "Showing all projects that Samith Seu has done in the free time whether it's small or large.",
+    "See what I've been building lately. Browse through my featured projects, view the tech stacks I used, and check out the live demos.",
 });
 
 const { data: projects, error } = await useAsyncData("projects", () =>

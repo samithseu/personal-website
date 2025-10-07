@@ -5,7 +5,7 @@ const img = useImage();
 useSeo({
   title: "About",
   description:
-    "Telling more information about Samith Seu also specifying his skills and technologies he's using",
+    "Get to know the person behind the screen. Read my brief story, and why I love to build things.",
 });
 </script>
 
