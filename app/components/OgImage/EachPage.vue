@@ -11,7 +11,7 @@ const props = defineProps<{
     <div class="w-full h-full flex flex-col gap-2 relative justify-start">
       <h3
         id="headline"
-        class="uppercase font-bold font-mono text-3xl text-[#15d0ff]"
+        class="uppercase font-bold font-mono text-3xl text-primary"
       >
         {{ props.headline }}
       </h3>
@@ -28,7 +28,7 @@ const props = defineProps<{
         {{ props.desc }}
       </p>
 
-      <div class="w-[6.5rem] h-28 absolute bottom-0 right-0">
+      <div class="w-26 h-28 absolute bottom-0 right-0">
         <M class="w-full h-full" />
       </div>
 

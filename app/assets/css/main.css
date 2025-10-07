@@ -9,7 +9,7 @@
   --color-dark: #09090b;
   --spacing-prefer: 1346px;
   --breakpoint-3xl: 120rem;
-  --breakpoint-prefer: calc(var(--spacing-prefer) + 20px);
+  --breakpoint-prefer: calc(theme(--spacing-prefer) + 20px);
 }
 /* custom utilities */
 @utility scroll-gutter-stable {

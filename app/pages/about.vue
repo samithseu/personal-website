@@ -41,7 +41,7 @@ useSeo({
         <div class="space-y-4 lg:space-y-6">
           <!-- badge & title -->
           <div class="space-y-2 lg:space-y-3">
-            <LazySimpleBadge>
+            <LazySimpleBadge class="md:mx-0">
               <span>About me</span>
             </LazySimpleBadge>
             <h2

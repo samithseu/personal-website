@@ -91,7 +91,7 @@ useSeo({
         >
           <M
             style="view-transition-name: title"
-            class="size-24 sm:size-32 md:size-40 mx-auto lg:mx-0 lg:size-60 xl:size-72 [&>path]:stroke-[4] [&>path]:stroke-primary lg:[&>path]:fill-primary/0 lg:[&>path]:transition-all lg:[&>path]:duration-[400ms] lg:[&:hover_path]:fill-primary [&>path]:fill-primary/10"
+            class="size-24 sm:size-32 md:size-40 mx-auto lg:mx-0 lg:size-60 xl:size-72 [&>path]:stroke-4 [&>path]:stroke-primary lg:[&>path]:fill-primary/0 lg:[&>path]:transition-all lg:[&>path]:duration-400 lg:[&:hover_path]:fill-primary [&>path]:fill-primary/10"
           />
         </div>
       </div>
