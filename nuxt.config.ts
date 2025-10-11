@@ -26,6 +26,7 @@ export default defineNuxtConfig({
   ogImage: {
     defaults: {
       renderer: "satori",
+      extension: "png",
     },
   },
   $development: {
