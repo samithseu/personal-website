@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-const img = useImage();
 defineProps<{
   imageUrl: string;
   date: string;
@@ -19,9 +18,9 @@ defineProps<{
         loading="lazy"
         decoding="async"
         width="600"
-        sizes="md:350px lg:600px"
+        sizes="(max-width: 350px) 350px, (max-width: 600px) 600px, 600px"
         quality="65"
-        :placeholder="img(imageUrl, { h: 10, f: 'webp', blur: 2, q: 50 })"
+        placeholder
         format="webp"
         class="aspect-video object-cover h-full object-top scale-[104%]"
         :alt="`${title} certificate image`"

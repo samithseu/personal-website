@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 const { allContacts } = useContacts();
-const img = useImage();
 
 useSeo({
   title: "About",
@@ -26,14 +25,12 @@ useSeo({
             preload
             width="700"
             height="700"
-            :placeholder="
-              img(`/about-picture.jpg`, { h: 10, f: 'webp', blur: 2, q: 50 })
-            "
+            placeholder
             class="group-hover:scale-105 transition-transform duration-400 w-full object-cover"
             src="/about-picture.jpg"
             format="webp"
             quality="80"
-            sizes="sm:350px md:600px lg:700px"
+            sizes="(max-width: 350px) 350px, (max-width: 600px) 600px, 700px"
             alt="Samith Seu's AI generated photo with Ghibli style"
           />
         </div>
