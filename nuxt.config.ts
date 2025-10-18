@@ -45,9 +45,10 @@ export default defineNuxtConfig({
           process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
       },
     },
-  },
-  image: {
-    provider: "vercel",
-    domains: [],
+    image: {
+      format: ["webp"],
+      provider: "vercel",
+      domains: ["samith.info", "samithseu.vercel.app"],
+    },
   },
 });
