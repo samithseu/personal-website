@@ -46,9 +46,14 @@ export default defineNuxtConfig({
       },
     },
     image: {
-      format: ["webp"],
+      format: ["webp", "avif"],
       provider: "vercel",
-      domains: ["samith.info", "samithseu.vercel.app"],
+      domains: ["samithseu.vercel.app"],
+      screens: {
+        sm: 350,
+        md: 600,
+        lg: 700,
+      },
     },
   },
 });
