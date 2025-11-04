@@ -13,7 +13,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            ${{ github.actor }} successfully deployed the app:
+            ✅️ ${{ github.actor }} successfully deployed the app:
             Commit message: ${{ github.event.commits[0].message }}
 
             Repository: ${{ github.repository }}
