@@ -1,8 +1,10 @@
-name: TelegramBot notifying on PUSH
-on: [push]
+name: Success deployment status notifier
+on:
+  deployment_status:
 jobs:
   build:
     name: Build
+    if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Sending message
@@ -11,7 +13,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            ${{ github.actor }} created commit:
+            ${{ github.actor }} successfully deployed the app:
             Commit message: ${{ github.event.commits[0].message }}
 
             Repository: ${{ github.repository }}
