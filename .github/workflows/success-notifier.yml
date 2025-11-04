@@ -12,10 +12,11 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: html
           message: |
-            ✅️ ${{ github.actor }} successfully deployed the app:
-            Commit message: ${{ github.event.commits[0].message }}
+            <b>✅️ The website is successfully deployed!</b>
 
-            Repository: ${{ github.repository }}
+            🔍️ Feel free to check the website: <a href="https://samith.info"><b>samith.info</b></a>
 
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            - Repository: <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
+            - See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
