@@ -19,7 +19,7 @@ useSeo({
       >
         <!-- left side -->
         <div
-          class="w-full col-start-1 row-start-1 aspect-square overflow-hidden group"
+          class="sm:mx-auto sm:w-3/4 md:w-full col-start-1 row-start-1 aspect-square overflow-hidden group"
         >
           <NuxtImg
             preload
@@ -48,7 +48,9 @@ useSeo({
               Hi, I'm Samith Seu
             </h2>
           </div>
-          <div class="*:text-zinc-400 *:text-lg space-y-4 lg:space-y-6">
+          <div
+            class="*:text-zinc-400 *:text-sm *:md:text-[1rem] space-y-4 lg:space-y-6"
+          >
             <p>
               When I was a
               <NuxtLink

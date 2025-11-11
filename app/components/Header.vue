@@ -53,8 +53,10 @@ watch(
         to="/"
         class="text-xl font-semibold uppercase flex items-center gap-1 transition duration-200 hover:text-primary"
       >
-        <Icon name="ic:round-code" class="text-primary text-3xl" />
-        <span>samithseu</span>
+        <Icon
+          name="lucide:code-xml"
+          class="text-primary md:text-zinc-400 transition-colors duration-150 md:hover:text-primary text-xl lg:text-2xl"
+        />
       </NuxtLink>
 
       <!-- nav links -->
@@ -64,8 +66,8 @@ watch(
             :aria-label="link.label"
             :title="link.name"
             :prefetch="link.pf"
-            class="transition-colors duration-200 hover:text-primary"
-            active-class="text-primary"
+            class="text-[0.9375rem] text-zinc-400 transition-colors duration-200 hover:text-primary"
+            active-class="text-primary!"
             :to="link.path"
             >{{ link.name }}
           </NuxtLink>
@@ -101,7 +103,7 @@ watch(
         modal-classes="grid place-items-center"
       >
         <ul
-          class="flex flex-col items-center gap-7 *:capitalize *:font-medium *:text-2xl"
+          class="flex flex-col items-center gap-6 *:capitalize *:font-medium *:text-xl"
         >
           <li v-for="link in allLinks" :key="link.name">
             <NuxtLink

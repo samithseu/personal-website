@@ -7,9 +7,10 @@
   --default-font-family: var(--font-sans);
   --color-primary: #15d0ff;
   --color-dark: #09090b;
-  --spacing-prefer: 1346px;
+  --spacing-prefer: 68rem;
   --breakpoint-3xl: 120rem;
   --breakpoint-prefer: calc(theme(--spacing-prefer) + 20px);
+  --animate-slide-up: slide-up cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 /* custom utilities */
 @utility scroll-gutter-stable {
@@ -45,6 +46,13 @@
   --_spacing: calc(var(--spacing) * --value(number));
   background-size: var(--_spacing) var(--_spacing);
 }
+@keyframes slide-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* custom styles */
 ::selection {
   @apply bg-primary/20 text-current;

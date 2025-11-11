@@ -14,7 +14,7 @@ useSeo({
   >
     <div class="max-w-prefer mx-auto lg:px-8 2xl:px-0">
       <div
-        class="mt-20 sm:mt-24 lg:mt-0 grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:gap-0 gap-6 md:gap-8"
+        class="mt-12 sm:mt-10 md:mt-8 lg:mt-0 grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:gap-0 gap-6 md:gap-8"
       >
         <!-- left side -->
         <div
@@ -28,7 +28,7 @@ useSeo({
             </SimpleBadge>
             <!-- name -->
             <h1
-              class="text-3xl md:text-4xl md:leading-10 font-black text-center lg:text-left lg:text-4xl xl:text-6xl lg:leading-12 xl:leading-16"
+              class="text-3xl md:text-4xl md:leading-10 font-black text-center lg:text-left lg:text-4xl xl:text-5xl lg:leading-12 xl:leading-14"
             >
               <span class="block font-mono tracking-tight text-white">
                 I&apos;m <span class="text-primary">Samith</span>,
@@ -40,7 +40,7 @@ useSeo({
           </div>
           <!-- short description -->
           <p
-            class="text-center text-zinc-400 md:w-3/4 mx-auto lg:text-left lg:mx-0 lg:w-full lg:text-xl text-balance relative after:content-[''] after:absolute after:inset-4 after:w-2/3 after:bg-primary/5 after:-z-1 after:left-1/2 after:-translate-x-1/2 lg:after:left-0 lg:after:translate-x-0 after:blur-3xl"
+            class="text-sm text-center text-zinc-400 md:w-3/4 mx-auto lg:text-left lg:mx-0 lg:w-full lg:text-[1rem] lg:leading-relaxed text-balance relative after:content-[''] after:absolute after:inset-4 after:w-2/3 after:bg-primary/5 after:-z-1 after:left-1/2 after:-translate-x-1/2 lg:after:left-0 lg:after:translate-x-0 after:blur-3xl"
           >
             I build websites with modern technologies, specializing in crafting
             responsive and user-friendly interfaces for web applications.
@@ -71,7 +71,7 @@ useSeo({
           </div>
           <!-- social medias-->
           <div
-            class="flex items-center gap-5 *:text-2xl justify-center *:transition-all *:duration-200 *:hover:text-primary lg:justify-start *:text-zinc-400 *:hover:scale-105 lg:*:hover:scale-110"
+            class="flex items-center gap-4 *:text-2xl justify-center *:transition-all *:duration-200 *:hover:text-primary lg:justify-start *:text-zinc-400 *:hover:scale-105 lg:*:hover:scale-110"
           >
             <NuxtLink
               v-for="contact in allContacts"
@@ -91,7 +91,7 @@ useSeo({
         >
           <M
             style="view-transition-name: title"
-            class="size-24 sm:size-32 md:size-40 mx-auto lg:mx-0 lg:size-60 xl:size-72 [&>path]:stroke-4 [&>path]:stroke-primary lg:[&>path]:fill-primary/0 lg:[&>path]:transition-all lg:[&>path]:duration-400 lg:[&:hover_path]:fill-primary [&>path]:fill-primary/10"
+            class="size-24 md:size-28 mx-auto lg:mx-0 lg:size-60 xl:size-64 [&>path]:stroke-4 [&>path]:stroke-primary lg:[&>path]:fill-primary/0 lg:[&>path]:transition-all lg:[&>path]:duration-400 lg:[&:hover_path]:fill-primary [&>path]:fill-primary/10 animate-slide-up duration-600 transition-[translate,opacity] starting:translate-y-6 starting:[&>path]:stroke-primary/0"
           />
         </div>
       </div>
