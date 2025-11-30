@@ -28,7 +28,7 @@ defineProps<{
     </div>
     <div class="p-4 lg:p-6 space-y-4 lg:space-y-3">
       <!-- content header -->
-      <div class="space-y-1 lg:space-y-1.5">
+      <div class="space-y-1 lg:space-y-0.5">
         <p class="text-sm text-primary flex items-center gap-2">
           <Icon name="tabler:calendar-due" class="text-[1rem]" />
           <span>{{ date }}</span>
@@ -41,7 +41,10 @@ defineProps<{
         <p class="text-sm text-zinc-400">Issued by {{ org }}</p>
       </div>
       <!-- content body -->
-      <p class="text-zinc-400 line-clamp-2 text-sm lg:text-[1rem]">
+      <p
+        :title="`This certificate is issued to me by ${org} to certify my skills and knowledge in ${title}.`"
+        class="text-zinc-400 line-clamp-2 text-sm"
+      >
         This certificate is issued to me by {{ org }} to certify my skills and
         knowledge in {{ title }}.
       </p>

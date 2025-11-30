@@ -83,7 +83,7 @@ const cleanedTitle = computed(() => {
       >
         {{ cleanedTitle }}
       </h3>
-      <p class="text-sm lg:text-[1rem] line-clamp-2 text-zinc-400">
+      <p :title="description" class="text-sm line-clamp-2 text-zinc-400">
         {{ description }}
       </p>
       <div class="flex flex-wrap items-center justify-start gap-2">
