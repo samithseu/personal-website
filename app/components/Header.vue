@@ -1,43 +1,54 @@
 <script lang="ts" setup>
-const allLinks = ref<
-  Array<{ label: string; name: string; path: string; pf: boolean }>
->([
-  { label: "This will go to home page", name: "Home", path: "/", pf: false },
+type Link = {
+  label: string;
+  name: string;
+  path: string;
+  prefetch: boolean;
+  iconName?: string;
+};
+const allLinks = ref<Link[]>([
+  {
+    label: "This will go to home page",
+    name: "Home",
+    path: "/",
+    prefetch: false,
+    iconName: "tabler:home",
+  },
   {
     label: "This will go to about page",
     name: "About",
     path: "/about",
-    pf: false,
+    prefetch: false,
+    iconName: "tabler:info-circle",
   },
   {
     label: "This will go to projects page",
     name: "Projects",
     path: "/projects",
-    pf: true,
+    prefetch: true,
+    iconName: "tabler:folder-open",
   },
   {
     label: "This will go to certificates page",
     name: "Certificates",
     path: "/certificates",
-    pf: true,
+    prefetch: true,
+    iconName: "tabler:certificate",
   },
   {
     label: "This will go to blogs page",
     name: "Blogs",
     path: "/blogs",
-    pf: false,
+    prefetch: false,
+    iconName: "tabler:book",
   },
 ]);
-// for navlink modal
-const open = ref<boolean>(false);
-const route = useRoute();
 
 // change `open` state to false when route value changes
+const open = ref<boolean>(false);
 watch(
-  () => route.name,
-  () => {
-    open.value = false;
-  }
+  () => useRoute().name,
+  () => (open.value = false)
 );
 </script>
 
@@ -60,16 +71,18 @@ watch(
       </NuxtLink>
 
       <!-- nav links -->
-      <ul class="hidden md:flex items-center gap-6 *:capitalize *:font-medium">
+      <ul class="hidden md:flex items-center gap-7 *:capitalize *:font-medium">
         <li v-for="link in allLinks" :key="link.name">
           <NuxtLink
             :aria-label="link.label"
             :title="link.name"
-            :prefetch="link.pf"
-            class="text-[0.9375rem] text-zinc-400 transition-colors duration-200 hover:text-primary"
-            active-class="text-primary!"
+            :prefetch="link.prefetch"
+            class="text-[0.9375rem] text-zinc-400 transition-colors duration-200 hover:text-white hover:font-bold flex items-center gap-1"
+            active-class="text-white! font-bold!"
             :to="link.path"
-            >{{ link.name }}
+          >
+            <Icon class="text-base -mt-0.5" :name="link.iconName!" />
+            {{ link.name }}
           </NuxtLink>
         </li>
       </ul>
@@ -83,7 +96,7 @@ watch(
           to="https://resume.samith.info"
           target="_blank"
         >
-          <Icon name="ic:baseline-attach-file" class="" />
+          <Icon name="tabler:paperclip" />
         </NuxtLink>
 
         <!-- burger menu trigger button -->
@@ -93,7 +106,7 @@ watch(
           @click="open = true"
           class="md:hidden size-7 md:size-8 border border-zinc-50/15 grid place-items-center transition-colors duration-200 hover:bg-zinc-50/15 hover:border-transparent cursor-pointer"
         >
-          <Icon name="ic:round-menu" class="text-xl" />
+          <Icon name="tabler:menu-4" class="text-xl" />
         </button>
       </div>
 
@@ -109,11 +122,13 @@ watch(
             <NuxtLink
               :aria-label="link.label"
               :title="link.name"
-              :prefetch="link.pf"
-              class="transition-colors duration-200 hover:text-primary"
-              active-class="text-primary"
+              :prefetch="link.prefetch"
+              class="text-zinc-400 transition-colors duration-200 hover:text-white hover:font-bold flex items-center gap-2"
+              active-class="text-white! font-bold!"
               :to="link.path"
-              >{{ link.name }}
+            >
+              <Icon class="text-xl -mt-1" :name="link.iconName!" />
+              {{ link.name }}
             </NuxtLink>
           </li>
         </ul>

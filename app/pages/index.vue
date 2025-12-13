@@ -57,7 +57,7 @@ useSeo({
             >
               <span class="text-nowrap">my works</span>
               <Icon
-                name="material-symbols:arrow-right-alt-rounded"
+                name="tabler:arrow-right"
                 class="text-lg group-hover:translate-x-1 transition-transform duration-200"
               />
             </NuxtLink>

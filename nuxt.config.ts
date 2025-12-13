@@ -30,6 +30,9 @@ export default defineNuxtConfig({
     },
   },
   $development: {
+    icon: {
+      serverBundle: "auto",
+    },
     runtimeConfig: {
       githubToken: "",
       public: {
@@ -38,6 +41,9 @@ export default defineNuxtConfig({
     },
   },
   $production: {
+    icon: {
+      serverBundle: "auto",
+    },
     runtimeConfig: {
       githubToken: "",
       public: {

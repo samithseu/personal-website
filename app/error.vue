@@ -16,14 +16,13 @@ useSeo({
   <div
     class="w-full min-h-dvh bg-dark text-white flex flex-col items-center justify-center gap-3 lg:gap-6 px-3 md:px-0"
   >
-    <h1 class="text-3xl font-bold text-red-500 sm:text-3xl md:text-5xl">
+    <h1 class="text-2xl font-bold text-red-500 sm:text-3xl md:text-5xl">
       {{ props.error!.statusCode }}
     </h1>
-    <p class="text-gray-400 text-xl sm:text-2xl text-center">
-      <Icon
-        name="material-symbols:error-circle-rounded-outline-sharp"
-        class="text-xl"
-      />
+    <p
+      class="text-gray-400 text-xl sm:text-2xl text-center flex flex-col gap-2 items-center sm:flex sm:flex-row sm:gap-2"
+    >
+      <Icon name="tabler:info-circle" class="text-2xl" />
       {{ props.error?.statusMessage }}
     </p>
     <NuxtLink
