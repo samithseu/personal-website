@@ -28,8 +28,6 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
     "tailwindcss": "^4.1.18",
-    "@iconify-json/ic": "^1.2.4",
-    "@iconify-json/material-symbols": "^1.2.50",
     "@iconify-json/tabler": "^1.2.23",
     "i": "^0.3.7",
     "sharp": "^0.34.5"
