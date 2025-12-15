@@ -58,14 +58,9 @@ watch(
   >
     <nav class="max-w-prefer mx-auto flex items-center justify-between">
       <!-- logo -->
-      <NuxtLink
-        aria-label="This will go to home page"
-        title="Home page"
-        to="/"
-        class="text-xl font-semibold uppercase flex items-center gap-1 transition duration-200 hover:text-primary"
-      >
+      <NuxtLink aria-label="This will go to home page" title="Home page" to="/">
         <Icon
-          name="lucide:code-xml"
+          name="tabler:code"
           class="text-primary md:text-zinc-400 transition-colors duration-150 md:hover:text-primary text-xl lg:text-2xl"
         />
       </NuxtLink>
@@ -77,8 +72,8 @@ watch(
             :aria-label="link.label"
             :title="link.name"
             :prefetch="link.prefetch"
-            class="text-[0.9375rem] text-zinc-400 transition-colors duration-200 hover:text-white hover:font-bold flex items-center gap-1"
-            active-class="text-white! font-bold!"
+            class="text-[0.9375rem] text-zinc-400 transition-colors duration-200 hover:text-white hover:font-bold flex items-center gap-1 font-medium"
+            active-class="text-white!"
             :to="link.path"
           >
             <Icon class="text-base -mt-0.5" :name="link.iconName!" />
@@ -123,8 +118,8 @@ watch(
               :aria-label="link.label"
               :title="link.name"
               :prefetch="link.prefetch"
-              class="text-zinc-400 transition-colors duration-200 hover:text-white hover:font-bold flex items-center gap-2"
-              active-class="text-white! font-bold!"
+              class="text-zinc-400 transition-colors duration-200 hover:text-white hover:font-bold flex items-center gap-2 font-medium"
+              active-class="text-white!"
               :to="link.path"
             >
               <Icon class="text-xl -mt-1" :name="link.iconName!" />

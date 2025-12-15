@@ -6,12 +6,12 @@
       class="max-w-prefer mx-auto flex flex-col md:flex-row gap-3 md:gap-0 md:justify-between"
     >
       <p class="text-zinc-400 text-sm">
-        {{ new Date().getFullYear() }} Samith Seu &mdash; Personal Website
+        {{ new Date().getFullYear() }} Samith Seu &dash; Personal Website
       </p>
       <p
         class="text-zinc-400 text-sm [&:has(span)_span]:text-zinc-400 flex items-center gap-1 mx-auto md:mx-0 [&:has(a)_a:hover]:text-primary [&:has(a)_a]:transition-colors [&:has(a)_a]:duration-200"
       >
-        Made with
+        Made w/
         <NuxtLink
           title="Nuxt.js official website"
           aria-label="This will go to Nuxt.js official website"
@@ -19,8 +19,6 @@
           to="https://nuxt.com"
           >Nuxt.js</NuxtLink
         >
-        and
-        <Icon name="tabler:heart-filled" size="medium" />
         <NuxtLink
           class="font-mono"
           title="Source code"

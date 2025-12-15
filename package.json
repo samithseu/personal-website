@@ -13,7 +13,7 @@
   "dependencies": {
     "@nuxt/content": "^3.9.0",
     "@nuxt/fonts": "^0.12.1",
-    "@nuxt/icon": "^2.1.0",
+    "@nuxt/icon": "^2.1.1",
     "@nuxt/image": "^2.0.0",
     "@unhead/vue": "^2.0.19",
     "@vercel/analytics": "^1.6.1",
@@ -26,10 +26,10 @@
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.18",
-    "tailwindcss": "^4.1.18",
     "@iconify-json/tabler": "^1.2.23",
+    "@tailwindcss/vite": "^4.1.18",
     "i": "^0.3.7",
-    "sharp": "^0.34.5"
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.1.18"
   }
 }
