@@ -7,8 +7,14 @@ useSeo({
     "See what I've been building lately. Browse through my featured projects, view the tech stacks I used, and check out the live demos.",
 });
 
-const { data: projects, error } = await useAsyncData("projects", () =>
-  $fetch("/api/projects")
+const { data: projects, error } = await useAsyncData(
+  "projects",
+  () => $fetch("/api/projects"),
+  {
+    getCachedData(key, nuxtApp) {
+      return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
+    },
+  }
 );
 </script>
 
@@ -49,7 +55,7 @@ const { data: projects, error } = await useAsyncData("projects", () =>
           <LazyProjectCard
             v-for="p in projects"
             :key="p.id"
-            :title="p.name"
+            :title="p.name!"
             :description="p.description"
             :tags="p.topics"
             :live-url="p.homepage"

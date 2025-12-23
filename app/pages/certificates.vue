@@ -9,7 +9,12 @@ useSeo({
 
 const { data: certs, error } = await useAsyncData(
   "certificates",
-  fetchingCertificates
+  fetchingCertificates,
+  {
+    getCachedData(key, nuxtApp) {
+      return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
+    },
+  }
 );
 </script>
 
