@@ -22,11 +22,11 @@
     "nuxt-og-image": "^5.1.13",
     "ufo": "^1.6.1",
     "unstorage": "^1.17.3",
-    "vue": "^3.5.25",
+    "vue": "^3.5.26",
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
-    "@iconify-json/tabler": "^1.2.23",
+    "@iconify-json/tabler": "^1.2.24",
     "@tailwindcss/vite": "^4.1.18",
     "i": "^0.3.7",
     "sharp": "^0.34.5",
