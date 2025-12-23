@@ -1,4 +1,6 @@
+import type { Project, GitHubRepo } from "~/types/project";
 const CACHE_TTL: number = 60 * 5;
+
 export default defineCachedEventHandler(
   async (event) => {
     const { githubToken } = useRuntimeConfig(event);
@@ -67,5 +69,5 @@ export default defineCachedEventHandler(
     return projects;
   },
   // caching for server-side/edge
-  { maxAge: CACHE_TTL, swr: true }
+  { maxAge: CACHE_TTL, staleMaxAge: 60, swr: true }
 );

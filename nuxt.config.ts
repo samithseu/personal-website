@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   routeRules: {
     "/": { prerender: true },
     "/about": { prerender: true },
-    "/projects": { isr: 3600 },
+    "/projects": { isr: 60 * 5 }, // 5 minutes
     "/certificates": { prerender: true },
     "/blogs": { prerender: true },
   },

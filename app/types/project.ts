@@ -1,4 +1,4 @@
-type Owner = {
+export type Owner = {
   login: string;
   id: number;
   node_id: string;
@@ -20,7 +20,7 @@ type Owner = {
   site_admin: false;
 };
 
-type Project = {
+export type Project = {
   id: number;
   node_id: string;
   name: string;
@@ -102,7 +102,7 @@ type Project = {
   default_branch: string;
 };
 
-type GitHubRepo = {
+export type GitHubRepo = {
   id: number;
   name: string;
   description: string;
