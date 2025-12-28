@@ -23,6 +23,9 @@ export default defineNuxtConfig({
   experimental: {
     viewTransition: true,
   },
+  app: {
+    viewTransition: "always",
+  },
   ogImage: {
     defaults: {
       renderer: "satori",
