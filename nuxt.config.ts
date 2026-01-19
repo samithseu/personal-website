@@ -20,6 +20,13 @@ export default defineNuxtConfig({
     "/projects": { isr: 60 * 5 }, // 5 minutes
     "/certificates": { prerender: true },
     "/blogs": { prerender: true },
+
+    // social media
+    "/github": { redirect: "https://github.com/samithseu" },
+    "/linkedin": { redirect: "https://linkedin.com/in/samith-seu/" },
+    "/x": { redirect: "https://x.com/seumith" },
+    "/telegram": { redirect: "https://t.me/samithseu" },
+    "/email": { redirect: "mailto:seusamith@gmail.com" },
   },
   experimental: {
     viewTransition: true,
@@ -33,6 +40,11 @@ export default defineNuxtConfig({
       extension: "png",
     },
   },
+  // nitro: {
+  //   prerender: {
+  //     ignore: ["/github", "/linkedin", "/x", "/telegram", "/email"],
+  //   },
+  // },
   $development: {
     icon: {
       serverBundle: "auto",
