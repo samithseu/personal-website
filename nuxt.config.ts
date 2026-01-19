@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     "nuxt-og-image",
     "@nuxt/image",
     "@nuxt/content",
+    "@nuxtjs/seo",
   ],
   routeRules: {
     "/": { prerender: true },
@@ -24,7 +25,7 @@ export default defineNuxtConfig({
     viewTransition: true,
   },
   app: {
-    viewTransition: "always",
+    viewTransition: true,
   },
   ogImage: {
     defaults: {
