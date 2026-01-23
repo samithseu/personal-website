@@ -10,4 +10,4 @@
 
 ---
 
-You can give it a look here! 😎 <a href="https://samith.info">samith.info</a>
+I aggressively `lazy-load` almost everything for performance. You can give it a try here! 😎 <a href="https://samith.info">samith.info</a>

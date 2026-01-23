@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/projects",
-      "destination": "/.vercel/functions/projects"
-    }
-  ]
-}
