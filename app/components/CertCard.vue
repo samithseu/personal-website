@@ -13,14 +13,13 @@ defineProps<{
   >
     <!-- card image -->
     <div class="h-48 overflow-hidden">
-      <NuxtImg
+      <ImageWithPlaceholder
         :src="imageUrl"
         loading="lazy"
         decoding="async"
         width="600"
         sizes="(max-width: 350px) 350px, (max-width: 600px) 600px, 600px"
         quality="65"
-        placeholder
         format="webp"
         class="aspect-video object-cover h-full object-top scale-[104%]"
         :alt="`${title} certificate image`"

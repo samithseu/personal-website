@@ -21,11 +21,10 @@ useSeo({
         <div
           class="sm:mx-auto sm:w-3/4 md:w-full col-start-1 row-start-1 aspect-square overflow-hidden group"
         >
-          <NuxtImg
+          <LazyImageWithPlaceholder
             preload
             width="700"
             height="700"
-            placeholder
             class="group-hover:scale-105 transition-transform duration-400 w-full object-cover"
             src="/about-picture.jpg"
             format="webp"
