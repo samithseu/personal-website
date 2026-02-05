@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { Analytics } from "@vercel/analytics/nuxt";
 import favicon from "/favicon.ico";
 
 useHead({
@@ -21,7 +20,6 @@ useSeoMeta({
 
 <template>
   <div>
-    <Analytics />
     <NuxtLayout>
       <NuxtLoadingIndicator :throttle="150" color="#15d0ff" />
       <NuxtPage />
