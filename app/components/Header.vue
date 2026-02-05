@@ -48,7 +48,7 @@ const allLinks = ref<Link[]>([
 const open = ref<boolean>(false);
 watch(
   () => useRoute().name,
-  () => (open.value = false)
+  () => (open.value = false),
 );
 </script>
 
@@ -88,7 +88,7 @@ watch(
           aria-label="This will go to resume page"
           title="Resume"
           class="grid size-7 md:size-8 border border-zinc-50/15 place-items-center transition-colors duration-200 hover:bg-zinc-50/15 hover:border-transparent"
-          to="https://resume.samith.info"
+          to="https://resume.samith.dev"
           target="_blank"
         >
           <Icon name="tabler:paperclip" />

@@ -17,7 +17,7 @@ export const useSeo = ({
   const { siteUrl: url } = useRuntimeConfig().public;
   const inLanguage = "en-US";
   const definedPerson = definePerson({
-    "@id": "samith.info",
+    "@id": "samith.dev",
     "@type": "Person",
     url,
     name: "Samith Seu",

@@ -16,7 +16,7 @@ jobs:
           message: |
             <b>✅️ Deployment succeeded!</b>
 
-            <b>🔍️ Feel free to check: <a href="https://samith.info">samith.info</a></b>
+            <b>🔍️ Feel free to check: <a href="https://samith.dev">https://samith.dev</a></b>
 
             - repo: <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
             - changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
