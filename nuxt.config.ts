@@ -59,14 +59,11 @@ export default defineNuxtConfig({
     runtimeConfig: {
       githubToken: "",
       public: {
-        siteUrl:
-          process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
+        siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
       },
     },
     image: {
       format: ["webp", "avif"],
-      provider: "vercel",
-      domains: ["samithseu.vercel.app"],
       screens: {
         sm: 350,
         md: 600,
