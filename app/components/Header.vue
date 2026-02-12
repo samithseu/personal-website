@@ -72,7 +72,7 @@ watch(
             :aria-label="link.label"
             :title="link.name"
             :prefetch="link.prefetch"
-            class="text-[0.9375rem] text-zinc-400 transition-colors duration-200 hover:text-white hover:font-bold flex items-center gap-1 font-medium"
+            class="text-[0.9375rem] text-zinc-400 transition-colors duration-200 hover:text-white hover:font-bold flex items-center gap-1 font-light!"
             active-class="text-white!"
             :to="link.path"
           >
@@ -118,7 +118,7 @@ watch(
               :aria-label="link.label"
               :title="link.name"
               :prefetch="link.prefetch"
-              class="text-zinc-400 transition-colors duration-200 hover:text-white hover:font-bold flex items-center gap-2 font-medium"
+              class="text-zinc-400 transition-colors duration-200 hover:text-white hover:font-bold flex items-center gap-2 font-light!"
               active-class="text-white!"
               :to="link.path"
             >
