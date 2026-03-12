@@ -16,9 +16,9 @@
     "@nuxt/icon": "^2.2.1",
     "@nuxt/image": "^2.0.0",
     "@nuxtjs/seo": "^3.4.0",
-    "@unhead/vue": "^2.1.11",
+    "@unhead/vue": "^2.1.12",
     "better-sqlite3": "^12.6.2",
-    "nuxt": "^4.3.1",
+    "nuxt": "^4.4.2",
     "nuxt-og-image": "^5.1.13",
     "ufo": "^1.6.3",
     "unstorage": "^1.17.4",
@@ -26,11 +26,11 @@
     "vue-router": "^5.0.3"
   },
   "devDependencies": {
-    "@iconify-json/tabler": "^1.2.30",
+    "@iconify-json/tabler": "^1.2.31",
     "@tailwindcss/vite": "^4.2.1",
     "i": "^0.3.7",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.1"
   },
-  "packageManager": "pnpm@10.32.0"
+  "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be"
 }
