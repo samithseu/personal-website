@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 import favicon from "/favicon.ico";
 
 useHead({
@@ -19,10 +21,14 @@ useSeoMeta({
 </script>
 
 <template>
-  <div>
-    <NuxtLayout>
-      <NuxtLoadingIndicator :throttle="150" color="#15d0ff" />
+  <div
+    class="min-h-screen h-full grid grid-rows-[auto_1fr_auto] transition-discrete duration-300"
+  >
+    <NuxtLoadingIndicator :throttle="150" color="#15d0ff" />
+    <Header />
+    <main>
       <NuxtPage />
-    </NuxtLayout>
+    </main>
+    <Footer />
   </div>
 </template>

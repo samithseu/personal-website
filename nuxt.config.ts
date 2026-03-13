@@ -5,6 +5,13 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: [
+        "@vue/devtools-core",
+        "@vue/devtools-kit",
+        "@unhead/schema-org/vue",
+      ],
+    },
   },
   modules: [
     "@nuxt/fonts",
