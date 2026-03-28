@@ -34,13 +34,8 @@ export default defineNuxtConfig({
     "/x": { redirect: "https://x.com/seumith" },
     "/telegram": { redirect: "https://t.me/samithseu" },
   },
-  experimental: {
-    viewTransition: true,
-  },
-  app: {
-    head: { titleTemplate: "%s" },
-    viewTransition: true,
-  },
+  experimental: { viewTransition: true },
+  app: { head: { titleTemplate: "%s" }, viewTransition: true },
   sitemap: { zeroRuntime: true },
   ogImage: {
     defaults: {
@@ -49,25 +44,18 @@ export default defineNuxtConfig({
     },
   },
   $development: {
-    icon: {
-      serverBundle: "auto",
-    },
+    icon: { serverBundle: "auto" },
     runtimeConfig: {
       githubToken: "",
-      public: {
-        siteUrl: "http://localhost:3000",
-      },
+      public: { siteUrl: "http://localhost:3000" },
     },
   },
   $production: {
-    icon: {
-      serverBundle: "auto",
-    },
+    sourcemap: false,
+    icon: { serverBundle: "auto" },
     runtimeConfig: {
       githubToken: "",
-      public: {
-        siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
-      },
+      public: { siteUrl: process.env.NUXT_PUBLIC_SITE_URL },
     },
     image: {
       format: ["webp", "avif"],
