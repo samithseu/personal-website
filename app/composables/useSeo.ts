@@ -99,15 +99,9 @@ export const useSeo = ({
   });
 
   // Render the Open Graph image component:
-  defineOgImage("EachPageSatori", {
+  defineOgImage("EachPage.satori", {
     headline: ogImageHeadline ?? "personal website",
     title: titleTemplate ?? title,
     desc: description ?? "a web developer and lifelong learner.",
   } satisfies CustomOGImageProps);
-
-  // {
-  //   headline: ogImageHeadline,
-  //   title: titleTemplate,
-  //   desc: description,
-  // } satisfies CustomOGImageProps
 };

@@ -23,6 +23,9 @@ importers:
       '@nuxtjs/seo':
         specifier: ^5.1.0
         version: 5.1.0(b0784f0addd8b1b12ba2bd32f0da1558)
+      '@resvg/resvg-js':
+        specifier: ^2.6.2
+        version: 2.6.2
       '@unhead/vue':
         specifier: ^2.1.12
         version: 2.1.12(vue@3.5.31(typescript@5.9.3))
@@ -7658,7 +7661,6 @@ snapshots:
       '@resvg/resvg-js-win32-arm64-msvc': 2.6.2
       '@resvg/resvg-js-win32-ia32-msvc': 2.6.2
       '@resvg/resvg-js-win32-x64-msvc': 2.6.2
-    optional: true
 
   '@resvg/resvg-wasm@2.6.2':
     optional: true

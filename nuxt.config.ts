@@ -38,18 +38,26 @@ export default defineNuxtConfig({
   app: { head: { titleTemplate: "%s" }, viewTransition: true },
   sitemap: { zeroRuntime: true },
   fonts: {
-    families: [{ name: "Inter", weights: [300, 400, 600], global: true }],
+    families: [
+      {
+        name: "Inter",
+        styles: ["normal", "italic"],
+        weights: [300, 400, 600, 700],
+        global: true,
+      },
+    ],
   },
   ogImage: {
+    zeroRuntime: true,
     defaults: {
       extension: "png",
-      cacheMaxAgeSeconds: 60 * 60 * 24, // 24 hours
     },
   },
   $development: {
     icon: { serverBundle: "auto" },
     runtimeConfig: {
       githubToken: "",
+      ogImageSecret: "",
       public: { siteUrl: "http://localhost:3000" },
     },
   },
