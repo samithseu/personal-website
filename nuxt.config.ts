@@ -37,10 +37,13 @@ export default defineNuxtConfig({
   experimental: { viewTransition: true },
   app: { head: { titleTemplate: "%s" }, viewTransition: true },
   sitemap: { zeroRuntime: true },
+  fonts: {
+    families: [{ name: "Inter", weights: [300, 400, 600], global: true }],
+  },
   ogImage: {
     defaults: {
-      renderer: "satori",
       extension: "png",
+      cacheMaxAgeSeconds: 60 * 60 * 24, // 24 hours
     },
   },
   $development: {
@@ -55,6 +58,7 @@ export default defineNuxtConfig({
     icon: { serverBundle: "auto" },
     runtimeConfig: {
       githubToken: "",
+      ogImageSecret: "",
       public: { siteUrl: process.env.NUXT_PUBLIC_SITE_URL },
     },
     image: {

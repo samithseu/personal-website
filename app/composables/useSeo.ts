@@ -1,8 +1,13 @@
+export type CustomOGImageProps = {
+  headline?: string;
+  title?: string;
+  desc?: string;
+};
+
 export interface SeoProps {
   title: string;
   description: string;
   ogImageHeadline?: string;
-  ogImageComponent?: string;
   noPrefix?: boolean;
 }
 
@@ -10,7 +15,6 @@ export const useSeo = ({
   title,
   description,
   ogImageHeadline = "personal website",
-  ogImageComponent = "EachPage",
   noPrefix = false,
 }: SeoProps) => {
   // schema.org structured data
@@ -95,9 +99,15 @@ export const useSeo = ({
   });
 
   // Render the Open Graph image component:
-  defineOgImageComponent(ogImageComponent, {
-    headline: ogImageHeadline,
-    title: titleTemplate,
-    desc: description,
-  });
+  defineOgImage("EachPageSatori", {
+    headline: ogImageHeadline ?? "personal website",
+    title: titleTemplate ?? title,
+    desc: description ?? "a web developer and lifelong learner.",
+  } satisfies CustomOGImageProps);
+
+  // {
+  //   headline: ogImageHeadline,
+  //   title: titleTemplate,
+  //   desc: description,
+  // } satisfies CustomOGImageProps
 };
