@@ -14,7 +14,7 @@ const { data: projects, error } = await useAsyncData(
     getCachedData(key, nuxtApp) {
       return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
     },
-  }
+  },
 );
 </script>
 
@@ -31,7 +31,7 @@ const { data: projects, error } = await useAsyncData(
           </LazySimpleBadge>
           <h2
             style="view-transition-name: title"
-            class="capitalize text-center md:text-left text-3xl font-bold"
+            class="capitalize text-center md:text-left text-3xl font-semibold"
           >
             Projects
           </h2>
@@ -65,7 +65,7 @@ const { data: projects, error } = await useAsyncData(
       </div>
       <!-- Have a project in mind? -->
       <LazyAskingEnd hydrate-never>
-        <h2 class="text-2xl font-bold text-primary text-center">
+        <h2 class="text-2xl font-semibold text-primary text-center">
           Have a project in mind?
         </h2>
         <p class="text-zinc-300 text-center">

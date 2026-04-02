@@ -28,7 +28,7 @@ useSeo({
             </SimpleBadge>
             <!-- name -->
             <h1
-              class="text-3xl md:text-4xl md:leading-10 font-black text-center lg:text-left lg:text-4xl xl:text-5xl lg:leading-12 xl:leading-14"
+              class="text-3xl md:text-4xl md:leading-10 font-semibold text-center lg:text-left lg:text-4xl xl:text-5xl lg:leading-12 xl:leading-14"
             >
               <span class="block font-mono tracking-tight text-white">
                 I&apos;m <span class="text-primary">Samith</span>,

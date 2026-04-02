@@ -16,7 +16,7 @@ useSeo({
   <div
     class="w-full min-h-dvh bg-dark text-white flex flex-col items-center justify-center gap-3 lg:gap-6 px-3 md:px-0"
   >
-    <h1 class="text-2xl font-bold text-red-500 sm:text-3xl md:text-5xl">
+    <h1 class="text-2xl font-semibold text-red-500 sm:text-3xl md:text-5xl">
       {{ props.error!.statusCode }}
     </h1>
     <p

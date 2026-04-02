@@ -66,13 +66,15 @@ watch(
       </NuxtLink>
 
       <!-- nav links -->
-      <ul class="hidden md:flex items-center gap-7 *:capitalize *:font-medium">
+      <ul
+        class="hidden md:flex items-center gap-7 *:capitalize *:font-semibold"
+      >
         <li v-for="link in allLinks" :key="link.name">
           <NuxtLink
             :aria-label="link.label"
             :title="link.name"
             :prefetch="link.prefetch"
-            class="text-[0.9375rem] text-zinc-400 transition-colors duration-200 hover:text-white hover:font-bold flex items-center gap-1 font-light!"
+            class="text-[0.9375rem] text-zinc-400 transition-colors duration-200 hover:text-white hover:font-semibold flex items-center gap-1 font-light!"
             active-class="text-white!"
             :to="link.path"
           >
@@ -111,14 +113,14 @@ watch(
         modal-classes="grid place-items-center"
       >
         <ul
-          class="flex flex-col items-center gap-6 *:capitalize *:font-medium *:text-xl"
+          class="flex flex-col items-center gap-6 *:capitalize *:font-semibold *:text-xl"
         >
           <li v-for="link in allLinks" :key="link.name">
             <NuxtLink
               :aria-label="link.label"
               :title="link.name"
               :prefetch="link.prefetch"
-              class="text-zinc-400 transition-colors duration-200 hover:text-white hover:font-bold flex items-center gap-2 font-light!"
+              class="text-zinc-400 transition-colors duration-200 hover:text-white hover:font-semibold flex items-center gap-2 font-light!"
               active-class="text-white!"
               :to="link.path"
             >

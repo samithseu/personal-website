@@ -8,7 +8,7 @@ defineProps<{
   <li
     class="border border-zinc-50/15 p-4 lg:p-6 bg-primary/0 transition-all duration-300 hover:bg-primary/5 hover:border-primary/70 backdrop-blur-sm"
   >
-    <h3 class="capitalize text-xl font-bold text-primary mb-2 lg:mb-3">
+    <h3 class="capitalize text-xl font-semibold text-primary mb-2 lg:mb-3">
       {{ title }}
     </h3>
     <ul

@@ -118,7 +118,7 @@ useSeo({
       </div>
       <!-- education -->
       <div class="space-y-6 md:space-y-8">
-        <h2 class="capitalize text-3xl font-bold">education</h2>
+        <h2 class="capitalize text-3xl font-semibold">education</h2>
         <ul
           class="grid grid-cols-1 lg:grid-cols-2 lg:items-start gap-6 lg:gap-8"
         >
@@ -138,7 +138,7 @@ useSeo({
       </div>
       <!-- skills & technologies -->
       <div class="space-y-6 md:space-y-8">
-        <h2 class="capitalize text-3xl font-bold">Skills & Technologies</h2>
+        <h2 class="capitalize text-3xl font-semibold">Skills & Technologies</h2>
         <ul
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
         >
@@ -164,7 +164,7 @@ useSeo({
       </div>
       <!-- working together? -->
       <LazyAskingEnd hydrate-never>
-        <h2 class="capitalize text-2xl font-bold text-primary text-center">
+        <h2 class="capitalize text-2xl font-semibold text-primary text-center">
           interested in working together?
         </h2>
         <p class="text-zinc-300 text-center">

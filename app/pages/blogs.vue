@@ -12,7 +12,7 @@ useSeo({
       <LazyPageState hydrate-never icon="tabler:file-description">
         <h1
           style="view-transition-name: title"
-          class="text-3xl font-mono font-bold text-zinc-400"
+          class="text-3xl font-mono font-semibold text-zinc-400"
         >
           No blogs!
         </h1>
