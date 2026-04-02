@@ -41,8 +41,14 @@ export default defineNuxtConfig({
     families: [
       {
         name: "Inter",
-        styles: ["normal", "italic"],
+        styles: ["normal"],
         weights: [300, 400, 600, 700],
+        global: true,
+      },
+      {
+        name: "Geist Mono",
+        styles: ["normal"],
+        weights: [400, 600],
         global: true,
       },
     ],
@@ -50,6 +56,7 @@ export default defineNuxtConfig({
   ogImage: {
     zeroRuntime: true,
     defaults: {
+      renderer: "satori",
       extension: "png",
     },
   },
@@ -57,7 +64,6 @@ export default defineNuxtConfig({
     icon: { serverBundle: "auto" },
     runtimeConfig: {
       githubToken: "",
-      ogImageSecret: "",
       public: { siteUrl: "http://localhost:3000" },
     },
   },
@@ -66,7 +72,6 @@ export default defineNuxtConfig({
     icon: { serverBundle: "auto" },
     runtimeConfig: {
       githubToken: "",
-      ogImageSecret: "",
       public: { siteUrl: process.env.NUXT_PUBLIC_SITE_URL },
     },
     image: {
