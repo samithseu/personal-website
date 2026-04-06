@@ -35,12 +35,12 @@
 @utility bg-grid-* {
   background-image:
     linear-gradient(
-      rgb(from var(--color-primary) r g b / 0.025) 1px,
+      rgb(from theme(color.zinc.500) r g b / 0.025) 1px,
       transparent 1px
     ),
     linear-gradient(
       to right,
-      rgb(from var(--color-primary) r g b / 0.025) 1px,
+      rgb(from theme(color.zinc.500) r g b / 0.025) 1px,
       transparent 1px
     );
   --_spacing: calc(var(--spacing) * --value(number));
@@ -61,5 +61,5 @@ html {
   @apply scroll-gutter-stable scroll-width-thin scroll-color-primary;
 }
 body {
-  @apply bg-dark bg-grid-8;
+  @apply bg-dark bg-grid-1;
 }
