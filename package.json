@@ -18,7 +18,7 @@
     "@nuxt/image": "^2.0.0",
     "@nuxtjs/seo": "^3.4.0",
     "@unhead/vue": "^2.1.13",
-    "better-sqlite3": "^12.8.0",
+    "better-sqlite3": "^12.9.0",
     "nuxt": "^4.4.2",
     "nuxt-og-image": "^5.1.13",
     "ufo": "^1.6.3",

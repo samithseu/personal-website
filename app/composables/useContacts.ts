@@ -29,7 +29,7 @@ export const useContacts = () => {
     {
       name: "E-mail",
       iconName: "tabler:mail",
-      link: "mailto:seusamith@gmail.com",
+      link: "mailto:contact@samith.dev",
     },
   ]);
 
