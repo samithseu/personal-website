@@ -48,7 +48,7 @@ useSeo({
             </h2>
           </div>
           <div
-            class="*:text-zinc-400 *:text-sm *:md:text-[1rem] space-y-4 lg:space-y-6"
+            class="*:text-zinc-400 *:text-sm *:leading-relaxed *:md:text-[1rem] space-y-4 lg:space-y-6"
           >
             <p>
               When I was a
@@ -157,7 +157,7 @@ useSeo({
           <LazyListSubList title="tools & others">
             <li>Git / GitHub</li>
             <li>Docker / CI/CD</li>
-            <li>Vercel / Netlify</li>
+            <li>Cloudflare / Vercel / Netlify</li>
             <li>Figma / Adobe XD</li>
           </LazyListSubList>
         </ul>

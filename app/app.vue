@@ -22,7 +22,7 @@ useSeoMeta({
 
 <template>
   <div
-    class="min-h-screen h-full grid grid-rows-[auto_1fr_auto] transition-discrete duration-300"
+    class="min-h-svh h-full grid grid-rows-[auto_1fr_auto] transition-discrete duration-300"
   >
     <NuxtLoadingIndicator :throttle="150" color="#15d0ff" />
     <Header />

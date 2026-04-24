@@ -14,11 +14,11 @@ useSeo({
   >
     <div class="max-w-prefer mx-auto lg:px-8 2xl:px-0">
       <div
-        class="mt-12 sm:mt-10 md:mt-8 lg:mt-0 grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:gap-0 gap-6 md:gap-8"
+        class="mt-12 sm:mt-10 md:mt-8 lg:mt-0 grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:gap-0 gap-10 md:gap-8"
       >
         <!-- left side -->
         <div
-          class="space-y-5 md:space-y-6 lg:space-y-7 w-full lg:col-start-1 lg:row-start-1 col-start-1 row-start-2"
+          class="space-y-6 md:space-y-6 lg:space-y-7 w-full lg:col-start-1 lg:row-start-1 col-start-1 row-start-2"
         >
           <div class="space-y-2 lg:space-y-3">
             <!-- badge -->
@@ -40,7 +40,7 @@ useSeo({
           </div>
           <!-- short description -->
           <p
-            class="text-sm text-center text-zinc-400 md:w-3/4 mx-auto lg:text-left lg:mx-0 lg:w-full lg:text-[1rem] lg:leading-relaxed text-balance relative after:content-[''] after:absolute after:inset-4 after:w-2/3 after:bg-primary/5 after:-z-1 after:left-1/2 after:-translate-x-1/2 lg:after:left-0 lg:after:translate-x-0 after:blur-3xl"
+            class="text-sm leading-relaxed text-center text-zinc-400 md:w-3/4 mx-auto lg:text-left lg:mx-0 lg:w-full lg:text-[1rem] lg:leading-relaxed text-balance relative after:content-[''] after:absolute after:inset-4 after:w-2/3 after:bg-primary/5 after:-z-1 after:left-1/2 after:-translate-x-1/2 lg:after:left-0 lg:after:translate-x-0 after:blur-3xl"
           >
             I build websites with modern technologies, specializing in crafting
             responsive and user-friendly interfaces for web applications.
