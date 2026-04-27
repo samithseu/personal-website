@@ -4,9 +4,7 @@ import Footer from "./components/Footer.vue";
 import favicon from "/favicon.ico";
 
 useHead({
-  htmlAttrs: {
-    lang: "en",
-  },
+  htmlAttrs: { lang: "en" },
   meta: [
     { name: "viewport", content: "width=device-width, initial-scale=1.0" },
     { name: "color-scheme", content: "dark" },
@@ -18,6 +16,8 @@ useSeoMeta({
   charset: "utf-8",
   title: "Samith Seu",
 });
+
+const keepAlivePages = ["index", "about", "certificates", "blogs"];
 </script>
 
 <template>
@@ -27,7 +27,7 @@ useSeoMeta({
     <NuxtLoadingIndicator :throttle="150" color="#15d0ff" />
     <Header />
     <main>
-      <NuxtPage />
+      <NuxtPage :keepalive="{ include: keepAlivePages }" />
     </main>
     <Footer />
   </div>
