@@ -112,7 +112,7 @@ useSeo({
             class="flex items-center gap-2 bg-primary text-dark transition-colors duration-200 hover:bg-primary/70 w-fit border py-2 px-4 capitalize text-sm mx-auto md:mx-0"
           >
             <span class="text-nowrap">view resume</span>
-            <Icon name="tabler:external-link" class="text-lg" />
+            <Icon name="tabler:external-link" class="text-lg" mode="svg" />
           </NuxtLink>
         </div>
       </div>
