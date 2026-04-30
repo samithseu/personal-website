@@ -19,9 +19,9 @@
     "@nuxtjs/seo": "^3.4.0",
     "@unhead/vue": "^2.1.13",
     "better-sqlite3": "^12.9.0",
-    "nuxt": "^4.4.2",
+    "nuxt": "^4.4.4",
     "nuxt-og-image": "^5.1.13",
-    "ufo": "^1.6.3",
+    "ufo": "^1.6.4",
     "unstorage": "^1.17.5",
     "vue": "^3.5.33",
     "vue-router": "^5.0.6"
