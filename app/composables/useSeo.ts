@@ -37,7 +37,7 @@ export const useSeo = ({
     sameAs: [
       "https://samithseu.vercel.app",
       "https://github.com/samithseu",
-      "https://linkedin.com/in/samith-seu/",
+      "https://linkedin.com/in/samithseu/",
       "https://x.com/seumith",
       "https://t.me/samithseu",
     ],

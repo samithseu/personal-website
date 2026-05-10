@@ -30,7 +30,7 @@ export default defineNuxtConfig({
 
     // social media
     "/github": { redirect: "https://github.com/samithseu" },
-    "/linkedin": { redirect: "https://linkedin.com/in/samith-seu/" },
+    "/linkedin": { redirect: "https://linkedin.com/in/samithseu/" },
     "/x": { redirect: "https://x.com/seumith" },
     "/telegram": { redirect: "https://t.me/samithseu" },
   },
