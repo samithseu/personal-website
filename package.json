@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt cleanup && nuxt build",
-    "clean": "nuxt cleanup",
+    "clean": "nuxt cleanup && rm -rf ./node_modules/.cache",
     "dev": "nuxt cleanup && nuxt dev",
     "dev:host": "nuxt dev --host",
     "generate": "nuxt generate",
@@ -14,24 +14,24 @@
   "dependencies": {
     "@nuxt/content": "^3.13.0",
     "@nuxt/fonts": "^0.14.0",
-    "@nuxt/icon": "^2.2.1",
+    "@nuxt/icon": "^2.2.2",
     "@nuxt/image": "^2.0.0",
     "@nuxtjs/seo": "^3.4.0",
-    "@unhead/vue": "^2.1.13",
+    "@unhead/vue": "^2.1.15",
     "better-sqlite3": "^12.9.0",
     "nuxt": "^4.4.4",
     "nuxt-og-image": "^5.1.13",
     "ufo": "^1.6.4",
     "unstorage": "^1.17.5",
-    "vue": "^3.5.33",
+    "vue": "^3.5.34",
     "vue-router": "^5.0.6"
   },
   "devDependencies": {
-    "@iconify-json/tabler": "^1.2.33",
-    "@tailwindcss/vite": "^4.2.4",
+    "@iconify-json/tabler": "^1.2.35",
+    "@tailwindcss/vite": "^4.3.0",
     "i": "^0.3.7",
     "sharp": "^0.34.5",
-    "tailwindcss": "^4.2.4"
+    "tailwindcss": "^4.3.0"
   },
-  "packageManager": "pnpm@10.33.2+sha512.a90faf6feeab71ad6c6e57f94e0fe1a12f5dcc22cd754db40ae9593eb6a3e0b6b12e3540218bb37ae083404b1f2ce6db2a4121e979829b4aff94b99f49da1cf8"
+  "packageManager": "pnpm@10.33.4+sha512.1c67b3b359b2d408119ba1ed289f34b8fc3c6873412bec6fd264fbdc82489e510fcbecb9ce9d22dae7f3b76269d8441046014bdca53b9979cd7a561ad631b800"
 }
