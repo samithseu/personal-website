@@ -58,12 +58,12 @@ export default defineNuxtConfig({
   },
   ogImage: {
     security: { strict: true },
+    zeroRuntime: true,
     compatibility: {
       runtime: { takumi: "wasm" },
     },
   },
   $development: {
-    icon: { serverBundle: "auto" },
     runtimeConfig: {
       githubToken: "",
       siteUrl: "http://localhost:3000",
@@ -73,7 +73,6 @@ export default defineNuxtConfig({
   },
   $production: {
     sourcemap: false,
-    icon: { serverBundle: "auto" },
     runtimeConfig: {
       githubToken: "",
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
