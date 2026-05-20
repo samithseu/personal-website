@@ -31,9 +31,6 @@ export default defineNuxtConfig({
     "/certificates": { prerender: true },
     "/blogs": { prerender: true },
 
-    // icon API
-    "/api/_nuxt_icon/**": { prerender: true },
-
     // social media
     "/github": { redirect: "https://github.com/samithseu" },
     "/linkedin": { redirect: "https://linkedin.com/in/samithseu/" },
@@ -42,7 +39,19 @@ export default defineNuxtConfig({
   },
   experimental: { viewTransition: true },
   app: { head: { titleTemplate: "%s" }, viewTransition: true },
-  sitemap: { zeroRuntime: true, sources: [] },
+  runtimeConfig: {
+    githubToken: process.env.GITHUB_TOKEN || "",
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
+      siteName: "Samith Seu - Home",
+    },
+    ogImage: { secret: process.env.OG_IMAGE_SECRET || "" },
+  },
+  sitemap: { 
+    zeroRuntime: true, 
+    sources: [],
+    siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://samith.dev'
+  },
   fonts: {
     families: [
       {
