@@ -83,6 +83,7 @@ export default defineNuxtConfig({
         styles: ["normal"],
         weights: [400, 600],
         subsets: ["latin"],
+        global: true,
       },
     ],
   },
@@ -97,29 +98,6 @@ export default defineNuxtConfig({
         site: {
           url: "http://localhost:3000",
           name: "Samith Seu - Home",
-        },
-      },
-    },
-  },
-  $env: {
-    staging: {
-      runtimeConfig: {
-        githubToken: "",
-        public: {
-          site: {
-            url:
-              `https://${process.env.VERCEL_BRANCH_URL}` ||
-              "https://website-git-dev-samithseus-projects.vercel.app",
-            name: "Samith Seu - Home",
-          },
-        },
-      },
-      image: {
-        format: ["webp", "avif"],
-        screens: {
-          sm: 350,
-          md: 600,
-          lg: 700,
         },
       },
     },
