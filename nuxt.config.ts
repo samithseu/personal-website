@@ -3,6 +3,12 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+  nitro: {
+    prerender: {
+      failOnError: false,
+      crawlLinks: true,
+    },
+  },
   css: ["~/assets/css/main.css"],
   vite: {
     plugins: [tailwindcss()],
@@ -28,7 +34,7 @@ export default defineNuxtConfig({
     "/": { prerender: true },
     "/about": { prerender: true },
     "/projects": { isr: 60 * 5 }, // 5 minutes
-    "/certificates": { prerender: true },
+    "/certificates": { isr: 3600 },
     "/blogs": { prerender: true },
 
     // social media
