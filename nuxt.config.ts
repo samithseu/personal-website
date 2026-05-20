@@ -22,12 +22,17 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxtjs/seo",
   ],
+  icon: { compile: true },
+  content: { build: { storage: "json" } },
   routeRules: {
     "/": { prerender: true },
     "/about": { prerender: true },
     "/projects": { isr: 60 * 5 }, // 5 minutes
     "/certificates": { prerender: true },
     "/blogs": { prerender: true },
+
+    // icon API
+    "/api/_nuxt_icon/**": { prerender: true },
 
     // social media
     "/github": { redirect: "https://github.com/samithseu" },
@@ -37,7 +42,7 @@ export default defineNuxtConfig({
   },
   experimental: { viewTransition: true },
   app: { head: { titleTemplate: "%s" }, viewTransition: true },
-  sitemap: { zeroRuntime: true },
+  sitemap: { zeroRuntime: true, sources: [] },
   fonts: {
     families: [
       {
@@ -66,8 +71,10 @@ export default defineNuxtConfig({
   $development: {
     runtimeConfig: {
       githubToken: "",
-      siteUrl: "http://localhost:3000",
-      siteName: "Samith Seu - Home",
+      public: {
+        siteUrl: "http://localhost:3000",
+        siteName: "Samith Seu - Home",
+      },
       ogImage: { secret: "" },
     },
   },
@@ -75,8 +82,10 @@ export default defineNuxtConfig({
     sourcemap: false,
     runtimeConfig: {
       githubToken: "",
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
-      siteName: "Samith Seu - Home",
+      public: {
+        siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
+        siteName: "Samith Seu - Home",
+      },
       ogImage: { secret: "" },
     },
     image: {
