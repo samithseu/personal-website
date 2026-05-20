@@ -1,4 +1,5 @@
 import tailwindcss from "@tailwindcss/vite";
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
@@ -56,17 +57,18 @@ export default defineNuxtConfig({
     ],
   },
   ogImage: {
-    zeroRuntime: true,
-    defaults: {
-      renderer: "satori",
-      extension: "png",
+    security: { strict: true },
+    compatibility: {
+      runtime: { takumi: "wasm" },
     },
   },
   $development: {
     icon: { serverBundle: "auto" },
     runtimeConfig: {
       githubToken: "",
-      public: { siteUrl: "http://localhost:3000" },
+      siteUrl: "http://localhost:3000",
+      siteName: "Samith Seu - Home",
+      ogImage: { secret: "" },
     },
   },
   $production: {
@@ -74,7 +76,9 @@ export default defineNuxtConfig({
     icon: { serverBundle: "auto" },
     runtimeConfig: {
       githubToken: "",
-      public: { siteUrl: process.env.NUXT_PUBLIC_SITE_URL },
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
+      siteName: "Samith Seu - Home",
+      ogImage: { secret: "" },
     },
     image: {
       format: ["webp", "avif"],
