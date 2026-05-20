@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     preset: "vercel",
     prerender: {
       crawlLinks: true,
-      routes: ["/", "/about", "/certificates", "/blogs"],
+      routes: ["/", "/certificates", "/blogs"],
     },
   },
   vite: {
@@ -39,7 +39,7 @@ export default defineNuxtConfig({
     "/": { prerender: true },
     "/about": { prerender: true },
     "/projects": { isr: 60 * 5 }, // 5 minutes
-    "/certificates": { isr: 3600 },
+    "/certificates": { prerender: true },
     "/blogs": { prerender: true },
 
     // social media
@@ -87,9 +87,7 @@ export default defineNuxtConfig({
   },
   ogImage: {
     zeroRuntime: true,
-    compatibility: {
-      runtime: { takumi: "node" },
-    },
+    compatibility: { runtime: { takumi: "node" } },
   },
   $development: {
     runtimeConfig: {
