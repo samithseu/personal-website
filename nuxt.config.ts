@@ -3,12 +3,12 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  nitro: {
-    prerender: {
-      failOnError: false,
-      crawlLinks: true,
-    },
-  },
+  // nitro: {
+  //   prerender: {
+  //     failOnError: false,
+  //     crawlLinks: true,
+  //   },
+  // },
   css: ["~/assets/css/main.css"],
   vite: {
     plugins: [tailwindcss()],
@@ -28,7 +28,6 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxtjs/seo",
   ],
-  icon: { compile: true },
   content: { build: { storage: "json" } },
   routeRules: {
     "/": { prerender: true },
@@ -45,18 +44,24 @@ export default defineNuxtConfig({
   },
   experimental: { viewTransition: true },
   app: { head: { titleTemplate: "%s" }, viewTransition: true },
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
+    name: "Samith Seu - Home",
+  },
   runtimeConfig: {
     githubToken: process.env.GITHUB_TOKEN || "",
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
-      siteName: "Samith Seu - Home",
+      site: {
+        url: process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
+        name: "Samith Seu - Home",
+      },
     },
     ogImage: { secret: process.env.OG_IMAGE_SECRET || "" },
   },
-  sitemap: { 
-    zeroRuntime: true, 
+  sitemap: {
+    zeroRuntime: true,
     sources: [],
-    siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://samith.dev'
+    siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
   },
   fonts: {
     families: [
@@ -80,7 +85,7 @@ export default defineNuxtConfig({
     security: { strict: true },
     zeroRuntime: true,
     compatibility: {
-      runtime: { takumi: "wasm" },
+      runtime: { takumi: "node" },
     },
   },
   $development: {
@@ -98,7 +103,8 @@ export default defineNuxtConfig({
     runtimeConfig: {
       githubToken: "",
       public: {
-        siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
+        siteUrl:
+          process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
         siteName: "Samith Seu - Home",
       },
       ogImage: { secret: "" },
