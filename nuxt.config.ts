@@ -101,6 +101,29 @@ export default defineNuxtConfig({
       },
     },
   },
+  $env: {
+    staging: {
+      runtimeConfig: {
+        githubToken: "",
+        public: {
+          site: {
+            url:
+              `https://${process.env.VERCEL_BRANCH_URL}` ||
+              "https://website-git-dev-samithseus-projects.vercel.app",
+            name: "Samith Seu - Home",
+          },
+        },
+      },
+      image: {
+        format: ["webp", "avif"],
+        screens: {
+          sm: 350,
+          md: 600,
+          lg: 700,
+        },
+      },
+    },
+  },
   $production: {
     sourcemap: false,
     runtimeConfig: {
