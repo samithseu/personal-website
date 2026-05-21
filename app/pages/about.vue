@@ -1,10 +1,16 @@
 <script lang="ts" setup>
 const { allContacts } = useContacts();
-
+const desc =
+  "Get to know the person behind the screen. Read my brief story, and why I love to build things.";
 useSeo({
   title: "About",
-  description:
-    "Get to know the person behind the screen. Read my brief story, and why I love to build things.",
+  description: desc,
+});
+
+defineOgImage("EachPage.takumi", {
+  headline: "personal website",
+  title: "Samith Seu - About",
+  desc: desc,
 });
 </script>
 

@@ -7,14 +7,12 @@ export type CustomOGImageProps = {
 export interface SeoProps {
   title: string;
   description: string;
-  ogImageHeadline?: string;
   noPrefix?: boolean;
 }
 
 export const useSeo = ({
   title,
   description,
-  ogImageHeadline = "personal website",
   noPrefix = false,
 }: SeoProps) => {
   // schema.org structured data
@@ -98,10 +96,4 @@ export const useSeo = ({
     ogType: "website",
   });
 
-  // Render the Open Graph image component:
-  defineOgImage("EachPage.takumi", {
-    headline: ogImageHeadline ?? "personal website",
-    title: titleTemplate ?? title,
-    desc: description ?? "a web developer and lifelong learner.",
-  } satisfies CustomOGImageProps);
 };

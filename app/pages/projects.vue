@@ -1,10 +1,16 @@
 <script lang="ts" setup>
 const { allContacts } = useContacts();
-
+const desc =
+  "See what I've been building lately. Browse through my featured projects, view the tech stacks I used, and check out the live demos.";
 useSeo({
   title: "Projects",
-  description:
-    "See what I've been building lately. Browse through my featured projects, view the tech stacks I used, and check out the live demos.",
+  description: desc,
+});
+
+defineOgImage("EachPage.takumi", {
+  headline: "personal website",
+  title: "Samith Seu - Projects",
+  desc: desc,
 });
 
 const { data: projects, error } = await useAsyncData(

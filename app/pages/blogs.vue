@@ -1,8 +1,15 @@
 <script lang="ts" setup>
+const desc =
+  "Thoughts, tutorials, and deep dives are stuff that will get shared here!";
 useSeo({
   title: "Blogs",
-  description:
-    "Thoughts, tutorials, and deep dives are stuff that will get shared here!",
+  description: desc,
+});
+
+defineOgImage("EachPage.takumi", {
+  headline: "personal website",
+  title: "Samith Seu - Blogs",
+  desc: desc,
 });
 </script>
 

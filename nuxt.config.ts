@@ -8,8 +8,7 @@ export default defineNuxtConfig({
     preset: "vercel",
     prerender: {
       crawlLinks: true,
-      routes: ["/", "/certificates", "/blogs"],
-      ignore: ["/about", "/projects"],
+      routes: ["/", "/about", "/certificates", "/blogs"],
     },
   },
   vite: {
@@ -72,25 +71,22 @@ export default defineNuxtConfig({
   fonts: {
     families: [
       {
-        name: "Inter",
-        styles: ["normal"],
-        weights: [300, 400, 600, 700],
-        subsets: ["latin"],
-        global: true,
-      },
-      {
         name: "Geist Mono",
         styles: ["normal"],
         weights: [400, 600],
         subsets: ["latin"],
         global: true,
       },
+      {
+        name: "Inter",
+        styles: ["normal"],
+        weights: [300, 400, 600, 700],
+        subsets: ["latin"],
+        global: true,
+      },
     ],
   },
-  ogImage: {
-    zeroRuntime: true,
-    compatibility: { runtime: { takumi: "node" } },
-  },
+  ogImage: { zeroRuntime: true },
   $development: {
     runtimeConfig: {
       githubToken: "",
