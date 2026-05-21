@@ -89,6 +89,7 @@ watch(
         <NuxtLink
           aria-label="This will go to resume page"
           title="Resume"
+          external
           class="grid size-7 md:size-8 border border-zinc-50/15 place-items-center transition-colors duration-200 hover:bg-zinc-50/15 hover:border-transparent"
           to="https://resume.samith.dev/pdf"
           target="_blank"

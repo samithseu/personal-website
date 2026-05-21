@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     preset: "vercel",
     prerender: {
       crawlLinks: true,
-      routes: ["/", "/about", "/certificates", "/blogs"],
+      routes: ["/", "/certificates", "/blogs"],
     },
   },
   vite: {
