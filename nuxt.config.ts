@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
       routes: ["/", "/certificates", "/blogs"],
+      ignore: ["/about"],
     },
   },
   vite: {
