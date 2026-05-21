@@ -7,14 +7,12 @@ export type CustomOGImageProps = {
 export interface SeoProps {
   title: string;
   description: string;
-  ogImageHeadline?: string;
   noPrefix?: boolean;
 }
 
 export const useSeo = ({
   title,
   description,
-  ogImageHeadline = "personal website",
   noPrefix = false,
 }: SeoProps) => {
   // schema.org structured data
@@ -23,7 +21,7 @@ export const useSeo = ({
   const definedPerson = definePerson({
     "@id": "samith.dev",
     "@type": "Person",
-    url,
+    url: url as string,
     name: "Samith Seu",
     description: "A web developer and lifelong learner.",
     alternateName: [
@@ -45,12 +43,12 @@ export const useSeo = ({
 
   useSchemaOrg([
     defineWebSite({
-      "@id": url,
+      "@id": url as string,
       "@type": "WebSite",
       name: "Samith Seu - Personal Website",
       description:
         "Welcome to my digital space. Explore my work, read the blog, and learn about my journey as a developer.",
-      url,
+      url: url as string,
       inLanguage,
       publisher: definedPerson,
       datePublished: new Date("2025-05-12").toISOString(),
@@ -89,19 +87,13 @@ export const useSeo = ({
   useSeoMeta({
     titleTemplate,
     description,
-    ogSiteName: useRuntimeConfig().public.siteUrl,
+    ogSiteName: useRuntimeConfig().public.siteUrl as string,
     ogTitle: titleTemplate,
     ogDescription: description,
     twitterTitle: titleTemplate,
-    twitterSite: useRuntimeConfig().public.siteUrl,
+    twitterSite: useRuntimeConfig().public.siteUrl as string,
     twitterDescription: description,
     ogType: "website",
   });
 
-  // Render the Open Graph image component:
-  defineOgImageComponent("EachPage", {
-    headline: ogImageHeadline ?? "personal website",
-    title: titleTemplate ?? title,
-    desc: description ?? "a web developer and lifelong learner.",
-  } satisfies CustomOGImageProps);
 };

@@ -1,10 +1,16 @@
 <script lang="ts" setup>
 const { allContacts } = useContacts();
-
+const desc =
+  "Get to know the person behind the screen. Read my brief story, and why I love to build things.";
 useSeo({
   title: "About",
-  description:
-    "Get to know the person behind the screen. Read my brief story, and why I love to build things.",
+  description: desc,
+});
+
+defineOgImage("EachPage.takumi", {
+  headline: "personal website",
+  title: "Samith Seu - About",
+  desc: desc,
 });
 </script>
 
@@ -55,6 +61,7 @@ useSeo({
               <NuxtLink
                 class="transition-colors duration-200 hover:text-primary"
                 to="https://maps.app.goo.gl/v2CP1f6JuUVK6pUm8"
+                external
                 target="_blank"
                 title="Kampong Speu High School"
                 aria-label="Kampong Speu High School"
@@ -72,6 +79,7 @@ useSeo({
                 to="https://www.facebook.com/brachnasastraBTI/"
                 title="Brachñāsāstra Technology Institute"
                 aria-label="This links will go to Brachñāsāstra Technology Institute facebook page"
+                external
                 target="_blank"
                 >2nd year of college</NuxtLink
               >, where I learned from a professor who is a software engineer at
@@ -81,6 +89,7 @@ useSeo({
                 class="transition-colors duration-200 hover:text-primary"
                 to="https://laravel.com"
                 title="Laravel"
+                external
                 aria-label="This link will go to Laravel official website"
                 target="_blank"
                 >a Laravel web application</NuxtLink
@@ -98,6 +107,7 @@ useSeo({
                 to="https://en.wikipedia.org/wiki/Chbar_Mon_Municipality"
                 title="Chbarmon municipality"
                 aria-label="This link will go to Chbarmon municipality wiki page for more information"
+                external
                 target="_blank"
                 >Chbarmon municipality</NuxtLink
               >.
@@ -107,6 +117,7 @@ useSeo({
           <NuxtLink
             aria-label="This will go to Samith Seu' resume"
             title="Resume"
+            external
             target="_blank"
             to="https://resume.samith.dev/pdf"
             class="flex items-center gap-2 bg-primary text-dark transition-colors duration-200 hover:bg-primary/70 w-fit border py-2 px-4 capitalize text-sm mx-auto md:mx-0"

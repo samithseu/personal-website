@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* custom theme */
-@theme {
+@theme inline {
   --font-sans: "Inter", sans-serif;
   --font-mono: "Geist Mono", monospace;
   --default-font-family: var(--font-sans);

@@ -38,6 +38,7 @@ const props = defineProps<{
         <NuxtLink
           aria-label="This will go to Samith Seu' resume"
           title="Resume"
+          external
           target="_blank"
           :to="props.liveUrl"
           class="flex items-center gap-2 bg-primary text-dark transition-colors duration-200 hover:bg-primary/70 w-fit border py-1 lg:py-1.5 px-4 capitalize text-sm"
@@ -46,6 +47,7 @@ const props = defineProps<{
           <Icon name="tabler:external-link" class="text-lg" />
         </NuxtLink>
         <NuxtLink
+          external
           aria-label="This will go to Samith Seu' resume"
           title="Resume"
           target="_blank"

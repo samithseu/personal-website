@@ -1,10 +1,16 @@
 <script lang="ts" setup>
 const { allContacts } = useContacts();
-
+const desc =
+  "Welcome to my digital space. Explore my work, read the blog, and learn about my journey as a developer.";
 useSeo({
   title: "Home",
-  description:
-    "Welcome to my digital space. Explore my work, read the blog, and learn about my journey as a developer.",
+  description: desc,
+});
+
+defineOgImage("EachPage.takumi", {
+  headline: "personal website",
+  title: "Samith Seu - Home",
+  desc: desc,
 });
 </script>
 

@@ -15,6 +15,7 @@
         <NuxtLink
           title="Nuxt.js official website"
           aria-label="This will go to Nuxt.js official website"
+          external
           target="_blank"
           to="https://nuxt.com"
           >Nuxt.js</NuxtLink
@@ -23,6 +24,7 @@
           class="font-mono"
           title="Source code"
           aria-label="This will go to this website source code on github"
+          external
           target="_blank"
           to="https://github.com/samithseu/personal-website"
           >(source)</NuxtLink

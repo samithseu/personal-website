@@ -1,8 +1,17 @@
 import tailwindcss from "@tailwindcss/vite";
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
+  nitro: {
+    preset: "vercel",
+    prerender: {
+      crawlLinks: true,
+      routes: ["/", "/certificates", "/blogs"],
+      ignore: ["/about"],
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
@@ -21,6 +30,12 @@ export default defineNuxtConfig({
     "@nuxt/content",
     "@nuxtjs/seo",
   ],
+  icon: {
+    mode: "css",
+    cssLayer: "base",
+    serverBundle: { collections: ["tabler"] },
+  },
+  content: { build: { storage: "json" } },
   routeRules: {
     "/": { prerender: true },
     "/about": { prerender: true },
@@ -36,16 +51,26 @@ export default defineNuxtConfig({
   },
   experimental: { viewTransition: true },
   app: { head: { titleTemplate: "%s" }, viewTransition: true },
-  sitemap: { zeroRuntime: true },
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
+    name: "Samith Seu - Home",
+  },
+  runtimeConfig: {
+    githubToken: process.env.GITHUB_TOKEN || "",
+    public: {
+      site: {
+        url: process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
+        name: "Samith Seu - Home",
+      },
+    },
+  },
+  sitemap: {
+    zeroRuntime: true,
+    sources: [],
+    siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
+  },
   fonts: {
     families: [
-      {
-        name: "Inter",
-        styles: ["normal"],
-        weights: [300, 400, 600, 700],
-        subsets: ["latin"],
-        global: true,
-      },
       {
         name: "Geist Mono",
         styles: ["normal"],
@@ -53,28 +78,38 @@ export default defineNuxtConfig({
         subsets: ["latin"],
         global: true,
       },
+      {
+        name: "Inter",
+        styles: ["normal"],
+        weights: [300, 400, 600, 700],
+        subsets: ["latin"],
+        global: true,
+      },
     ],
   },
-  ogImage: {
-    zeroRuntime: true,
-    defaults: {
-      renderer: "satori",
-      extension: "png",
-    },
-  },
+  ogImage: { zeroRuntime: true },
   $development: {
-    icon: { serverBundle: "auto" },
     runtimeConfig: {
       githubToken: "",
-      public: { siteUrl: "http://localhost:3000" },
+      public: {
+        site: {
+          url: "http://localhost:3000",
+          name: "Samith Seu - Home",
+        },
+      },
     },
   },
   $production: {
     sourcemap: false,
-    icon: { serverBundle: "auto" },
     runtimeConfig: {
       githubToken: "",
-      public: { siteUrl: process.env.NUXT_PUBLIC_SITE_URL },
+      public: {
+        site: {
+          url:
+            process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
+          name: "Samith Seu - Home",
+        },
+      },
     },
     image: {
       format: ["webp", "avif"],

@@ -1,10 +1,16 @@
 <script lang="ts" setup>
 const { allContacts } = useContacts();
-
+const desc =
+  "Proof of learning! View my verified certificates and credentials.";
 useSeo({
   title: "Certificates",
-  description:
-    "Proof of learning! View my verified certificates and credentials.",
+  description: desc,
+});
+
+defineOgImage("EachPage.takumi", {
+  headline: "personal website",
+  title: "Samith Seu - Certificates",
+  desc: desc,
 });
 
 const { data: certs, error } = await useAsyncData(
