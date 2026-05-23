@@ -4,14 +4,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
-  nitro: {
-    preset: "vercel",
-    prerender: {
-      crawlLinks: true,
-      routes: ["/", "/certificates", "/blogs"],
-      ignore: ["/about"],
-    },
-  },
+  nitro: { preset: "vercel" },
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
