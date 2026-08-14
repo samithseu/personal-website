@@ -7,12 +7,14 @@ export default defineNuxtConfig({
   nitro: { preset: "vercel" },
   vite: {
     plugins: [tailwindcss()],
-    optimizeDeps: {
-      include: [
-        "@vue/devtools-core",
-        "@vue/devtools-kit",
-        "@unhead/schema-org/vue",
-      ],
+  },
+  hooks: {
+    "vite:extendConfig"(config) {
+      if (config.optimizeDeps?.include) {
+        config.optimizeDeps.include = config.optimizeDeps.include.filter(
+          (entry) => !entry.startsWith("@nuxtjs/mdc >"),
+        );
+      }
     },
   },
   modules: [
@@ -24,11 +26,11 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
   ],
   icon: {
-    mode: "css",
+    mode: "svg",
     cssLayer: "base",
     serverBundle: { collections: ["tabler"] },
+    clientBundle: { scan: { globInclude: ["**/*.{vue,ts,js}"] } },
   },
-  content: { build: { storage: "json" } },
   routeRules: {
     "/": { prerender: true },
     "/about": { prerender: true },
