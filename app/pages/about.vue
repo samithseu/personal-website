@@ -157,7 +157,7 @@ defineOgImage("EachPage.takumi", {
             <li>Vue / Nuxt.JS</li>
             <li>Astro / SSG</li>
             <li>TypeScript / JavaScript</li>
-            <li>TailwindCSS / Styled Components</li>
+            <li>Tailwind / Styled Component</li>
           </LazyListSubList>
           <LazyListSubList title="backend">
             <li>Node.js / Laravel</li>

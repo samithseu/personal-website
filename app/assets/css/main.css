@@ -7,7 +7,7 @@
   --default-font-family: var(--font-sans);
   --color-primary: #15d0ff;
   --color-dark: #09090b;
-  --spacing-prefer: 68rem;
+  --spacing-prefer: 64rem;
   --breakpoint-3xl: 120rem;
   --breakpoint-prefer: calc(theme(--spacing-prefer) + 20px);
   --animate-slide-up: slide-up cubic-bezier(0.4, 0, 0.2, 1) forwards;

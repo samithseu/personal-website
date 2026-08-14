@@ -27,11 +27,6 @@ defineOgImage("EachPage.takumi", {
           class="space-y-6 md:space-y-6 lg:space-y-7 w-full lg:col-start-1 lg:row-start-1 col-start-1 row-start-2"
         >
           <div class="space-y-2 lg:space-y-3">
-            <!-- badge -->
-            <SimpleBadge>
-              <PulseAlert />
-              <span>Available for work</span>
-            </SimpleBadge>
             <!-- name -->
             <h1
               class="text-3xl md:text-4xl md:leading-10 font-semibold text-center lg:text-left lg:text-4xl xl:text-5xl lg:leading-12 xl:leading-14"
