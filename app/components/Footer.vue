@@ -1,27 +1,28 @@
 <template>
   <footer
-    class="w-full h-fit px-4 prefer:px-0 py-4 border-t border-zinc-50/5 bg-dark *:text-center"
+    style="view-transition-name: main-footer"
+    class="w-full h-fit px-4 sm:px-6 lg:px-8 py-6 border-t border-border/60 bg-background/50 backdrop-blur-sm transition-colors"
   >
     <div
-      class="max-w-prefer mx-auto flex flex-col md:flex-row gap-3 md:gap-0 md:justify-between"
+      class="max-w-prefer mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-muted-foreground"
     >
-      <p class="text-zinc-400 text-sm">
-        {{ new Date().getFullYear() }} Samith Seu &dash; Personal Website
+      <p>
+        &copy; {{ new Date().getFullYear() }} Samith Seu &dash; Personal Website
       </p>
-      <p
-        class="text-zinc-400 text-sm [&:has(span)_span]:text-zinc-400 flex items-center gap-1 mx-auto md:mx-0 [&:has(a)_a:hover]:text-primary [&:has(a)_a]:transition-colors [&:has(a)_a]:duration-200"
-      >
-        Made w/
+      <p class="flex items-center gap-1.5">
+        <span>Made with</span>
         <NuxtLink
           title="Nuxt.js official website"
           aria-label="This will go to Nuxt.js official website"
           external
           target="_blank"
           to="https://nuxt.com"
-          >Nuxt.js</NuxtLink
+          class="font-medium text-foreground hover:underline underline-offset-4 transition-colors"
+          >Nuxt</NuxtLink
         >
+        <span class="text-border">/</span>
         <NuxtLink
-          class="font-mono"
+          class="font-mono hover:text-foreground transition-colors"
           title="Source code"
           aria-label="This will go to this website source code on github"
           external

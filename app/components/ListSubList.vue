@@ -6,13 +6,13 @@ defineProps<{
 
 <template>
   <li
-    class="border border-zinc-50/15 p-4 lg:p-6 bg-primary/0 transition-all duration-300 hover:bg-primary/5 hover:border-primary/70 backdrop-blur-sm"
+    class="rounded-xl border border-border bg-card p-5 sm:p-6 hover:border-foreground/30 hover:shadow-md transition-all duration-200"
   >
-    <h3 class="capitalize text-xl font-semibold text-primary mb-2 lg:mb-3">
-      {{ title }}
+    <h3 class="capitalize text-base sm:text-lg font-semibold text-foreground mb-3 font-mono">
+      <span class="text-muted-foreground/60 mr-1">//</span>{{ title }}
     </h3>
     <ul
-      class="list-inside marker:text-primary *:text-zinc-400 space-y-1 lg:space-y-2 *:relative *:pl-5 *:after:content-[''] *:after:absolute *:after:left-0 *:after:top-1/2 *:after:-translate-y-1/2 *:after:size-2 *:after:bg-primary *:text-sm md:*:text-[1rem]"
+      class="space-y-2 text-sm text-muted-foreground *:flex *:items-center *:gap-2"
     >
       <slot />
     </ul>

@@ -20,23 +20,25 @@ defineOgImage("EachPage.takumi", {
 
 <template>
   <div
-    class="w-full min-h-dvh bg-dark text-white flex flex-col items-center justify-center gap-3 lg:gap-6 px-3 md:px-0"
+    class="w-full min-h-dvh bg-background text-foreground bg-grid-pattern flex flex-col items-center justify-center gap-4 px-4 text-center"
   >
-    <h1 class="text-2xl font-semibold text-red-500 sm:text-3xl md:text-5xl">
-      {{ props.error!.statusCode }}
-    </h1>
-    <p
-      class="text-gray-400 text-xl sm:text-2xl text-center flex flex-col gap-2 items-center sm:flex sm:flex-row sm:gap-2"
+    <div
+      class="p-8 sm:p-12 rounded-2xl border border-border/80 bg-card/80 backdrop-blur-md shadow-2xl flex flex-col items-center gap-4 max-w-md w-full"
     >
-      <Icon name="tabler:info-circle" class="text-2xl" />
-      {{ props.error?.statusMessage }}
-    </p>
-    <NuxtLink
-      class="text-sm border-2 border-red-500/50 hover:border-red-500 px-4 py-2 flex items-center gap-2 border-light transition duration-200"
-      to="/"
-    >
-      <Icon name="tabler:arrow-left" class="text-xl" />
-      Back home</NuxtLink
-    >
+      <div class="font-mono text-5xl sm:text-6xl font-extrabold text-destructive">
+        {{ props.error?.statusCode }}
+      </div>
+      <p class="text-muted-foreground text-base sm:text-lg flex items-center gap-2">
+        <Icon name="tabler:info-circle" class="size-5 text-destructive" />
+        <span>{{ props.error?.statusMessage || 'An unexpected error occurred' }}</span>
+      </p>
+      <NuxtLink
+        class="inline-flex items-center gap-2 h-10 px-5 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 rounded-md transition-colors shadow-xs mt-2"
+        to="/"
+      >
+        <Icon name="tabler:arrow-left" class="size-4" />
+        <span>Back to home</span>
+      </NuxtLink>
+    </div>
   </div>
 </template>

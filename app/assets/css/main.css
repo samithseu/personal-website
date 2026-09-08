@@ -1,17 +1,112 @@
 @import "tailwindcss";
 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: 240 10% 3.9%;
+      --foreground: 0 0% 98%;
+      --card: 240 10% 5.5%;
+      --card-foreground: 0 0% 98%;
+      --popover: 240 10% 5.5%;
+      --popover-foreground: 0 0% 98%;
+      --primary: 0 0% 98%;
+      --primary-foreground: 240 5.9% 10%;
+      --secondary: 240 3.7% 15.9%;
+      --secondary-foreground: 0 0% 98%;
+      --muted: 240 3.7% 15.9%;
+      --muted-foreground: 240 5% 64.9%;
+      --accent: 240 3.7% 15.9%;
+      --accent-foreground: 0 0% 98%;
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 240 3.7% 15.9%;
+      --input: 240 3.7% 15.9%;
+      --ring: 240 4.9% 83.9%;
+    }
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 5.5%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 5.5%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+
 /* custom theme */
 @theme inline {
-  --font-sans: "Inter", sans-serif;
-  --font-mono: "Geist Mono", monospace;
+  --font-sans: "Inter", -apple-system, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", monospace;
   --default-font-family: var(--font-sans);
-  --color-primary: #15d0ff;
-  --color-dark: #09090b;
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
   --spacing-prefer: 64rem;
   --breakpoint-3xl: 120rem;
   --breakpoint-prefer: calc(theme(--spacing-prefer) + 20px);
   --animate-slide-up: slide-up cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+
 /* custom utilities */
 @utility scroll-gutter-stable {
   scrollbar-gutter: stable;
@@ -21,31 +116,44 @@
 }
 @utility scroll-color-primary {
   --_reduced-opc: hsl(from var(--color-primary) h s l / 0.2);
-  scrollbar-color: var(--_reduced-opc) var(--color-dark);
+  scrollbar-color: var(--_reduced-opc) var(--color-background);
 }
-@utility bg-dotted-* {
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Signature subtle dot grid */
+@utility bg-grid-pattern {
   background-image: radial-gradient(
-    circle,
-    rgb(from var(--color-zinc-50) r g b / 0.02) 1px,
+    rgba(120, 120, 120, 0.15) 1px,
     transparent 1px
   );
-  --_spacing: calc(var(--spacing) * --value(number));
-  background-size: var(--_spacing) var(--_spacing);
+  background-size: 24px 24px;
 }
-@utility bg-grid-* {
-  background-image:
-    linear-gradient(
-      rgb(from theme(color.zinc.500) r g b / 0.025) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to right,
-      rgb(from theme(color.zinc.500) r g b / 0.025) 1px,
+
+.dark .bg-grid-pattern,
+.dark.bg-grid-pattern {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.08) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bg-grid-pattern {
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.08) 1px,
       transparent 1px
     );
-  --_spacing: calc(var(--spacing) * --value(number));
-  background-size: var(--_spacing) var(--_spacing);
+    background-size: 24px 24px;
+  }
 }
+
 @keyframes slide-up {
   to {
     opacity: 1;
@@ -55,11 +163,156 @@
 
 /* custom styles */
 ::selection {
-  @apply bg-primary/20 text-current;
+  @apply bg-foreground/10 text-foreground;
 }
 html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
   @apply scroll-gutter-stable scroll-width-thin scroll-color-primary;
 }
 body {
-  @apply bg-dark bg-grid-1;
+  @apply bg-background text-foreground bg-grid-pattern min-h-screen font-sans antialiased;
 }
+
+/* ==========================================================================
+   OS Reduced Motion & View Transitions
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Page transitions cross-fade (pure opacity: no translateY jitter on page elements) */
+  ::view-transition-old(root) {
+    animation: 160ms cubic-bezier(0.4, 0, 1, 1) both vt-fade-out;
+  }
+  ::view-transition-new(root) {
+    animation: 200ms cubic-bezier(0, 0, 0.2, 1) 20ms both vt-fade-in;
+  }
+
+  /* Morphing elements across pages */
+  ::view-transition-group(page-badge),
+  ::view-transition-group(page-title),
+  ::view-transition-group(asking-end) {
+    animation-duration: 260ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Card filtering smooth geometry morphs (default timing for any card group) */
+  ::view-transition-group(*) {
+    animation-duration: 260ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Keep sticky header and footer pinned without cross-fade */
+  ::view-transition-group(main-header),
+  ::view-transition-group(main-footer) {
+    animation: none !important;
+  }
+
+  /* ========================================================================
+     In-page Card Filtering Transitions (.filtering-cards)
+     Isolates animation strictly to cards.
+     Completely freezes root, subtitle, header, badges, and search controls.
+     ======================================================================== */
+
+  /* 1. Default card group & old/new animation for cards during filtering */
+  html.filtering-cards::view-transition-group(*) {
+    animation-duration: 250ms;
+    animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  html.filtering-cards::view-transition-old(*) {
+    animation: 160ms cubic-bezier(0.4, 0, 1, 1) both card-fade-out;
+  }
+
+  html.filtering-cards::view-transition-new(*) {
+    animation: 200ms cubic-bezier(0, 0, 0.2, 1) 20ms both card-fade-in;
+  }
+
+  /* 2. Specific overrides: freeze root, subtitle, title, badge, and footer completely */
+  html.filtering-cards::view-transition-group(root),
+  html.filtering-cards::view-transition-image-pair(root),
+  html.filtering-cards::view-transition-group(page-badge),
+  html.filtering-cards::view-transition-group(page-title),
+  html.filtering-cards::view-transition-group(asking-end),
+  html.filtering-cards::view-transition-group(main-header),
+  html.filtering-cards::view-transition-group(main-footer) {
+    animation: none !important;
+  }
+
+  html.filtering-cards::view-transition-old(root),
+  html.filtering-cards::view-transition-old(page-badge),
+  html.filtering-cards::view-transition-old(page-title),
+  html.filtering-cards::view-transition-old(asking-end),
+  html.filtering-cards::view-transition-old(main-header),
+  html.filtering-cards::view-transition-old(main-footer) {
+    display: none !important;
+    animation: none !important;
+  }
+
+  html.filtering-cards::view-transition-new(root),
+  html.filtering-cards::view-transition-new(page-badge),
+  html.filtering-cards::view-transition-new(page-title),
+  html.filtering-cards::view-transition-new(asking-end),
+  html.filtering-cards::view-transition-new(main-header),
+  html.filtering-cards::view-transition-new(main-footer) {
+    animation: none !important;
+  }
+}
+
+@keyframes vt-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes card-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+@keyframes card-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+

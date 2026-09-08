@@ -15,51 +15,53 @@ defineOgImage("EachPage.takumi", {
 </script>
 
 <template>
-  <div class="w-full px-4 py-4 sm:px-14 md:px-6 lg:px-8 prefer:px-0">
-    <div
-      class="max-w-prefer mx-auto my-4 lg:my-12 xl:my-14 space-y-10 lg:space-y-12 xl:space-y-14 2xl:space-y-16"
-    >
+  <div class="w-full px-4 py-8 sm:py-12 prefer:px-0">
+    <div class="max-w-prefer mx-auto space-y-12 lg:space-y-16">
       <!-- 2 col wrapper -->
       <div
-        class="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] md:items-start gap-4 md:gap-6 lg:gap-16"
+        class="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] md:items-start gap-8 lg:gap-16"
       >
-        <!-- left side -->
+        <!-- left side: Framed Profile Image -->
         <div
-          class="sm:mx-auto sm:w-3/4 md:w-full col-start-1 row-start-1 aspect-square overflow-hidden group"
+          class="rounded-2xl border border-border bg-card shadow-sm p-1.5 w-full max-w-[280px] sm:max-w-sm md:max-w-none mx-auto"
         >
-          <LazyImageWithPlaceholder
-            preload
-            width="700"
-            height="700"
-            class="group-hover:scale-105 transition-transform duration-400 w-full object-cover"
-            src="/about-picture.jpg"
-            format="webp"
-            quality="80"
-            sizes="(max-width: 350px) 350px, (max-width: 600px) 600px, 700px"
-            alt="Samith Seu's AI generated photo with Ghibli style"
-          />
+          <div class="rounded-xl aspect-square overflow-hidden bg-muted group">
+            <LazyImageWithPlaceholder
+              preload
+              width="700"
+              height="700"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              src="/about-picture.jpg"
+              format="webp"
+              quality="80"
+              sizes="(max-width: 350px) 350px, (max-width: 600px) 600px, 700px"
+              alt="Samith Seu's profile photo"
+            />
+          </div>
         </div>
+
         <!-- right side -->
-        <div class="space-y-4 lg:space-y-6">
+        <div class="space-y-6">
           <!-- badge & title -->
-          <div class="space-y-2 lg:space-y-3">
-            <LazySimpleBadge class="md:mx-0">
+          <div class="space-y-3">
+            <LazySimpleBadge style="view-transition-name: page-badge">
               <span>About me</span>
             </LazySimpleBadge>
-            <h2
-              style="view-transition-name: title"
-              class="text-white lg:text-zinc-200 lg:transition-colors lg:duration-200 lg:hover:text-white capitalize text-center md:text-left mt-4 md:mt-0 text-xl sm:text-2xl md:text-3xl font-semibold font-mono tracking-tight"
+            <h1
+              style="view-transition-name: page-title"
+              class="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground"
             >
               Hi, I'm Samith Seu
-            </h2>
+            </h1>
           </div>
+
           <div
-            class="*:text-zinc-400 *:text-sm *:leading-relaxed *:md:text-[1rem] space-y-4 lg:space-y-6"
+            class="text-muted-foreground text-base leading-relaxed space-y-4"
           >
             <p>
               When I was a
               <NuxtLink
-                class="transition-colors duration-200 hover:text-primary"
+                class="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors font-medium"
                 to="https://maps.app.goo.gl/v2CP1f6JuUVK6pUm8"
                 external
                 target="_blank"
@@ -75,7 +77,7 @@ defineOgImage("EachPage.takumi", {
             <p>
               My first coding experience began in my
               <NuxtLink
-                class="transition-colors duration-200 hover:text-primary"
+                class="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors font-medium"
                 to="https://www.facebook.com/brachnasastraBTI/"
                 title="Brachñāsāstra Technology Institute"
                 aria-label="This links will go to Brachñāsāstra Technology Institute facebook page"
@@ -83,10 +85,9 @@ defineOgImage("EachPage.takumi", {
                 target="_blank"
                 >2nd year of college</NuxtLink
               >, where I learned from a professor who is a software engineer at
-              a government institution. He showed me one of his
-              <span style="view-transition-name: project">projects</span>,
+              a government institution. He showed me one of his projects,
               <NuxtLink
-                class="transition-colors duration-200 hover:text-primary"
+                class="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors font-medium"
                 to="https://laravel.com"
                 title="Laravel"
                 external
@@ -95,7 +96,7 @@ defineOgImage("EachPage.takumi", {
                 >a Laravel web application</NuxtLink
               >, and I was truly impressed. That moment inspired me to delve
               deeper into programming, particularly in
-              <span>Web Development</span>.
+              <span class="text-foreground font-medium">Web Development</span>.
             </p>
             <p>
               Today, I feel comfortable working on frontend part of websites
@@ -103,7 +104,7 @@ defineOgImage("EachPage.takumi", {
               React.js and Vue.js, while also continuing to learn about backend
               technologies as well. Currently, I am based in
               <NuxtLink
-                class="transition-colors duration-200 hover:text-primary"
+                class="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors font-medium"
                 to="https://en.wikipedia.org/wiki/Chbar_Mon_Municipality"
                 title="Chbarmon municipality"
                 aria-label="This link will go to Chbarmon municipality wiki page for more information"
@@ -113,26 +114,30 @@ defineOgImage("EachPage.takumi", {
               >.
             </p>
           </div>
+
           <!-- view resume button -->
           <NuxtLink
             aria-label="This will go to Samith Seu' resume"
             title="Resume"
             external
             target="_blank"
-            to="https://resume.samith.dev/pdf"
-            class="flex items-center gap-2 bg-primary text-dark transition-colors duration-200 hover:bg-primary/70 w-fit border py-2 px-4 capitalize text-sm mx-auto md:mx-0"
+            to="https://resume.samith.dev"
+            class="inline-flex items-center gap-2 h-10 px-5 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 rounded-md transition-colors shadow-xs"
           >
-            <span class="text-nowrap">view resume</span>
-            <Icon name="tabler:external-link" class="text-lg" mode="svg" />
+            <span class="capitalize">view resume</span>
+            <Icon name="tabler:external-link" class="text-base" />
           </NuxtLink>
         </div>
       </div>
+
       <!-- education -->
-      <div class="space-y-6 md:space-y-8">
-        <h2 class="capitalize text-3xl font-semibold">education</h2>
-        <ul
-          class="grid grid-cols-1 lg:grid-cols-2 lg:items-start gap-6 lg:gap-8"
+      <div class="space-y-6">
+        <h2
+          class="text-2xl sm:text-3xl font-bold tracking-tight text-foreground"
         >
+          Education
+        </h2>
+        <ul class="grid grid-cols-1 md:grid-cols-2 items-start gap-6">
           <LazyListItem
             title="Bachelor of Information Technology"
             subtitle-left="Brachñāsāstra Technology Institute"
@@ -147,11 +152,16 @@ defineOgImage("EachPage.takumi", {
           />
         </ul>
       </div>
+
       <!-- skills & technologies -->
-      <div class="space-y-6 md:space-y-8">
-        <h2 class="capitalize text-3xl font-semibold">Skills & Technologies</h2>
+      <div class="space-y-6">
+        <h2
+          class="text-2xl sm:text-3xl font-bold tracking-tight text-foreground"
+        >
+          Skills &amp; Technologies
+        </h2>
         <ul
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:items-start gap-6 lg:gap-8"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start gap-6"
         >
           <LazyListSubList title="frontend">
             <li>Vue / Nuxt.JS</li>
@@ -173,28 +183,26 @@ defineOgImage("EachPage.takumi", {
           </LazyListSubList>
         </ul>
       </div>
+
       <!-- working together? -->
-      <LazyAskingEnd hydrate-never>
-        <h2 class="capitalize text-2xl font-semibold text-primary text-center">
-          interested in working together?
+      <LazyAskingEnd style="view-transition-name: asking-end" hydrate-never>
+        <h2 class="text-2xl font-bold tracking-tight text-foreground">
+          Interested in working together?
         </h2>
-        <p class="text-zinc-300 text-center">
-          I'm always open to discuss about new projects or opportunities. <br />
-          Feel free to reach out to me via:
+        <p class="text-muted-foreground max-w-md">
+          I'm always open to discuss new projects or opportunities. Feel free to
+          reach out to me via:
         </p>
-        <ul class="flex flex-wrap justify-center items-center gap-4">
+        <ul class="flex flex-wrap justify-center items-center gap-3 pt-2">
           <li v-for="c in allContacts" :key="c.name">
             <NuxtLink
               :aria-label="c.name"
               :title="c.name"
               :to="c.link"
-              class="grid place-items-center border border-primary/20 aspect-square w-8 hover:*:text-primary"
+              class="size-9 rounded-md border border-border/60 bg-background hover:bg-muted text-muted-foreground hover:text-foreground flex items-center justify-center transition-colors"
               external
             >
-              <Icon
-                :name="c.iconName"
-                class="transition-all duration-200 text-xl"
-              />
+              <Icon :name="c.iconName" class="text-lg" />
             </NuxtLink>
           </li>
         </ul>

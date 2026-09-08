@@ -5,12 +5,12 @@ defineProps<{
 </script>
 
 <template>
-  <p
-    :class="
-      'mx-auto lg:mx-0 w-max h-max text-xs text-primary bg-primary/5 flex items-center gap-2 border ' +
-      (small ? 'border-primary/10 py-0.5 px-2' : 'border-primary/25 py-1 px-3')
-    "
+  <div
+    :class="[
+      'inline-flex items-center gap-1.5 rounded-full font-mono border border-border/60 bg-secondary/70 text-secondary-foreground transition-colors',
+      small ? 'text-[11px] px-2.5 py-0.5' : 'text-xs px-3.5 py-1 font-medium'
+    ]"
   >
     <slot />
-  </p>
+  </div>
 </template>

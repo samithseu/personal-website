@@ -4,128 +4,159 @@ type Link = {
   name: string;
   path: string;
   prefetch: boolean;
-  iconName?: string;
+  iconName: string;
 };
+
 const allLinks = ref<Link[]>([
   {
-    label: "This will go to home page",
+    label: "Go to Home page",
     name: "Home",
     path: "/",
     prefetch: false,
-    iconName: "tabler:home",
+    iconName: "tabler:smart-home",
   },
   {
-    label: "This will go to about page",
+    label: "Go to About page",
     name: "About",
     path: "/about",
     prefetch: false,
-    iconName: "tabler:info-circle",
+    iconName: "tabler:user",
   },
   {
-    label: "This will go to projects page",
+    label: "Go to Projects page",
     name: "Projects",
     path: "/projects",
     prefetch: true,
-    iconName: "tabler:folder-open",
+    iconName: "tabler:folder-code",
   },
   {
-    label: "This will go to certificates page",
+    label: "Go to Certificates page",
     name: "Certificates",
     path: "/certificates",
     prefetch: true,
-    iconName: "tabler:certificate",
+    iconName: "tabler:award",
   },
   {
-    label: "This will go to blogs page",
+    label: "Go to Blogs page",
     name: "Blogs",
     path: "/blogs",
     prefetch: false,
-    iconName: "tabler:book",
+    iconName: "tabler:article",
   },
 ]);
 
-// change `open` state to false when route value changes
+// Change `open` state to false when route value changes
 const open = ref<boolean>(false);
 watch(
-  () => useRoute().name,
+  () => useRoute().path,
   () => (open.value = false),
 );
 </script>
 
 <template>
   <header
-    class="bg-dark/70 w-full border-b border-zinc-50/5 py-4 px-4 prefer:px-0 sticky top-0 left-0 z-50 backdrop-blur-md h-fit"
+    style="view-transition-name: main-header"
+    class="bg-background/80 w-full border-b border-border/60 py-3 px-4 sm:px-6 lg:px-8 sticky top-0 left-0 z-50 backdrop-blur-md h-fit transition-colors"
   >
     <nav class="max-w-prefer mx-auto flex items-center justify-between">
       <!-- logo -->
-      <NuxtLink aria-label="This will go to home page" title="Home page" to="/">
-        <Icon
-          name="tabler:code"
-          class="text-primary md:text-zinc-400 transition-colors duration-150 md:hover:text-primary text-xl lg:text-2xl"
-        />
+      <NuxtLink
+        aria-label="Samith Seu - Home"
+        title="Home page"
+        to="/"
+        class="flex items-center gap-2.5 text-foreground hover:opacity-80 transition-opacity select-none group"
+      >
+        <span
+          class="size-8 rounded-lg border border-border/70 bg-card/80 flex items-center justify-center text-foreground group-hover:border-foreground/30 transition-colors shadow-2xs"
+        >
+          <Icon name="tabler:terminal" class="text-base" />
+        </span>
+        <span class="font-mono text-sm font-bold tracking-tight"
+          >samith.dev</span
+        >
       </NuxtLink>
 
-      <!-- nav links -->
+      <!-- desktop nav links with stable spacing and smooth color transitions -->
       <ul
-        class="hidden md:flex items-center gap-7 *:capitalize *:font-semibold"
+        class="hidden md:flex items-center gap-1.5 p-1.5 rounded-xl bg-card/60 border border-border/50 backdrop-blur-xs min-w-max"
       >
         <li v-for="link in allLinks" :key="link.name">
           <NuxtLink
             :aria-label="link.label"
             :title="link.name"
             :prefetch="link.prefetch"
-            class="text-[0.9375rem] text-zinc-400 transition-colors duration-200 hover:text-white hover:font-semibold flex items-center gap-1 font-light!"
-            active-class="text-white!"
+            class="text-xs lg:text-sm font-medium text-muted-foreground transition-colors duration-150 hover:text-foreground px-3.5 py-1.5 rounded-lg flex items-center gap-1.5 hover:bg-muted/40 border border-transparent select-none"
+            exact-active-class="text-foreground! bg-muted border-border/70! shadow-2xs"
             :to="link.path"
           >
-            <Icon class="text-base -mt-0.5" :name="link.iconName!" />
-            {{ link.name }}
+            <Icon class="text-base shrink-0" :name="link.iconName" />
+            <span class="whitespace-nowrap tracking-normal">{{
+              link.name
+            }}</span>
           </NuxtLink>
         </li>
       </ul>
 
-      <!-- resume button -->
+      <!-- actions -->
       <div class="flex items-center gap-2">
         <NuxtLink
-          aria-label="This will go to resume page"
+          aria-label="View resume"
           title="Resume"
           external
-          class="grid size-7 md:size-8 border border-zinc-50/15 place-items-center transition-colors duration-200 hover:bg-zinc-50/15 hover:border-transparent"
-          to="https://resume.samith.dev/pdf"
+          class="grid size-8 rounded-md border border-border/60 place-items-center text-muted-foreground transition-colors duration-200 hover:text-foreground hover:bg-muted/50"
+          to="https://resume.samith.dev"
           target="_blank"
         >
-          <Icon name="tabler:paperclip" />
+          <Icon name="tabler:file-text" class="text-base" />
         </NuxtLink>
 
-        <!-- burger menu trigger button -->
+        <!-- burger menu trigger button (mobile only) -->
         <button
-          title="Open menu"
-          aria-label="This will open the menu"
+          type="button"
+          title="Open navigation menu"
+          aria-label="Open navigation menu"
           @click="open = true"
-          class="md:hidden size-7 md:size-8 border border-zinc-50/15 grid place-items-center transition-colors duration-200 hover:bg-zinc-50/15 hover:border-transparent cursor-pointer"
+          class="md:hidden size-8 rounded-md border border-border/60 grid place-items-center text-muted-foreground transition-colors duration-200 hover:text-foreground hover:bg-muted/50 cursor-pointer"
         >
-          <Icon name="tabler:menu-4" class="text-xl" />
+          <Icon name="tabler:menu-2" class="text-lg" />
         </button>
       </div>
 
+      <!-- mobile menu dialog (clean text-only links, no icons) -->
       <LazySimpleDialog
         hydrate-on-media-query="(width <= 768px)"
         v-model="open"
-        modal-classes="grid place-items-center"
+        modal-classes="w-full max-w-xs p-5 rounded-2xl border border-border bg-card/95 backdrop-blur-xl shadow-2xl space-y-4"
       >
-        <ul
-          class="flex flex-col items-center gap-6 *:capitalize *:font-semibold *:text-xl"
+        <div
+          class="flex items-center justify-between pb-3 border-b border-border/40"
         >
-          <li v-for="link in allLinks" :key="link.name">
+          <span
+            class="font-mono text-xs font-semibold text-muted-foreground uppercase tracking-wider"
+          >
+            Navigation
+          </span>
+          <button
+            type="button"
+            @click="open = false"
+            aria-label="Close navigation menu"
+            class="p-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors cursor-pointer"
+          >
+            <Icon name="tabler:x" class="size-4" />
+          </button>
+        </div>
+
+        <ul class="flex flex-col gap-1.5 w-full">
+          <li v-for="link in allLinks" :key="link.name" class="w-full">
             <NuxtLink
               :aria-label="link.label"
               :title="link.name"
               :prefetch="link.prefetch"
-              class="text-zinc-400 transition-colors duration-200 hover:text-white hover:font-semibold flex items-center gap-2 font-light!"
-              active-class="text-white!"
+              @click="open = false"
+              class="block w-full text-center text-muted-foreground transition-all duration-200 hover:text-foreground text-sm font-medium py-2 rounded-lg hover:bg-muted/40 border border-transparent"
+              exact-active-class="text-foreground! bg-muted font-semibold! border-border/70! shadow-2xs"
               :to="link.path"
             >
-              <Icon class="text-xl -mt-1" :name="link.iconName!" />
               {{ link.name }}
             </NuxtLink>
           </li>

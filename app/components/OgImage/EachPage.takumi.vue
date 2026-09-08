@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <div class="p-16 w-full h-full bg-zinc-950">
     <div class="w-full h-full flex flex-col gap-10 relative justify-start">
-      <h3 id="headline" class="uppercase font-mono text-3xl text-primary">
+      <h3 id="headline" class="uppercase font-mono text-3xl text-primary/50">
         {{ headline }}
       </h3>
       <h4
@@ -26,7 +26,7 @@ defineProps<{
       </p>
 
       <div class="w-26 h-28 absolute bottom-0 right-0">
-        <M class="w-full h-full" />
+        <M class="w-full h-full fill-primary" />
       </div>
 
       <svg

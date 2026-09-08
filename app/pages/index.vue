@@ -12,67 +12,114 @@ defineOgImage("EachPage.takumi", {
   title: "Samith Seu - Home",
   desc: desc,
 });
+
+const emailCopied = ref(false);
+async function copyEmail() {
+  try {
+    await navigator.clipboard.writeText("contact@samith.dev");
+    emailCopied.value = true;
+    setTimeout(() => {
+      emailCopied.value = false;
+    }, 2000);
+  } catch (err) {
+    console.error("Failed to copy email", err);
+  }
+}
 </script>
 
 <template>
   <div
-    class="w-full h-full px-4 py-4 lg:py-0 prefer:px-0 lg:flex lg:items-center"
+    class="w-full h-full px-4 py-8 sm:py-12 md:py-16 lg:py-0 prefer:px-0 lg:flex lg:items-center min-h-[calc(100vh-10rem)]"
   >
-    <div class="max-w-prefer mx-auto lg:px-8 2xl:px-0">
+    <div class="max-w-prefer mx-auto w-full">
       <div
-        class="mt-12 sm:mt-10 md:mt-8 lg:mt-0 grid grid-cols-1 lg:grid-cols-2 lg:items-center lg:gap-0 gap-10 md:gap-8"
+        class="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 sm:gap-10 lg:gap-10"
       >
-        <!-- left side -->
+        <!-- left side (compact & refined, centered when stacked in 2 rows) -->
         <div
-          class="space-y-6 md:space-y-6 lg:space-y-7 w-full lg:col-start-1 lg:row-start-1 col-start-1 row-start-2"
+          class="space-y-5 sm:space-y-6 lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left max-w-xl mx-auto lg:max-w-none w-full"
         >
-          <div class="space-y-2 lg:space-y-3">
-            <!-- name -->
-            <h1
-              class="text-3xl md:text-4xl md:leading-10 font-semibold text-center lg:text-left lg:text-4xl xl:text-5xl lg:leading-12 xl:leading-14"
+          <!-- Monospace Code Tag Pill -->
+          <div>
+            <div
+              class="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-muted/30 px-3.5 py-1 text-xs font-mono text-muted-foreground backdrop-blur-sm shadow-xs transition-colors hover:border-foreground/20 hover:text-foreground"
             >
-              <span class="block font-mono tracking-tight text-white">
-                I&apos;m <span class="text-primary">Samith</span>,
-              </span>
-              <span class="text-zinc-400 font-mono tracking-tight"
+              <span class="text-foreground/40 font-semibold" aria-hidden="true"
+                >&lt;</span
+              >
+              <span class="text-foreground font-medium"
+                >Frontend &amp; Interface Engineer</span
+              >
+              <span class="text-foreground/40 font-semibold" aria-hidden="true"
+                >/&gt;</span
+              >
+            </div>
+          </div>
+
+          <!-- Headline & Bio Typography -->
+          <div class="space-y-3 w-full">
+            <h1
+              class="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] xl:text-5xl font-extrabold tracking-tight text-foreground leading-[1.12]"
+            >
+              I'm
+              <span class="underline decoration-border underline-offset-8"
+                >Samith</span
+              >,
+              <span class="block text-muted-foreground font-semibold mt-1"
                 >Web Developer</span
               >
             </h1>
+            <p
+              class="text-sm sm:text-base text-muted-foreground leading-relaxed pt-1 sm:pt-2 max-w-lg mx-auto lg:mx-0"
+            >
+              I build websites with modern technologies, specializing in
+              crafting responsive and user-friendly interfaces for web
+              applications.
+            </p>
           </div>
-          <!-- short description -->
-          <p
-            class="text-sm leading-relaxed text-center text-zinc-400 md:w-3/4 mx-auto lg:text-left lg:mx-0 lg:w-full lg:text-[1rem] lg:leading-relaxed text-balance relative after:content-[''] after:absolute after:inset-4 after:w-2/3 after:bg-primary/5 after:-z-1 after:left-1/2 after:-translate-x-1/2 lg:after:left-0 lg:after:translate-x-0 after:blur-3xl"
-          >
-            I build websites with modern technologies, specializing in crafting
-            responsive and user-friendly interfaces for web applications.
-          </p>
-          <!-- cta -->
+
+          <!-- CTA actions -->
           <div
-            class="flex flex-wrap items-center justify-center gap-2 *:border *:py-2 *:px-6 *:capitalize *:text-sm lg:justify-start"
+            class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-1 w-full"
           >
             <NuxtLink
-              aria-label=" This will go to projects page"
+              aria-label="This will go to projects page"
               title="Projects"
               to="/projects"
-              class="group flex items-center gap-1 bg-primary text-dark transition-colors duration-200 hover:bg-primary/70"
+              class="inline-flex items-center gap-2 h-9 sm:h-10 px-4 sm:px-5 text-xs sm:text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 rounded-md transition-colors shadow-xs"
             >
-              <span class="text-nowrap">my works</span>
-              <Icon
-                name="tabler:arrow-right"
-                class="text-lg group-hover:translate-x-1 transition-transform duration-200"
-              />
+              <span class="capitalize">my works</span>
+              <Icon name="tabler:arrow-right" class="text-base" />
             </NuxtLink>
+
             <NuxtLink
               aria-label="This will go to about page"
               title="About"
               to="/about"
-              class="text-nowrap transition-colors duration-200 border-zinc-50/15 hover:bg-zinc-50/15 hover:border-transparent"
-              >about me</NuxtLink
+              class="inline-flex items-center gap-2 h-9 sm:h-10 px-4 sm:px-5 text-xs sm:text-sm font-medium border border-border/60 hover:bg-muted/50 hover:text-foreground text-foreground rounded-md transition-colors capitalize"
             >
+              about me
+            </NuxtLink>
+
+            <!-- Quick-Copy Email Pill Button -->
+            <button
+              type="button"
+              @click="copyEmail"
+              title="Click to copy email address"
+              aria-label="Copy email address"
+              class="inline-flex items-center gap-1.5 h-9 sm:h-10 px-3 text-xs font-mono text-muted-foreground hover:text-foreground border border-border/40 hover:border-border rounded-md bg-background/50 hover:bg-muted/30 transition-colors cursor-pointer"
+            >
+              <Icon
+                :name="emailCopied ? 'tabler:check' : 'tabler:copy'"
+                class="size-3.5 mr-0.5"
+              />
+              <span>{{ emailCopied ? "copied!" : "contact@samith.dev" }}</span>
+            </button>
           </div>
-          <!-- social medias-->
+
+          <!-- Social media links -->
           <div
-            class="flex items-center gap-4 *:text-2xl justify-center *:transition-all *:duration-200 *:hover:text-primary lg:justify-start *:text-zinc-400 *:hover:scale-105 lg:*:hover:scale-110"
+            class="flex items-center justify-center lg:justify-start gap-4 pt-2 w-full"
           >
             <NuxtLink
               v-for="contact in allContacts"
@@ -81,19 +128,18 @@ defineOgImage("EachPage.takumi", {
               :title="contact.name"
               :aria-label="`This is Samith's ${contact.name}`"
               external
+              class="text-muted-foreground hover:text-foreground transition-colors duration-200"
             >
-              <Icon :name="contact.iconName" />
+              <Icon :name="contact.iconName" class="text-xl" />
             </NuxtLink>
           </div>
         </div>
-        <!-- right side -->
+
+        <!-- right side: CodeTerminal (wider & prominent, centered when stacked in 2 rows) -->
         <div
-          class="lg:w-full col-start-1 row-start-1 lg:flex lg:items-center lg:justify-end lg:col-start-2 lg:row-start-1"
+          class="w-full lg:col-span-6 flex justify-center lg:justify-end max-w-xl mx-auto lg:max-w-none"
         >
-          <M
-            style="view-transition-name: title"
-            class="size-24 md:size-28 mx-auto lg:mx-0 lg:size-60 xl:size-64 [&>path]:stroke-4 [&>path]:stroke-primary lg:[&>path]:fill-primary/0 lg:[&>path]:transition-all lg:[&>path]:duration-400 lg:[&:hover_path]:fill-primary [&>path]:fill-primary/10 animate-slide-up duration-600 transition-[translate,opacity] starting:translate-y-6 starting:[&>path]:stroke-primary/0"
-          />
+          <LazyCodeTerminal />
         </div>
       </div>
     </div>

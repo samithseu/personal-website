@@ -9,19 +9,20 @@ defineProps<{
 
 <template>
   <li
-    class="border-l-2 px-6 border-primary/30 relative after:content-[''] after:absolute after:size-2.5 after:left-0 after:bg-primary after:top-1.5 after:-translate-x-[calc(58%)] transition-all duration-300 hover:border-primary"
+    class="rounded-xl border border-border bg-card p-5 sm:p-6 hover:border-foreground/30 hover:shadow-md transition-all duration-200 space-y-2"
   >
-    <h3
-      class="text-white text-sm lg:text-xl font-semibold leading-tight line-clamp-1"
-    >
-      {{ title }}
-    </h3>
-    <small class="text-sm text-primary space-x-1 line-clamp-1">
-      <span>{{ subtitleLeft }}</span>
-      <span v-if="subtitleRight" class="text-lg">•</span>
-      <span v-if="subtitleRight">{{ subtitleRight }}</span>
-    </small>
-    <p class="text-sm mt-2 line-clamp-2 text-zinc-400">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+      <h3 class="text-base sm:text-lg font-semibold text-foreground">
+        {{ title }}
+      </h3>
+      <span v-if="subtitleRight" class="font-mono text-xs text-muted-foreground whitespace-nowrap">
+        {{ subtitleRight }}
+      </span>
+    </div>
+    <div class="font-mono text-xs text-muted-foreground">
+      {{ subtitleLeft }}
+    </div>
+    <p class="text-sm text-muted-foreground leading-relaxed pt-1">
       {{ description }}
     </p>
   </li>
