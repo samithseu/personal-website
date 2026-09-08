@@ -62,13 +62,13 @@ const languageFilters = computed(() => {
   if (!projects.value || !Array.isArray(projects.value)) return ["All"];
 
   const presentTopics = new Set(
-    projects.value.flatMap((p) => p.topics || []).map((t) => t.toLowerCase())
+    projects.value.flatMap((p) => p.topics || []).map((t) => t.toLowerCase()),
   );
 
   const available = Object.keys(LANGUAGE_FRAMEWORK_MAP).filter((label) =>
     LANGUAGE_FRAMEWORK_MAP[label]?.some((alias) =>
-      presentTopics.has(alias.toLowerCase())
-    )
+      presentTopics.has(alias.toLowerCase()),
+    ),
   );
 
   return ["All", ...available];
@@ -87,7 +87,7 @@ const filteredProjects = computed(() => {
       ];
       matchesLanguage =
         p.topics?.some((t) =>
-          aliases.some((alias) => alias.toLowerCase() === t.toLowerCase())
+          aliases.some((alias) => alias.toLowerCase() === t.toLowerCase()),
         ) ?? false;
     }
 
@@ -160,20 +160,22 @@ function resetFilters() {
             class="text-muted-foreground text-sm sm:text-base max-w-2xl leading-relaxed"
           >
             A collection of
-            <span class="text-foreground font-semibold">{{ projects?.length ?? 0 }}</span> projects
-            I've worked on, from web applications to websites and developer tools.
+            <span class="text-foreground font-semibold">{{
+              projects?.length ?? 0
+            }}</span>
+            projects I've worked on, from web applications to websites and
+            developer tools.
           </p>
           <!-- error -->
-          <p
-            v-if="error"
-            class="text-destructive text-sm"
-          >
+          <p v-if="error" class="text-destructive text-sm">
             {{ error?.message ?? "Cannot fetch all projects!" }}
           </p>
         </div>
 
         <!-- Search bar and language filter buttons in the same row on desktop -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pt-1">
+        <div
+          class="flex flex-col md:flex-row md:items-center justify-between gap-3 pt-1"
+        >
           <!-- Search box -->
           <div class="relative w-full md:w-64 lg:w-72 shrink-0">
             <Icon
@@ -212,7 +214,7 @@ function resetFilters() {
                 'rounded-full font-mono text-xs px-3 py-1 transition-colors cursor-pointer border whitespace-nowrap',
                 selectedLanguage === lang
                   ? 'bg-primary text-primary-foreground border-primary font-medium'
-                  : 'bg-secondary/70 text-secondary-foreground border-border/60 hover:text-foreground hover:bg-secondary'
+                  : 'bg-secondary/70 text-secondary-foreground border-border/60 hover:text-foreground hover:bg-secondary',
               ]"
             >
               {{ lang }}
@@ -228,7 +230,9 @@ function resetFilters() {
           <li
             v-for="p in filteredProjects"
             :key="p.id"
-            :style="{ viewTransitionName: `project-${String(p.id).replace(/[^a-zA-Z0-9_-]/g, '_')}` }"
+            :style="{
+              viewTransitionName: `project-${String(p.id).replace(/[^a-zA-Z0-9_-]/g, '_')}`,
+            }"
             class="h-full list-none"
           >
             <LazyProjectCard
@@ -246,10 +250,14 @@ function resetFilters() {
           v-else-if="!error"
           class="py-12 sm:py-16 text-center space-y-3 border border-dashed border-border/70 rounded-xl bg-card/30"
         >
-          <Icon name="tabler:folder-off" class="size-10 mx-auto text-muted-foreground/50" />
+          <Icon
+            name="tabler:folder-off"
+            class="size-10 mx-auto text-muted-foreground/50"
+          />
           <p class="text-sm font-medium text-foreground">No projects found</p>
           <p class="text-xs text-muted-foreground max-w-xs mx-auto">
-            Try adjusting your search query or selecting a different language filter.
+            Try adjusting your search query or selecting a different language
+            filter.
           </p>
           <button
             type="button"
@@ -263,7 +271,9 @@ function resetFilters() {
 
       <!-- Have a project in mind? -->
       <LazyAskingEnd style="view-transition-name: asking-end" hydrate-never>
-        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+        <h2
+          class="text-xl sm:text-2xl font-bold tracking-tight text-foreground"
+        >
           Have a project in mind?
         </h2>
         <p class="text-muted-foreground text-xs sm:text-sm max-w-md">
@@ -278,10 +288,7 @@ function resetFilters() {
               class="size-9 rounded-md border border-border/60 bg-background hover:bg-muted text-muted-foreground hover:text-foreground flex items-center justify-center transition-colors"
               external
             >
-              <Icon
-                :name="c.iconName"
-                class="text-lg"
-              />
+              <Icon :name="c.iconName" class="text-lg" />
             </NuxtLink>
           </li>
         </ul>

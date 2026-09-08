@@ -127,6 +127,7 @@ watch(
         hydrate-on-media-query="(width <= 768px)"
         v-model="open"
         modal-classes="w-full max-w-xs p-5 rounded-2xl border border-border bg-card/95 backdrop-blur-xl shadow-2xl space-y-4"
+        aria-label="Navigation Menu"
       >
         <div
           class="flex items-center justify-between pb-3 border-b border-border/40"

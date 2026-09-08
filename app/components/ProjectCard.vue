@@ -9,7 +9,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <li
+  <article
     class="rounded-xl border border-border bg-card hover:border-foreground/30 hover:shadow-md transition-all duration-200 flex flex-col justify-between overflow-hidden group h-full"
   >
     <!-- Card Top / Body -->
@@ -94,5 +94,5 @@ const props = defineProps<{
         <span>Source</span>
       </NuxtLink>
     </div>
-  </li>
+  </article>
 </template>

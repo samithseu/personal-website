@@ -124,19 +124,20 @@ function openPreview(c: any) {
             class="text-muted-foreground text-sm sm:text-base max-w-2xl leading-relaxed"
           >
             A collection of
-            <span class="text-foreground font-semibold">{{ certs?.length ?? 0 }}</span> certificates
-            and qualifications I've earned throughout my journey.
+            <span class="text-foreground font-semibold">{{
+              certs?.length ?? 0
+            }}</span>
+            certificates and qualifications I've earned throughout my journey.
           </p>
-          <p
-            v-if="error"
-            class="text-destructive text-sm"
-          >
+          <p v-if="error" class="text-destructive text-sm">
             {{ error?.message ?? "Cannot fetch all certificates!" }}
           </p>
         </div>
 
         <!-- Search bar and organization filter buttons in the same row on desktop -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pt-1">
+        <div
+          class="flex flex-col md:flex-row md:items-center justify-between gap-3 pt-1"
+        >
           <!-- Search box -->
           <div class="relative w-full md:w-64 lg:w-72 shrink-0">
             <Icon
@@ -174,7 +175,7 @@ function openPreview(c: any) {
                 'rounded-full font-mono text-xs px-3.5 py-1 transition-colors cursor-pointer border whitespace-nowrap',
                 selectedOrg === org
                   ? 'bg-primary text-primary-foreground border-primary font-medium'
-                  : 'bg-secondary/70 text-secondary-foreground border-border/60 hover:text-foreground hover:bg-secondary'
+                  : 'bg-secondary/70 text-secondary-foreground border-border/60 hover:text-foreground hover:bg-secondary',
               ]"
             >
               {{ org }}
@@ -190,7 +191,9 @@ function openPreview(c: any) {
           <li
             v-for="c in filteredCerts"
             :key="c.id"
-            :style="{ viewTransitionName: `cert-${String(c.id).replace(/[^a-zA-Z0-9_-]/g, '_')}` }"
+            :style="{
+              viewTransitionName: `cert-${String(c.id).replace(/[^a-zA-Z0-9_-]/g, '_')}`,
+            }"
             class="h-full list-none"
           >
             <LazyCertCard
@@ -208,10 +211,16 @@ function openPreview(c: any) {
           v-else-if="!error"
           class="py-12 sm:py-16 text-center space-y-3 border border-dashed border-border/70 rounded-xl bg-card/30"
         >
-          <Icon name="tabler:certificate-off" class="size-10 mx-auto text-muted-foreground/50" />
-          <p class="text-sm font-medium text-foreground">No certificates found</p>
+          <Icon
+            name="tabler:certificate-off"
+            class="size-10 mx-auto text-muted-foreground/50"
+          />
+          <p class="text-sm font-medium text-foreground">
+            No certificates found
+          </p>
           <p class="text-xs text-muted-foreground max-w-xs mx-auto">
-            Try adjusting your search query or selecting a different organization filter.
+            Try adjusting your search query or selecting a different
+            organization filter.
           </p>
           <button
             type="button"
@@ -227,12 +236,17 @@ function openPreview(c: any) {
       <LazySimpleDialog
         v-model="isModalOpen"
         modal-classes="w-full max-w-2xl bg-card border border-border rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden mx-4"
+        aria-label="Certificate Preview"
       >
         <div v-if="previewCert" class="flex flex-col">
           <!-- Modal Header -->
-          <div class="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-border/50 bg-muted/20">
+          <div
+            class="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-border/50 bg-muted/20"
+          >
             <div>
-              <h3 class="font-semibold text-foreground text-sm sm:text-base md:text-lg leading-snug">
+              <h3
+                class="font-semibold text-foreground text-sm sm:text-base md:text-lg leading-snug"
+              >
                 {{ previewCert.title }}
               </h3>
               <p class="font-mono text-xs text-muted-foreground mt-0.5">
@@ -250,7 +264,9 @@ function openPreview(c: any) {
           </div>
 
           <!-- Modal Image Preview -->
-          <div class="p-3 sm:p-5 bg-muted/10 max-h-[60vh] sm:max-h-[68vh] overflow-auto flex items-center justify-center">
+          <div
+            class="p-3 sm:p-5 bg-muted/10 max-h-[60vh] sm:max-h-[68vh] overflow-auto flex items-center justify-center"
+          >
             <img
               :src="`/certs/${previewCert.url}`"
               :alt="previewCert.title"
@@ -259,7 +275,9 @@ function openPreview(c: any) {
           </div>
 
           <!-- Modal Footer -->
-          <div class="flex items-center justify-between px-4 sm:px-6 py-3 border-t border-border/50 bg-muted/20">
+          <div
+            class="flex items-center justify-between px-4 sm:px-6 py-3 border-t border-border/50 bg-muted/20"
+          >
             <NuxtLink
               :to="`/certs/${previewCert.url}`"
               external
@@ -282,7 +300,9 @@ function openPreview(c: any) {
 
       <!-- Have a project in mind? -->
       <LazyAskingEnd style="view-transition-name: asking-end" hydrate-never>
-        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+        <h2
+          class="text-xl sm:text-2xl font-bold tracking-tight text-foreground"
+        >
           Need a skilled developer?
         </h2>
         <p class="text-muted-foreground text-xs sm:text-sm max-w-md">
@@ -297,10 +317,7 @@ function openPreview(c: any) {
               class="size-9 rounded-md border border-border/60 bg-background hover:bg-muted text-muted-foreground hover:text-foreground flex items-center justify-center transition-colors"
               external
             >
-              <Icon
-                :name="c.iconName"
-                class="text-lg"
-              />
+              <Icon :name="c.iconName" class="text-lg" />
             </NuxtLink>
           </li>
         </ul>
