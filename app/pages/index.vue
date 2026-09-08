@@ -111,6 +111,7 @@ async function copyEmail() {
             >
               <Icon
                 :name="emailCopied ? 'tabler:check' : 'tabler:copy'"
+                :class="emailCopied && 'text-green-500'"
                 class="size-3.5 mr-0.5"
               />
               <span>{{ emailCopied ? "copied!" : "contact@samith.dev" }}</span>

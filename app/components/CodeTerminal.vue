@@ -57,6 +57,7 @@ async function copyCode() {
       >
         <Icon
           :name="copied ? 'tabler:check' : 'tabler:copy'"
+          :class="copied && 'text-green-500'"
           class="size-3.5"
         />
         <span>{{ copied ? "Copied!" : "Copy" }}</span>
@@ -70,7 +71,7 @@ async function copyCode() {
       <div class="grid grid-cols-[auto_1fr] gap-x-4">
         <!-- Line numbers -->
         <div
-          class="select-none text-muted-foreground/40 text-right pr-2 border-r border-border/40 font-mono space-y-0.5"
+          class="select-none text-muted-foreground/40 text-right pr-2 border-r border-border/40 font-mono"
           aria-hidden="true"
         >
           <div>1</div>
@@ -91,8 +92,8 @@ async function copyCode() {
 <span class="text-purple-600 dark:text-purple-400">export default</span> <span class="text-sky-600 dark:text-sky-400">defineDeveloper</span>({
   <span class="text-emerald-600 dark:text-emerald-400">name</span>: <span class="text-amber-600 dark:text-amber-300">"Samith Seu"</span>,
   <span class="text-emerald-600 dark:text-emerald-400">title</span>: <span class="text-amber-600 dark:text-amber-300">"Frontend &amp; Interface Engineer"</span>,
-  <span class="text-emerald-600 dark:text-emerald-400">location</span>: <span class="text-amber-600 dark:text-amber-300">"Krong Chbar Mon, Cambodia"</span>,
-  <span class="text-emerald-600 dark:text-emerald-400">status</span>: <span class="text-amber-600 dark:text-amber-300">"Available for new projects"</span>,
+  <span class="text-emerald-600 dark:text-emerald-400">location</span>: <span class="text-amber-600 dark:text-amber-300">"Kampong Speu, Cambodia"</span>,
+  <span class="text-emerald-600 dark:text-emerald-400">status</span>: <span class="text-amber-600 dark:text-amber-300">"Wasting tokens..."</span>,
 })</code></pre>
       </div>
     </div>

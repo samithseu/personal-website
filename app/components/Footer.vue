@@ -10,7 +10,7 @@
         &copy; {{ new Date().getFullYear() }} Samith Seu &dash; Personal Website
       </p>
       <p class="flex items-center gap-1.5">
-        <span>Made with</span>
+        <span>Made w/</span>
         <NuxtLink
           title="Nuxt.js official website"
           aria-label="This will go to Nuxt.js official website"

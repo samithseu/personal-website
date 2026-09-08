@@ -23,7 +23,7 @@ defineOgImage("EachPage.takumi", {
       >
         <!-- left side: Framed Profile Image -->
         <div
-          class="rounded-2xl border border-border bg-card shadow-sm p-1.5 w-full max-w-[280px] sm:max-w-sm md:max-w-none mx-auto"
+          class="rounded-2xl border border-border bg-card shadow-sm p-1.5 w-full max-w-70 sm:max-w-sm md:max-w-none mx-auto"
         >
           <div class="rounded-xl aspect-square overflow-hidden bg-muted group">
             <LazyImageWithPlaceholder
