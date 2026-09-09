@@ -156,9 +156,7 @@ function resetFilters() {
           >
             Projects
           </h1>
-          <p
-            class="text-muted-foreground text-sm sm:text-base max-w-2xl leading-relaxed"
-          >
+          <p class="text-muted-foreground text-sm sm:text-base leading-relaxed">
             A collection of
             <span class="text-foreground font-semibold">{{
               projects?.length ?? 0

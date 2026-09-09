@@ -120,9 +120,7 @@ function openPreview(c: any) {
           >
             Certificates
           </h1>
-          <p
-            class="text-muted-foreground text-sm sm:text-base max-w-2xl leading-relaxed"
-          >
+          <p class="text-muted-foreground text-sm sm:text-base leading-relaxed">
             A collection of
             <span class="text-foreground font-semibold">{{
               certs?.length ?? 0
@@ -265,12 +263,16 @@ function openPreview(c: any) {
 
           <!-- Modal Image Preview -->
           <div
-            class="p-3 sm:p-5 bg-muted/10 max-h-[60vh] sm:max-h-[68vh] overflow-auto flex items-center justify-center"
+            class="p-3 sm:p-5 bg-muted/10 max-h-[60vh] sm:max-h-[68vh] overflow-auto flex items-center justify-center *:w-full *:h-auto"
           >
-            <img
+            <ImageWithPlaceholder
               :src="`/certs/${previewCert.url}`"
+              loading="lazy"
+              decoding="async"
+              quality="70"
+              format="webp"
+              imgClasses="w-full h-auto rounded-lg object-contain border border-border/40 shadow-sm"
               :alt="previewCert.title"
-              class="w-full h-auto rounded-lg object-contain border border-border/40 shadow-sm"
             />
           </div>
 

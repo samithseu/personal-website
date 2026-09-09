@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 defineOptions({ inheritAttrs: false });
+defineProps<{
+  imgClasses?: string;
+  skeletonClasses?: string;
+}>();
 </script>
 
 <template>
@@ -9,12 +13,14 @@ defineOptions({ inheritAttrs: false });
       <div
         v-show="!isLoaded"
         class="absolute inset-0 bg-zinc-700/80 animate-pulse"
+        :class="skeletonClasses"
       />
       <!-- Actual image with fade-in -->
       <img
         v-bind="imgAttrs"
         :src="src"
         class="transition-opacity duration-500 ease-out"
+        :class="imgClasses"
         :style="{ opacity: isLoaded ? 1 : 0 }"
       />
     </div>

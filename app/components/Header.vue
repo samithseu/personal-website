@@ -56,7 +56,7 @@ watch(
 <template>
   <header
     style="view-transition-name: main-header"
-    class="bg-background/80 w-full border-b border-border/60 py-3 px-4 sm:px-6 lg:px-8 sticky top-0 left-0 z-50 backdrop-blur-md h-fit transition-colors"
+    class="bg-background/80 w-full border-b border-border/60 py-3 px-4 sm:px-6 lg:px-8 sticky top-0 left-0 z-40 backdrop-blur-md h-fit transition-colors"
   >
     <nav class="max-w-prefer mx-auto flex items-center justify-between">
       <!-- logo -->
