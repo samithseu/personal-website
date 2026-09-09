@@ -4,7 +4,15 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
-  nitro: { preset: "vercel" },
+  nitro: {
+    preset: "vercel",
+    serverAssets: [
+      {
+        baseName: "svg",
+        dir: "./server/assets/svg",
+      },
+    ],
+  },
   vite: {
     plugins: [tailwindcss()],
   },
@@ -38,6 +46,11 @@ export default defineNuxtConfig({
     "/certificates": { prerender: true },
     "/blogs": { prerender: true },
     "/api/certificates": { prerender: true },
+    "/logos/**": {
+      headers: {
+        "cache-control": "public, max-age=31536000, immutable",
+      },
+    },
 
     // social media
     "/github": { redirect: "https://github.com/samithseu" },
@@ -52,7 +65,8 @@ export default defineNuxtConfig({
     name: "Samith Seu - Home",
   },
   runtimeConfig: {
-    githubToken: process.env.GITHUB_TOKEN || "",
+    githubToken:
+      process.env.NUXT_GITHUB_TOKEN || process.env.GITHUB_TOKEN || "",
     public: {
       site: {
         url: process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
@@ -102,7 +116,6 @@ export default defineNuxtConfig({
   },
   $development: {
     runtimeConfig: {
-      githubToken: "",
       public: {
         site: {
           url: "http://localhost:3000",
@@ -114,7 +127,6 @@ export default defineNuxtConfig({
   $production: {
     sourcemap: false,
     runtimeConfig: {
-      githubToken: "",
       public: {
         site: {
           url:
