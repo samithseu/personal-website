@@ -15,13 +15,17 @@ export const useSeo = ({
   description,
   noPrefix = false,
 }: SeoProps) => {
-  // schema.org structured data
-  const { siteUrl: url } = useRuntimeConfig().public;
+  // Schema.org structured data & dynamic URLs
+  const config = useRuntimeConfig();
+  const siteUrl = (config.public.site?.url || config.public.siteUrl || "https://samithseu.vercel.app") as string;
   const inLanguage = "en-US";
+  const route = useRoute();
+  const canonicalUrl = `${siteUrl}${route.path === "/" ? "" : route.path}`;
+
   const definedPerson = definePerson({
-    "@id": "samith.dev",
+    "@id": `${siteUrl}/#person`,
     "@type": "Person",
-    url: url as string,
+    url: siteUrl,
     name: "Samith Seu",
     description: "A web developer and lifelong learner.",
     alternateName: [
@@ -43,21 +47,21 @@ export const useSeo = ({
 
   useSchemaOrg([
     defineWebSite({
-      "@id": url as string,
+      "@id": `${siteUrl}/#website`,
       "@type": "WebSite",
       name: "Samith Seu - Personal Website",
       description:
         "Welcome to my digital space. Explore my work, read the blog, and learn about my journey as a developer.",
-      url: url as string,
+      url: siteUrl,
       inLanguage,
       publisher: definedPerson,
       datePublished: new Date("2025-05-12").toISOString(),
       dateModified: new Date().toISOString(),
     }),
     defineWebPage({
-      "@id": useRoute().fullPath ?? url,
+      "@id": canonicalUrl,
       "@type": "WebPage",
-      url: useRoute().fullPath ?? url,
+      url: canonicalUrl,
       name: title,
       description,
       author: definedPerson,
@@ -74,26 +78,27 @@ export const useSeo = ({
       potentialAction: [
         defineReadAction({
           "@type": "ReadAction",
-          target: [useRoute().fullPath ?? url],
+          target: [canonicalUrl],
         }),
       ],
     }),
     definedPerson,
   ]);
 
-  // Build the title template:
-  const titleTemplate = noPrefix ? title : `%s - ${title}`;
+  // Clean full title without unparsed '%s' placeholders for Open Graph and Twitter cards
+  const fullTitle = noPrefix ? title : `Samith Seu - ${title}`;
 
   useSeoMeta({
-    titleTemplate,
+    title: fullTitle,
+    titleTemplate: "%s",
     description,
-    ogSiteName: useRuntimeConfig().public.siteUrl as string,
-    ogTitle: titleTemplate,
+    ogSiteName: "Samith Seu",
+    ogTitle: fullTitle,
     ogDescription: description,
-    twitterTitle: titleTemplate,
-    twitterSite: useRuntimeConfig().public.siteUrl as string,
+    twitterTitle: fullTitle,
+    twitterSite: "@seumith",
+    twitterCreator: "@seumith",
     twitterDescription: description,
     ogType: "website",
   });
-
 };

@@ -9,7 +9,7 @@ useHead({
     { name: "viewport", content: "width=device-width, initial-scale=1.0" },
     { name: "color-scheme", content: "dark light" },
   ],
-  link: [{ rel: "icon", type: "image/svg+xml", href: favicon }],
+  link: [{ rel: "icon", type: "image/x-icon", href: favicon }],
   script: [
     {
       innerHTML: `try { if (window.matchMedia('(prefers-color-scheme: dark)').matches) { document.documentElement.classList.add('dark'); } } catch (_) {}`,
@@ -24,17 +24,26 @@ useSeoMeta({
 
 const keepAlivePages = ["index", "about", "certificates", "blogs"];
 
+let mediaQuery: MediaQueryList | null = null;
+let updateThemeFn: ((e: MediaQueryList | MediaQueryListEvent) => void) | null = null;
+
 onMounted(() => {
-  const media = window.matchMedia("(prefers-color-scheme: dark)");
-  const updateTheme = (e: MediaQueryList | MediaQueryListEvent) => {
+  mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  updateThemeFn = (e: MediaQueryList | MediaQueryListEvent) => {
     if (e.matches) {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
   };
-  updateTheme(media);
-  media.addEventListener("change", updateTheme);
+  updateThemeFn(mediaQuery);
+  mediaQuery.addEventListener("change", updateThemeFn);
+});
+
+onBeforeUnmount(() => {
+  if (mediaQuery && updateThemeFn) {
+    mediaQuery.removeEventListener("change", updateThemeFn);
+  }
 });
 </script>
 

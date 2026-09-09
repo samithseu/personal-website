@@ -103,17 +103,29 @@ const filteredProjects = computed(() => {
   });
 });
 
-const { applyCardTransition } = useCardTransition();
+const { applyCardTransition, isCardTransitioning } = useCardTransition();
 
 // Debounce text search to ensure smooth typing before morphing cards
 let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+
+function clearDebounce() {
+  if (debounceTimer) {
+    clearTimeout(debounceTimer);
+    debounceTimer = null;
+  }
+}
+
 watch(searchInput, (newVal) => {
-  if (debounceTimer) clearTimeout(debounceTimer);
+  clearDebounce();
   debounceTimer = setTimeout(() => {
     applyCardTransition(() => {
       searchQuery.value = newVal;
     });
   }, 120);
+});
+
+onBeforeUnmount(() => {
+  clearDebounce();
 });
 
 function selectLanguage(lang: string) {
@@ -124,7 +136,7 @@ function selectLanguage(lang: string) {
 }
 
 function clearSearch() {
-  if (debounceTimer) clearTimeout(debounceTimer);
+  clearDebounce();
   searchInput.value = "";
   applyCardTransition(() => {
     searchQuery.value = "";
@@ -132,7 +144,7 @@ function clearSearch() {
 }
 
 function resetFilters() {
-  if (debounceTimer) clearTimeout(debounceTimer);
+  clearDebounce();
   searchInput.value = "";
   applyCardTransition(() => {
     searchQuery.value = "";
@@ -147,9 +159,9 @@ function resetFilters() {
       <div class="space-y-6">
         <!-- project title & subtitle -->
         <div class="space-y-3">
-          <LazySimpleBadge style="view-transition-name: page-badge">
+          <SimpleBadge style="view-transition-name: page-badge">
             <span>My works</span>
-          </LazySimpleBadge>
+          </SimpleBadge>
           <h1
             style="view-transition-name: page-title"
             class="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground"
@@ -228,12 +240,16 @@ function resetFilters() {
           <li
             v-for="p in filteredProjects"
             :key="p.id"
-            :style="{
-              viewTransitionName: `project-${String(p.id).replace(/[^a-zA-Z0-9_-]/g, '_')}`,
-            }"
+            :style="
+              isCardTransitioning
+                ? {
+                    viewTransitionName: `project-${String(p.id).replace(/[^a-zA-Z0-9_-]/g, '_')}`,
+                  }
+                : undefined
+            "
             class="h-full list-none"
           >
-            <LazyProjectCard
+            <ProjectCard
               :title="p.name!"
               :description="p.description"
               :tags="p.topics"
@@ -268,7 +284,7 @@ function resetFilters() {
       </div>
 
       <!-- Have a project in mind? -->
-      <LazyAskingEnd style="view-transition-name: asking-end" hydrate-never>
+      <AskingEnd style="view-transition-name: asking-end">
         <h2
           class="text-xl sm:text-2xl font-bold tracking-tight text-foreground"
         >
@@ -290,7 +306,7 @@ function resetFilters() {
             </NuxtLink>
           </li>
         </ul>
-      </LazyAskingEnd>
+      </AskingEnd>
     </div>
   </div>
 </template>

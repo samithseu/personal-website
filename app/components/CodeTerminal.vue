@@ -8,16 +8,16 @@ const WORD_STEP_SPEED_MS = 200; // Word-by-word step speed for reduced motion
 const PAUSE_BEFORE_NEXT_MS = 350; // Brief pause before typing next status
 
 const statuses = [
-  "Wasting tokens...",
-  "Copying from Stack Overflow...",
-  "Centering a div...",
-  "Prompting until it builds...",
-  "Blaming the cache...",
-  "Debugging in production...",
-  "Waiting for npm install...",
-  "Converting coffee into bugs...",
-  "It worked on my machine...",
-  "git push --force and praying...",
+  "Wasting tokens",
+  "Copying from Stack Overflow",
+  "Centering a div",
+  "Prompting until it builds",
+  "Blaming the cache",
+  "Debugging in production",
+  "Waiting for npm install",
+  "Converting coffee into bugs",
+  "It worked on my machine",
+  "git push --force and praying",
 ];
 
 const currentIndex = ref(0);
@@ -48,89 +48,149 @@ async function copyCode() {
   }
 }
 
-onMounted(() => {
+const terminalRoot = ref<HTMLElement | null>(null);
+
+let isDeleting = false;
+let charIndex = statuses[0]!.length;
+let wordIndex = statuses[0]!.split(/\s+/).length;
+let isRunning = false;
+let isVisible = true;
+let isPageActive = true;
+let observer: IntersectionObserver | null = null;
+
+function clearTimer() {
+  if (timer) {
+    clearTimeout(timer);
+    timer = null;
+  }
+}
+
+function runCycle() {
+  if (!isRunning || !isVisible || !isPageActive) return;
+
   const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let isDeleting = false;
-  let charIndex = statuses[0]!.length;
-  let wordIndex = statuses[0]!.split(/\s+/).length;
+  const isReduced = media.matches;
+  const currentPhrase = statuses[currentIndex.value];
 
-  function runCycle() {
-    const isReduced = media.matches;
-    const currentPhrase = statuses[currentIndex.value];
-
-    if (isReduced) {
-      // Reduced motion: word-by-word deletion and typing
-      const words = currentPhrase!.split(/\s+/);
-
-      if (!isDeleting) {
-        if (wordIndex < words.length) {
-          wordIndex++;
-          displayText.value = words.slice(0, wordIndex).join(" ");
-          timer = setTimeout(runCycle, WORD_STEP_SPEED_MS);
-        } else {
-          // Completed phrase, pause for configured display duration
-          isDeleting = true;
-          timer = setTimeout(runCycle, STATUS_DISPLAY_DURATION_MS);
-        }
+  if (isReduced) {
+    const words = currentPhrase!.split(/\s+/);
+    if (!isDeleting) {
+      if (wordIndex < words.length) {
+        wordIndex++;
+        displayText.value = words.slice(0, wordIndex).join(" ");
+        timer = setTimeout(runCycle, WORD_STEP_SPEED_MS);
       } else {
-        if (wordIndex > 0) {
-          wordIndex--;
-          displayText.value = words.slice(0, wordIndex).join(" ");
-          timer = setTimeout(runCycle, WORD_STEP_SPEED_MS);
-        } else {
-          // Finished deleting, move to next phrase after brief pause
-          isDeleting = false;
-          currentIndex.value = (currentIndex.value + 1) % statuses.length;
-          wordIndex = 0;
-          timer = setTimeout(runCycle, PAUSE_BEFORE_NEXT_MS);
-        }
+        isDeleting = true;
+        timer = setTimeout(runCycle, STATUS_DISPLAY_DURATION_MS);
       }
     } else {
-      // Standard motion: character-by-character deletion and typing
-      if (!isDeleting) {
-        if (charIndex < currentPhrase!.length) {
-          charIndex++;
-          displayText.value = currentPhrase!.slice(0, charIndex);
-          const typingDelay =
-            CHAR_TYPE_SPEED_MS + (Math.floor(Math.random() * 30) - 15);
-          timer = setTimeout(runCycle, Math.max(30, typingDelay));
-        } else {
-          // Completed phrase, pause for configured display duration
-          isDeleting = true;
-          timer = setTimeout(runCycle, STATUS_DISPLAY_DURATION_MS);
-        }
+      if (wordIndex > 0) {
+        wordIndex--;
+        displayText.value = words.slice(0, wordIndex).join(" ");
+        timer = setTimeout(runCycle, WORD_STEP_SPEED_MS);
       } else {
-        if (charIndex > 0) {
-          charIndex--;
-          displayText.value = currentPhrase!.slice(0, charIndex);
-          timer = setTimeout(runCycle, CHAR_DELETE_SPEED_MS);
-        } else {
-          // Finished deleting, move to next phrase after brief pause
-          isDeleting = false;
-          currentIndex.value = (currentIndex.value + 1) % statuses.length;
-          charIndex = 0;
-          timer = setTimeout(runCycle, PAUSE_BEFORE_NEXT_MS);
-        }
+        isDeleting = false;
+        currentIndex.value = (currentIndex.value + 1) % statuses.length;
+        wordIndex = 0;
+        timer = setTimeout(runCycle, PAUSE_BEFORE_NEXT_MS);
+      }
+    }
+  } else {
+    if (!isDeleting) {
+      if (charIndex < currentPhrase!.length) {
+        charIndex++;
+        displayText.value = currentPhrase!.slice(0, charIndex);
+        const typingDelay =
+          CHAR_TYPE_SPEED_MS + (Math.floor(Math.random() * 30) - 15);
+        timer = setTimeout(runCycle, Math.max(30, typingDelay));
+      } else {
+        isDeleting = true;
+        timer = setTimeout(runCycle, STATUS_DISPLAY_DURATION_MS);
+      }
+    } else {
+      if (charIndex > 0) {
+        charIndex--;
+        displayText.value = currentPhrase!.slice(0, charIndex);
+        timer = setTimeout(runCycle, CHAR_DELETE_SPEED_MS);
+      } else {
+        isDeleting = false;
+        currentIndex.value = (currentIndex.value + 1) % statuses.length;
+        charIndex = 0;
+        timer = setTimeout(runCycle, PAUSE_BEFORE_NEXT_MS);
       }
     }
   }
+}
 
-  // Initial display duration before starting first deletion
+function startLoop() {
+  if (isRunning) return;
+  isRunning = true;
+  clearTimer();
   timer = setTimeout(() => {
     isDeleting = true;
     runCycle();
   }, STATUS_DISPLAY_DURATION_MS);
+}
+
+function stopLoop() {
+  isRunning = false;
+  clearTimer();
+}
+
+function handleVisibilityChange() {
+  if (document.hidden) {
+    stopLoop();
+  } else if (isVisible && isPageActive) {
+    startLoop();
+  }
+}
+
+onMounted(() => {
+  document.addEventListener("visibilitychange", handleVisibilityChange);
+
+  if (terminalRoot.value && "IntersectionObserver" in window) {
+    observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = Boolean(entry?.isIntersecting);
+        if (isVisible && isPageActive && !document.hidden) {
+          startLoop();
+        } else {
+          stopLoop();
+        }
+      },
+      { threshold: 0.1 },
+    );
+    observer.observe(terminalRoot.value);
+  } else {
+    startLoop();
+  }
 });
 
-onUnmounted(() => {
-  if (timer) {
-    clearTimeout(timer);
+onActivated(() => {
+  isPageActive = true;
+  if (isVisible && !document.hidden) {
+    startLoop();
+  }
+});
+
+onDeactivated(() => {
+  isPageActive = false;
+  stopLoop();
+});
+
+onBeforeUnmount(() => {
+  stopLoop();
+  document.removeEventListener("visibilitychange", handleVisibilityChange);
+  if (observer) {
+    observer.disconnect();
+    observer = null;
   }
 });
 </script>
 
 <template>
   <div
+    ref="terminalRoot"
     class="w-full rounded-xl border border-border/80 bg-card/90 backdrop-blur-md shadow-2xl overflow-hidden font-mono text-xs transition-all duration-300 hover:border-border"
   >
     <!-- Window Header -->

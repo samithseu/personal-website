@@ -37,6 +37,7 @@ export default defineNuxtConfig({
     "/projects": { isr: 60 * 5 }, // 5 minutes
     "/certificates": { prerender: true },
     "/blogs": { prerender: true },
+    "/api/certificates": { prerender: true },
 
     // social media
     "/github": { redirect: "https://github.com/samithseu" },
@@ -83,6 +84,22 @@ export default defineNuxtConfig({
     ],
   },
   ogImage: { zeroRuntime: true },
+  image: {
+    format: ["webp"],
+    quality: 80,
+    screens: {
+      sm: 350,
+      md: 600,
+      lg: 700,
+    },
+  },
+  content: {
+    build: {
+      markdown: {
+        highlight: false,
+      },
+    },
+  },
   $development: {
     runtimeConfig: {
       githubToken: "",
@@ -104,14 +121,6 @@ export default defineNuxtConfig({
             process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
           name: "Samith Seu - Home",
         },
-      },
-    },
-    image: {
-      format: ["webp", "avif"],
-      screens: {
-        sm: 350,
-        md: 600,
-        lg: 700,
       },
     },
   },

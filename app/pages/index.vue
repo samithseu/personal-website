@@ -140,7 +140,7 @@ async function copyEmail() {
         <div
           class="w-full lg:col-span-6 flex justify-center lg:justify-end max-w-xl mx-auto lg:max-w-none"
         >
-          <LazyCodeTerminal />
+          <CodeTerminal />
         </div>
       </div>
     </div>

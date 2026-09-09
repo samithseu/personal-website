@@ -14,9 +14,11 @@ defineOgImage("EachPage.takumi", {
 </script>
 
 <template>
-  <div class="w-full h-full px-4 py-16 prefer:px-0 flex items-center justify-center min-h-[calc(100vh-12rem)]">
+  <div
+    class="w-full h-full px-4 py-16 prefer:px-0 flex items-center justify-center min-h-[calc(100vh-12rem)]"
+  >
     <div class="max-w-prefer mx-auto flex items-center justify-center">
-      <LazyPageState hydrate-never icon="tabler:file-text">
+      <PageState icon="tabler:file-text">
         <h1
           style="view-transition-name: page-title"
           class="text-2xl sm:text-3xl font-mono font-semibold text-foreground tracking-tight"
@@ -24,9 +26,10 @@ defineOgImage("EachPage.takumi", {
           No articles yet
         </h1>
         <p class="text-sm text-muted-foreground mt-1 max-w-sm">
-          Thoughts, technical deep dives, and tutorials will be published here soon.
+          Thoughts, technical deep dives, and tutorials will be published here
+          soon.
         </p>
-      </LazyPageState>
+      </PageState>
     </div>
   </div>
 </template>

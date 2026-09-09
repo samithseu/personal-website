@@ -7,19 +7,19 @@ type Link = {
   iconName: string;
 };
 
-const allLinks = ref<Link[]>([
+const allLinks: readonly Link[] = [
   {
     label: "Go to Home page",
     name: "Home",
     path: "/",
-    prefetch: false,
+    prefetch: true,
     iconName: "tabler:smart-home",
   },
   {
     label: "Go to About page",
     name: "About",
     path: "/about",
-    prefetch: false,
+    prefetch: true,
     iconName: "tabler:user",
   },
   {
@@ -40,10 +40,10 @@ const allLinks = ref<Link[]>([
     label: "Go to Blogs page",
     name: "Blogs",
     path: "/blogs",
-    prefetch: false,
+    prefetch: true,
     iconName: "tabler:article",
   },
-]);
+] as const;
 
 // Change `open` state to false when route value changes
 const open = ref<boolean>(false);

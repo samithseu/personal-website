@@ -62,17 +62,33 @@ const filteredCerts = computed(() => {
   });
 });
 
-const { applyCardTransition } = useCardTransition();
+const { applyCardTransition, isCardTransitioning } = useCardTransition();
 
 // Debounce text search to ensure smooth typing before morphing cards
 let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+
+function clearDebounce() {
+  if (debounceTimer) {
+    clearTimeout(debounceTimer);
+    debounceTimer = null;
+  }
+}
+
 watch(searchInput, (newVal) => {
-  if (debounceTimer) clearTimeout(debounceTimer);
+  clearDebounce();
   debounceTimer = setTimeout(() => {
     applyCardTransition(() => {
       searchQuery.value = newVal;
     });
   }, 120);
+});
+
+onBeforeUnmount(() => {
+  clearDebounce();
+});
+
+onDeactivated(() => {
+  clearDebounce();
 });
 
 function selectOrg(org: string) {
@@ -83,7 +99,7 @@ function selectOrg(org: string) {
 }
 
 function clearSearch() {
-  if (debounceTimer) clearTimeout(debounceTimer);
+  clearDebounce();
   searchInput.value = "";
   applyCardTransition(() => {
     searchQuery.value = "";
@@ -91,7 +107,7 @@ function clearSearch() {
 }
 
 function resetFilters() {
-  if (debounceTimer) clearTimeout(debounceTimer);
+  clearDebounce();
   searchInput.value = "";
   applyCardTransition(() => {
     searchQuery.value = "";
@@ -111,9 +127,9 @@ function openPreview(c: any) {
       <div class="space-y-6">
         <!-- certificate title & subtitle -->
         <div class="space-y-3">
-          <LazySimpleBadge style="view-transition-name: page-badge">
+          <SimpleBadge style="view-transition-name: page-badge">
             <span>Qualifications</span>
-          </LazySimpleBadge>
+          </SimpleBadge>
           <h1
             style="view-transition-name: page-title"
             class="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground"
@@ -189,12 +205,16 @@ function openPreview(c: any) {
           <li
             v-for="c in filteredCerts"
             :key="c.id"
-            :style="{
-              viewTransitionName: `cert-${String(c.id).replace(/[^a-zA-Z0-9_-]/g, '_')}`,
-            }"
+            :style="
+              isCardTransitioning
+                ? {
+                    viewTransitionName: `cert-${String(c.id).replace(/[^a-zA-Z0-9_-]/g, '_')}`,
+                  }
+                : undefined
+            "
             class="h-full list-none"
           >
-            <LazyCertCard
+            <CertCard
               :image-url="`/certs/${c.url}`"
               :date="c.issue_date"
               :title="c.title"
@@ -263,15 +283,15 @@ function openPreview(c: any) {
 
           <!-- Modal Image Preview -->
           <div
-            class="p-3 sm:p-5 bg-muted/10 max-h-[60vh] sm:max-h-[68vh] overflow-auto flex items-center justify-center *:w-full *:h-auto"
+            class="p-3 sm:p-5 bg-muted/10 max-h-[60vh] sm:max-h-[68vh] overflow-auto flex items-center justify-center"
           >
-            <ImageWithPlaceholder
+            <NuxtImg
               :src="`/certs/${previewCert.url}`"
               loading="lazy"
               decoding="async"
-              quality="70"
+              quality="75"
               format="webp"
-              imgClasses="w-full h-auto rounded-lg object-contain border border-border/40 shadow-sm"
+              class="w-full h-auto rounded-lg object-contain border border-border/40 shadow-sm"
               :alt="previewCert.title"
             />
           </div>
@@ -301,7 +321,7 @@ function openPreview(c: any) {
       </LazySimpleDialog>
 
       <!-- Have a project in mind? -->
-      <LazyAskingEnd style="view-transition-name: asking-end" hydrate-never>
+      <AskingEnd style="view-transition-name: asking-end">
         <h2
           class="text-xl sm:text-2xl font-bold tracking-tight text-foreground"
         >
@@ -323,7 +343,7 @@ function openPreview(c: any) {
             </NuxtLink>
           </li>
         </ul>
-      </LazyAskingEnd>
+      </AskingEnd>
     </div>
   </div>
 </template>

@@ -21,11 +21,12 @@ defineEmits<{
         class="aspect-video overflow-hidden border-b border-border/40 relative cursor-pointer bg-muted"
         @click="$emit('preview')"
       >
-        <ImageWithPlaceholder
+        <NuxtImg
           :src="imageUrl"
           loading="lazy"
           decoding="async"
           width="600"
+          height="338"
           sizes="(max-width: 350px) 350px, (max-width: 600px) 600px, 600px"
           quality="80"
           format="webp"

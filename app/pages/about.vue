@@ -26,8 +26,11 @@ defineOgImage("EachPage.takumi", {
           class="rounded-2xl border border-border bg-card shadow-sm p-1.5 w-full max-w-70 sm:max-w-sm md:max-w-none mx-auto"
         >
           <div class="rounded-xl aspect-square overflow-hidden bg-muted group">
-            <LazyImageWithPlaceholder
+            <NuxtImg
               preload
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
               width="700"
               height="700"
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -44,9 +47,9 @@ defineOgImage("EachPage.takumi", {
         <div class="space-y-6">
           <!-- badge & title -->
           <div class="space-y-3">
-            <LazySimpleBadge style="view-transition-name: page-badge">
+            <SimpleBadge style="view-transition-name: page-badge">
               <span>About me</span>
-            </LazySimpleBadge>
+            </SimpleBadge>
             <h1
               style="view-transition-name: page-title"
               class="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground"
@@ -138,13 +141,13 @@ defineOgImage("EachPage.takumi", {
           Education
         </h2>
         <ul class="grid grid-cols-1 md:grid-cols-2 items-start gap-6">
-          <LazyListItem
+          <ListItem
             title="Bachelor of Information Technology"
             subtitle-left="Brachñāsāstra Technology Institute"
             subtitle-right="2021 - 2025"
             description="Studied about software, hardware and also focus on web development, algorithms, and software engineering as well."
           />
-          <LazyListItem
+          <ListItem
             title="Baccalaureate Degree"
             subtitle-left="Kampong Speu High School"
             subtitle-right="2017 - 2020"
@@ -163,29 +166,29 @@ defineOgImage("EachPage.takumi", {
         <ul
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start gap-6"
         >
-          <LazyListSubList title="frontend">
+          <ListSubList title="frontend">
             <li>Vue / Nuxt.JS</li>
             <li>Astro / SSG</li>
             <li>TypeScript / JavaScript</li>
             <li>Tailwind / Styled Component</li>
-          </LazyListSubList>
-          <LazyListSubList title="backend">
+          </ListSubList>
+          <ListSubList title="backend">
             <li>Node.js / Laravel</li>
             <li>REST API Design</li>
             <li>SQL / PostgreSQL</li>
             <li>Supabase</li>
-          </LazyListSubList>
-          <LazyListSubList title="tools & others">
+          </ListSubList>
+          <ListSubList title="tools & others">
             <li>Git / GitHub</li>
             <li>Docker / CI/CD</li>
             <li>Cloudflare / Vercel / Netlify</li>
             <li>Figma / Adobe XD</li>
-          </LazyListSubList>
+          </ListSubList>
         </ul>
       </div>
 
       <!-- working together? -->
-      <LazyAskingEnd style="view-transition-name: asking-end" hydrate-never>
+      <AskingEnd style="view-transition-name: asking-end">
         <h2 class="text-2xl font-bold tracking-tight text-foreground">
           Interested in working together?
         </h2>
@@ -206,7 +209,7 @@ defineOgImage("EachPage.takumi", {
             </NuxtLink>
           </li>
         </ul>
-      </LazyAskingEnd>
+      </AskingEnd>
     </div>
   </div>
 </template>

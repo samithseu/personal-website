@@ -1,8 +1,11 @@
 let activeFilteringTransitions = 0;
+const isCardTransitioning = ref(false);
 
 /**
  * Safely executes a state change wrapped in View Transition for card filtering,
- * isolating animations to cards only while freezing root, subtitles, and headers.
+ * isolating animations strictly to cards while freezing root, subtitles, and headers.
+ * Exposes `isCardTransitioning` so individual card items only bind `viewTransitionName`
+ * during active filtering, preventing GPU snapshot explosion during cross-page navigation.
  */
 export function useCardTransition() {
   function applyCardTransition(updateFn: () => void) {
@@ -12,6 +15,7 @@ export function useCardTransition() {
       window.matchMedia("(prefers-reduced-motion: no-preference)").matches
     ) {
       activeFilteringTransitions++;
+      isCardTransitioning.value = true;
       document.documentElement.classList.add("filtering-cards");
 
       try {
@@ -26,6 +30,7 @@ export function useCardTransition() {
             activeFilteringTransitions--;
             if (activeFilteringTransitions <= 0) {
               activeFilteringTransitions = 0;
+              isCardTransitioning.value = false;
               document.documentElement.classList.remove("filtering-cards");
             }
           });
@@ -33,6 +38,7 @@ export function useCardTransition() {
         activeFilteringTransitions--;
         if (activeFilteringTransitions <= 0) {
           activeFilteringTransitions = 0;
+          isCardTransitioning.value = false;
           document.documentElement.classList.remove("filtering-cards");
         }
         updateFn();
@@ -44,5 +50,6 @@ export function useCardTransition() {
 
   return {
     applyCardTransition,
+    isCardTransitioning,
   };
 }
