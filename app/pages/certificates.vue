@@ -233,7 +233,7 @@ function openPreview(c: any) {
       <!-- Certificate Modal Preview -->
       <LazySimpleDialog
         v-model="isModalOpen"
-        modal-classes="w-full max-w-2xl bg-card border border-border rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden mx-4"
+        modal-classes="w-full max-w-2xl bg-card border border-border rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden"
         aria-label="Certificate Preview"
       >
         <div v-if="previewCert" class="flex flex-col">

@@ -1,18 +1,44 @@
 <script lang="ts" setup>
 const copied = ref(false);
 
-const rawCode = `import { defineDeveloper } from '@samith/config'
+const STATUS_DISPLAY_DURATION_MS = 4000; // Duration each status stays visible on screen
+const CHAR_TYPE_SPEED_MS = 65; // Character typing speed (with natural variation)
+const CHAR_DELETE_SPEED_MS = 35; // Character deletion speed
+const WORD_STEP_SPEED_MS = 200; // Word-by-word step speed for reduced motion
+const PAUSE_BEFORE_NEXT_MS = 350; // Brief pause before typing next status
+
+const statuses = [
+  "Wasting tokens...",
+  "Copying from Stack Overflow...",
+  "Centering a div...",
+  "Prompting until it builds...",
+  "Blaming the cache...",
+  "Debugging in production...",
+  "Waiting for npm install...",
+  "Converting coffee into bugs...",
+  "It worked on my machine...",
+  "git push --force and praying...",
+];
+
+const currentIndex = ref(0);
+const displayText = ref(statuses[0]);
+
+let timer: ReturnType<typeof setTimeout> | null = null;
+
+const rawCode = computed(
+  () => `import { defineDeveloper } from '@samith/config'
 
 export default defineDeveloper({
   name: "Samith Seu",
   title: "Frontend & Interface Engineer",
-  location: "Chbarmon, Cambodia",
-  status: "Available for new projects",
-})`;
+  location: "Kampong Speu, Cambodia",
+  status: "${displayText.value}",
+})`,
+);
 
 async function copyCode() {
   try {
-    await navigator.clipboard.writeText(rawCode);
+    await navigator.clipboard.writeText(rawCode.value);
     copied.value = true;
     setTimeout(() => {
       copied.value = false;
@@ -21,6 +47,86 @@ async function copyCode() {
     console.error("Failed to copy code", err);
   }
 }
+
+onMounted(() => {
+  const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let isDeleting = false;
+  let charIndex = statuses[0]!.length;
+  let wordIndex = statuses[0]!.split(/\s+/).length;
+
+  function runCycle() {
+    const isReduced = media.matches;
+    const currentPhrase = statuses[currentIndex.value];
+
+    if (isReduced) {
+      // Reduced motion: word-by-word deletion and typing
+      const words = currentPhrase!.split(/\s+/);
+
+      if (!isDeleting) {
+        if (wordIndex < words.length) {
+          wordIndex++;
+          displayText.value = words.slice(0, wordIndex).join(" ");
+          timer = setTimeout(runCycle, WORD_STEP_SPEED_MS);
+        } else {
+          // Completed phrase, pause for configured display duration
+          isDeleting = true;
+          timer = setTimeout(runCycle, STATUS_DISPLAY_DURATION_MS);
+        }
+      } else {
+        if (wordIndex > 0) {
+          wordIndex--;
+          displayText.value = words.slice(0, wordIndex).join(" ");
+          timer = setTimeout(runCycle, WORD_STEP_SPEED_MS);
+        } else {
+          // Finished deleting, move to next phrase after brief pause
+          isDeleting = false;
+          currentIndex.value = (currentIndex.value + 1) % statuses.length;
+          wordIndex = 0;
+          timer = setTimeout(runCycle, PAUSE_BEFORE_NEXT_MS);
+        }
+      }
+    } else {
+      // Standard motion: character-by-character deletion and typing
+      if (!isDeleting) {
+        if (charIndex < currentPhrase!.length) {
+          charIndex++;
+          displayText.value = currentPhrase!.slice(0, charIndex);
+          const typingDelay =
+            CHAR_TYPE_SPEED_MS + (Math.floor(Math.random() * 30) - 15);
+          timer = setTimeout(runCycle, Math.max(30, typingDelay));
+        } else {
+          // Completed phrase, pause for configured display duration
+          isDeleting = true;
+          timer = setTimeout(runCycle, STATUS_DISPLAY_DURATION_MS);
+        }
+      } else {
+        if (charIndex > 0) {
+          charIndex--;
+          displayText.value = currentPhrase!.slice(0, charIndex);
+          timer = setTimeout(runCycle, CHAR_DELETE_SPEED_MS);
+        } else {
+          // Finished deleting, move to next phrase after brief pause
+          isDeleting = false;
+          currentIndex.value = (currentIndex.value + 1) % statuses.length;
+          charIndex = 0;
+          timer = setTimeout(runCycle, PAUSE_BEFORE_NEXT_MS);
+        }
+      }
+    }
+  }
+
+  // Initial display duration before starting first deletion
+  timer = setTimeout(() => {
+    isDeleting = true;
+    runCycle();
+  }, STATUS_DISPLAY_DURATION_MS);
+});
+
+onUnmounted(() => {
+  if (timer) {
+    clearTimeout(timer);
+  }
+});
 </script>
 
 <template>
@@ -93,7 +199,7 @@ async function copyCode() {
   <span class="text-emerald-600 dark:text-emerald-400">name</span>: <span class="text-amber-600 dark:text-amber-300">"Samith Seu"</span>,
   <span class="text-emerald-600 dark:text-emerald-400">title</span>: <span class="text-amber-600 dark:text-amber-300">"Frontend &amp; Interface Engineer"</span>,
   <span class="text-emerald-600 dark:text-emerald-400">location</span>: <span class="text-amber-600 dark:text-amber-300">"Kampong Speu, Cambodia"</span>,
-  <span class="text-emerald-600 dark:text-emerald-400">status</span>: <span class="text-amber-600 dark:text-amber-300">"Wasting tokens..."</span>,
+  <span class="text-emerald-600 dark:text-emerald-400">status</span>: <span class="text-amber-600 dark:text-amber-300">"<span>{{ displayText }}</span><span class="inline-block w-0.5 h-[1.15em] ml-0.5 align-middle bg-amber-500/60 dark:bg-amber-300/60 rounded-xs animate-cursor-blink" aria-hidden="true" />"</span>,
 })</code></pre>
       </div>
     </div>
