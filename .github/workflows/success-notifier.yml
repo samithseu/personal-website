@@ -50,16 +50,79 @@ jobs:
           echo "sha=$RAW_SHA" >> "$GITHUB_OUTPUT"
 
       - name: Send Telegram notification
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          format: html
-          disable_web_page_preview: false
-          message: |
-            <b>${{ steps.notify_data.outputs.title }}</b>
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_TO: ${{ secrets.TELEGRAM_TO }}
+          TITLE: ${{ steps.notify_data.outputs.title }}
+          URL: ${{ steps.notify_data.outputs.url }}
+          BRANCH: ${{ steps.notify_data.outputs.branch }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ steps.notify_data.outputs.sha }}
+          SHORT_SHA: ${{ steps.notify_data.outputs.short_sha }}
+        run: |
+          node << 'EOF'
+          (async () => {
+            const token = process.env.TELEGRAM_TOKEN;
+            const chatId = process.env.TELEGRAM_TO;
+            const title = process.env.TITLE;
+            const url = process.env.URL;
+            const branch = process.env.BRANCH;
+            const repo = process.env.REPO;
+            const sha = process.env.SHA;
+            const shortSha = process.env.SHORT_SHA;
 
-            🔗 <b>Live URL:</b> <tg-button type="url" url="${{ steps.notify_data.outputs.url }}">${{ steps.notify_data.outputs.url }}</tg-button>
-            🌿 <b>Branch:</b> <tg-button type="copy_text" text="${{ steps.notify_data.outputs.branch }}">${{ steps.notify_data.outputs.branch }}</tg-button>
-            📦 <b>Repo:</b> <tg-button type="url" url="https://github.com/${{ github.repository }}">${{ github.repository }}</tg-button>
-            🔖 <b>Commit:</b> <tg-button type="url" url="https://github.com/${{ github.repository }}/commit/${{ steps.notify_data.outputs.sha }}">${{ steps.notify_data.outputs.short_sha }}</tg-button> <tg-button type="copy_text" text="${{ steps.notify_data.outputs.short_sha }}">${{ steps.notify_data.outputs.short_sha }}</tg-button>
+            if (!token || !chatId) {
+              console.error('Error: TELEGRAM_TOKEN and TELEGRAM_TO secrets must be configured.');
+              process.exit(1);
+            }
+
+            const escapeHtml = (str) =>
+              String(str || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&apos;');
+
+            const repoUrl = `https://github.com/${repo}`;
+            const commitUrl = `https://github.com/${repo}/commit/${sha}`;
+
+            const htmlMessage = [
+              `<p><b>${escapeHtml(title)}</b></p>`,
+              '<p>',
+              `🔗 <b>Live URL:</b> <tg-button type="url" url="${escapeHtml(url)}">${escapeHtml(url)}</tg-button><br>`,
+              `🌿 <b>Branch:</b> <tg-button type="copy_text" text="${escapeHtml(branch)}">${escapeHtml(branch)}</tg-button><br>`,
+              `📦 <b>Repo:</b> <tg-button type="url" url="${escapeHtml(repoUrl)}">${escapeHtml(repo)}</tg-button><br>`,
+              `🔖 <b>Commit:</b> <tg-button type="url" url="${escapeHtml(commitUrl)}">${escapeHtml(shortSha)}</tg-button> <tg-button type="copy_text" text="${escapeHtml(shortSha)}">${escapeHtml(shortSha)}</tg-button>`,
+              '</p>'
+            ].join('\n');
+
+            const payload = {
+              chat_id: chatId,
+              rich_message: {
+                html: htmlMessage,
+              },
+            };
+
+            const endpoint = `https://api.telegram.org/bot${token}/sendRichMessage`;
+
+            const res = await fetch(endpoint, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(payload),
+            });
+
+            const data = await res.json();
+            if (!res.ok || !data.ok) {
+              console.error('Telegram API error:', JSON.stringify(data, null, 2));
+              process.exit(1);
+            }
+
+            console.log(`Telegram rich message sent successfully! Message ID: ${data.result?.message_id}`);
+          })().catch((err) => {
+            console.error('Unexpected error:', err);
+            process.exit(1);
+          });
+          EOF
