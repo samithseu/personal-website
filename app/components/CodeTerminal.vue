@@ -253,7 +253,7 @@ onBeforeUnmount(() => {
         <!-- Code lines with syntax tokens -->
         <pre
           class="overflow-x-auto whitespace-pre font-mono space-y-0.5"
-        ><code><span class="text-purple-600 dark:text-purple-400">import</span> { <span class="text-sky-600 dark:text-sky-400">defineDeveloper</span> } <span class="text-purple-600 dark:text-purple-400">from</span> <span class="text-amber-600 dark:text-amber-300">'@samith/config'</span>
+        ><code><span class="text-purple-600 dark:text-purple-400">import</span> { <span class="text-sky-600 dark:text-sky-400">defineDeveloper</span> } <span class="text-purple-600 dark:text-purple-400">from</span> <span class="text-amber-600 dark:text-amber-300">'@samith/config'</span>;
 
 <span class="text-purple-600 dark:text-purple-400">export default</span> <span class="text-sky-600 dark:text-sky-400">defineDeveloper</span>({
   <span class="text-emerald-600 dark:text-emerald-400">name</span>: <span class="text-amber-600 dark:text-amber-300">"Samith Seu"</span>,

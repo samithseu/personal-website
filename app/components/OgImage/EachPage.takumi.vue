@@ -1,72 +1,208 @@
 <script lang="ts" setup>
-defineProps<{
+const props = defineProps<{
   headline?: string;
   title?: string;
   desc?: string;
 }>();
+
+const pageName = computed(() => {
+  if (!props.title) return "home";
+  if (props.title.includes("404")) return "404";
+  const parts = props.title.split("-");
+  const last = parts[parts.length - 1]?.trim();
+  return last ? last.toLowerCase() : "home";
+});
 </script>
 
 <template>
-  <div class="p-16 w-full h-full bg-zinc-950">
-    <div class="w-full h-full flex flex-col gap-10 relative justify-start">
-      <h3 id="headline" class="uppercase font-mono text-3xl text-primary/50">
-        {{ headline }}
-      </h3>
-      <h4
-        id="title"
-        class="text-5xl w-3/4 text-pretty leading-11 font-semibold text-white"
+  <div
+    class="w-full h-full bg-[#09090b] text-white flex flex-col items-center justify-center px-16 py-8 relative overflow-hidden"
+  >
+    <!-- Code Terminal Window: Identical Aspect Ratio & Vibe to Hero Section CodeTerminal.vue -->
+    <div
+      class="w-auto rounded-2xl border border-border bg-[#121215] flex flex-col overflow-hidden font-mono text-xs"
+      style="border: 1px solid hsl(var(--border))"
+    >
+      <!-- Window Header (Identical to CodeTerminal.vue) -->
+      <div
+        class="flex items-center justify-between px-6 py-4 border-b border-zinc-800/60 bg-muted/20"
       >
-        {{ title }}
-      </h4>
-      <p
-        id="desc"
-        class="text-3xl w-2/3 text-pretty leading-relaxed text-zinc-400"
-      >
-        {{ desc }}
-      </p>
+        <!-- Traffic dots & Active Tab -->
+        <div class="flex items-center gap-5">
+          <div class="flex items-center gap-2.5">
+            <span class="w-4.5 h-4.5 rounded-full bg-red-500/80 inline-block" />
+            <span
+              class="w-4.5 h-4.5 rounded-full bg-yellow-500/80 inline-block"
+            />
+            <span
+              class="w-4.5 h-4.5 rounded-full bg-green-500/80 inline-block"
+            />
+          </div>
+          <div
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-t-lg bg-[#0b0b10]/70 border-t border-x border-zinc-700/60 text-[12px] text-zinc-200 font-medium"
+            style="border: 1px solid hsl(var(--border)); border-bottom: none"
+          >
+            <!-- tabler:code icon -->
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-zinc-400"
+            >
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+            <span class="text-base">{{ pageName }}.config.ts</span>
+          </div>
+        </div>
 
-      <div class="w-26 h-28 absolute bottom-0 right-0">
-        <M class="w-full h-full fill-primary" />
+        <!-- Copy Action (Identical to CodeTerminal.vue) -->
+        <div
+          class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[11px] text-zinc-400 font-mono"
+        >
+          <!-- tabler:copy icon -->
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+          </svg>
+          <span class="text-base">Copy</span>
+        </div>
       </div>
 
-      <svg
-        class="absolute -right-16 -top-16"
-        width="629"
-        height="593"
-        viewBox="0 0 629 593"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+      <!-- Code Body (Identical syntax tokens to CodeTerminal.vue) -->
+      <div
+        class="p-6 leading-relaxed text-[15px] bg-[#0b0b10]/70 flex flex-col gap-0.5"
+        style="
+          border-top: 1px solid hsl(var(--border));
+          border-bottom: 1px solid hsl(var(--border));
+        "
       >
-        <g filter="url(#filter0_f_199_94966)">
-          <path
-            class="fill-primary"
-            d="M628.5 -578L639.334 -94.4223L806.598 -548.281L659.827 -87.387L965.396 -462.344L676.925 -74.0787L1087.69 -329.501L688.776 -55.9396L1160.22 -164.149L694.095 -34.9354L1175.13 15.7948L692.306 -13.3422L1130.8 190.83L683.602 6.50012L1032.04 341.989L668.927 22.4412L889.557 452.891L649.872 32.7537L718.78 511.519L628.5 36.32L538.22 511.519L607.128 32.7537L367.443 452.891L588.073 22.4412L224.955 341.989L573.398 6.50012L126.198 190.83L564.694 -13.3422L81.8734 15.7948L562.905 -34.9354L96.7839 -164.149L568.224 -55.9396L169.314 -329.501L580.075 -74.0787L291.604 -462.344L597.173 -87.387L450.402 -548.281L617.666 -94.4223L628.5 -578Z"
-          />
-        </g>
-        <defs>
-          <filter
-            id="filter0_f_199_94966"
-            x="0.873535"
-            y="-659"
-            width="1255.25"
-            height="1251.52"
-            filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+        <!-- Line 1: import { definePage } from '@samith/config' -->
+        <div class="flex items-stretch text-2xl">
+          <span
+            class="w-8 shrink-0 text-right pr-3 text-zinc-600 border-r border-zinc-800/60"
+            >1</span
           >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              result="shape"
-            />
-            <feGaussianBlur
-              stdDeviation="40.5"
-              result="effect1_foregroundBlur_199_94966"
-            />
-          </filter>
-        </defs>
-      </svg>
+          <div class="pl-4 flex items-center">
+            <span class="text-purple-400 mr-1.5">import</span>
+            <span class="text-zinc-300 mr-1.5">{</span>
+            <span class="text-sky-400 mr-1.5">definePage</span>
+            <span class="text-zinc-300 mr-1.5">}</span>
+            <span class="text-purple-400 mr-1.5">from</span>
+            <span class="text-amber-300">'@samith/config'</span>;
+          </div>
+        </div>
+
+        <!-- Line 2: empty line -->
+        <div class="flex items-stretch text-2xl">
+          <span
+            class="w-8 shrink-0 text-right pr-3 text-zinc-600 border-r border-zinc-800/60"
+            >2</span
+          >
+          <div class="pl-4">&nbsp;</div>
+        </div>
+
+        <!-- Line 3: export default definePage({ -->
+        <div class="flex items-stretch text-2xl">
+          <span
+            class="w-8 shrink-0 text-right pr-3 text-zinc-600 border-r border-zinc-800/60"
+            >3</span
+          >
+          <div class="pl-4 flex items-center">
+            <span class="text-purple-400 mr-1.5">export default</span>
+            <span class="text-sky-400">definePage</span>
+            <span class="text-zinc-300">({</span>
+          </div>
+        </div>
+
+        <!-- Line 4: title: "...", -->
+        <div class="flex items-stretch text-2xl">
+          <span
+            class="w-8 shrink-0 text-right pr-3 text-zinc-600 border-r border-zinc-800/60"
+            >4</span
+          >
+          <div class="pl-12 flex items-center">
+            <span class="text-emerald-400">title</span>
+            <span class="text-zinc-300 mr-2">:</span>
+            <span class="text-amber-300">"{{ title }}"</span>
+            <span class="text-zinc-300">,</span>
+          </div>
+        </div>
+
+        <!-- Line 5: content: "...", (description with word wrap) -->
+        <div class="flex items-stretch text-2xl">
+          <span
+            class="w-8 shrink-0 text-right pr-3 pt-0.5 text-zinc-600 border-r border-zinc-800/60"
+            >5</span
+          >
+          <div class="pl-12 flex items-start leading-relaxed max-w-3xl">
+            <span class="text-amber-300 leading-relaxed">
+              <span class="text-emerald-400 shrink-0">content</span>
+              <span class="text-zinc-300 mr-2 shrink-0">:</span>
+              <span>&nbsp;"{{ desc }}"</span
+              ><span class="text-zinc-300">,</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Line 6: }) with amber cursor -->
+        <div class="flex items-stretch text-2xl">
+          <span
+            class="w-8 shrink-0 text-right pr-3 text-zinc-600 border-r border-zinc-800/60"
+            >6</span
+          >
+          <div class="pl-4 flex items-center">
+            <span class="text-zinc-300">})</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status Bar (Identical to CodeTerminal.vue) -->
+      <div
+        class="flex items-center justify-between px-6 py-4 border-t border-zinc-800/60 bg-zinc-900/30 text-[11px] text-zinc-400"
+      >
+        <div class="flex items-center gap-3">
+          <span class="flex items-center gap-1.5 text-zinc-300 text-base">
+            <!-- tabler:git-branch icon -->
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="6" y1="3" x2="6" y2="15" />
+              <circle cx="18" cy="6" r="3" />
+              <circle cx="6" cy="18" r="3" />
+              <path d="M18 9a9 9 0 0 1-9 9" />
+            </svg>
+            <span>main</span>
+          </span>
+          <span class="text-zinc-700">|</span>
+          <span class="inline-flex items-center gap-1.5 text-zinc-400 text-lg">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
+            0 errors
+          </span>
+        </div>
+        <span class="font-mono text-zinc-500 text-base">TypeScript 6.7</span>
+      </div>
     </div>
   </div>
 </template>

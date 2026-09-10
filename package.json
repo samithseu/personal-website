@@ -31,6 +31,7 @@
     "@iconify-json/tabler": "^1.2.38",
     "@tailwindcss/vite": "^4.3.3",
     "i": "^0.3.7",
+    "nuxtseo-layer-devtools": "^5.3.14",
     "sharp": "^0.35.4",
     "tailwindcss": "^4.3.3"
   },
