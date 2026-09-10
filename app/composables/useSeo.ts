@@ -11,6 +11,7 @@ export interface SeoProps {
   noPrefix?: boolean;
   ogHeadline?: string;
   ogImage?: boolean;
+  ogImageUrl?: string;
 }
 
 export const useSeo = ({
@@ -19,6 +20,7 @@ export const useSeo = ({
   noPrefix = false,
   ogHeadline = "personal website",
   ogImage = true,
+  ogImageUrl,
 }: SeoProps) => {
   // Schema.org structured data & dynamic URLs
   const config = useRuntimeConfig();
@@ -93,6 +95,20 @@ export const useSeo = ({
   // Clean full title without unparsed '%s' placeholders for Open Graph and Twitter cards
   const fullTitle = noPrefix ? title : `Samith Seu - ${title}`;
 
+  // For non-prerendered pages like /projects (which has zeroRuntime: true and ISR),
+  // defineOgImage is tree-shaken away by nuxt-og-image at runtime. We supply the
+  // prerendered static OG image URL directly to useSeoMeta.
+  const rawOgImage =
+    ogImageUrl ||
+    (route.path === "/projects"
+      ? (config.public.projectsOgImage as string)
+      : undefined);
+  const resolvedOgImageUrl = rawOgImage
+    ? rawOgImage.startsWith("http")
+      ? rawOgImage
+      : `${siteUrl}${rawOgImage}`
+    : undefined;
+
   useSeoMeta({
     title: fullTitle,
     titleTemplate: "%s",
@@ -105,6 +121,13 @@ export const useSeo = ({
     twitterCreator: "@seumith",
     twitterDescription: description,
     ogType: "website",
+    ...(resolvedOgImageUrl
+      ? {
+          ogImage: resolvedOgImageUrl,
+          twitterImage: resolvedOgImageUrl,
+          twitterCard: "summary_large_image",
+        }
+      : {}),
   });
 
   if (ogImage) {

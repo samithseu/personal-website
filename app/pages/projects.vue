@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 const { allContacts } = useContacts();
+const config = useRuntimeConfig();
 const desc =
   "See what I've been building lately. Browse through my featured projects, view the tech stacks I used, and check out the live demos.";
 useSeo({
   title: "Projects",
   description: desc,
+  ogImageUrl: config.public.projectsOgImage as string,
 });
 
 const { data: projects, error } = await useAsyncData(

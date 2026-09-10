@@ -10,6 +10,7 @@ const ogTemplateHash = fs.existsSync(takumiTemplatePath)
       .digest("hex")
       .slice(0, 8)
   : "v1";
+const projectsOgImagePath = `/_og/s/c_EachPage.takumi,v_${ogTemplateHash},p_Ii9wcm9qZWN0cyI.png`;
 
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
@@ -17,6 +18,9 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
   nitro: {
     preset: "vercel",
+    prerender: {
+      routes: [projectsOgImagePath],
+    },
     serverAssets: [
       {
         baseName: "svg",
@@ -53,7 +57,18 @@ export default defineNuxtConfig({
   routeRules: {
     "/": { prerender: true },
     "/about": { prerender: true },
-    "/projects": { isr: 60 * 5 }, // 5 minutes
+    "/projects": {
+      isr: 60 * 5, // 5 minutes
+      ogImage: {
+        component: "EachPage.takumi",
+        props: {
+          headline: "personal website",
+          title: "Samith Seu - Projects",
+          desc: "See what I've been building lately. Browse through my featured projects, view the tech stacks I used, and check out the live demos.",
+          v: ogTemplateHash,
+        },
+      },
+    },
     "/certificates": { prerender: true },
     "/blogs": { prerender: true },
     "/api/certificates": { prerender: true },
@@ -80,6 +95,7 @@ export default defineNuxtConfig({
       process.env.NUXT_GITHUB_TOKEN || process.env.GITHUB_TOKEN || "",
     public: {
       ogVersion: ogTemplateHash,
+      projectsOgImage: projectsOgImagePath,
       site: {
         url: process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
         name: "Samith Seu - Home",
