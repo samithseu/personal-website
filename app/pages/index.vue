@@ -7,12 +7,6 @@ useSeo({
   description: desc,
 });
 
-defineOgImage("EachPage.takumi", {
-  headline: "personal website",
-  title: "Samith Seu - Home",
-  desc: desc,
-});
-
 const emailCopied = ref(false);
 async function copyEmail() {
   try {

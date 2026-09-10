@@ -6,12 +6,6 @@ useSeo({
   title: "About",
   description: desc,
 });
-
-defineOgImage("EachPage.takumi", {
-  headline: "personal website",
-  title: "Samith Seu - About",
-  desc: desc,
-});
 </script>
 
 <template>

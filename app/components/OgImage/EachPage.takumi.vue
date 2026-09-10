@@ -3,6 +3,7 @@ const props = defineProps<{
   headline?: string;
   title?: string;
   desc?: string;
+  v?: string | number;
 }>();
 
 const pageName = computed(() => {
@@ -20,13 +21,11 @@ const pageName = computed(() => {
   >
     <!-- Code Terminal Window: Identical Aspect Ratio & Vibe to Hero Section CodeTerminal.vue -->
     <div
-      class="w-auto rounded-2xl border border-border bg-[#121215] flex flex-col overflow-hidden font-mono text-xs"
+      class="w-auto rounded-2xl bg-[#121215] flex flex-col overflow-hidden font-mono text-xs"
       style="border: 1px solid hsl(var(--border))"
     >
       <!-- Window Header (Identical to CodeTerminal.vue) -->
-      <div
-        class="flex items-center justify-between px-6 py-4 border-b border-zinc-800/60 bg-muted/20"
-      >
+      <div class="flex items-center justify-between px-6 py-4 bg-muted/20">
         <!-- Traffic dots & Active Tab -->
         <div class="flex items-center gap-5">
           <div class="flex items-center gap-2.5">
@@ -39,7 +38,7 @@ const pageName = computed(() => {
             />
           </div>
           <div
-            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-t-lg bg-[#0b0b10]/70 border-t border-x border-zinc-700/60 text-[12px] text-zinc-200 font-medium"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-t-lg bg-[#0b0b10]/70 text-[12px] text-zinc-200 font-normal"
             style="border: 1px solid hsl(var(--border)); border-bottom: none"
           >
             <!-- tabler:code icon -->
@@ -93,10 +92,7 @@ const pageName = computed(() => {
       >
         <!-- Line 1: import { definePage } from '@samith/config' -->
         <div class="flex items-stretch text-2xl">
-          <span
-            class="w-8 shrink-0 text-right pr-3 text-zinc-600 border-r border-zinc-800/60"
-            >1</span
-          >
+          <span class="w-8 shrink-0 text-right pr-3 text-zinc-600">1</span>
           <div class="pl-4 flex items-center">
             <span class="text-purple-400 mr-1.5">import</span>
             <span class="text-zinc-300 mr-1.5">{</span>
@@ -109,19 +105,13 @@ const pageName = computed(() => {
 
         <!-- Line 2: empty line -->
         <div class="flex items-stretch text-2xl">
-          <span
-            class="w-8 shrink-0 text-right pr-3 text-zinc-600 border-r border-zinc-800/60"
-            >2</span
-          >
+          <span class="w-8 shrink-0 text-right pr-3 text-zinc-600">2</span>
           <div class="pl-4">&nbsp;</div>
         </div>
 
         <!-- Line 3: export default definePage({ -->
         <div class="flex items-stretch text-2xl">
-          <span
-            class="w-8 shrink-0 text-right pr-3 text-zinc-600 border-r border-zinc-800/60"
-            >3</span
-          >
+          <span class="w-8 shrink-0 text-right pr-3 text-zinc-600">3</span>
           <div class="pl-4 flex items-center">
             <span class="text-purple-400 mr-1.5">export default</span>
             <span class="text-sky-400">definePage</span>
@@ -131,10 +121,7 @@ const pageName = computed(() => {
 
         <!-- Line 4: title: "...", -->
         <div class="flex items-stretch text-2xl">
-          <span
-            class="w-8 shrink-0 text-right pr-3 text-zinc-600 border-r border-zinc-800/60"
-            >4</span
-          >
+          <span class="w-8 shrink-0 text-right pr-3 text-zinc-600">4</span>
           <div class="pl-12 flex items-center">
             <span class="text-emerald-400">title</span>
             <span class="text-zinc-300 mr-2">:</span>
@@ -145,8 +132,7 @@ const pageName = computed(() => {
 
         <!-- Line 5: content: "...", (description with word wrap) -->
         <div class="flex items-stretch text-2xl">
-          <span
-            class="w-8 shrink-0 text-right pr-3 pt-0.5 text-zinc-600 border-r border-zinc-800/60"
+          <span class="w-8 shrink-0 text-right pr-3 pt-0.5 text-zinc-600"
             >5</span
           >
           <div class="pl-12 flex items-start leading-relaxed max-w-3xl">
@@ -161,10 +147,7 @@ const pageName = computed(() => {
 
         <!-- Line 6: }) with amber cursor -->
         <div class="flex items-stretch text-2xl">
-          <span
-            class="w-8 shrink-0 text-right pr-3 text-zinc-600 border-r border-zinc-800/60"
-            >6</span
-          >
+          <span class="w-8 shrink-0 text-right pr-3 text-zinc-600">6</span>
           <div class="pl-4 flex items-center">
             <span class="text-zinc-300">})</span>
           </div>
@@ -173,7 +156,7 @@ const pageName = computed(() => {
 
       <!-- Status Bar (Identical to CodeTerminal.vue) -->
       <div
-        class="flex items-center justify-between px-6 py-4 border-t border-zinc-800/60 bg-zinc-900/30 text-[11px] text-zinc-400"
+        class="flex items-center justify-between px-6 py-4 bg-zinc-900/30 text-[11px] text-zinc-400"
       >
         <div class="flex items-center gap-3">
           <span class="flex items-center gap-1.5 text-zinc-300 text-base">

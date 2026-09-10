@@ -7,12 +7,6 @@ useSeo({
   description: desc,
 });
 
-defineOgImage("EachPage.takumi", {
-  headline: "personal website",
-  title: "Samith Seu - Certificates",
-  desc: desc,
-});
-
 const { data: certs, error } = await useAsyncData(
   "certificates",
   fetchingCertificates,

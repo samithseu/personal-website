@@ -1,4 +1,15 @@
+import fs from "node:fs";
+import crypto from "node:crypto";
 import tailwindcss from "@tailwindcss/vite";
+
+const takumiTemplatePath = "./app/components/OgImage/EachPage.takumi.vue";
+const ogTemplateHash = fs.existsSync(takumiTemplatePath)
+  ? crypto
+      .createHash("md5")
+      .update(fs.readFileSync(takumiTemplatePath))
+      .digest("hex")
+      .slice(0, 8)
+  : "v1";
 
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
@@ -68,6 +79,7 @@ export default defineNuxtConfig({
     githubToken:
       process.env.NUXT_GITHUB_TOKEN || process.env.GITHUB_TOKEN || "",
     public: {
+      ogVersion: ogTemplateHash,
       site: {
         url: process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
         name: "Samith Seu - Home",

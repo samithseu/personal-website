@@ -2,18 +2,23 @@ export type CustomOGImageProps = {
   headline?: string;
   title?: string;
   desc?: string;
+  v?: string | number;
 };
 
 export interface SeoProps {
   title: string;
   description: string;
   noPrefix?: boolean;
+  ogHeadline?: string;
+  ogImage?: boolean;
 }
 
 export const useSeo = ({
   title,
   description,
   noPrefix = false,
+  ogHeadline = "personal website",
+  ogImage = true,
 }: SeoProps) => {
   // Schema.org structured data & dynamic URLs
   const config = useRuntimeConfig();
@@ -101,4 +106,13 @@ export const useSeo = ({
     twitterDescription: description,
     ogType: "website",
   });
+
+  if (ogImage) {
+    defineOgImage("EachPage.takumi", {
+      headline: ogHeadline,
+      title: fullTitle,
+      desc: description,
+      v: (config.public.ogVersion as string) || "v1",
+    });
+  }
 };

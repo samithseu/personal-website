@@ -7,12 +7,6 @@ useSeo({
   description: desc,
 });
 
-defineOgImage("EachPage.takumi", {
-  headline: "personal website",
-  title: "Samith Seu - Projects",
-  desc: desc,
-});
-
 const { data: projects, error } = await useAsyncData(
   "projects",
   () => $fetch("/api/projects"),

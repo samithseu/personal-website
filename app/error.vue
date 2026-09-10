@@ -10,12 +10,6 @@ useSeo({
   description: props.error!.message,
   noPrefix: true,
 });
-
-defineOgImage("EachPage.takumi", {
-  headline: "personal website",
-  title: `Samith Seu - Error ${props.error!.statusCode}`,
-  desc: props.error!.message,
-});
 </script>
 
 <template>
