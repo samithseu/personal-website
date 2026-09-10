@@ -84,7 +84,8 @@ const pageName = computed(() => {
 
       <!-- Code Body (Identical syntax tokens to CodeTerminal.vue) -->
       <div
-        class="p-6 leading-relaxed text-[15px] bg-[#0b0b10]/70 flex flex-col gap-0.5"
+        id="code-body"
+        class="px-6 py-8 leading-relaxed bg-[#0b0b10]/70 flex flex-col"
         style="
           border-top: 1px solid hsl(var(--border));
           border-bottom: 1px solid hsl(var(--border));
@@ -92,8 +93,12 @@ const pageName = computed(() => {
       >
         <!-- Line 1: import { definePage } from '@samith/config' -->
         <div class="flex items-stretch text-2xl">
-          <span class="w-8 shrink-0 text-right pr-3 text-zinc-600">1</span>
-          <div class="pl-4 flex items-center">
+          <span
+            style="border-right: 1px solid hsl(var(--border))"
+            class="w-8 shrink-0 text-right pr-3 text-zinc-600 leading-relaxed"
+            >1</span
+          >
+          <div class="pl-4 flex items-center leading-relaxed">
             <span class="text-purple-400 mr-1.5">import</span>
             <span class="text-zinc-300 mr-1.5">{</span>
             <span class="text-sky-400 mr-1.5">definePage</span>
@@ -105,14 +110,22 @@ const pageName = computed(() => {
 
         <!-- Line 2: empty line -->
         <div class="flex items-stretch text-2xl">
-          <span class="w-8 shrink-0 text-right pr-3 text-zinc-600">2</span>
-          <div class="pl-4">&nbsp;</div>
+          <span
+            style="border-right: 1px solid hsl(var(--border))"
+            class="w-8 shrink-0 text-right pr-3 text-zinc-600 leading-relaxed"
+            >2</span
+          >
+          <div class="pl-4 leading-relaxed">&nbsp;</div>
         </div>
 
         <!-- Line 3: export default definePage({ -->
         <div class="flex items-stretch text-2xl">
-          <span class="w-8 shrink-0 text-right pr-3 text-zinc-600">3</span>
-          <div class="pl-4 flex items-center">
+          <span
+            style="border-right: 1px solid hsl(var(--border))"
+            class="w-8 shrink-0 text-right pr-3 text-zinc-600 leading-relaxed"
+            >3</span
+          >
+          <div class="pl-4 flex items-center leading-relaxed">
             <span class="text-purple-400 mr-1.5">export default</span>
             <span class="text-sky-400">definePage</span>
             <span class="text-zinc-300">({</span>
@@ -121,8 +134,12 @@ const pageName = computed(() => {
 
         <!-- Line 4: title: "...", -->
         <div class="flex items-stretch text-2xl">
-          <span class="w-8 shrink-0 text-right pr-3 text-zinc-600">4</span>
-          <div class="pl-12 flex items-center">
+          <span
+            style="border-right: 1px solid hsl(var(--border))"
+            class="w-8 shrink-0 text-right pr-3 text-zinc-600 leading-relaxed"
+            >4</span
+          >
+          <div class="pl-12 flex items-center leading-relaxed">
             <span class="text-emerald-400">title</span>
             <span class="text-zinc-300 mr-2">:</span>
             <span class="text-amber-300">"{{ title }}"</span>
@@ -132,10 +149,12 @@ const pageName = computed(() => {
 
         <!-- Line 5: content: "...", (description with word wrap) -->
         <div class="flex items-stretch text-2xl">
-          <span class="w-8 shrink-0 text-right pr-3 pt-0.5 text-zinc-600"
+          <span
+            style="border-right: 1px solid hsl(var(--border))"
+            class="w-8 shrink-0 text-right pr-3 pt-0.5 text-zinc-600 leading-relaxed"
             >5</span
           >
-          <div class="pl-12 flex items-start leading-relaxed max-w-3xl">
+          <div class="pl-12 flex items-start max-w-3xl leading-relaxed">
             <span class="text-amber-300 leading-relaxed">
               <span class="text-emerald-400 shrink-0">content</span>
               <span class="text-zinc-300 mr-2 shrink-0">:</span>
@@ -147,8 +166,12 @@ const pageName = computed(() => {
 
         <!-- Line 6: }) with amber cursor -->
         <div class="flex items-stretch text-2xl">
-          <span class="w-8 shrink-0 text-right pr-3 text-zinc-600">6</span>
-          <div class="pl-4 flex items-center">
+          <span
+            style="border-right: 1px solid hsl(var(--border))"
+            class="w-8 shrink-0 text-right pr-3 text-zinc-600 leading-relaxed"
+            >6</span
+          >
+          <div class="pl-4 flex items-center leading-relaxed">
             <span class="text-zinc-300">})</span>
           </div>
         </div>
