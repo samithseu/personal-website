@@ -30,7 +30,7 @@ jobs:
           ENV_LOWER="$(echo "$ENV_NAME" | tr '[:upper:]' '[:lower:]')"
           if [ "$ENV_LOWER" = "production" ]; then
             BRANCH="main"
-            TITLE="🚀 Production Deployment Succeeded!"
+            TITLE="🚀✅ Production Deployment"
             URL="https://samith.dev"
           else
             BRANCH=""
@@ -40,7 +40,7 @@ jobs:
             if [ -z "$BRANCH" ]; then
               BRANCH="dev"
             fi
-            TITLE="🧪 Preview Deployment Succeeded ($BRANCH)!"
+            TITLE="🧪✅ Preview Deployment ($BRANCH)"
           fi
 
           echo "title=$TITLE" >> "$GITHUB_OUTPUT"
@@ -90,10 +90,10 @@ jobs:
             const htmlMessage = [
               `<p><b>${escapeHtml(title)}</b></p>`,
               '<p>',
-              `🔗 <b>Live URL:</b> <tg-button type="url" url="${escapeHtml(url)}">${escapeHtml(url)}</tg-button><br>`,
+              `🔗 <b>Live URL:</b> <tg-button type="url" url="${escapeHtml(url)}">Check it out!</tg-button> <tg-button type="copy_text" text="${escapeHtml(url)}">Copy URL</tg-button><br>`,
               `🌿 <b>Branch:</b> <tg-button type="copy_text" text="${escapeHtml(branch)}">${escapeHtml(branch)}</tg-button><br>`,
               `📦 <b>Repo:</b> <tg-button type="url" url="${escapeHtml(repoUrl)}">${escapeHtml(repo)}</tg-button><br>`,
-              `🔖 <b>Commit:</b> <tg-button type="url" url="${escapeHtml(commitUrl)}">${escapeHtml(shortSha)}</tg-button> <tg-button type="copy_text" text="${escapeHtml(shortSha)}">${escapeHtml(shortSha)}</tg-button>`,
+              `🔖 <b>Commit:</b> <tg-button type="url" url="${escapeHtml(commitUrl)}">${escapeHtml(shortSha)}</tg-button> <tg-button type="copy_text" text="${escapeHtml(shortSha)}">Copy Short Hash</tg-button> <tg-button type="copy_text" text="${escapeHtml(sha)}">Copy Full Hash</tg-button>`,
               '</p>'
             ].join('\n');
 
