@@ -6,38 +6,48 @@ on:
 jobs:
   notify:
     name: Notify Telegram
-    if: >
-      github.event.deployment_status.state == 'success' &&
-      (github.event.deployment.ref == 'main' || github.event.deployment.ref == 'dev' || github.event.deployment.ref == 'refs/heads/main' || github.event.deployment.ref == 'refs/heads/dev')
+    if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Prepare deployment notification
         id: notify_data
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           RAW_REF="${{ github.event.deployment.ref }}"
-          BRANCH="${RAW_REF#refs/heads/}"
-          URL="${{ github.event.deployment_status.environment_url }}"
+          RAW_SHA="${{ github.event.deployment.sha || github.sha }}"
+          SHORT_SHA="${RAW_SHA:0:7}"
+          ENV_NAME="${{ github.event.deployment.environment || github.event.deployment_status.environment }}"
 
+          URL="${{ github.event.deployment_status.environment_url }}"
           if [ -z "$URL" ]; then
             URL="${{ github.event.deployment_status.target_url }}"
           fi
 
-          if [ "$BRANCH" = "main" ]; then
+          # Detect branch: Vercel passes commit SHA as deployment ref, so inspect environment and commit branches
+          ENV_LOWER="$(echo "$ENV_NAME" | tr '[:upper:]' '[:lower:]')"
+          if [ "$ENV_LOWER" = "production" ]; then
+            BRANCH="main"
             TITLE="🚀 Production Deployment Succeeded!"
-            if [ -z "$URL" ]; then
-              URL="https://samith.dev"
-            fi
+            URL="https://samith.dev"
           else
+            BRANCH=""
+            if [ -n "$RAW_SHA" ]; then
+              BRANCH=$(gh api "/repos/${{ github.repository }}/commits/${RAW_SHA}/branches-where-head" --jq '.[].name' 2>/dev/null | grep -v '^main$' | head -n 1 || true)
+            fi
+            if [ -z "$BRANCH" ]; then
+              BRANCH="dev"
+            fi
             TITLE="🧪 Preview Deployment Succeeded ($BRANCH)!"
           fi
-
-          RAW_SHA="${{ github.event.deployment.sha || github.sha }}"
-          SHORT_SHA="${RAW_SHA:0:7}"
 
           echo "title=$TITLE" >> "$GITHUB_OUTPUT"
           echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
           echo "url=$URL" >> "$GITHUB_OUTPUT"
           echo "short_sha=$SHORT_SHA" >> "$GITHUB_OUTPUT"
+          echo "sha=$RAW_SHA" >> "$GITHUB_OUTPUT"
 
       - name: Send Telegram notification
         uses: appleboy/telegram-action@master
@@ -52,5 +62,5 @@ jobs:
             🔗 <b>Live URL:</b> <a href="${{ steps.notify_data.outputs.url }}">${{ steps.notify_data.outputs.url }}</a>
             🌿 <b>Branch:</b> <code>${{ steps.notify_data.outputs.branch }}</code>
             📦 <b>Repo:</b> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
-            🔖 <b>Commit:</b> <a href="https://github.com/${{ github.repository }}/commit/${{ github.event.deployment.sha || github.sha }}">${{ steps.notify_data.outputs.short_sha }}</a>
+            🔖 <b>Commit:</b> <a href="https://github.com/${{ github.repository }}/commit/${{ steps.notify_data.outputs.sha }}">${{ steps.notify_data.outputs.short_sha }}</a>
 
