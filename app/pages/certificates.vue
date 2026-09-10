@@ -28,6 +28,21 @@ const searchQuery = ref("");
 const selectedOrg = ref("All");
 const previewCert = ref<any | null>(null);
 const isModalOpen = ref(false);
+const isImageLoading = ref(true);
+const previewSessionId = ref(0);
+const loadedCertUrls = new Set<string>();
+const certImgRef = ref<any>(null);
+
+// Match certificate container and skeleton aspect ratio to issuer format
+const certAspectRatio = computed(() => {
+  if (!previewCert.value) return "10/7";
+  const org = String(previewCert.value.org || "").toLowerCase();
+  const url = String(previewCert.value.url || "").toLowerCase();
+  if (org.includes("hackerrank") || url.endsWith(".png")) {
+    return "4/3";
+  }
+  return "10/7";
+});
 
 // Dynamically extract distinct organizations from certificate data
 const orgOptions = computed(() => {
@@ -115,9 +130,35 @@ function resetFilters() {
   });
 }
 
-function openPreview(c: any) {
+function checkImageComplete() {
+  const el = certImgRef.value?.$el || certImgRef.value;
+  if (el && el.complete && el.naturalWidth > 0) {
+    if (previewCert.value?.url) {
+      loadedCertUrls.add(previewCert.value.url);
+    }
+    isImageLoading.value = false;
+  }
+}
+
+async function openPreview(c: any) {
+  previewSessionId.value++;
   previewCert.value = c;
+  // If already loaded in this session, display immediately without skeleton
+  isImageLoading.value = !loadedCertUrls.has(c.url);
   isModalOpen.value = true;
+  await nextTick();
+  checkImageComplete();
+}
+
+function handleImageLoad(url?: string) {
+  if (url) {
+    loadedCertUrls.add(url);
+  }
+  isImageLoading.value = false;
+}
+
+function handleImageError() {
+  isImageLoading.value = false;
 }
 </script>
 
@@ -283,17 +324,39 @@ function openPreview(c: any) {
 
           <!-- Modal Image Preview -->
           <div
-            class="p-3 sm:p-5 bg-muted/10 max-h-[60vh] sm:max-h-[68vh] overflow-auto flex items-center justify-center"
+            class="p-3 sm:p-5 bg-muted/10 max-h-[60vh] sm:max-h-[68vh] overflow-hidden flex items-center justify-center"
           >
-            <NuxtImg
-              :src="`/certs/${previewCert.url}`"
-              loading="lazy"
-              decoding="async"
-              quality="75"
-              format="webp"
-              class="w-full h-auto rounded-lg object-contain border border-border/40 shadow-sm"
-              :alt="previewCert.title"
-            />
+            <div
+              :key="`${previewCert.url}-${previewSessionId}`"
+              :style="`aspect-ratio: ${certAspectRatio};`"
+              class="relative w-full max-h-[55vh] sm:max-h-[62vh] rounded-lg overflow-hidden border border-border/40 bg-muted/30 shadow-sm flex items-center justify-center"
+            >
+              <!-- Skeleton placeholder -->
+              <div
+                v-if="isImageLoading"
+                class="absolute inset-0 bg-zinc-700/80 animate-pulse flex flex-col items-center justify-center gap-2 z-10"
+              >
+                <Icon
+                  name="tabler:photo"
+                  class="size-8 text-zinc-500/70 animate-pulse"
+                />
+              </div>
+
+              <!-- Certificate Image with smooth fade-in and full fill -->
+              <NuxtImg
+                ref="certImgRef"
+                :src="`/certs/${previewCert.url}`"
+                loading="eager"
+                decoding="async"
+                quality="85"
+                format="webp"
+                class="w-full h-full object-cover transition-opacity duration-300 ease-out"
+                :class="isImageLoading ? 'opacity-0' : 'opacity-100'"
+                :alt="previewCert.title"
+                @load="handleImageLoad(previewCert.url)"
+                @error="handleImageError"
+              />
+            </div>
           </div>
 
           <!-- Modal Footer -->

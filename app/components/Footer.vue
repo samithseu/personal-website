@@ -10,7 +10,7 @@
         &copy; {{ new Date().getFullYear() }} Samith Seu &dash; Personal Website
       </p>
       <p class="flex items-center gap-1.5">
-        <span>Made w/</span>
+        <span>Built w/</span>
         <NuxtLink
           title="Nuxt.js official website"
           aria-label="This will go to Nuxt.js official website"
@@ -20,7 +20,6 @@
           class="font-medium text-foreground hover:underline underline-offset-4 transition-colors"
           >Nuxt</NuxtLink
         >
-        <span class="text-border">/</span>
         <NuxtLink
           class="font-mono hover:text-foreground transition-colors"
           title="Source code"

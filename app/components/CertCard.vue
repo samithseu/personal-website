@@ -26,11 +26,10 @@ defineEmits<{
           loading="lazy"
           decoding="async"
           width="600"
-          height="338"
           sizes="(max-width: 350px) 350px, (max-width: 600px) 600px, 600px"
           quality="80"
           format="webp"
-          class="aspect-video object-cover h-full w-full object-top group-hover:scale-105 transition-transform duration-500"
+          class="w-full h-auto object-cover origin-top group-hover:scale-105 transition-transform duration-500"
           :alt="`${title} certificate image`"
         />
         <div
@@ -54,9 +53,7 @@ defineEmits<{
           <span>{{ date }}</span>
         </span>
 
-        <h3
-          class="text-lg font-semibold text-foreground leading-snug"
-        >
+        <h3 class="text-lg font-semibold text-foreground leading-snug">
           {{ title }}
         </h3>
 
