@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     preset: "vercel",
     prerender: {
       routes: [projectsOgImagePath],
+      ignore: ["/_ipx"],
     },
     serverAssets: [
       {
@@ -77,6 +78,7 @@ export default defineNuxtConfig({
         "cache-control": "public, max-age=31536000, immutable",
       },
     },
+    "/_ipx/**": { prerender: false },
 
     // social media
     "/github": { redirect: "https://github.com/samithseu" },
