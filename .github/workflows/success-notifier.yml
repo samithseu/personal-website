@@ -90,10 +90,10 @@ jobs:
             const htmlMessage = [
               `<p><b>${escapeHtml(title)}</b></p>`,
               '<p>',
-              `🔗 <b>Live URL:</b> <tg-button type="url" url="${escapeHtml(url)}">Check it out!</tg-button> <tg-button type="copy_text" text="${escapeHtml(url)}">Copy URL</tg-button><br>`,
+              `🔗 <b>Live URL:</b> <tg-button type="url" url="${escapeHtml(url)}">Check it out!</tg-button> <tg-button type="copy_text" text="${escapeHtml(url)}">URL</tg-button><br>`,
               `🌿 <b>Branch:</b> <tg-button type="copy_text" text="${escapeHtml(branch)}">${escapeHtml(branch)}</tg-button><br>`,
               `📦 <b>Repo:</b> <tg-button type="url" url="${escapeHtml(repoUrl)}">${escapeHtml(repo)}</tg-button><br>`,
-              `🔖 <b>Commit:</b> <tg-button type="url" url="${escapeHtml(commitUrl)}">${escapeHtml(shortSha)}</tg-button> <tg-button type="copy_text" text="${escapeHtml(shortSha)}">Copy Short Hash</tg-button> <tg-button type="copy_text" text="${escapeHtml(sha)}">Copy Full Hash</tg-button>`,
+              `🔖 <b>Commit:</b> <tg-button type="url" url="${escapeHtml(commitUrl)}">${escapeHtml(shortSha)}</tg-button> <tg-button type="copy_text" text="${escapeHtml(shortSha)}">Short Hash</tg-button> <tg-button type="copy_text" text="${escapeHtml(sha)}">Full Hash</tg-button>`,
               '</p>'
             ].join('\n');
 
