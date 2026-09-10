@@ -12,6 +12,7 @@ export interface SeoProps {
   ogHeadline?: string;
   ogImage?: boolean;
   ogImageUrl?: string;
+  pageType?: "WebPage" | "AboutPage" | "CollectionPage" | "ProfilePage";
 }
 
 export const useSeo = ({
@@ -21,20 +22,36 @@ export const useSeo = ({
   ogHeadline = "personal website",
   ogImage = true,
   ogImageUrl,
+  pageType,
 }: SeoProps) => {
   // Schema.org structured data & dynamic URLs
   const config = useRuntimeConfig();
-  const siteUrl = (config.public.site?.url || config.public.siteUrl || "https://samithseu.vercel.app") as string;
+  const siteUrl = (config.public.site?.url || config.public.siteUrl || "https://samith.dev") as string;
   const inLanguage = "en-US";
   const route = useRoute();
-  const canonicalUrl = `${siteUrl}${route.path === "/" ? "" : route.path}`;
+  const canonicalUrl = route.path === "/" ? `${siteUrl}/` : `${siteUrl}${route.path}`;
 
+  // Clean full title without unparsed '%s' placeholders
+  const fullTitle = noPrefix ? title : `Samith Seu - ${title}`;
+
+  const personId = `${siteUrl}/#person`;
+  const websiteId = `${siteUrl}/#website`;
+  const webpageId = `${canonicalUrl}#webpage`;
+  const breadcrumbId = `${canonicalUrl}#breadcrumb`;
+
+  // High-accuracy Schema.org Person definition consistent with llm.txt
   const definedPerson = definePerson({
-    "@id": `${siteUrl}/#person`,
+    "@id": personId,
     "@type": "Person",
     url: siteUrl,
     name: "Samith Seu",
-    description: "A web developer and lifelong learner.",
+    givenName: "Samith",
+    familyName: "Seu",
+    jobTitle: "Frontend & Interface Engineer",
+    description:
+      "Frontend & Interface Engineer and Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces and applications using modern technologies including Vue, Nuxt, React, TypeScript, and Tailwind CSS.",
+    image: `${siteUrl}/about-picture.jpg`,
+    email: "mailto:contact@samith.dev",
     alternateName: [
       "Seu Samith",
       "Samith Seu",
@@ -43,57 +60,124 @@ export const useSeo = ({
       "seumith",
       "ស៊ឺ សាមីត",
     ],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Chbar Mon",
+      addressRegion: "Kampong Speu",
+      addressCountry: "KH",
+    },
+    alumniOf: [
+      {
+        "@type": "EducationalOrganization",
+        name: "Brachñāsāstra Technology Institute",
+        alternateName: "BTI",
+        url: "https://www.facebook.com/brachnasastraBTI/",
+      },
+      {
+        "@type": "EducationalOrganization",
+        name: "Kampong Speu High School",
+        url: "https://maps.app.goo.gl/v2CP1f6JuUVK6pUm8",
+      },
+    ],
+    knowsAbout: [
+      "Vue.js",
+      "Nuxt.js",
+      "React.js",
+      "Astro",
+      "TypeScript",
+      "JavaScript",
+      "Tailwind CSS",
+      "Node.js",
+      "Laravel",
+      "REST API Design",
+      "SQL",
+      "PostgreSQL",
+      "Supabase",
+      "Git",
+      "Docker",
+      "Figma",
+      "Frontend Engineering",
+      "Web Development",
+    ],
+    knowsLanguage: ["en", "km"],
     sameAs: [
-      "https://samithseu.vercel.app",
       "https://github.com/samithseu",
       "https://linkedin.com/in/samithseu/",
       "https://x.com/seumith",
       "https://t.me/samithseu",
+      "https://resume.samith.dev",
     ],
   });
 
+  const resolvedPageType =
+    pageType ||
+    (route.path === "/"
+      ? "ProfilePage"
+      : route.path === "/about"
+        ? "AboutPage"
+        : route.path === "/projects" ||
+            route.path === "/certificates" ||
+            route.path === "/blogs"
+          ? "CollectionPage"
+          : "WebPage");
+
   useSchemaOrg([
+    definedPerson,
     defineWebSite({
-      "@id": `${siteUrl}/#website`,
+      "@id": websiteId,
       "@type": "WebSite",
       name: "Samith Seu - Personal Website",
       description:
         "Welcome to my digital space. Explore my work, read the blog, and learn about my journey as a developer.",
       url: siteUrl,
       inLanguage,
-      publisher: definedPerson,
-      datePublished: new Date("2025-05-12").toISOString(),
-      dateModified: new Date().toISOString(),
+      publisher: { "@id": personId },
+      author: { "@id": personId },
+      datePublished: "2025-05-12T00:00:00.000Z",
     }),
     defineWebPage({
-      "@id": canonicalUrl,
-      "@type": "WebPage",
+      "@id": webpageId,
+      "@type": resolvedPageType,
       url: canonicalUrl,
-      name: title,
+      name: fullTitle,
       description,
-      author: definedPerson,
+      author: { "@id": personId },
       inLanguage,
+      isPartOf: {
+        "@id": websiteId,
+      },
+      ...(resolvedPageType === "ProfilePage" || resolvedPageType === "AboutPage"
+        ? { mainEntity: { "@id": personId } }
+        : {}),
       keywords: [
-        "ស៊ឺ សាមីត",
-        "Seu Samith",
         "Samith Seu",
-        "web developer",
+        "Seu Samith",
+        "ស៊ឺ សាមីត",
+        "Frontend & Interface Engineer",
+        "Web Developer",
+        "Vue.js",
+        "Nuxt.js",
+        "TypeScript",
+        "Tailwind CSS",
         "personal website",
-        "developer website",
         "developer portfolio",
       ],
       potentialAction: [
         defineReadAction({
-          "@type": "ReadAction",
           target: [canonicalUrl],
         }),
       ],
     }),
-    definedPerson,
+    defineBreadcrumb({
+      "@id": breadcrumbId,
+      itemListElement: [
+        { name: "Home", item: `${siteUrl}/` },
+        ...(route.path !== "/"
+          ? [{ name: title, item: canonicalUrl }]
+          : []),
+      ],
+    }),
   ]);
-
-  // Clean full title without unparsed '%s' placeholders for Open Graph and Twitter cards
-  const fullTitle = noPrefix ? title : `Samith Seu - ${title}`;
 
   // For non-prerendered pages like /projects (which has zeroRuntime: true and ISR),
   // defineOgImage is tree-shaken away by nuxt-og-image at runtime. We supply the
