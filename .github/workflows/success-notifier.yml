@@ -1,22 +1,56 @@
 name: Success deployment status notifier
+
 on:
   deployment_status:
+
 jobs:
-  build:
-    name: Build
-    if: github.event.deployment_status.state == 'success'
+  notify:
+    name: Notify Telegram
+    if: >
+      github.event.deployment_status.state == 'success' &&
+      (github.event.deployment.ref == 'main' || github.event.deployment.ref == 'dev' || github.event.deployment.ref == 'refs/heads/main' || github.event.deployment.ref == 'refs/heads/dev')
     runs-on: ubuntu-latest
     steps:
-      - name: Sending message
+      - name: Prepare deployment notification
+        id: notify_data
+        run: |
+          RAW_REF="${{ github.event.deployment.ref }}"
+          BRANCH="${RAW_REF#refs/heads/}"
+          URL="${{ github.event.deployment_status.environment_url }}"
+
+          if [ -z "$URL" ]; then
+            URL="${{ github.event.deployment_status.target_url }}"
+          fi
+
+          if [ "$BRANCH" = "main" ]; then
+            TITLE="🚀 Production Deployment Succeeded!"
+            if [ -z "$URL" ]; then
+              URL="https://samith.dev"
+            fi
+          else
+            TITLE="🧪 Preview Deployment Succeeded ($BRANCH)!"
+          fi
+
+          RAW_SHA="${{ github.event.deployment.sha || github.sha }}"
+          SHORT_SHA="${RAW_SHA:0:7}"
+
+          echo "title=$TITLE" >> "$GITHUB_OUTPUT"
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "short_sha=$SHORT_SHA" >> "$GITHUB_OUTPUT"
+
+      - name: Send Telegram notification
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: html
+          disable_web_page_preview: false
           message: |
-            <b>✅️ Deployment succeeded!</b>
+            <b>${{ steps.notify_data.outputs.title }}</b>
 
-            <b>🔍️ Feel free to check: <a href="https://samith.dev">https://samith.dev</a></b>
+            🔗 <b>Live URL:</b> <a href="${{ steps.notify_data.outputs.url }}">${{ steps.notify_data.outputs.url }}</a>
+            🌿 <b>Branch:</b> <code>${{ steps.notify_data.outputs.branch }}</code>
+            📦 <b>Repo:</b> <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
+            🔖 <b>Commit:</b> <a href="https://github.com/${{ github.repository }}/commit/${{ github.event.deployment.sha || github.sha }}">${{ steps.notify_data.outputs.short_sha }}</a>
 
-            - repo: <a href="https://github.com/${{ github.repository }}">${{ github.repository }}</a>
-            - changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
