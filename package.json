@@ -9,7 +9,7 @@
     "dev": "nuxt cleanup && nuxt dev",
     "dev:host": "nuxt dev --host",
     "generate": "nuxt generate",
-    "preview": "NITRO_PRESET=node-server nuxt build && nuxt preview",
+    "preview": "NITRO_PRESET=node-server nuxt build && node .output/server/index.mjs",
     "preview:vercel": "vercel deploy --prebuilt",
     "postinstall": "nuxt prepare"
   },

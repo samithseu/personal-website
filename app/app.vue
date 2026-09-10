@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
-import favicon from "/favicon.ico";
 
 useHead({
   htmlAttrs: { lang: "en" },
@@ -9,7 +8,10 @@ useHead({
     { name: "viewport", content: "width=device-width, initial-scale=1.0" },
     { name: "color-scheme", content: "dark light" },
   ],
-  link: [{ rel: "icon", type: "image/x-icon", href: favicon }],
+  link: [
+    { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+    { rel: "alternate icon", type: "image/x-icon", href: "/favicon.ico" },
+  ],
   script: [
     {
       innerHTML: `try { if (window.matchMedia('(prefers-color-scheme: dark)').matches) { document.documentElement.classList.add('dark'); } } catch (_) {}`,

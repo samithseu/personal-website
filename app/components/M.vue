@@ -1,17 +1,21 @@
 <script lang="ts" setup>
-defineProps<{
-  color?: string;
-  withRatio?: boolean;
-}>();
+withDefaults(
+  defineProps<{
+    color?: string;
+    withRatio?: boolean;
+  }>(),
+  {
+    color: "currentColor",
+    withRatio: false,
+  },
+);
 </script>
 
 <template>
   <svg
-    width="921"
-    height="1050"
-    :class="withRatio && 'aspect-[9.21/10.50]'"
     viewBox="0 0 921 1050"
-    :fill="color ?? '#15d0ff'"
+    :class="withRatio && 'aspect-[9.21/10.50]'"
+    :fill="color"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path

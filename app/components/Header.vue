@@ -69,7 +69,7 @@ watch(
         <span
           class="size-8 rounded-lg border border-border/70 bg-card/80 flex items-center justify-center text-foreground group-hover:border-foreground/30 transition-colors shadow-2xs"
         >
-          <Icon name="tabler:terminal" class="text-base" />
+          <M class="size-4.5" />
         </span>
         <span class="font-mono text-sm font-bold tracking-tight"
           >samith.dev</span
