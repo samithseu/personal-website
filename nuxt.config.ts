@@ -80,6 +80,14 @@ export default defineNuxtConfig({
     },
     "/_ipx/**": { prerender: false },
 
+    "/llm.txt": {
+      headers: {
+        "content-type": "text/plain; charset=utf-8",
+        "cache-control": "public, max-age=3600, s-maxage=86400",
+      },
+    },
+    "/llms.txt": { redirect: "/llm.txt" },
+
     // social media
     "/github": { redirect: "https://github.com/samithseu" },
     "/linkedin": { redirect: "https://linkedin.com/in/samithseu/" },
@@ -89,8 +97,8 @@ export default defineNuxtConfig({
   experimental: { viewTransition: true },
   app: { head: { titleTemplate: "%s" }, viewTransition: true },
   site: {
-    url: process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
-    name: "Samith Seu - Home",
+    url: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
+    name: "Samith Seu - Personal Website",
   },
   runtimeConfig: {
     githubToken:
@@ -99,15 +107,15 @@ export default defineNuxtConfig({
       ogVersion: ogTemplateHash,
       projectsOgImage: projectsOgImagePath,
       site: {
-        url: process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
-        name: "Samith Seu - Home",
+        url: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
+        name: "Samith Seu - Personal Website",
       },
     },
   },
   sitemap: {
     zeroRuntime: true,
     sources: [],
-    siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
+    siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
   },
   fonts: {
     families: [
@@ -149,7 +157,7 @@ export default defineNuxtConfig({
       public: {
         site: {
           url: "http://localhost:3000",
-          name: "Samith Seu - Home",
+          name: "Samith Seu - Personal Website",
         },
       },
     },
@@ -160,8 +168,8 @@ export default defineNuxtConfig({
       public: {
         site: {
           url:
-            process.env.NUXT_PUBLIC_SITE_URL || "https://samithseu.vercel.app",
-          name: "Samith Seu - Home",
+            process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
+          name: "Samith Seu - Personal Website",
         },
       },
     },

@@ -1,0 +1,285 @@
+# Samith Seu
+
+> Frontend & Interface Engineer and Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces and applications using modern technologies including Vue, Nuxt, React, TypeScript, and Tailwind CSS.
+
+- Name: Samith Seu
+- Title: Frontend & Interface Engineer / Web Developer
+- Location: Chbarmon municipality, Kampong Speu, Cambodia
+- Website: https://samith.dev
+- Email: contact@samith.dev
+- Resume: https://resume.samith.dev
+- GitHub: https://github.com/samithseu
+- LinkedIn: https://linkedin.com/in/samithseu/
+- X (Twitter): https://x.com/seumith
+- Telegram: https://t.me/samithseu
+
+---
+
+## Bio & Introduction
+
+"I build websites with modern technologies, specializing in crafting responsive and user-friendly interfaces for web applications."
+
+### Background & Story
+- High School Spark (2020): While studying at Kampong Speu High School, Samith was fascinated by technology and programming. In 2020, learning through online classes during the pandemic ignited his curiosity about technology even further, driving his decision to pursue programming seriously.
+- College Inspiration & First Coding Experience: In his 2nd year of college at Brachñāsāstra Technology Institute (BTI), he was taught by a professor who worked as a software engineer at a government institution. The professor demonstrated a Laravel web application he had built. That impressive moment inspired Samith to delve deeply into programming, particularly Web Development.
+- Present Day: Comfortable working across the frontend domain—from API integration to crafting accessible, interactive UI components with React.js and Vue.js—while continuing to expand backend knowledge. Based in Chbarmon municipality, Kampong Speu, Cambodia.
+
+### Interactive Code Terminal Configuration
+```typescript
+import { defineDeveloper } from '@samith/config';
+
+export default defineDeveloper({
+  name: "Samith Seu",
+  title: "Frontend & Interface Engineer",
+  location: "Kampong Speu, Cambodia",
+  status: "Wasting tokens",
+});
+```
+
+Developer statuses displayed in terminal:
+- Wasting tokens
+- Copying from Stack Overflow
+- Centering a div
+- Prompting until it builds
+- Blaming the cache
+- Debugging in production
+- Waiting for npm install
+- Converting coffee into bugs
+- It worked on my machine
+- git push --force and praying
+
+---
+
+## Skills & Technologies
+
+### Frontend
+- Vue.js / Nuxt.js
+- React.js
+- Astro / SSG (Static Site Generation)
+- TypeScript / JavaScript
+- Tailwind CSS / Styled Components
+- HTML5 / CSS3 / Responsive UI Design
+
+### Backend
+- Node.js / Laravel (PHP)
+- REST API Design & Integration
+- SQL / PostgreSQL
+- Supabase
+
+### Tools, Platforms & DevOps
+- Git / GitHub
+- Docker / CI/CD
+- Cloudflare / Vercel / Netlify
+- Figma / Adobe XD
+
+---
+
+## Education
+
+- Bachelor of Information Technology (2021 – 2025)
+  - Institution: Brachñāsāstra Technology Institute (BTI)
+  - Details: Studied computer hardware, software engineering, web development, data structures, algorithms, and system analysis.
+
+- Baccalaureate Degree (High School Diploma) (2017 – 2020)
+  - Institution: Kampong Speu High School
+  - Details: Studied Khmer Literature, Mathematics, Foreign Language, and Social Studies (History) to obtain high school diploma from MoEYS (Ministry of Education, Youth and Sport).
+
+---
+
+## Featured Projects
+
+All featured projects are maintained by Samith Seu on GitHub with live deployments:
+
+1. personal-website
+   - Description: Personal portfolio and website built with Nuxt 4 and Tailwind CSS v4 featuring SSR, aggressive lazy loading, dark theme, smooth view transitions, and SEO optimization.
+   - Tech Stack: Vue.js, Nuxt.js, TypeScript, Tailwind CSS, Nuxt Content
+   - Homepage: https://samith.dev
+   - GitHub Repository: https://github.com/samithseu/personal-website
+
+2. ghm
+   - Description: Find GitHub-Mail by username using GitHub's public API.
+   - Tech Stack: GitHub API, Email, JavaScript
+   - Homepage: https://ghm.samith.dev
+   - GitHub Repository: https://github.com/samithseu/ghm
+
+3. tl-bot-webhook
+   - Description: Telegram Bot implementation using Webhooks.
+   - Tech Stack: Telegram Bot API, Webhooks, Node.js
+   - Homepage: https://tl-bot-webhook.vercel.app
+   - GitHub Repository: https://github.com/samithseu/tl-bot-webhook
+
+4. sosei
+   - Description: SoSei (សរសេរ) - Khmer document formatting and HTML to PDF printing tool using Paged.js.
+   - Tech Stack: Astro, HTML-to-PDF, Paged.js, JavaScript
+   - Homepage: http://sosei.madebymith.site
+   - GitHub Repository: https://github.com/samithseu/sosei
+
+5. cover-maker
+   - Description: Khmer notebook cover maker for A5 size without using Microsoft Word.
+   - Tech Stack: JavaScript, HTML, CSS, A5 layout
+   - Homepage: https://samithseu.github.io/cover-maker/
+   - GitHub Repository: https://github.com/samithseu/cover-maker
+
+6. edcongress-clone
+   - Description: Clone of edcongress.org website built with Alpine.js.
+   - Tech Stack: Alpine.js, HTML, CSS
+   - Homepage: https://samithseu.github.io/edcongress-clone/
+   - GitHub Repository: https://github.com/samithseu/edcongress-clone
+
+7. landing-page
+   - Description: Simple, clean responsive landing page created from scratch.
+   - Tech Stack: HTML, CSS, JavaScript, Tailwind CSS
+   - Homepage: https://samithseu.github.io/landing-page/
+   - GitHub Repository: https://github.com/samithseu/landing-page
+
+8. saas-homepage
+   - Description: Simple SAAS Homepage marketing layout built with Tailwind CSS.
+   - Tech Stack: Tailwind CSS, HTML, Responsive Design
+   - Homepage: https://saas-homepage-site.vercel.app
+   - GitHub Repository: https://github.com/samithseu/saas-homepage
+
+---
+
+## Verified Certificates & Credentials
+
+1. Frontend Developer (React)
+   - Issuer: HackerRank
+   - Issue Date: May 26, 2025
+   - Credential ID: e5e674e706e1
+   - Certificate Image: https://samith.dev/certs/frontend-react.png
+
+2. Java Programming I
+   - Issuer: Brachñāsāstra Technology Institute (BTI)
+   - Issue Date: September 7, 2024
+   - Credential ID: BTI273
+   - Certificate Image: https://samith.dev/certs/java-i.jpg
+
+3. Software Engineering I
+   - Issuer: Brachñāsāstra Technology Institute (BTI)
+   - Issue Date: September 7, 2024
+   - Credential ID: BTI276
+   - Certificate Image: https://samith.dev/certs/swe-i.jpg
+
+4. Computer Graphic II
+   - Issuer: Brachñāsāstra Technology Institute (BTI)
+   - Issue Date: June 1, 2024
+   - Credential ID: BTI272
+   - Certificate Image: https://samith.dev/certs/computer-graphic-ii.jpg
+
+5. Internet Programming II
+   - Issuer: Brachñāsāstra Technology Institute (BTI)
+   - Issue Date: June 1, 2024
+   - Credential ID: BTI270
+   - Certificate Image: https://samith.dev/certs/html-ii.jpg
+
+6. Information System Analysis and Design I
+   - Issuer: Brachñāsāstra Technology Institute (BTI)
+   - Issue Date: May 4, 2024
+   - Credential ID: BTI264
+   - Certificate Image: https://samith.dev/certs/isad-i.jpg
+
+7. Visual Basic Programming II
+   - Issuer: Brachñāsāstra Technology Institute (BTI)
+   - Issue Date: May 4, 2024
+   - Credential ID: BTI269
+   - Certificate Image: https://samith.dev/certs/vb-ii.jpg
+
+8. Data Communication II
+   - Issuer: Brachñāsāstra Technology Institute (BTI)
+   - Issue Date: November 23, 2023
+   - Credential ID: BTI255
+   - Certificate Image: https://samith.dev/certs/data-com-ii.jpg
+
+9. Computer Graphic I
+   - Issuer: Brachñāsāstra Technology Institute (BTI)
+   - Issue Date: October 6, 2023
+   - Credential ID: BTI265
+   - Certificate Image: https://samith.dev/certs/computer-graphic-i.jpg
+
+10. Visual Basic Programming I
+    - Issuer: Brachñāsāstra Technology Institute (BTI)
+    - Issue Date: October 6, 2023
+    - Credential ID: BTI262
+    - Certificate Image: https://samith.dev/certs/vb-i.jpg
+
+11. Computer Network II
+    - Issuer: Brachñāsāstra Technology Institute (BTI)
+    - Issue Date: August 4, 2023
+    - Credential ID: BTI268
+    - Certificate Image: https://samith.dev/certs/computer-network-ii.jpg
+
+12. Data Structures and Algorithms II
+    - Issuer: Brachñāsāstra Technology Institute (BTI)
+    - Issue Date: August 4, 2023
+    - Credential ID: BTI257
+    - Certificate Image: https://samith.dev/certs/dsa-ii.jpg
+
+13. CSS (Basic)
+    - Issuer: HackerRank
+    - Issue Date: July 14, 2023
+    - Credential ID: 1105ab0d17cf
+    - Certificate Image: https://samith.dev/certs/css-basic.png
+
+14. Computer Network I
+    - Issuer: Brachñāsāstra Technology Institute (BTI)
+    - Issue Date: April 22, 2023
+    - Credential ID: BTI261
+    - Certificate Image: https://samith.dev/certs/computer-network-i.jpg
+
+15. Project Management
+    - Issuer: Brachñāsāstra Technology Institute (BTI)
+    - Issue Date: December 31, 2022
+    - Credential ID: BTI285
+    - Certificate Image: https://samith.dev/certs/project-mgmt-i.jpg
+
+16. C++ Programming II
+    - Issuer: Brachñāsāstra Technology Institute (BTI)
+    - Issue Date: December 30, 2022
+    - Credential ID: BTI258
+    - Certificate Image: https://samith.dev/certs/cpp-ii.jpg
+
+---
+
+## Blog & Articles
+
+- Status: No articles yet.
+- Description: Thoughts, technical deep dives, and tutorials will be published here soon.
+- URL: https://samith.dev/blogs
+
+---
+
+## Contact & Working Together
+
+Interested in working together or have a project in mind? Samith is always open to discuss new projects, collaborations, or opportunities:
+- Email: contact@samith.dev
+- GitHub: https://github.com/samithseu
+- LinkedIn: https://linkedin.com/in/samithseu/
+- X (Twitter): https://x.com/seumith
+- Telegram: https://t.me/samithseu
+- Resume: https://resume.samith.dev
+
+---
+
+## Website Routes & Navigation
+
+- `/` : Home page (hero section, headline, introduction, interactive code terminal, quick actions)
+- `/about` : About page (biography, personal story, education history, skills & technologies)
+- `/projects` : Featured projects showcase with interactive category filtering and search
+- `/certificates` : Verified qualifications gallery with search, organization filter, and modal image preview
+- `/blogs` : Articles, tutorials, and writing
+- `/llm.txt` : LLM context file (this document)
+- `/github` : Direct redirect to GitHub profile
+- `/linkedin` : Direct redirect to LinkedIn profile
+- `/x` : Direct redirect to X / Twitter profile
+- `/telegram` : Direct redirect to Telegram profile
+
+---
+
+## Technical Architecture
+
+- Framework: Nuxt 4 (Vue 3, Nitro engine)
+- Styling: Tailwind CSS v4 via `@tailwindcss/vite`
+- Content Backend: `@nuxt/content` v3 with JSON data storage
+- Performance Optimizations: Aggressive component lazy loading (`Lazy*`, `hydrate-never`, `hydrate-on-media-query`), zero-runtime build-time OG image generation via Takumi, keep-alive page caching, and native View Transitions API.
+- Hosting: Vercel Edge Network
+- Source Repository: https://github.com/samithseu/personal-website
