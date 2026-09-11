@@ -9,15 +9,11 @@ useSeo({
   ogImageUrl: config.public.projectsOgImage as string,
 });
 
-const { data: projects, error } = await useAsyncData(
-  "projects",
-  () => $fetch("/api/projects"),
-  {
-    getCachedData(key, nuxtApp) {
-      return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
-    },
+const { data: projects, error } = await useFetch("/api/projects", {
+  getCachedData(key, nuxtApp) {
+    return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
   },
-);
+});
 
 const searchInput = ref("");
 const searchQuery = ref("");
@@ -215,6 +211,7 @@ function resetFilters() {
               v-for="lang in languageFilters"
               :key="lang"
               type="button"
+              :aria-pressed="selectedLanguage === lang"
               @click="selectLanguage(lang)"
               :class="[
                 'rounded-full font-mono text-xs px-3 py-1 transition-colors cursor-pointer border whitespace-nowrap',

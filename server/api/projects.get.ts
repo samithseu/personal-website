@@ -1,4 +1,4 @@
-import type { Project, GitHubRepo } from "~/types/project";
+import type { Project, GitHubRepo } from "#shared/types/project";
 
 const CACHE_TTL: number = 60 * 5; // 5 minutes
 

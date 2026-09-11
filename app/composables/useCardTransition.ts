@@ -1,5 +1,4 @@
 let activeFilteringTransitions = 0;
-const isCardTransitioning = ref(false);
 
 /**
  * Safely executes a state change wrapped in View Transition for card filtering,
@@ -8,6 +7,8 @@ const isCardTransitioning = ref(false);
  * during active filtering, preventing GPU snapshot explosion during cross-page navigation.
  */
 export function useCardTransition() {
+  const isCardTransitioning = useState<boolean>("isCardTransitioning", () => false);
+
   function applyCardTransition(updateFn: () => void) {
     if (
       import.meta.client &&

@@ -45,11 +45,13 @@ const allLinks: readonly Link[] = [
   },
 ] as const;
 
-// Change `open` state to false when route value changes
-const open = ref<boolean>(false);
+const route = useRoute();
+const open = ref(false);
 watch(
-  () => useRoute().path,
-  () => (open.value = false),
+  () => route.path,
+  () => {
+    open.value = false;
+  },
 );
 </script>
 

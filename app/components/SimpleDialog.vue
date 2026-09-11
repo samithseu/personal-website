@@ -20,22 +20,7 @@
   </dialog>
 </template>
 
-<script lang="ts">
-// Module-level state shared across dialog instances for global scroll locking
-let activeModalCount = 0;
-let originalBodyOverflow = "";
-</script>
-
 <script lang="ts" setup>
-import {
-  ref,
-  watch,
-  onMounted,
-  onBeforeUnmount,
-  onDeactivated,
-  nextTick,
-} from "vue";
-
 const props = withDefaults(
   defineProps<{
     modelValue: boolean;
@@ -65,25 +50,28 @@ const emit = defineEmits<{
 const dialogRef = ref<HTMLDialogElement | null>(null);
 const contentRef = ref<HTMLDivElement | null>(null);
 
+const activeModalCount = useState<number>("dialog-active-count", () => 0);
+const originalBodyOverflow = useState<string>("dialog-original-overflow", () => "");
+
 let previouslyFocusedElement: HTMLElement | null = null;
 let isMouseDownOnBackdrop = false;
 let isLocallyLocked = false;
 
 function lockBodyScroll() {
   if (!import.meta.client || isLocallyLocked) return;
-  if (activeModalCount === 0) {
-    originalBodyOverflow = document.body.style.overflow;
+  if (activeModalCount.value === 0) {
+    originalBodyOverflow.value = document.body.style.overflow;
     document.body.style.overflow = "hidden";
   }
-  activeModalCount++;
+  activeModalCount.value++;
   isLocallyLocked = true;
 }
 
 function restoreBodyScroll() {
   if (!import.meta.client || !isLocallyLocked) return;
-  activeModalCount = Math.max(0, activeModalCount - 1);
-  if (activeModalCount === 0) {
-    document.body.style.overflow = originalBodyOverflow || "";
+  activeModalCount.value = Math.max(0, activeModalCount.value - 1);
+  if (activeModalCount.value === 0) {
+    document.body.style.overflow = originalBodyOverflow.value || "";
   }
   isLocallyLocked = false;
 }

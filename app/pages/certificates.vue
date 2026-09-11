@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { Certificate } from "#shared/types/certificate";
+
 const { allContacts } = useContacts();
 const desc =
   "Proof of learning! View my verified certificates and credentials.";
@@ -7,9 +9,8 @@ useSeo({
   description: desc,
 });
 
-const { data: certs, error } = await useAsyncData(
-  "certificates",
-  fetchingCertificates,
+const { data: certs, error } = await useFetch<Certificate[]>(
+  "/api/certificates",
   {
     getCachedData(key, nuxtApp) {
       return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
@@ -20,7 +21,7 @@ const { data: certs, error } = await useAsyncData(
 const searchInput = ref("");
 const searchQuery = ref("");
 const selectedOrg = ref("All");
-const previewCert = ref<any | null>(null);
+const previewCert = ref<Certificate | null>(null);
 const isModalOpen = ref(false);
 const isImageLoading = ref(true);
 const previewSessionId = ref(0);
@@ -54,7 +55,7 @@ const filteredCerts = computed(() => {
   if (!certs.value) return [];
   const query = searchQuery.value.trim().toLowerCase();
 
-  return certs.value.filter((c: any) => {
+  return certs.value.filter((c) => {
     // Organization filter (BTI, HackerRank, All)
     const matchesOrg =
       selectedOrg.value === "All" ||
@@ -134,7 +135,7 @@ function checkImageComplete() {
   }
 }
 
-async function openPreview(c: any) {
+async function openPreview(c: Certificate) {
   previewSessionId.value++;
   previewCert.value = c;
   // If already loaded in this session, display immediately without skeleton
@@ -219,6 +220,7 @@ function handleImageError() {
               v-for="org in orgOptions"
               :key="org"
               type="button"
+              :aria-pressed="selectedOrg === org"
               @click="selectOrg(org)"
               :class="[
                 'rounded-full font-mono text-xs px-3.5 py-1 transition-colors cursor-pointer border whitespace-nowrap',

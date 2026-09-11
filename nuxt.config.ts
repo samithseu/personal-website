@@ -50,10 +50,9 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
   ],
   icon: {
-    mode: "svg",
+    mode: "css",
     cssLayer: "base",
-    serverBundle: { collections: ["tabler"] },
-    clientBundle: { scan: { globInclude: ["**/*.{vue,ts,js}"] } },
+    serverBundle: false,
   },
   routeRules: {
     "/": { prerender: true },
@@ -95,7 +94,7 @@ export default defineNuxtConfig({
     "/telegram": { redirect: "https://t.me/samithseu" },
   },
   experimental: { viewTransition: true },
-  app: { head: { titleTemplate: "%s" }, viewTransition: true },
+  app: { head: { titleTemplate: "%s" } },
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
     name: "Samith Seu - Personal Website",
@@ -115,7 +114,6 @@ export default defineNuxtConfig({
   sitemap: {
     zeroRuntime: true,
     sources: [],
-    siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
   },
   fonts: {
     families: [
