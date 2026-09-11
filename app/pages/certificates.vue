@@ -12,8 +12,9 @@ useSeo({
 const { data: certs, error } = await useFetch<Certificate[]>(
   "/api/certificates",
   {
+    key: "certificates-list",
     getCachedData(key, nuxtApp) {
-      return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
+      return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
     },
   },
 );

@@ -127,7 +127,7 @@ export default defineNuxtConfig({
       {
         name: "Inter",
         styles: ["normal"],
-        weights: [300, 400, 600, 700],
+        weights: [400, 600, 700],
         subsets: ["latin"],
         global: true,
       },

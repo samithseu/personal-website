@@ -15,6 +15,105 @@ export interface SeoProps {
   pageType?: "WebPage" | "AboutPage" | "CollectionPage" | "ProfilePage";
 }
 
+// High-accuracy Schema.org Person & WebSite definitions cached to avoid repeated allocations
+const personCache = new Map<string, ReturnType<typeof definePerson>>();
+function getPersonNode(siteUrl: string) {
+  let node = personCache.get(siteUrl);
+  if (!node) {
+    node = definePerson({
+      "@id": `${siteUrl}/#person`,
+      "@type": "Person",
+      url: siteUrl,
+      name: "Samith Seu",
+      givenName: "Samith",
+      familyName: "Seu",
+      jobTitle: "Frontend & Interface Engineer",
+      description:
+        "Frontend & Interface Engineer and Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces and applications using modern technologies including Vue, Nuxt, React, TypeScript, and Tailwind CSS.",
+      image: `${siteUrl}/about-picture.jpg`,
+      email: "mailto:contact@samith.dev",
+      alternateName: [
+        "Seu Samith",
+        "Samith Seu",
+        "samithseu",
+        "seusamith",
+        "seumith",
+        "ស៊ឺ សាមីត",
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Chbar Mon",
+        addressRegion: "Kampong Speu",
+        addressCountry: "KH",
+      },
+      alumniOf: [
+        {
+          "@type": "EducationalOrganization",
+          name: "Brachñāsāstra Technology Institute",
+          alternateName: "BTI",
+          url: "https://www.facebook.com/brachnasastraBTI/",
+        },
+        {
+          "@type": "EducationalOrganization",
+          name: "Kampong Speu High School",
+          url: "https://maps.app.goo.gl/v2CP1f6JuUVK6pUm8",
+        },
+      ],
+      knowsAbout: [
+        "Vue.js",
+        "Nuxt.js",
+        "React.js",
+        "Astro",
+        "TypeScript",
+        "JavaScript",
+        "Tailwind CSS",
+        "Node.js",
+        "Laravel",
+        "REST API Design",
+        "SQL",
+        "PostgreSQL",
+        "Supabase",
+        "Git",
+        "Docker",
+        "Figma",
+        "Frontend Engineering",
+        "Web Development",
+      ],
+      knowsLanguage: ["en", "km"],
+      sameAs: [
+        "https://github.com/samithseu",
+        "https://linkedin.com/in/samithseu/",
+        "https://x.com/seumith",
+        "https://t.me/samithseu",
+        "https://resume.samith.dev",
+      ],
+    });
+    personCache.set(siteUrl, node);
+  }
+  return node;
+}
+
+const websiteCache = new Map<string, ReturnType<typeof defineWebSite>>();
+function getWebsiteNode(siteUrl: string, inLanguage: string) {
+  let node = websiteCache.get(siteUrl);
+  if (!node) {
+    node = defineWebSite({
+      "@id": `${siteUrl}/#website`,
+      "@type": "WebSite",
+      name: "Samith Seu - Personal Website",
+      description:
+        "Welcome to my digital space. Explore my work, read the blog, and learn about my journey as a developer.",
+      url: siteUrl,
+      inLanguage,
+      publisher: { "@id": `${siteUrl}/#person` },
+      author: { "@id": `${siteUrl}/#person` },
+      datePublished: "2025-05-12T00:00:00.000Z",
+    });
+    websiteCache.set(siteUrl, node);
+  }
+  return node;
+}
+
 export const useSeo = ({
   title,
   description,
@@ -39,76 +138,6 @@ export const useSeo = ({
   const webpageId = `${canonicalUrl}#webpage`;
   const breadcrumbId = `${canonicalUrl}#breadcrumb`;
 
-  // High-accuracy Schema.org Person definition consistent with llm.txt
-  const definedPerson = definePerson({
-    "@id": personId,
-    "@type": "Person",
-    url: siteUrl,
-    name: "Samith Seu",
-    givenName: "Samith",
-    familyName: "Seu",
-    jobTitle: "Frontend & Interface Engineer",
-    description:
-      "Frontend & Interface Engineer and Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces and applications using modern technologies including Vue, Nuxt, React, TypeScript, and Tailwind CSS.",
-    image: `${siteUrl}/about-picture.jpg`,
-    email: "mailto:contact@samith.dev",
-    alternateName: [
-      "Seu Samith",
-      "Samith Seu",
-      "samithseu",
-      "seusamith",
-      "seumith",
-      "ស៊ឺ សាមីត",
-    ],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Chbar Mon",
-      addressRegion: "Kampong Speu",
-      addressCountry: "KH",
-    },
-    alumniOf: [
-      {
-        "@type": "EducationalOrganization",
-        name: "Brachñāsāstra Technology Institute",
-        alternateName: "BTI",
-        url: "https://www.facebook.com/brachnasastraBTI/",
-      },
-      {
-        "@type": "EducationalOrganization",
-        name: "Kampong Speu High School",
-        url: "https://maps.app.goo.gl/v2CP1f6JuUVK6pUm8",
-      },
-    ],
-    knowsAbout: [
-      "Vue.js",
-      "Nuxt.js",
-      "React.js",
-      "Astro",
-      "TypeScript",
-      "JavaScript",
-      "Tailwind CSS",
-      "Node.js",
-      "Laravel",
-      "REST API Design",
-      "SQL",
-      "PostgreSQL",
-      "Supabase",
-      "Git",
-      "Docker",
-      "Figma",
-      "Frontend Engineering",
-      "Web Development",
-    ],
-    knowsLanguage: ["en", "km"],
-    sameAs: [
-      "https://github.com/samithseu",
-      "https://linkedin.com/in/samithseu/",
-      "https://x.com/seumith",
-      "https://t.me/samithseu",
-      "https://resume.samith.dev",
-    ],
-  });
-
   const resolvedPageType =
     pageType ||
     (route.path === "/"
@@ -122,19 +151,8 @@ export const useSeo = ({
           : "WebPage");
 
   useSchemaOrg([
-    definedPerson,
-    defineWebSite({
-      "@id": websiteId,
-      "@type": "WebSite",
-      name: "Samith Seu - Personal Website",
-      description:
-        "Welcome to my digital space. Explore my work, read the blog, and learn about my journey as a developer.",
-      url: siteUrl,
-      inLanguage,
-      publisher: { "@id": personId },
-      author: { "@id": personId },
-      datePublished: "2025-05-12T00:00:00.000Z",
-    }),
+    getPersonNode(siteUrl),
+    getWebsiteNode(siteUrl, inLanguage),
     defineWebPage({
       "@id": webpageId,
       "@type": resolvedPageType,

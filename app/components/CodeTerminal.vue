@@ -25,20 +25,17 @@ const displayText = ref(statuses[0]);
 
 let timer: ReturnType<typeof setTimeout> | null = null;
 
-const rawCode = computed(
-  () => `import { defineDeveloper } from '@samith/config'
+async function copyCode() {
+  try {
+    const rawCode = `import { defineDeveloper } from '@samith/config'
 
 export default defineDeveloper({
   name: "Samith Seu",
   title: "Frontend & Interface Engineer",
   location: "Kampong Speu, Cambodia",
   status: "${displayText.value}",
-})`,
-);
-
-async function copyCode() {
-  try {
-    await navigator.clipboard.writeText(rawCode.value);
+})`;
+    await navigator.clipboard.writeText(rawCode);
     copied.value = true;
     setTimeout(() => {
       copied.value = false;

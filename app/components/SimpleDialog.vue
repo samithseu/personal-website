@@ -50,8 +50,8 @@ const emit = defineEmits<{
 const dialogRef = ref<HTMLDialogElement | null>(null);
 const contentRef = ref<HTMLDivElement | null>(null);
 
-const activeModalCount = useState<number>("dialog-active-count", () => 0);
-const originalBodyOverflow = useState<string>("dialog-original-overflow", () => "");
+let activeModalCount = 0;
+let originalBodyOverflow = "";
 
 let previouslyFocusedElement: HTMLElement | null = null;
 let isMouseDownOnBackdrop = false;
@@ -59,19 +59,19 @@ let isLocallyLocked = false;
 
 function lockBodyScroll() {
   if (!import.meta.client || isLocallyLocked) return;
-  if (activeModalCount.value === 0) {
-    originalBodyOverflow.value = document.body.style.overflow;
+  if (activeModalCount === 0) {
+    originalBodyOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
   }
-  activeModalCount.value++;
+  activeModalCount++;
   isLocallyLocked = true;
 }
 
 function restoreBodyScroll() {
   if (!import.meta.client || !isLocallyLocked) return;
-  activeModalCount.value = Math.max(0, activeModalCount.value - 1);
-  if (activeModalCount.value === 0) {
-    document.body.style.overflow = originalBodyOverflow.value || "";
+  activeModalCount = Math.max(0, activeModalCount - 1);
+  if (activeModalCount === 0) {
+    document.body.style.overflow = originalBodyOverflow || "";
   }
   isLocallyLocked = false;
 }

@@ -6,10 +6,10 @@ let activeFilteringTransitions = 0;
  * Exposes `isCardTransitioning` so individual card items only bind `viewTransitionName`
  * during active filtering, preventing GPU snapshot explosion during cross-page navigation.
  */
-export function useCardTransition() {
-  const isCardTransitioning = useState<boolean>("isCardTransitioning", () => false);
+const isCardTransitioning = ref(false);
 
-  function applyCardTransition(updateFn: () => void) {
+export function useCardTransition() {
+  async function applyCardTransition(updateFn: () => void) {
     if (
       import.meta.client &&
       "startViewTransition" in document &&
@@ -18,6 +18,8 @@ export function useCardTransition() {
       activeFilteringTransitions++;
       isCardTransitioning.value = true;
       document.documentElement.classList.add("filtering-cards");
+      // Flush DOM so card viewTransitionNames are rendered in the pre-transition snapshot
+      await nextTick();
 
       try {
         const transition = document.startViewTransition(async () => {

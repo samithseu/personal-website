@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { GitHubRepo } from "#shared/types/project";
+
 const { allContacts } = useContacts();
 const config = useRuntimeConfig();
 const desc =
@@ -9,9 +11,10 @@ useSeo({
   ogImageUrl: config.public.projectsOgImage as string,
 });
 
-const { data: projects, error } = await useFetch("/api/projects", {
+const { data: projects, error } = await useFetch<GitHubRepo[]>("/api/projects", {
+  key: "projects-list",
   getCachedData(key, nuxtApp) {
-    return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
+    return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
   },
 });
 

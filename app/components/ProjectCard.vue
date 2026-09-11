@@ -6,6 +6,8 @@ const props = defineProps<{
   liveUrl?: string;
   sourceUrl?: string;
 }>();
+
+const formattedTitle = computed(() => props.title.replaceAll("-", " "));
 </script>
 
 <template>
@@ -19,7 +21,7 @@ const props = defineProps<{
         <h3
           class="text-lg font-semibold capitalize text-foreground leading-snug"
         >
-          {{ props.title.replaceAll("-", " ") }}
+          {{ formattedTitle }}
         </h3>
         <div class="flex items-center gap-1 text-muted-foreground">
           <NuxtLink
