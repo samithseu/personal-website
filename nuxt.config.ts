@@ -12,6 +12,12 @@ const ogTemplateHash = fs.existsSync(takumiTemplatePath)
   : "v1";
 const projectsOgImagePath = `/_og/s/c_EachPage.takumi,v_${ogTemplateHash},p_Ii9wcm9qZWN0cyI.png`;
 
+const staticAssetRule = {
+  headers: {
+    "cache-control": "public, max-age=86400, stale-while-revalidate=604800",
+  },
+};
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
@@ -78,6 +84,10 @@ export default defineNuxtConfig({
         "cache-control": "public, max-age=31536000, immutable",
       },
     },
+    "/certs/**": staticAssetRule,
+    "/about-picture.jpg": staticAssetRule,
+    "/favicon.svg": staticAssetRule,
+    "/favicon.ico": staticAssetRule,
     "/_ipx/**": { prerender: false },
 
     "/llm.txt": {
