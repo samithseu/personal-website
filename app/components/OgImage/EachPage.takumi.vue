@@ -1,10 +1,16 @@
 <script lang="ts" setup>
-const props = defineProps<{
-  headline?: string;
-  title?: string;
-  desc?: string;
-  v?: string | number;
-}>();
+const props = withDefaults(
+  defineProps<{
+    headline?: string;
+    title?: string;
+    desc?: string;
+    v?: string | number;
+    fontFamily?: string;
+  }>(),
+  {
+    fontFamily: "Geist Mono",
+  }
+);
 
 const pageName = computed(() => {
   if (!props.title) return "home";
@@ -17,12 +23,13 @@ const pageName = computed(() => {
 
 <template>
   <div
-    class="w-full h-full bg-[#09090b] text-white flex flex-col items-center justify-center px-16 py-8 relative overflow-hidden"
+    class="w-full h-full bg-[#09090b] text-white flex flex-col items-center justify-center px-16 py-8 relative overflow-hidden font-mono"
+    style="font-family: 'Geist Mono', monospace;"
   >
     <!-- Code Terminal Window: Identical Aspect Ratio & Vibe to Hero Section CodeTerminal.vue -->
     <div
       class="w-auto rounded-2xl bg-[#121215] flex flex-col overflow-hidden font-mono text-xs"
-      style="border: 1px solid hsl(var(--border))"
+      style="border: 1px solid hsl(var(--border)); font-family: 'Geist Mono', monospace;"
     >
       <!-- Window Header (Identical to CodeTerminal.vue) -->
       <div class="flex items-center justify-between px-6 py-4 bg-muted/20">
@@ -85,10 +92,11 @@ const pageName = computed(() => {
       <!-- Code Body (Identical syntax tokens to CodeTerminal.vue) -->
       <div
         id="code-body"
-        class="px-6 py-8 leading-relaxed bg-[#0b0b10]/70 flex flex-col"
+        class="px-6 py-8 leading-relaxed bg-[#0b0b10]/70 flex flex-col font-mono"
         style="
           border-top: 1px solid hsl(var(--border));
           border-bottom: 1px solid hsl(var(--border));
+          font-family: 'Geist Mono', monospace;
         "
       >
         <!-- Line 1: import { definePage } from '@samith/config' -->

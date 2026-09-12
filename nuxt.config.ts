@@ -66,6 +66,7 @@ export default defineNuxtConfig({
           title: "Samith Seu - Projects",
           desc: "See what I've been building lately. Browse through my featured projects, view the tech stacks I used, and check out the live demos.",
           v: ogTemplateHash,
+          fontFamily: "Geist Mono",
         },
       },
     },
@@ -116,20 +117,24 @@ export default defineNuxtConfig({
     sources: [],
   },
   fonts: {
+    defaults: {
+      preload: true,
+    },
     families: [
       {
         name: "Geist Mono",
         styles: ["normal"],
-        weights: [400, 600],
+        weights: [400, 500, 600, 700],
         subsets: ["latin"],
+        preload: true,
         global: true,
       },
       {
         name: "Inter",
         styles: ["normal"],
-        weights: [400, 600, 700],
+        weights: [400, 500, 600, 700, 800],
         subsets: ["latin"],
-        global: true,
+        preload: true,
       },
     ],
   },

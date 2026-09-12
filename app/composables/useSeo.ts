@@ -238,6 +238,7 @@ export const useSeo = ({
       title: fullTitle,
       desc: description,
       v: (config.public.ogVersion as string) || "v1",
+      fontFamily: "Geist Mono",
     });
   }
 };

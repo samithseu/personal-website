@@ -72,9 +72,9 @@
 }
 
 /* custom theme */
-@theme inline {
+@theme static {
   --font-sans: "Inter", -apple-system, sans-serif;
-  --font-mono: "Geist Mono", "JetBrains Mono", monospace;
+  --font-mono: "Geist Mono", monospace;
   --default-font-family: var(--font-sans);
 
   --color-border: hsl(var(--border));
