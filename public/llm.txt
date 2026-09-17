@@ -238,6 +238,12 @@ All featured projects are maintained by Samith Seu on GitHub with live deploymen
     - Credential ID: BTI258
     - Certificate Image: https://samith.dev/certs/cpp-ii.jpg
 
+### Skill Badges
+
+- Status: Available on Credly
+- Description: Skill badges are available on Credly.
+- URL: https://www.credly.com/users/samithseu/badges/credly
+
 ---
 
 ## Blog & Articles

@@ -179,6 +179,15 @@ function handleImageError() {
               certs?.length ?? 0
             }}</span>
             certificates and qualifications I've earned throughout my journey.
+            Skill badges are available on
+            <NuxtLink
+              class="text-foreground font-semibold inline-flex items-center gap-1"
+              to="https://www.credly.com/users/samithseu/badges/credly"
+              target="_blank"
+              external
+              >Credly
+              <Icon name="tabler:external-link" class="size-3.5 sm:size-4.5" />
+            </NuxtLink>
           </p>
           <p v-if="error" class="text-destructive text-sm">
             {{ error?.message ?? "Cannot fetch all certificates!" }}
