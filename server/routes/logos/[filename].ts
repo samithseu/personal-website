@@ -3,6 +3,20 @@ import { getStoredSVG } from "~~/server/utils/getSVGs";
 const VALID_HEX_REGEX = /^[0-9a-fA-F]{6}$/;
 const FILENAME_REGEX = /^[a-zA-Z0-9_.-]+\.svg$/;
 
+const toUtf8String = (data: unknown): string => {
+  if (typeof data === "string") return data;
+  if (data instanceof Uint8Array || ArrayBuffer.isView(data)) {
+    return new TextDecoder().decode(data);
+  }
+  return String(data ?? "");
+};
+
+const extractColorParam = (color: unknown): string | null => {
+  if (typeof color === "string") return color;
+  if (Array.isArray(color) && typeof color[0] === "string") return color[0];
+  return null;
+};
+
 export default defineCachedEventHandler(
   async (event) => {
     const filename = getRouterParam(event, "filename");
@@ -21,9 +35,9 @@ export default defineCachedEventHandler(
       });
     }
 
-    let result = svgContent;
-    const rawColor = getQuery(event).color;
-    if (typeof rawColor === "string") {
+    let result = toUtf8String(svgContent);
+    const rawColor = extractColorParam(getQuery(event).color);
+    if (rawColor) {
       const cleanHex = rawColor.replace(/^#/, "").trim();
       if (VALID_HEX_REGEX.test(cleanHex)) {
         result = result
@@ -46,8 +60,8 @@ export default defineCachedEventHandler(
     staleMaxAge: 60 * 60 * 24 * 365, // 1 year
     getKey: (event) => {
       const filename = getRouterParam(event, "filename") || "";
-      const rawColor = (getQuery(event).color as string) || "default";
-      const cleanHex = rawColor.replace(/^#/, "").trim();
+      const rawColor = extractColorParam(getQuery(event).color);
+      const cleanHex = rawColor ? rawColor.replace(/^#/, "").trim() : "default";
       return `logos:${filename}:${cleanHex}`;
     },
   }
