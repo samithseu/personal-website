@@ -81,8 +81,11 @@ export default defineNuxtConfig({
     "/api/certificates": { prerender: true },
     "/logos/**": {
       headers: {
-        "cache-control": "public, max-age=31536000, immutable",
+        "cache-control": "public, max-age=31536000, s-maxage=31536000, immutable",
       },
+    },
+    "/svg/**": {
+      redirect: { to: "/logos/**", statusCode: 301 },
     },
     "/certs/**": staticAssetRule,
     "/about-picture.jpg": staticAssetRule,
