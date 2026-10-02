@@ -1,19 +1,41 @@
+const toUtf8String = (data: unknown): string | null => {
+  if (!data) return null;
+  if (typeof data === "string") return data;
+  if (data instanceof Uint8Array || ArrayBuffer.isView(data)) {
+    return new TextDecoder().decode(data);
+  }
+  return String(data);
+};
+
+const svgCache = new Map<string, string>();
+
 export const getStoredSVG = async (
-  filename: string
+  filename: string,
 ): Promise<string | null> => {
-  // Read directly from Nitro storage (embedded into the server bundle at build time)
+  const cached = svgCache.get(filename);
+  if (cached) return cached;
+
+  // read directly from nitro storage
   try {
-    const fromSvg = await useStorage("assets:svg").getItem<string>(filename);
-    if (fromSvg) return fromSvg;
+    const fromSvg = await useStorage("assets:svg").getItem(filename);
+    const text = toUtf8String(fromSvg);
+    if (text) {
+      svgCache.set(filename, text);
+      return text;
+    }
   } catch {
     // Ignore storage lookup error and try fallback
   }
 
   try {
-    const fromServer = await useStorage("assets:server").getItem<string>(
-      `svg/${filename}`
+    const fromServer = await useStorage("assets:server").getItem(
+      `svg/${filename}`,
     );
-    if (fromServer) return fromServer;
+    const text = toUtf8String(fromServer);
+    if (text) {
+      svgCache.set(filename, text);
+      return text;
+    }
   } catch {
     // Ignore storage lookup error
   }
@@ -23,4 +45,3 @@ export const getStoredSVG = async (
 
 // Backwards-compatibility alias
 export const getSVG = getStoredSVG;
-
