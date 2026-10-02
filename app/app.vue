@@ -5,10 +5,12 @@ useHead({
   meta: [
     { name: "viewport", content: "width=device-width, initial-scale=1.0" },
     { name: "color-scheme", content: "dark light" },
+    { name: "theme-color", content: "#09090b" },
   ],
   link: [
     { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
     { rel: "alternate icon", type: "image/x-icon", href: "/favicon.ico" },
+    { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
   ],
   script: [
     {
@@ -51,6 +53,7 @@ onBeforeUnmount(() => {
   <div
     class="min-h-svh h-full flex flex-col justify-between transition-colors duration-300"
   >
+    <VitePwaManifest />
     <NuxtLoadingIndicator :throttle="150" color="hsl(var(--foreground))" />
     <Header />
     <main class="flex-1">

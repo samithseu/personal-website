@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 const { allContacts } = useContacts();
+const config = useRuntimeConfig();
+const aboutImageSrc = computed(
+  () => `/about-picture.jpg?v=${config.public.aboutPictureHash || "v1"}`,
+);
 const desc =
   "Get to know the person behind the screen. Read my brief story, and why I love to build things.";
 useSeo({
@@ -28,7 +32,7 @@ useSeo({
               width="700"
               height="700"
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              src="/about-picture.jpg"
+              :src="aboutImageSrc"
               format="webp"
               quality="80"
               sizes="(max-width: 350px) 350px, (max-width: 600px) 600px, 700px"

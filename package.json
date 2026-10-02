@@ -11,6 +11,7 @@
     "generate": "nuxt generate",
     "preview": "NITRO_PRESET=node-server nuxt build && node .output/server/index.mjs",
     "preview:vercel": "vercel deploy --prebuilt",
+    "pwa:icons": "node scripts/generate-pwa-icons.mjs",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@iconify-json/tabler": "^1.2.38",
     "@tailwindcss/vite": "^4.3.3",
+    "@vite-pwa/nuxt": "^1.1.1",
     "nuxtseo-layer-devtools": "^5.3.14",
     "sharp": "^0.35.4",
     "tailwindcss": "^4.3.3"

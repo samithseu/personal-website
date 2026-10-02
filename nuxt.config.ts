@@ -12,6 +12,15 @@ const ogTemplateHash = fs.existsSync(takumiTemplatePath)
   : "v1";
 const projectsOgImagePath = `/_og/s/c_EachPage.takumi,v_${ogTemplateHash},p_Ii9wcm9qZWN0cyI.png`;
 
+const aboutPicturePath = "./public/about-picture.jpg";
+const aboutPictureHash = fs.existsSync(aboutPicturePath)
+  ? crypto
+      .createHash("md5")
+      .update(fs.readFileSync(aboutPicturePath))
+      .digest("hex")
+      .slice(0, 8)
+  : "v1";
+
 const staticAssetRule = {
   headers: {
     "cache-control": "public, max-age=86400, stale-while-revalidate=604800",
@@ -54,6 +63,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/content",
     "@nuxtjs/seo",
+    "@vite-pwa/nuxt",
   ],
   icon: {
     mode: "css",
@@ -89,6 +99,16 @@ export default defineNuxtConfig({
     "/favicon.svg": staticAssetRule,
     "/favicon.ico": staticAssetRule,
     "/_ipx/**": { prerender: false },
+    "/sw.js": {
+      headers: {
+        "cache-control": "no-cache, no-store, must-revalidate",
+      },
+    },
+    "/manifest.webmanifest": {
+      headers: {
+        "cache-control": "public, max-age=0, must-revalidate",
+      },
+    },
 
     "/llm.txt": {
       headers: {
@@ -116,6 +136,7 @@ export default defineNuxtConfig({
     public: {
       ogVersion: ogTemplateHash,
       projectsOgImage: projectsOgImagePath,
+      aboutPictureHash,
       site: {
         url: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
         name: "Samith Seu - Personal Website",
@@ -163,6 +184,118 @@ export default defineNuxtConfig({
       markdown: {
         highlight: false,
       },
+    },
+  },
+  pwa: {
+    registerType: "autoUpdate",
+    manifest: {
+      name: "Samith Seu - Personal Website",
+      short_name: "Samith Seu",
+      description:
+        "Personal website and portfolio of Samith Seu - Frontend & Interface Engineer",
+      theme_color: "#09090b",
+      background_color: "#09090b",
+      display: "standalone",
+      orientation: "portrait",
+      scope: "/",
+      start_url: "/",
+      icons: [
+        {
+          src: "/pwa-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "/pwa-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+        },
+        {
+          src: "/pwa-maskable-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "maskable",
+        },
+      ],
+    },
+    workbox: {
+      navigateFallback: null,
+      globPatterns: [
+        "**/*.{js,css,html,png,jpg,jpeg,svg,ico,webp,woff2}",
+      ],
+      maximumFileSizeToCacheInBytes: 4000000,
+      cleanupOutdatedCaches: true,
+      clientsClaim: true,
+      skipWaiting: true,
+      runtimeCaching: [
+        {
+          urlPattern: ({ request }) => request.mode === "navigate",
+          handler: "NetworkFirst",
+          options: {
+            cacheName: "pages-cache",
+            networkTimeoutSeconds: 3,
+            cacheableResponse: {
+              statuses: [0, 200],
+            },
+          },
+        },
+        {
+          urlPattern: ({ url }) => url.pathname.startsWith("/api/"),
+          handler: "StaleWhileRevalidate",
+          options: {
+            cacheName: "api-cache",
+            expiration: {
+              maxEntries: 20,
+              maxAgeSeconds: 60 * 60 * 24,
+            },
+            cacheableResponse: {
+              statuses: [0, 200],
+            },
+          },
+        },
+        {
+          urlPattern: ({ request, url }) =>
+            request.destination === "image" ||
+            url.pathname.startsWith("/_vercel/image") ||
+            url.pathname.startsWith("/_ipx/") ||
+            url.pathname.startsWith("/certs/") ||
+            url.pathname.startsWith("/logos/") ||
+            url.pathname.startsWith("/svg/") ||
+            /\.(?:png|jpg|jpeg|svg|webp|ico|gif)$/i.test(url.pathname),
+          handler: "StaleWhileRevalidate",
+          options: {
+            cacheName: "images-cache",
+            expiration: {
+              maxEntries: 100,
+              maxAgeSeconds: 60 * 60 * 24 * 30,
+            },
+            cacheableResponse: {
+              statuses: [0, 200],
+            },
+          },
+        },
+        {
+          urlPattern: ({ url }) => url.pathname.startsWith("/_fonts/"),
+          handler: "CacheFirst",
+          options: {
+            cacheName: "fonts-cache",
+            expiration: {
+              maxEntries: 20,
+              maxAgeSeconds: 60 * 60 * 24 * 365,
+            },
+            cacheableResponse: {
+              statuses: [0, 200],
+            },
+          },
+        },
+      ],
+    },
+    client: {
+      installPrompt: true,
+    },
+    devOptions: {
+      enabled: false,
+      suppressWarnings: true,
     },
   },
   $development: {

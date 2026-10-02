@@ -34,7 +34,7 @@ const certAspectRatio = computed(() => {
   if (!previewCert.value) return "10/7";
   const org = String(previewCert.value.org || "").toLowerCase();
   const url = String(previewCert.value.url || "").toLowerCase();
-  if (org.includes("hackerrank") || url.endsWith(".png")) {
+  if (org.includes("hackerrank") || url.includes(".png")) {
     return "4/3";
   }
   return "10/7";

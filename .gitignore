@@ -24,3 +24,7 @@ logs
 .env.*
 !.env.example
 .env*
+
+# PWA generated assets
+public/sw.js
+public/workbox-*.js
