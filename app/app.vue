@@ -57,6 +57,10 @@ onBeforeUnmount(() => {
   <div
     class="min-h-svh h-full flex flex-col justify-between transition-colors duration-300"
   >
+    <div
+      class="fixed inset-0 pointer-events-none -z-10 bg-grid-pattern"
+      aria-hidden="true"
+    />
     <NuxtLoadingIndicator :throttle="150" color="hsl(var(--foreground))" />
     <Header />
     <main class="flex-1">

@@ -24,8 +24,12 @@ const handleClearError = () => clearError({ redirect: "/" });
 
 <template>
   <div
-    class="w-full min-h-dvh bg-background text-foreground bg-grid-pattern flex flex-col items-center justify-center gap-4 px-4 text-center"
+    class="w-full min-h-dvh bg-background text-foreground flex flex-col items-center justify-center gap-4 px-4 text-center relative"
   >
+    <div
+      class="fixed inset-0 pointer-events-none -z-10 bg-grid-pattern"
+      aria-hidden="true"
+    />
     <div
       class="p-8 sm:p-12 rounded-2xl border border-border/80 bg-card/80 backdrop-blur-md shadow-2xl flex flex-col items-center gap-4 max-w-md w-full"
     >

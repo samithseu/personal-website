@@ -181,7 +181,7 @@ html {
   @apply scroll-gutter-stable scroll-width-thin scroll-color-primary;
 }
 body {
-  @apply bg-background text-foreground bg-grid-pattern min-h-screen font-sans antialiased;
+  @apply bg-background text-foreground min-h-screen font-sans antialiased;
 }
 
 /* ==========================================================================
