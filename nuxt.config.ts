@@ -107,11 +107,6 @@ export default defineNuxtConfig({
         "cache-control": "no-cache, no-store, must-revalidate",
       },
     },
-    "/manifest.webmanifest": {
-      headers: {
-        "cache-control": "public, max-age=0, must-revalidate",
-      },
-    },
 
     "/llm.txt": {
       headers: {
@@ -191,36 +186,7 @@ export default defineNuxtConfig({
   },
   pwa: {
     registerType: "autoUpdate",
-    manifest: {
-      name: "Samith Seu - Personal Website",
-      short_name: "Samith Seu",
-      description:
-        "Personal website and portfolio of Samith Seu - Frontend & Interface Engineer",
-      theme_color: "#09090b",
-      background_color: "#09090b",
-      display: "standalone",
-      orientation: "portrait",
-      scope: "/",
-      start_url: "/",
-      icons: [
-        {
-          src: "/pwa-192x192.png",
-          sizes: "192x192",
-          type: "image/png",
-        },
-        {
-          src: "/pwa-512x512.png",
-          sizes: "512x512",
-          type: "image/png",
-        },
-        {
-          src: "/pwa-maskable-512x512.png",
-          sizes: "512x512",
-          type: "image/png",
-          purpose: "maskable",
-        },
-      ],
-    },
+    manifest: false,
     workbox: {
       navigateFallback: null,
       globPatterns: [
@@ -292,9 +258,6 @@ export default defineNuxtConfig({
           },
         },
       ],
-    },
-    client: {
-      installPrompt: true,
     },
     devOptions: {
       enabled: false,

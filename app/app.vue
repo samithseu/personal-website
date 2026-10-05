@@ -30,6 +30,10 @@ let mediaQuery: MediaQueryList | null = null;
 let updateThemeFn: ((e: MediaQueryList | MediaQueryListEvent) => void) | null = null;
 
 onMounted(() => {
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+  });
+
   mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
   updateThemeFn = (e: MediaQueryList | MediaQueryListEvent) => {
     if (e.matches) {
@@ -53,7 +57,6 @@ onBeforeUnmount(() => {
   <div
     class="min-h-svh h-full flex flex-col justify-between transition-colors duration-300"
   >
-    <VitePwaManifest />
     <NuxtLoadingIndicator :throttle="150" color="hsl(var(--foreground))" />
     <Header />
     <main class="flex-1">
