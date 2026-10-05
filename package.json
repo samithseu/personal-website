@@ -15,13 +15,13 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/content": "^3.16.0",
+    "@nuxt/content": "^3.16.1",
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/icon": "^2.5.1",
     "@nuxt/image": "^2.1.0",
     "@nuxtjs/seo": "5.3.14",
     "@takumi-rs/core": "^2.14.0",
-    "@unhead/vue": "^3.4.1",
+    "@unhead/vue": "^3.4.2",
     "nuxt": "^4.5.2",
     "nuxt-og-image": "6.7.8",
     "ufo": "^1.6.4",
@@ -29,12 +29,12 @@
     "vue": "^3.5.43"
   },
   "devDependencies": {
-    "@iconify-json/tabler": "^1.2.39",
+    "@iconify-json/tabler": "^1.2.41",
     "@tailwindcss/vite": "^4.3.3",
     "@vite-pwa/nuxt": "^1.1.1",
-    "nuxtseo-layer-devtools": "^5.3.14",
-    "sharp": "^0.35.4",
+    "nuxtseo-layer-devtools": "^5.3.16",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3"
   },
-  "packageManager": "pnpm@11.27.1+sha512.a81d4c21b9b09a4b0aebf90ef5e527d4262bdda322d26082978cb549023ac6d9cafc98b19fffaa5c71db438a65f70224edb78d7311187861ff96480d1cdca23c"
+  "packageManager": "pnpm@11.28.4+sha512.f905a61563f89b49a292634d3d87d024cfdea9dccf5c66b2ccc261675fa7b2774320a959db472e6caa7f9ff7314709cd50d06c8fd64addb60647377a78d250ff"
 }
