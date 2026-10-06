@@ -1,1 +1,1 @@
-export * from "~~/shared/types/project";
+export * from "../../shared/types/project";

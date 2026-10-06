@@ -31,12 +31,12 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
+  prerender: {
+    routes: [projectsOgImagePath],
+    ignore: ["/_ipx"],
+  },
   nitro: {
     preset: "vercel",
-    prerender: {
-      routes: [projectsOgImagePath],
-      ignore: ["/_ipx"],
-    },
     serverAssets: [
       {
         baseName: "svg",
@@ -122,7 +122,13 @@ export default defineNuxtConfig({
     "/x": { redirect: "https://x.com/seumith" },
     "/telegram": { redirect: "https://t.me/samithseu" },
   },
-  experimental: { viewTransition: true },
+  experimental: {
+    viewTransition: true,
+    routeTypedFetch: true,
+    early404: true,
+    prerenderErrorPages: true,
+    stripNeverHydratedData: true,
+  },
   app: { head: { titleTemplate: "%s" } },
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
