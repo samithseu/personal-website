@@ -87,7 +87,7 @@ function getPersonNode(siteUrl: string) {
         "https://t.me/samithseu",
         "https://resume.samith.dev",
       ],
-    });
+    } as any);
     personCache.set(siteUrl, node);
   }
   return node;

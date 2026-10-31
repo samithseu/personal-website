@@ -23,9 +23,9 @@ const props = withDefaults(
       <span>Web Developer</span>
     </div>
 
-    <div class="max-w-4xl py-12">
+    <div class="max-w-5xl py-12">
       <h1 class="text-7xl font-semibold tracking-tight text-white leading-tight">
-        {{ title || "Samith Seu — Web Developer" }}
+        {{ title || "Samith Seu" }}
       </h1>
     </div>
 

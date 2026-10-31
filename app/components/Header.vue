@@ -8,7 +8,9 @@ const navLinks = [
 </script>
 
 <template>
-  <header class="w-full max-w-[640px] mx-auto px-6 pt-10 sm:pt-16 pb-4 flex items-center justify-between">
+  <header
+    class="w-full max-w-prefer mx-auto px-6 pt-10 sm:pt-16 pb-4 flex items-center justify-between"
+  >
     <NuxtLink
       to="/"
       class="inline-flex items-center text-foreground hover:opacity-75 transition-opacity"
@@ -17,7 +19,10 @@ const navLinks = [
       <M class="w-4.5 h-5" />
     </NuxtLink>
 
-    <nav aria-label="Main Navigation" class="flex items-center gap-4 text-xs sm:text-sm text-muted-foreground">
+    <nav
+      aria-label="Main Navigation"
+      class="flex items-center gap-4 text-xs sm:text-sm text-muted-foreground"
+    >
       <a
         v-for="link in navLinks"
         :key="link.label"

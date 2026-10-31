@@ -4,7 +4,7 @@ import type { GitHubRepo } from "#shared/types/project";
 const { allContacts } = useContacts();
 
 useSeo({
-  title: "Samith Seu — Web Developer",
+  title: "Samith Seu",
   description:
     "Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces.",
   noPrefix: true,
@@ -86,24 +86,28 @@ const fallbackProjects: ProjectItem[] = [
 ];
 
 // Dynamically fetch repositories from /api/projects with fallback
-const { data: apiProjects, status: projectStatus } = await useFetch<GitHubRepo[]>(
-  "/api/projects",
-  {
-    key: "github-projects-list",
-    getCachedData(key, nuxtApp) {
-      return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
-    },
+const { data: apiProjects, status: projectStatus } = await useFetch<
+  GitHubRepo[]
+>("/api/projects", {
+  key: "github-projects-list",
+  getCachedData(key, nuxtApp) {
+    return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
   },
-);
+});
 
 const projects = computed<ProjectItem[]>(() => {
-  if (apiProjects.value && Array.isArray(apiProjects.value) && apiProjects.value.length > 0) {
+  if (
+    apiProjects.value &&
+    Array.isArray(apiProjects.value) &&
+    apiProjects.value.length > 0
+  ) {
     return apiProjects.value.map((p) => {
       const filteredTopics = (p.topics || []).filter(
         (t) => t.toLowerCase() !== "project",
       );
       const isInternal =
-        p.homepage === "https://samith.dev" || p.homepage === "http://localhost:3000";
+        p.homepage === "https://samith.dev" ||
+        p.homepage === "http://localhost:3000";
       return {
         title: p.name,
         description: p.description || "",
@@ -121,6 +125,7 @@ interface CredentialItem {
   issuer: string;
   year: string;
   url?: string;
+  featured?: boolean;
 }
 
 const allCredentials: CredentialItem[] = [
@@ -129,18 +134,21 @@ const allCredentials: CredentialItem[] = [
     issuer: "HackerRank",
     year: "2025",
     url: "/certs/frontend-react.png",
+    featured: true,
   },
   {
     title: "Software Engineering I",
     issuer: "BTI",
     year: "2024",
     url: "/certs/swe-i.jpg",
+    featured: true,
   },
   {
     title: "Java Programming I",
     issuer: "BTI",
     year: "2024",
     url: "/certs/java-i.jpg",
+    featured: true,
   },
   {
     title: "Internet Programming II",
@@ -189,12 +197,14 @@ const allCredentials: CredentialItem[] = [
     issuer: "BTI",
     year: "2023",
     url: "/certs/dsa-ii.jpg",
+    featured: true,
   },
   {
     title: "CSS (Basic)",
     issuer: "HackerRank",
     year: "2023",
     url: "/certs/css-basic.png",
+    featured: true,
   },
   {
     title: "Computer Graphic I",
@@ -222,13 +232,9 @@ const allCredentials: CredentialItem[] = [
   },
 ];
 
-const valuableCredentials: CredentialItem[] = [
-  allCredentials[0], // Frontend Developer (React)
-  allCredentials[1], // Software Engineering I
-  allCredentials[2], // Java Programming I
-  allCredentials[10], // Data Structures & Algorithms II
-  allCredentials[11], // CSS (Basic)
-];
+const valuableCredentials: CredentialItem[] = allCredentials.filter(
+  (cert) => cert.featured,
+);
 
 const showAllCredentials = ref(false);
 const displayedCredentials = computed(() =>
@@ -252,7 +258,11 @@ async function copyEmail() {
 <template>
   <div class="space-y-16 sm:space-y-20">
     <!-- Intro / Hero -->
-    <section id="hero" aria-labelledby="intro-heading" class="space-y-4 scroll-mt-20">
+    <section
+      id="hero"
+      aria-labelledby="intro-heading"
+      class="space-y-4 scroll-mt-20"
+    >
       <div class="space-y-1.5">
         <h1
           id="intro-heading"
@@ -260,29 +270,36 @@ async function copyEmail() {
         >
           Samith Seu
         </h1>
-        <p class="text-sm sm:text-base text-muted-foreground">
-          Web Developer
-        </p>
+        <p class="text-sm sm:text-base text-muted-foreground">Web Developer</p>
         <p class="text-xs font-mono text-muted-foreground/80">
           Kampong Speu, Cambodia
         </p>
       </div>
 
-      <p class="text-sm sm:text-base text-muted-foreground leading-relaxed pt-1">
+      <p
+        class="text-sm sm:text-base text-muted-foreground leading-relaxed pt-1"
+      >
         I build websites with modern technologies, specializing in crafting
-        responsive, accessible, and user-friendly interfaces for web applications.
+        responsive, accessible, and user-friendly interfaces for web
+        applications.
       </p>
     </section>
 
     <!-- About Section (Summarized, preserving original meaning) -->
-    <section id="about" aria-labelledby="about-heading" class="space-y-3 scroll-mt-20">
+    <section
+      id="about"
+      aria-labelledby="about-heading"
+      class="space-y-3 scroll-mt-20"
+    >
       <h2
         id="about-heading"
         class="text-xs font-mono uppercase tracking-wider text-muted-foreground"
       >
         About
       </h2>
-      <div class="space-y-3 text-sm sm:text-base text-muted-foreground leading-relaxed">
+      <div
+        class="space-y-3 text-sm sm:text-base text-muted-foreground leading-relaxed"
+      >
         <p>
           My fascination with programming began in 2020 at
           <a
@@ -290,7 +307,9 @@ async function copyEmail() {
             target="_blank"
             rel="noopener noreferrer"
             class="prose-link"
-          >Kampong Speu High School</a>, where remote classes during the pandemic ignited a deep curiosity for how software works.
+            >Kampong Speu High School</a
+          >, where remote classes during the pandemic ignited a deep curiosity
+          for how software works.
         </p>
         <p>
           During my second year of college at
@@ -299,16 +318,25 @@ async function copyEmail() {
             target="_blank"
             rel="noopener noreferrer"
             class="prose-link"
-          >Brachñāsāstra Technology Institute (BTI)</a>, a professor who was a software engineer in government demonstrated a production Laravel web application. Seeing code create real-world tools inspired me to pursue web development seriously.
+            >Brachñāsāstra Technology Institute (BTI)</a
+          >, a professor who was a software engineer in government demonstrated
+          a production Laravel web application. Seeing code create real-world
+          tools inspired me to pursue web development seriously.
         </p>
         <p>
-          Today, I specialize in modern frontend engineering—from REST API integration to building performant, accessible UI components with Vue, Nuxt, React, TypeScript, and Tailwind CSS.
+          Today, I specialize in modern frontend engineering-from REST API
+          integration to building performant, accessible UI components with Vue,
+          Nuxt, React, TypeScript, and Tailwind CSS.
         </p>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" aria-labelledby="projects-heading" class="space-y-6 scroll-mt-20">
+    <section
+      id="projects"
+      aria-labelledby="projects-heading"
+      class="space-y-6 scroll-mt-20"
+    >
       <div class="flex items-baseline justify-between">
         <h2
           id="projects-heading"
@@ -332,8 +360,14 @@ async function copyEmail() {
               <a
                 v-if="project.liveUrl"
                 :href="project.liveUrl"
-                :target="project.liveUrl.startsWith('http') ? '_blank' : undefined"
-                :rel="project.liveUrl.startsWith('http') ? 'noopener noreferrer' : undefined"
+                :target="
+                  project.liveUrl.startsWith('http') ? '_blank' : undefined
+                "
+                :rel="
+                  project.liveUrl.startsWith('http')
+                    ? 'noopener noreferrer'
+                    : undefined
+                "
                 class="hover:underline underline-offset-4 decoration-border group-hover:decoration-foreground transition-colors inline-flex items-center gap-1"
               >
                 <span>{{ project.title }}</span>
@@ -342,7 +376,9 @@ async function copyEmail() {
               <span v-else>{{ project.title }}</span>
             </h3>
 
-            <div class="text-xs font-mono text-muted-foreground shrink-0 capitalize">
+            <div
+              class="text-xs font-mono text-muted-foreground shrink-0 capitalize"
+            >
               {{ project.tags[0] }}
             </div>
           </div>
@@ -355,13 +391,24 @@ async function copyEmail() {
             <a
               v-if="project.liveUrl"
               :href="project.liveUrl"
-              :target="project.liveUrl.startsWith('http') ? '_blank' : undefined"
-              :rel="project.liveUrl.startsWith('http') ? 'noopener noreferrer' : undefined"
+              :target="
+                project.liveUrl.startsWith('http') ? '_blank' : undefined
+              "
+              :rel="
+                project.liveUrl.startsWith('http')
+                  ? 'noopener noreferrer'
+                  : undefined
+              "
               class="prose-link"
             >
               Live Demo
             </a>
-            <span v-if="project.liveUrl && project.sourceUrl" class="text-border" aria-hidden="true">&middot;</span>
+            <span
+              v-if="project.liveUrl && project.sourceUrl"
+              class="text-border"
+              aria-hidden="true"
+              >&middot;</span
+            >
             <a
               v-if="project.sourceUrl"
               :href="project.sourceUrl"
@@ -377,7 +424,11 @@ async function copyEmail() {
     </section>
 
     <!-- Skills & Stack Section -->
-    <section id="skills" aria-labelledby="skills-heading" class="space-y-4 scroll-mt-20">
+    <section
+      id="skills"
+      aria-labelledby="skills-heading"
+      class="space-y-4 scroll-mt-20"
+    >
       <h2
         id="skills-heading"
         class="text-xs font-mono uppercase tracking-wider text-muted-foreground"
@@ -408,7 +459,11 @@ async function copyEmail() {
     </section>
 
     <!-- Education & Credentials Section (supports #credentials and #certificates) -->
-    <section id="credentials" aria-labelledby="credentials-heading" class="space-y-4 scroll-mt-20">
+    <section
+      id="credentials"
+      aria-labelledby="credentials-heading"
+      class="space-y-4 scroll-mt-20"
+    >
       <div id="certificates" class="scroll-mt-20" aria-hidden="true" />
       <h2
         id="credentials-heading"
@@ -428,8 +483,12 @@ async function copyEmail() {
               <p class="text-muted-foreground">
                 Brachñāsāstra Technology Institute (BTI)
               </p>
-              <p v-if="showAllCredentials" class="text-xs text-muted-foreground/80 mt-1">
-                Coursework in Software Engineering, Web Development, Algorithms, Database Systems &amp; Computer Networks.
+              <p
+                v-if="showAllCredentials"
+                class="text-xs text-muted-foreground/80 mt-1"
+              >
+                Coursework in Software Engineering, Web Development, Algorithms,
+                Database Systems &amp; Computer Networks.
               </p>
             </div>
             <span class="font-mono text-xs text-muted-foreground shrink-0">
@@ -438,16 +497,18 @@ async function copyEmail() {
           </div>
 
           <!-- High School Diploma (shown when expanded) -->
-          <div v-if="showAllCredentials" class="flex items-start justify-between gap-4 pt-2 border-t border-border/20">
+          <div
+            v-if="showAllCredentials"
+            class="flex items-start justify-between gap-4 pt-2 border-t border-border/20"
+          >
             <div>
               <p class="font-medium text-foreground">
                 Baccalaureate (High School Diploma)
               </p>
-              <p class="text-muted-foreground">
-                Kampong Speu High School
-              </p>
+              <p class="text-muted-foreground">Kampong Speu High School</p>
               <p class="text-xs text-muted-foreground/80 mt-1">
-                MoEYS High School Diploma in Mathematics, Sciences, and Social Studies.
+                MoEYS High School Diploma in Mathematics, Sciences, and Social
+                Studies.
               </p>
             </div>
             <span class="font-mono text-xs text-muted-foreground shrink-0">
@@ -467,7 +528,9 @@ async function copyEmail() {
             class="flex items-baseline justify-between gap-4 py-1.5 group text-muted-foreground hover:text-foreground transition-colors"
           >
             <div class="flex items-baseline gap-2 min-w-0">
-              <span class="text-foreground group-hover:underline underline-offset-4 decoration-border group-hover:decoration-foreground truncate">
+              <span
+                class="text-foreground group-hover:underline underline-offset-4 decoration-border group-hover:decoration-foreground truncate"
+              >
                 {{ cert.title }}
               </span>
               <span class="text-xs text-muted-foreground shrink-0">
@@ -486,7 +549,11 @@ async function copyEmail() {
             @click="showAllCredentials = !showAllCredentials"
             class="prose-link cursor-pointer"
           >
-            {{ showAllCredentials ? "Show fewer credentials" : `Show full education & credentials (${allCredentials.length})` }}
+            {{
+              showAllCredentials
+                ? "Show fewer credentials"
+                : `Show full education & credentials (${allCredentials.length})`
+            }}
           </button>
           <span class="text-border" aria-hidden="true">&middot;</span>
           <a
@@ -502,7 +569,11 @@ async function copyEmail() {
     </section>
 
     <!-- Connect / Contact Section -->
-    <section id="contact" aria-labelledby="contact-heading" class="space-y-4 scroll-mt-20">
+    <section
+      id="contact"
+      aria-labelledby="contact-heading"
+      class="space-y-4 scroll-mt-20"
+    >
       <h2
         id="contact-heading"
         class="text-xs font-mono uppercase tracking-wider text-muted-foreground"
@@ -511,7 +582,8 @@ async function copyEmail() {
       </h2>
 
       <p class="text-sm text-muted-foreground leading-relaxed">
-        I'm always open to discussing new projects, frontend engineering opportunities, or web design collaborations.
+        I'm always open to discussing new projects, frontend engineering
+        opportunities, or web design collaborations.
       </p>
 
       <div class="space-y-2 text-xs sm:text-sm">
@@ -520,7 +592,9 @@ async function copyEmail() {
           :key="contact.name"
           class="flex items-baseline justify-between py-1 border-b border-border/40"
         >
-          <span class="text-muted-foreground font-mono">{{ contact.name }}</span>
+          <span class="text-muted-foreground font-mono">{{
+            contact.name
+          }}</span>
           <div class="flex items-center gap-2">
             <a
               :href="contact.link"

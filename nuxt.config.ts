@@ -20,11 +20,16 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
-  prerender: {
-    ignore: ["/_ipx"],
-  },
   nitro: {
     preset: "vercel",
+    esbuild: {
+      options: {
+        target: "es2022",
+      },
+    },
+    prerender: {
+      ignore: ["/_ipx"],
+    },
     serverAssets: [
       {
         baseName: "svg",
@@ -32,6 +37,7 @@ export default defineNuxtConfig({
       },
     ],
   },
+  skewProtection: { enabled: false },
   vite: {
     plugins: [tailwindcss()],
   },
@@ -67,6 +73,7 @@ export default defineNuxtConfig({
     "/api/certificates": { redirect: { to: "/", statusCode: 301 } },
     "/logos/**": {
       headers: {
+        "content-type": "image/svg+xml; charset=utf-8",
         "cache-control": "public, max-age=31536000, s-maxage=31536000, immutable",
       },
     },

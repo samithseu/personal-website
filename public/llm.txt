@@ -22,7 +22,7 @@
 ### Background & Story
 - High School Spark (2020): While studying at Kampong Speu High School, Samith was fascinated by technology and programming. In 2020, learning through online classes during the pandemic ignited his curiosity about technology even further, driving his decision to pursue programming seriously.
 - College Inspiration & First Coding Experience: In his 2nd year of college at Brachñāsāstra Technology Institute (BTI), he was taught by a professor who worked as a software engineer at a government institution. The professor demonstrated a Laravel web application he had built. That impressive moment inspired Samith to delve deeply into programming, particularly Web Development.
-- Present Day: Comfortable working across the frontend domain—from API integration to crafting accessible, interactive UI components with React.js and Vue.js—while continuing to expand backend knowledge. Based in Chbarmon municipality, Kampong Speu, Cambodia.
+- Present Day: Comfortable working across the frontend domain-from API integration to crafting accessible, interactive UI components with React.js and Vue.js-while continuing to expand backend knowledge. Based in Chbarmon municipality, Kampong Speu, Cambodia.
 
 ### Interactive Code Terminal Configuration
 ```typescript
