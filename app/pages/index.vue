@@ -593,8 +593,7 @@ async function copyEmail() {
       </h2>
 
       <p class="text-sm text-muted-foreground leading-relaxed">
-        I'm always open to discussing new projects, frontend engineering
-        opportunities, or web design collaborations.
+        My accounts on other platforms:
       </p>
 
       <div class="space-y-2 text-xs sm:text-sm">

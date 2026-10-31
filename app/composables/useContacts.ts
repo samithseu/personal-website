@@ -20,13 +20,13 @@ const ALL_CONTACTS: readonly Contact[] = [
   },
   {
     name: "X (Twitter)",
-    label: "@seumith",
+    label: "seumith",
     link: "https://x.com/seumith",
     external: true,
   },
   {
     name: "Telegram",
-    label: "t.me/samithseu",
+    label: "samithseu",
     link: "https://t.me/samithseu",
     external: true,
   },
