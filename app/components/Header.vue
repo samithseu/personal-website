@@ -23,14 +23,14 @@ const navLinks = [
       aria-label="Main Navigation"
       class="flex items-center gap-4 text-xs sm:text-sm text-muted-foreground"
     >
-      <a
+      <NuxtLink
         v-for="link in navLinks"
         :key="link.label"
         :href="link.href"
         class="transition-colors hover:text-foreground"
       >
         {{ link.label }}
-      </a>
+      </NuxtLink>
     </nav>
   </header>
 </template>

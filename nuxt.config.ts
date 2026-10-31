@@ -42,12 +42,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  modules: [
-    "@nuxt/fonts",
-    "nuxt-og-image",
-    "@nuxtjs/seo",
-    "@vite-pwa/nuxt",
-  ],
+  modules: ["@nuxt/fonts", "nuxt-og-image", "@nuxtjs/seo", "@vite-pwa/nuxt"],
   routeRules: {
     "/": {
       prerender: true,
@@ -69,7 +64,8 @@ export default defineNuxtConfig({
     "/logos/**": {
       headers: {
         "content-type": "image/svg+xml; charset=utf-8",
-        "cache-control": "public, max-age=31536000, s-maxage=31536000, immutable",
+        "cache-control":
+          "public, max-age=31536000, s-maxage=31536000, immutable",
       },
     },
     "/svg/**": {
@@ -109,7 +105,7 @@ export default defineNuxtConfig({
   app: { head: { titleTemplate: "%s" } },
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
-    name: "Samith Seu - Personal Website",
+    name: "Samith Seu",
   },
   runtimeConfig: {
     githubToken:
@@ -119,7 +115,7 @@ export default defineNuxtConfig({
       homeOgImage: homeOgImagePath,
       site: {
         url: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
-        name: "Samith Seu - Personal Website",
+        name: "Samith Seu",
       },
     },
   },
@@ -155,9 +151,7 @@ export default defineNuxtConfig({
     manifest: false,
     workbox: {
       navigateFallback: null,
-      globPatterns: [
-        "**/*.{js,css,html,png,jpg,jpeg,svg,ico,webp,woff2}",
-      ],
+      globPatterns: ["**/*.{js,css,html,png,jpg,jpeg,svg,ico,webp,woff2}"],
       maximumFileSizeToCacheInBytes: 4000000,
       cleanupOutdatedCaches: true,
       clientsClaim: true,
@@ -233,7 +227,7 @@ export default defineNuxtConfig({
       public: {
         site: {
           url: "http://localhost:3000",
-          name: "Samith Seu - Personal Website",
+          name: "Samith Seu",
         },
       },
     },
@@ -243,9 +237,8 @@ export default defineNuxtConfig({
     runtimeConfig: {
       public: {
         site: {
-          url:
-            process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
-          name: "Samith Seu - Personal Website",
+          url: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
+          name: "Samith Seu",
         },
       },
     },

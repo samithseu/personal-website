@@ -125,14 +125,19 @@ export const useSeo = ({
 }: SeoProps) => {
   // Schema.org structured data & dynamic URLs
   const config = useRuntimeConfig();
-  const siteUrl = (config.public.site?.url || config.public.siteUrl || "https://samith.dev") as string;
+  const siteUrl = (config.public.site?.url ||
+    config.public.siteUrl ||
+    "https://samith.dev") as string;
   const inLanguage = "en-US";
   const route = useRoute();
-  const canonicalUrl = route.path === "/" ? `${siteUrl}/` : `${siteUrl}${route.path}`;
+  const canonicalUrl =
+    route.path === "/" ? `${siteUrl}/` : `${siteUrl}${route.path}`;
 
   // Clean full title without duplicate prefixes or unparsed '%s' placeholders
   const fullTitle =
-    noPrefix || title.startsWith("Samith Seu") ? title : `Samith Seu - ${title}`;
+    noPrefix || title.startsWith("Samith Seu")
+      ? title
+      : `Samith Seu - ${title}`;
 
   const personId = `${siteUrl}/#person`;
   const websiteId = `${siteUrl}/#website`;
@@ -140,10 +145,7 @@ export const useSeo = ({
   const breadcrumbId = `${canonicalUrl}#breadcrumb`;
 
   const resolvedPageType =
-    pageType ||
-    (route.path === "/"
-      ? "ProfilePage"
-      : "WebPage");
+    pageType || (route.path === "/" ? "ProfilePage" : "WebPage");
 
   useSchemaOrg([
     getPersonNode(siteUrl),
@@ -185,9 +187,7 @@ export const useSeo = ({
       "@id": breadcrumbId,
       itemListElement: [
         { name: "Home", item: `${siteUrl}/` },
-        ...(route.path !== "/"
-          ? [{ name: title, item: canonicalUrl }]
-          : []),
+        ...(route.path !== "/" ? [{ name: title, item: canonicalUrl }] : []),
       ],
     }),
   ]);
@@ -209,16 +209,10 @@ export const useSeo = ({
     ogSiteName: "Samith Seu",
     ogTitle: fullTitle,
     ogDescription: description,
-    twitterTitle: fullTitle,
-    twitterSite: "@seumith",
-    twitterCreator: "@seumith",
-    twitterDescription: description,
     ogType: "website",
     ...(resolvedOgImageUrl
       ? {
           ogImage: resolvedOgImageUrl,
-          twitterImage: resolvedOgImageUrl,
-          twitterCard: "summary_large_image",
         }
       : {}),
   });

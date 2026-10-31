@@ -249,23 +249,25 @@ async function copyEmail() {
       >
         <p>
           My fascination with programming began in 2020 at
-          <a
+          <NuxtLink
+            external
             href="https://maps.app.goo.gl/v2CP1f6JuUVK6pUm8"
             target="_blank"
             rel="noopener noreferrer"
             class="prose-link"
-            >Kampong Speu High School</a
+            >Kampong Speu High School</NuxtLink
           >, where remote classes during the pandemic ignited a deep curiosity
           for how software works.
         </p>
         <p>
           During my second year of college at
-          <a
+          <NuxtLink
+            external
             href="https://www.facebook.com/brachnasastraBTI/"
             target="_blank"
             rel="noopener noreferrer"
             class="prose-link"
-            >Brachñāsāstra Technology Institute (BTI)</a
+            >Brachñāsāstra Technology Institute (BTI)</NuxtLink
           >, a professor who was a software engineer in government demonstrated
           a production Laravel web application. Seeing code create real-world
           tools inspired me to pursue web development seriously.
@@ -318,10 +320,7 @@ async function copyEmail() {
         </div>
       </div>
 
-      <div
-        v-else-if="projects.length > 0"
-        class="divide-y divide-border"
-      >
+      <div v-else-if="projects.length > 0" class="divide-y divide-border">
         <article
           v-for="project in projects"
           :key="project.title"
@@ -329,9 +328,10 @@ async function copyEmail() {
         >
           <div class="flex items-baseline justify-between gap-4">
             <h3 class="text-sm sm:text-base font-medium text-foreground">
-              <a
+              <NuxtLink
                 v-if="project.liveUrl"
                 :href="project.liveUrl"
+                :external="project.liveUrl.startsWith('http') ? true : false"
                 :target="
                   project.liveUrl.startsWith('http') ? '_blank' : undefined
                 "
@@ -344,7 +344,7 @@ async function copyEmail() {
               >
                 <span>{{ project.title }}</span>
                 <span class="text-xs text-muted-foreground font-normal">↗</span>
-              </a>
+              </NuxtLink>
               <span v-else>{{ project.title }}</span>
             </h3>
 
@@ -360,9 +360,10 @@ async function copyEmail() {
           </p>
 
           <div class="flex items-center gap-3 text-xs pt-1">
-            <a
+            <NuxtLink
               v-if="project.liveUrl"
               :href="project.liveUrl"
+              :external="project.liveUrl.startsWith('http') ? true : false"
               :target="
                 project.liveUrl.startsWith('http') ? '_blank' : undefined
               "
@@ -374,14 +375,15 @@ async function copyEmail() {
               class="prose-link"
             >
               Live Demo
-            </a>
+            </NuxtLink>
             <span
               v-if="project.liveUrl && project.sourceUrl"
               class="text-border"
               aria-hidden="true"
               >&middot;</span
             >
-            <a
+            <NuxtLink
+              external
               v-if="project.sourceUrl"
               :href="project.sourceUrl"
               target="_blank"
@@ -389,25 +391,24 @@ async function copyEmail() {
               class="prose-link"
             >
               Source
-            </a>
+            </NuxtLink>
           </div>
         </article>
       </div>
 
       <!-- Graceful empty state -->
-      <div
-        v-else
-        class="py-6 text-xs text-muted-foreground"
-      >
-        No projects available at the moment. Explore recent repositories directly on
-        <a
+      <div v-else class="py-6 text-xs text-muted-foreground">
+        No projects available at the moment. Explore recent repositories
+        directly on
+        <NuxtLink
+          external
           href="https://github.com/samithseu"
           target="_blank"
           rel="noopener noreferrer"
           class="prose-link"
         >
           GitHub ↗
-        </a>
+        </NuxtLink>
       </div>
     </section>
 
@@ -507,7 +508,8 @@ async function copyEmail() {
 
         <!-- Verified Certificates List -->
         <div class="space-y-1">
-          <a
+          <NuxtLink
+            external
             v-for="cert in displayedCredentials"
             :key="cert.title"
             :href="cert.url"
@@ -528,7 +530,7 @@ async function copyEmail() {
             <span class="font-mono text-xs text-muted-foreground shrink-0">
               {{ cert.year }}
             </span>
-          </a>
+          </NuxtLink>
         </div>
 
         <div class="pt-2 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs">
@@ -537,21 +539,23 @@ async function copyEmail() {
             @click="showAllCredentials = !showAllCredentials"
             class="prose-link cursor-pointer"
           >
-            {{
-              showAllCredentials
-                ? "Show fewer credentials"
-                : `Show full education & credentials (${allCredentials.length})`
-            }}
+            <template v-if="showAllCredentials">
+              Show fewer credentials
+            </template>
+            <template v-else>
+              Show full education & credentials ({{ allCredentials.length }})
+            </template>
           </button>
           <span class="text-border" aria-hidden="true">&middot;</span>
-          <a
+          <NuxtLink
+            external
             href="https://www.credly.com/users/samithseu/badges/credly"
             target="_blank"
             rel="noopener noreferrer"
             class="prose-link"
           >
             View all verified skill badges on Credly ↗
-          </a>
+          </NuxtLink>
         </div>
       </div>
     </section>
@@ -583,15 +587,16 @@ async function copyEmail() {
             contact.name
           }}</span>
           <div class="flex items-center gap-2">
-            <a
+            <NuxtLink
               :href="contact.link"
+              :external="contact.external"
               :target="contact.external ? '_blank' : undefined"
               :rel="contact.external ? 'noopener noreferrer' : undefined"
               class="prose-link"
             >
               {{ contact.label }}
               <span v-if="contact.external" class="text-xs">↗</span>
-            </a>
+            </NuxtLink>
             <button
               v-if="contact.name === 'Email'"
               type="button"
