@@ -2,12 +2,14 @@
 import type { GitHubRepo } from "#shared/types/project";
 
 const { allContacts } = useContacts();
+const config = useRuntimeConfig();
 
 useSeo({
   title: "Samith Seu",
   description:
     "Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces.",
   noPrefix: true,
+  ogImageUrl: config.public.homeOgImage as string,
 });
 
 interface ProjectItem {
@@ -18,117 +20,51 @@ interface ProjectItem {
   sourceUrl?: string;
 }
 
-const fallbackProjects: ProjectItem[] = [
-  {
-    title: "personal-website",
-    description:
-      "Minimalist personal website built with Nuxt 4 and Tailwind CSS v4, featuring high-contrast light/dark mode, SSR, and zero-runtime OG image generation.",
-    tags: ["Nuxt 4", "Tailwind CSS v4", "TypeScript"],
-    liveUrl: "/",
-    sourceUrl: "https://github.com/samithseu/personal-website",
-  },
-  {
-    title: "ghm",
-    description:
-      "Utility to discover public GitHub email addresses by username via GitHub's public API.",
-    tags: ["JavaScript", "GitHub API", "REST"],
-    liveUrl: "https://ghm.samith.dev",
-    sourceUrl: "https://github.com/samithseu/ghm",
-  },
-  {
-    title: "tl-bot-webhook",
-    description:
-      "Production Telegram Bot implementation running serverless webhooks on Node.js.",
-    tags: ["Node.js", "Telegram API", "Webhooks"],
-    liveUrl: "https://tl-bot-webhook.vercel.app",
-    sourceUrl: "https://github.com/samithseu/tl-bot-webhook",
-  },
-  {
-    title: "sosei",
-    description:
-      "Khmer document typesetting, pagination, and HTML-to-PDF printing tool built with Paged.js and Astro.",
-    tags: ["Astro", "Paged.js", "CSS Paged Media"],
-    liveUrl: "http://sosei.madebymith.site",
-    sourceUrl: "https://github.com/samithseu/sosei",
-  },
-  {
-    title: "cover-maker",
-    description:
-      "Khmer notebook cover generator for A5 formats without relying on Microsoft Word.",
-    tags: ["JavaScript", "HTML", "Print CSS"],
-    liveUrl: "https://samithseu.github.io/cover-maker/",
-    sourceUrl: "https://github.com/samithseu/cover-maker",
-  },
-  {
-    title: "edcongress-clone",
-    description:
-      "Lightweight clone of edcongress.org built with Alpine.js and clean semantics.",
-    tags: ["Alpine.js", "Tailwind CSS", "HTML5"],
-    liveUrl: "https://samithseu.github.io/edcongress-clone/",
-    sourceUrl: "https://github.com/samithseu/edcongress-clone",
-  },
-  {
-    title: "saas-homepage",
-    description:
-      "Modern marketing layout for SaaS products built with Tailwind CSS.",
-    tags: ["Tailwind CSS", "Responsive UI"],
-    liveUrl: "https://saas-homepage-site.vercel.app",
-    sourceUrl: "https://github.com/samithseu/saas-homepage",
-  },
-  {
-    title: "landing-page",
-    description:
-      "Responsive, accessible product landing page crafted with clean HTML and Tailwind CSS.",
-    tags: ["HTML5", "Tailwind CSS", "JavaScript"],
-    liveUrl: "https://samithseu.github.io/landing-page/",
-    sourceUrl: "https://github.com/samithseu/landing-page",
-  },
-];
-
-// Silently revalidate projects in background when user returns to the tab
+// Silently revalidate projects in background when user returns to the tab or mounts
 onMounted(() => {
+  refreshNuxtData("github-projects-list");
+
   const onVisibilityChange = () => {
     if (document.visibilityState === "visible") {
       refreshNuxtData("github-projects-list");
     }
   };
   document.addEventListener("visibilitychange", onVisibilityChange);
+  onUnmounted(() => {
+    document.removeEventListener("visibilitychange", onVisibilityChange);
+  });
 });
 
-// Dynamically fetch repositories from /api/projects with fallback & client revalidation
-const { data: apiProjects } = await useFetch<GitHubRepo[]>("/api/projects", {
-  key: "github-projects-list",
-  getCachedData(key, nuxtApp) {
-    if (nuxtApp.isHydrating) {
+// Fetch repositories from /api/projects with SSR prerender & client SWR revalidation
+const { data: apiProjects, status } = await useFetch<GitHubRepo[]>(
+  "/api/projects",
+  {
+    key: "github-projects-list",
+    getCachedData(key, nuxtApp) {
       return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
-    }
-    return undefined;
+    },
   },
-});
+);
 
 const projects = computed<ProjectItem[]>(() => {
-  if (
-    apiProjects.value &&
-    Array.isArray(apiProjects.value) &&
-    apiProjects.value.length > 0
-  ) {
-    return apiProjects.value.map((p) => {
-      const filteredTopics = (p.topics || []).filter(
-        (t) => t.toLowerCase() !== "project",
-      );
-      const isInternal =
-        p.homepage === "https://samith.dev" ||
-        p.homepage === "http://localhost:3000";
-      return {
-        title: p.name,
-        description: p.description || "",
-        tags: filteredTopics.length > 0 ? filteredTopics : ["Web"],
-        liveUrl: isInternal ? "/" : p.homepage,
-        sourceUrl: p.html_url,
-      };
-    });
+  if (!apiProjects.value || !Array.isArray(apiProjects.value)) {
+    return [];
   }
-  return fallbackProjects;
+  return apiProjects.value.map((p) => {
+    const filteredTopics = (p.topics || []).filter(
+      (t) => t.toLowerCase() !== "project",
+    );
+    const isInternal =
+      p.homepage === "https://samith.dev" ||
+      p.homepage === "http://localhost:3000";
+    return {
+      title: p.name,
+      description: p.description || "",
+      tags: filteredTopics.length > 0 ? filteredTopics : ["Web"],
+      liveUrl: isInternal ? "/" : p.homepage,
+      sourceUrl: p.html_url,
+    };
+  });
 });
 
 interface CredentialItem {
@@ -355,12 +291,37 @@ async function copyEmail() {
         >
           Selected Projects
         </h2>
-        <span class="text-xs text-muted-foreground font-mono">
+        <span
+          v-if="projects.length > 0"
+          class="text-xs text-muted-foreground font-mono"
+        >
           {{ projects.length }} projects
         </span>
       </div>
 
-      <div class="divide-y divide-border">
+      <!-- Loading skeleton when projects are pending and empty -->
+      <div
+        v-if="projects.length === 0 && status === 'pending'"
+        class="divide-y divide-border"
+      >
+        <div
+          v-for="i in 4"
+          :key="i"
+          class="py-5 first:pt-0 last:pb-0 space-y-2 animate-pulse"
+        >
+          <div class="flex items-baseline justify-between gap-4">
+            <div class="h-4 bg-muted rounded w-36"></div>
+            <div class="h-3 bg-muted rounded w-16"></div>
+          </div>
+          <div class="h-3.5 bg-muted/60 rounded w-full max-w-md"></div>
+          <div class="h-3 bg-muted/40 rounded w-28 pt-1"></div>
+        </div>
+      </div>
+
+      <div
+        v-else-if="projects.length > 0"
+        class="divide-y divide-border"
+      >
         <article
           v-for="project in projects"
           :key="project.title"
@@ -431,6 +392,22 @@ async function copyEmail() {
             </a>
           </div>
         </article>
+      </div>
+
+      <!-- Graceful empty state -->
+      <div
+        v-else
+        class="py-6 text-xs text-muted-foreground"
+      >
+        No projects available at the moment. Explore recent repositories directly on
+        <a
+          href="https://github.com/samithseu"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="prose-link"
+        >
+          GitHub ↗
+        </a>
       </div>
     </section>
 

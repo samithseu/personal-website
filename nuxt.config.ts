@@ -10,6 +10,7 @@ const ogTemplateHash = fs.existsSync(takumiTemplatePath)
       .digest("hex")
       .slice(0, 8)
   : "v1";
+const homeOgImagePath = `/_og/s/c_EachPage.takumi,v_${ogTemplateHash},p_Ii8i.png`;
 const staticAssetRule = {
   headers: {
     "cache-control": "public, max-age=86400, stale-while-revalidate=604800",
@@ -28,7 +29,7 @@ export default defineNuxtConfig({
       },
     },
     prerender: {
-      routes: ["/"],
+      routes: [homeOgImagePath],
     },
     serverAssets: [
       {
@@ -48,7 +49,18 @@ export default defineNuxtConfig({
     "@vite-pwa/nuxt",
   ],
   routeRules: {
-    "/": { isr: 300 },
+    "/": {
+      prerender: true,
+      ogImage: {
+        component: "EachPage.takumi",
+        props: {
+          title: "Samith Seu",
+          desc: "Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces.",
+          v: ogTemplateHash,
+          fontFamily: "Geist Mono",
+        },
+      },
+    },
     "/about": { redirect: { to: "/#about", statusCode: 301 } },
     "/projects": { redirect: { to: "/#projects", statusCode: 301 } },
     "/certificates": { redirect: { to: "/#credentials", statusCode: 301 } },
@@ -104,6 +116,7 @@ export default defineNuxtConfig({
       process.env.NUXT_GITHUB_TOKEN || process.env.GITHUB_TOKEN || "",
     public: {
       ogVersion: ogTemplateHash,
+      homeOgImage: homeOgImagePath,
       site: {
         url: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
         name: "Samith Seu - Personal Website",

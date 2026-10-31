@@ -1,6 +1,31 @@
+import fs from "node:fs";
+import path from "node:path";
 import type { Project, GitHubRepo } from "#shared/types/project";
 
 const CACHE_TTL: number = 60 * 5; // 5 minutes
+
+async function getFallbackProjects(): Promise<GitHubRepo[]> {
+  try {
+    const raw = await useStorage("assets:server").getItem("projects.json");
+    if (raw) {
+      return typeof raw === "string" ? JSON.parse(raw) : (raw as GitHubRepo[]);
+    }
+  } catch {
+    // Ignore storage lookup error and try direct filesystem fallback
+  }
+
+  try {
+    const filePath = path.resolve(process.cwd(), "server/assets/projects.json");
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, "utf8");
+      return JSON.parse(content) as GitHubRepo[];
+    }
+  } catch {
+    // Ignore filesystem read error
+  }
+
+  return [];
+}
 
 export default defineCachedEventHandler(
   async (event) => {
@@ -18,52 +43,47 @@ export default defineCachedEventHandler(
     }
 
     // Fetch repositories with per_page=100 and sort=updated to prevent silent pagination cut-offs
-    let rawRepos: Project[];
+    let rawRepos: Project[] = [];
     try {
       rawRepos = await $fetch<Project[]>(
         "https://api.github.com/users/samithseu/repos?per_page=100&sort=updated&direction=desc",
         { headers }
       );
     } catch (error: any) {
-      console.error("Error fetching GitHub repositories:", error?.message || error);
-      throw createError({
-        statusCode: error?.response?.status || 500,
-        statusMessage: `Failed to fetch projects from GitHub: ${
-          error?.message || "Unknown error"
-        }`,
-      });
+      console.warn("Failed to fetch GitHub repositories:", error?.message || error);
     }
 
-    if (!Array.isArray(rawRepos)) {
-      console.error("Unexpected response format from GitHub API:", rawRepos);
-      throw createError({
-        statusCode: 500,
-        statusMessage: "Unexpected response format from GitHub API.",
-      });
+    let projects: GitHubRepo[] = [];
+
+    if (Array.isArray(rawRepos) && rawRepos.length > 0) {
+      // Filter for valid portfolio projects (non-forks, tagged with "project", having live demo URL)
+      projects = rawRepos
+        .filter(
+          (project: Project) =>
+            !project.fork &&
+            Array.isArray(project.topics) &&
+            project.topics.includes("project") &&
+            Boolean(project.homepage?.trim())
+        )
+        .map((p) => ({
+          id: p.id,
+          name: p.name,
+          description: p.description ?? "",
+          topics: p.topics ?? [],
+          homepage: p.homepage!,
+          html_url: p.html_url,
+          updated_at: p.updated_at,
+        }))
+        .sort(
+          (a, b) =>
+            new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+        );
     }
 
-    // Filter for valid portfolio projects (non-forks, tagged with "project", having live demo URL)
-    const projects: GitHubRepo[] = rawRepos
-      .filter(
-        (project: Project) =>
-          !project.fork &&
-          Array.isArray(project.topics) &&
-          project.topics.includes("project") &&
-          Boolean(project.homepage?.trim())
-      )
-      .map((p) => ({
-        id: p.id,
-        name: p.name,
-        description: p.description ?? "",
-        topics: p.topics ?? [],
-        homepage: p.homepage!,
-        html_url: p.html_url,
-        updated_at: p.updated_at,
-      }))
-      .sort(
-        (a, b) =>
-          new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
-      );
+    // If upstream fetch failed or returned 0 items, use the automated snapshot fallback
+    if (projects.length === 0) {
+      projects = await getFallbackProjects();
+    }
 
     // CDN / Edge cache: 1m browser max-age, 5m CDN s-maxage, 24h background stale-while-revalidate
     setResponseHeader(
@@ -82,4 +102,3 @@ export default defineCachedEventHandler(
     getKey: () => "github-projects",
   }
 );
-
