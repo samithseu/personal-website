@@ -16,25 +16,25 @@
   },
   "dependencies": {
     "@nuxt/content": "^3.16.2",
-    "@nuxt/fonts": "^0.14.0",
-    "@nuxt/icon": "^2.5.1",
-    "@nuxt/image": "^2.1.0",
-    "@nuxtjs/seo": "5.3.14",
-    "@takumi-rs/core": "^2.15.2",
+    "@nuxt/fonts": "^1.2.0",
+    "@nuxt/icon": "^2.6.2",
+    "@nuxt/image": "^2.2.0",
+    "@nuxtjs/seo": "^6.0.1",
+    "@takumi-rs/core": "^2.19.0",
     "@unhead/vue": "^3.4.3",
-    "nuxt": "^4.6.1",
-    "nuxt-og-image": "6.7.8",
+    "nuxt": "^4.6.3",
+    "nuxt-og-image": "^7.0.7",
     "ufo": "^1.6.4",
-    "unstorage": "^1.17.5",
+    "unstorage": "^1.17.6",
     "vue": "^3.5.44"
   },
   "devDependencies": {
-    "@iconify-json/tabler": "^1.2.42",
+    "@iconify-json/tabler": "^1.2.43",
     "@tailwindcss/vite": "^4.3.3",
     "@vite-pwa/nuxt": "^1.1.1",
-    "nuxtseo-layer-devtools": "^5.3.16",
+    "nuxtseo-layer-devtools": "^6.0.2",
     "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3"
   },
-  "packageManager": "pnpm@11.28.5+sha512.484563d30b4c2ad27cb48aa94ff2b302dbcebc8ff6bf28816c2589886e146ce7f76f354f3bc1a438e6f5e9768c302aa0a6f7add8232903cd4cf81426cbc14d9e"
+  "packageManager": "pnpm@11.28.9+sha512.35421cea2720eca3f5ad722b67e8ef18f4d3cd4745ed2fcfeb0dc288d4e9437fad3870d91ee6e83f268f0f6f7e0f62723317b19617bb45ee4333172ef51159f8"
 }
