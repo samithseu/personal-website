@@ -85,13 +85,24 @@ const fallbackProjects: ProjectItem[] = [
   },
 ];
 
-// Dynamically fetch repositories from /api/projects with fallback
-const { data: apiProjects, status: projectStatus } = await useFetch<
-  GitHubRepo[]
->("/api/projects", {
+// Silently revalidate projects in background when user returns to the tab
+onMounted(() => {
+  const onVisibilityChange = () => {
+    if (document.visibilityState === "visible") {
+      refreshNuxtData("github-projects-list");
+    }
+  };
+  document.addEventListener("visibilitychange", onVisibilityChange);
+});
+
+// Dynamically fetch repositories from /api/projects with fallback & client revalidation
+const { data: apiProjects } = await useFetch<GitHubRepo[]>("/api/projects", {
   key: "github-projects-list",
   getCachedData(key, nuxtApp) {
-    return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+    if (nuxtApp.isHydrating) {
+      return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+    }
+    return undefined;
   },
 });
 
@@ -492,7 +503,7 @@ async function copyEmail() {
               </p>
             </div>
             <span class="font-mono text-xs text-muted-foreground shrink-0">
-              2021 – 2025
+              2021 - 2025
             </span>
           </div>
 
@@ -512,7 +523,7 @@ async function copyEmail() {
               </p>
             </div>
             <span class="font-mono text-xs text-muted-foreground shrink-0">
-              2017 – 2020
+              2017 - 2020
             </span>
           </div>
         </div>

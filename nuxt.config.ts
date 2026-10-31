@@ -28,7 +28,7 @@ export default defineNuxtConfig({
       },
     },
     prerender: {
-      ignore: ["/_ipx"],
+      routes: ["/"],
     },
     serverAssets: [
       {
@@ -41,31 +41,14 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  hooks: {
-    "vite:extendConfig"(config) {
-      if (config.optimizeDeps?.include) {
-        config.optimizeDeps.include = config.optimizeDeps.include.filter(
-          (entry) => !entry.startsWith("@nuxtjs/mdc >"),
-        );
-      }
-    },
-  },
   modules: [
     "@nuxt/fonts",
-    "@nuxt/icon",
     "nuxt-og-image",
-    "@nuxt/image",
-    "@nuxt/content",
     "@nuxtjs/seo",
     "@vite-pwa/nuxt",
   ],
-  icon: {
-    mode: "css",
-    cssLayer: "base",
-    serverBundle: false,
-  },
   routeRules: {
-    "/": { prerender: true },
+    "/": { isr: 300 },
     "/about": { redirect: { to: "/#about", statusCode: 301 } },
     "/projects": { redirect: { to: "/#projects", statusCode: 301 } },
     "/certificates": { redirect: { to: "/#credentials", statusCode: 301 } },
@@ -84,7 +67,6 @@ export default defineNuxtConfig({
     "/about-picture.jpg": staticAssetRule,
     "/favicon.svg": staticAssetRule,
     "/favicon.ico": staticAssetRule,
-    "/_ipx/**": { prerender: false },
     "/sw.js": {
       headers: {
         "cache-control": "no-cache, no-store, must-revalidate",
@@ -134,43 +116,27 @@ export default defineNuxtConfig({
   },
   fonts: {
     defaults: {
-      preload: true,
+      preload: false,
     },
     families: [
       {
-        name: "Geist Mono",
-        styles: ["normal"],
-        weights: [400, 500, 600, 700],
-        subsets: ["latin"],
-        preload: true,
-        global: true,
-      },
-      {
         name: "Inter",
         styles: ["normal"],
-        weights: [400, 500, 600, 700, 800],
+        weights: [400, 500, 600],
         subsets: ["latin"],
         preload: true,
+      },
+      {
+        name: "Geist Mono",
+        styles: ["normal"],
+        weights: [400, 500],
+        subsets: ["latin"],
+        preload: false,
+        global: true,
       },
     ],
   },
   ogImage: { zeroRuntime: true },
-  image: {
-    format: ["webp"],
-    quality: 80,
-    screens: {
-      sm: 350,
-      md: 600,
-      lg: 700,
-    },
-  },
-  content: {
-    build: {
-      markdown: {
-        highlight: false,
-      },
-    },
-  },
   pwa: {
     registerType: "autoUpdate",
     manifest: false,
@@ -189,7 +155,7 @@ export default defineNuxtConfig({
           handler: "NetworkFirst",
           options: {
             cacheName: "pages-cache",
-            networkTimeoutSeconds: 3,
+            networkTimeoutSeconds: 1.5,
             cacheableResponse: {
               statuses: [0, 200],
             },
@@ -212,13 +178,11 @@ export default defineNuxtConfig({
         {
           urlPattern: ({ request, url }) =>
             request.destination === "image" ||
-            url.pathname.startsWith("/_vercel/image") ||
-            url.pathname.startsWith("/_ipx/") ||
             url.pathname.startsWith("/certs/") ||
             url.pathname.startsWith("/logos/") ||
             url.pathname.startsWith("/svg/") ||
             /\.(?:png|jpg|jpeg|svg|webp|ico|gif)$/i.test(url.pathname),
-          handler: "StaleWhileRevalidate",
+          handler: "CacheFirst",
           options: {
             cacheName: "images-cache",
             expiration: {

@@ -15,24 +15,16 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/content": "^3.16.2",
     "@nuxt/fonts": "^1.2.0",
-    "@nuxt/icon": "^2.6.2",
-    "@nuxt/image": "^2.2.0",
     "@nuxtjs/seo": "^6.0.1",
     "@takumi-rs/core": "^2.19.0",
-    "@unhead/vue": "^3.4.3",
     "nuxt": "^4.6.3",
     "nuxt-og-image": "^7.0.7",
-    "ufo": "^1.6.4",
-    "unstorage": "^1.17.6",
     "vue": "^3.5.44"
   },
   "devDependencies": {
-    "@iconify-json/tabler": "^1.2.43",
     "@tailwindcss/vite": "^4.3.3",
     "@vite-pwa/nuxt": "^1.1.1",
-    "nuxtseo-layer-devtools": "^6.0.2",
     "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3"
   },

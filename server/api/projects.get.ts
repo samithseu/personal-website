@@ -65,11 +65,11 @@ export default defineCachedEventHandler(
           new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
       );
 
-    // CDN / Edge cache: 5m browser max-age, 1h CDN s-maxage, 24h background stale-while-revalidate
+    // CDN / Edge cache: 1m browser max-age, 5m CDN s-maxage, 24h background stale-while-revalidate
     setResponseHeader(
       event,
       "Cache-Control",
-      "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400"
+      "public, max-age=60, s-maxage=300, stale-while-revalidate=86400"
     );
 
     return projects;
