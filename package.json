@@ -6,7 +6,7 @@
     "build": "nuxt cleanup && nuxt build",
     "clean": "nuxt cleanup && rm -rf ./node_modules/.cache",
     "clean:all": "nuxt cleanup && rm -rf ./node_modules/ ./.output ./.vercel",
-    "dev": "nuxt cleanup && nuxt dev",
+    "dev": "nuxt cleanup && nuxt dev --no-tui",
     "dev:host": "nuxt dev --host",
     "generate": "nuxt generate",
     "preview": "NITRO_PRESET=node-server nuxt build && node .output/server/index.mjs",

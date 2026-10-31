@@ -1,11 +1,9 @@
 <script lang="ts" setup>
-
 useHead({
   htmlAttrs: { lang: "en" },
   meta: [
     { name: "viewport", content: "width=device-width, initial-scale=1.0" },
     { name: "color-scheme", content: "dark light" },
-    { name: "theme-color", content: "#09090b" },
   ],
   link: [
     { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
@@ -21,10 +19,10 @@ useHead({
 
 useSeoMeta({
   charset: "utf-8",
-  title: "Samith Seu",
+  title: "Samith Seu — Web Developer",
+  description:
+    "Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces.",
 });
-
-const keepAlivePages = ["index", "about", "certificates", "blogs"];
 
 let mediaQuery: MediaQueryList | null = null;
 let updateThemeFn: ((e: MediaQueryList | MediaQueryListEvent) => void) | null = null;
@@ -54,17 +52,11 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div
-    class="min-h-svh h-full flex flex-col justify-between transition-colors duration-300"
-  >
-    <div
-      class="fixed inset-0 pointer-events-none -z-10 bg-grid-pattern"
-      aria-hidden="true"
-    />
+  <div class="min-h-screen flex flex-col justify-between selection:bg-foreground/10">
     <NuxtLoadingIndicator :throttle="150" color="hsl(var(--foreground))" />
     <Header />
-    <main class="flex-1">
-      <NuxtPage :keepalive="{ include: keepAlivePages }" />
+    <main class="flex-1 w-full max-w-[640px] mx-auto px-6 py-10 sm:py-16">
+      <NuxtPage />
     </main>
     <Footer />
   </div>

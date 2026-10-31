@@ -10,17 +10,6 @@ const ogTemplateHash = fs.existsSync(takumiTemplatePath)
       .digest("hex")
       .slice(0, 8)
   : "v1";
-const projectsOgImagePath = `/_og/s/c_EachPage.takumi,v_${ogTemplateHash},p_Ii9wcm9qZWN0cyI.png`;
-
-const aboutPicturePath = "./public/about-picture.jpg";
-const aboutPictureHash = fs.existsSync(aboutPicturePath)
-  ? crypto
-      .createHash("md5")
-      .update(fs.readFileSync(aboutPicturePath))
-      .digest("hex")
-      .slice(0, 8)
-  : "v1";
-
 const staticAssetRule = {
   headers: {
     "cache-control": "public, max-age=86400, stale-while-revalidate=604800",
@@ -32,7 +21,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
   prerender: {
-    routes: [projectsOgImagePath],
     ignore: ["/_ipx"],
   },
   nitro: {
@@ -72,23 +60,11 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/": { prerender: true },
-    "/about": { prerender: true },
-    "/projects": {
-      isr: 60 * 5, // 5 minutes
-      ogImage: {
-        component: "EachPage.takumi",
-        props: {
-          headline: "personal website",
-          title: "Samith Seu - Projects",
-          desc: "See what I've been building lately. Browse through my featured projects, view the tech stacks I used, and check out the live demos.",
-          v: ogTemplateHash,
-          fontFamily: "Geist Mono",
-        },
-      },
-    },
-    "/certificates": { prerender: true },
-    "/blogs": { prerender: true },
-    "/api/certificates": { prerender: true },
+    "/about": { redirect: { to: "/#about", statusCode: 301 } },
+    "/projects": { redirect: { to: "/#projects", statusCode: 301 } },
+    "/certificates": { redirect: { to: "/#credentials", statusCode: 301 } },
+    "/blogs": { redirect: { to: "/", statusCode: 301 } },
+    "/api/certificates": { redirect: { to: "/", statusCode: 301 } },
     "/logos/**": {
       headers: {
         "cache-control": "public, max-age=31536000, s-maxage=31536000, immutable",
@@ -139,8 +115,6 @@ export default defineNuxtConfig({
       process.env.NUXT_GITHUB_TOKEN || process.env.GITHUB_TOKEN || "",
     public: {
       ogVersion: ogTemplateHash,
-      projectsOgImage: projectsOgImagePath,
-      aboutPictureHash,
       site: {
         url: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
         name: "Samith Seu - Personal Website",

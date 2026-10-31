@@ -268,11 +268,11 @@ Interested in working together or have a project in mind? Samith is always open 
 
 ## Website Routes & Navigation
 
-- `/` : Home page (hero section, headline, introduction, interactive code terminal, quick actions)
-- `/about` : About page (biography, personal story, education history, skills & technologies)
-- `/projects` : Featured projects showcase with interactive category filtering and search
-- `/certificates` : Verified qualifications gallery with search, organization filter, and modal image preview
-- `/blogs` : Articles, tutorials, and writing
+- `/` : Unified single-page personal website (minimalist, typography-driven, dark/light mode OS theme support, bio, selected projects, credentials, and contact)
+- `/about` : Redirects to `/#about`
+- `/projects` : Redirects to `/#projects`
+- `/certificates` : Redirects to `/#credentials`
+- `/blogs` : Redirects to `/`
 - `/llm.txt` : LLM context file (this document)
 - `/github` : Direct redirect to GitHub profile
 - `/linkedin` : Direct redirect to LinkedIn profile

@@ -27,9 +27,9 @@ function getPersonNode(siteUrl: string) {
       name: "Samith Seu",
       givenName: "Samith",
       familyName: "Seu",
-      jobTitle: "Frontend & Interface Engineer",
+      jobTitle: "Web Developer",
       description:
-        "Frontend & Interface Engineer and Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces and applications using modern technologies including Vue, Nuxt, React, TypeScript, and Tailwind CSS.",
+        "Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces and applications using modern technologies including Vue, Nuxt, React, TypeScript, and Tailwind CSS.",
       image: `${siteUrl}/about-picture.jpg`,
       email: "mailto:contact@samith.dev",
       alternateName: [
@@ -130,8 +130,9 @@ export const useSeo = ({
   const route = useRoute();
   const canonicalUrl = route.path === "/" ? `${siteUrl}/` : `${siteUrl}${route.path}`;
 
-  // Clean full title without unparsed '%s' placeholders
-  const fullTitle = noPrefix ? title : `Samith Seu - ${title}`;
+  // Clean full title without duplicate prefixes or unparsed '%s' placeholders
+  const fullTitle =
+    noPrefix || title.startsWith("Samith Seu") ? title : `Samith Seu - ${title}`;
 
   const personId = `${siteUrl}/#person`;
   const websiteId = `${siteUrl}/#website`;
@@ -142,13 +143,7 @@ export const useSeo = ({
     pageType ||
     (route.path === "/"
       ? "ProfilePage"
-      : route.path === "/about"
-        ? "AboutPage"
-        : route.path === "/projects" ||
-            route.path === "/certificates" ||
-            route.path === "/blogs"
-          ? "CollectionPage"
-          : "WebPage");
+      : "WebPage");
 
   useSchemaOrg([
     getPersonNode(siteUrl),
@@ -200,11 +195,7 @@ export const useSeo = ({
   // For non-prerendered pages like /projects (which has zeroRuntime: true and ISR),
   // defineOgImage is tree-shaken away by nuxt-og-image at runtime. We supply the
   // prerendered static OG image URL directly to useSeoMeta.
-  const rawOgImage =
-    ogImageUrl ||
-    (route.path === "/projects"
-      ? (config.public.projectsOgImage as string)
-      : undefined);
+  const rawOgImage = ogImageUrl;
   const resolvedOgImageUrl = rawOgImage
     ? rawOgImage.startsWith("http")
       ? rawOgImage
