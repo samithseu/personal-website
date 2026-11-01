@@ -49,7 +49,7 @@ export default defineNuxtConfig({
       ogImage: {
         component: "EachPage.takumi",
         props: {
-          title: "Samith Seu",
+          title: "Samith Seu - Website",
           desc: "Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces.",
           v: ogTemplateHash,
           fontFamily: "Geist Mono",
@@ -76,9 +76,7 @@ export default defineNuxtConfig({
     "/favicon.svg": staticAssetRule,
     "/favicon.ico": staticAssetRule,
     "/sw.js": {
-      headers: {
-        "cache-control": "no-cache, no-store, must-revalidate",
-      },
+      headers: { "cache-control": "no-cache, no-store, must-revalidate" },
     },
 
     "/llm.txt": {
@@ -105,7 +103,7 @@ export default defineNuxtConfig({
   app: { head: { titleTemplate: "%s" } },
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
-    name: "Samith Seu",
+    name: "Samith Seu - Website",
   },
   runtimeConfig: {
     githubToken:
@@ -115,7 +113,7 @@ export default defineNuxtConfig({
       homeOgImage: homeOgImagePath,
       site: {
         url: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
-        name: "Samith Seu",
+        name: "Samith Seu - Website",
       },
     },
   },
@@ -227,7 +225,7 @@ export default defineNuxtConfig({
       public: {
         site: {
           url: "http://localhost:3000",
-          name: "Samith Seu",
+          name: "Samith Seu - Website",
         },
       },
     },
@@ -238,7 +236,7 @@ export default defineNuxtConfig({
       public: {
         site: {
           url: process.env.NUXT_PUBLIC_SITE_URL || "https://samith.dev",
-          name: "Samith Seu",
+          name: "Samith Seu - Website",
         },
       },
     },

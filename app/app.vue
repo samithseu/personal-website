@@ -19,7 +19,7 @@ useHead({
 
 useSeoMeta({
   charset: "utf-8",
-  title: "Samith Seu - Web Developer",
+  title: "Samith Seu - Website",
   description:
     "Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces.",
 });

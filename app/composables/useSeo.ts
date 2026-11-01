@@ -100,7 +100,7 @@ function getWebsiteNode(siteUrl: string, inLanguage: string) {
     node = defineWebSite({
       "@id": `${siteUrl}/#website`,
       "@type": "WebSite",
-      name: "Samith Seu - Personal Website",
+      name: "Samith Seu - Website",
       description:
         "Welcome to my digital space. Explore my work, read the blog, and learn about my journey as a developer.",
       url: siteUrl,
@@ -168,7 +168,6 @@ export const useSeo = ({
         "Samith Seu",
         "Seu Samith",
         "ស៊ឺ សាមីត",
-        "Frontend & Interface Engineer",
         "Web Developer",
         "Vue.js",
         "Nuxt.js",

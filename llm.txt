@@ -1,9 +1,9 @@
 # Samith Seu
 
-> Frontend & Interface Engineer and Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces and applications using modern technologies including Vue, Nuxt, React, TypeScript, and Tailwind CSS.
+> Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces and applications using modern technologies including Vue, Nuxt, React, TypeScript, and Tailwind CSS.
 
 - Name: Samith Seu
-- Title: Frontend & Interface Engineer / Web Developer
+- Title: Web Developer
 - Location: Chbarmon municipality, Kampong Speu, Cambodia
 - Website: https://samith.dev
 - Email: contact@samith.dev

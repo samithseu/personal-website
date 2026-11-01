@@ -5,10 +5,9 @@ const { allContacts } = useContacts();
 const config = useRuntimeConfig();
 
 useSeo({
-  title: "Samith Seu",
+  title: "Website",
   description:
     "Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces.",
-  noPrefix: true,
   ogImageUrl: config.public.homeOgImage as string,
 });
 
