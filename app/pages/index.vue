@@ -13,7 +13,11 @@ useSeo({
 });
 
 // Fetch repositories from /api/projects with SSR prerender payload and client SWR caching
-const { data: projects, status } = await useFetch("/api/projects", {
+const {
+  data: projects,
+  status,
+  refresh: refreshProjects,
+} = await useFetch("/api/projects", {
   key: "github-projects-list",
   dedupe: "defer",
   default: (): ProjectItem[] => [],
@@ -40,6 +44,22 @@ const { data: projects, status } = await useFetch("/api/projects", {
   getCachedData(key, nuxtApp) {
     return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
   },
+});
+
+// SWR Client Revalidation: Silently fetch fresh GitHub repositories on mount and tab focus
+onMounted(() => {
+  refreshProjects();
+
+  const handleVisibilityChange = () => {
+    if (document.visibilityState === "visible") {
+      refreshProjects();
+    }
+  };
+
+  document.addEventListener("visibilitychange", handleVisibilityChange);
+  onUnmounted(() => {
+    document.removeEventListener("visibilitychange", handleVisibilityChange);
+  });
 });
 
 const valuableCredentials = CERTIFICATES.filter((cert) => cert.featured);

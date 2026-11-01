@@ -54,6 +54,9 @@ export default defineNuxtConfig({
   routeRules: {
     "/": {
       prerender: true,
+      headers: {
+        "cache-control": "public, max-age=0, must-revalidate",
+      },
       ogImage: {
         component: "EachPage.takumi",
         props: {
@@ -102,6 +105,7 @@ export default defineNuxtConfig({
     "/telegram": { redirect: "https://t.me/samithseu" },
   },
   experimental: {
+    emitRouteChunkError: "automatic-immediate",
     viewTransition: true,
     routeTypedFetch: true,
     early404: true,
@@ -164,9 +168,13 @@ export default defineNuxtConfig({
   pwa: {
     registerType: "autoUpdate",
     manifest: false,
+    client: {
+      periodicSyncForUpdates: 3600,
+    },
     workbox: {
       navigateFallback: null,
-      globPatterns: ["**/*.{js,css,html,png,jpg,jpeg,svg,ico,webp,woff2}"],
+      navigationPreload: true,
+      globPatterns: ["**/*.{js,css,png,jpg,jpeg,svg,ico,webp,woff2}"],
       maximumFileSizeToCacheInBytes: 4000000,
       cleanupOutdatedCaches: true,
       clientsClaim: true,
@@ -177,7 +185,7 @@ export default defineNuxtConfig({
           handler: "NetworkFirst",
           options: {
             cacheName: "pages-cache",
-            networkTimeoutSeconds: 1.5,
+            networkTimeoutSeconds: 2.0,
             cacheableResponse: {
               statuses: [0, 200],
             },
@@ -185,13 +193,10 @@ export default defineNuxtConfig({
         },
         {
           urlPattern: ({ url }) => url.pathname.startsWith("/api/"),
-          handler: "StaleWhileRevalidate",
+          handler: "NetworkFirst",
           options: {
             cacheName: "api-cache",
-            expiration: {
-              maxEntries: 20,
-              maxAgeSeconds: 60 * 60 * 24,
-            },
+            networkTimeoutSeconds: 2.0,
             cacheableResponse: {
               statuses: [0, 200],
             },

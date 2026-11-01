@@ -10,7 +10,7 @@ My digital space for other links and resources. <i>Also a personal Nuxt playgrou
 
 ---
 
-Optimized for first-class Core Web Vitals, performance, and best practices. You can give it a try here: <a href="https://samith.dev">samith.dev</a>
+Optimized for first-class Core Web Vitals, performance, and best practices. Features instant deployment update invalidation via Workbox Navigation Preload, full offline resilience with PWA, and client-side SWR synchronization with GitHub API while maintaining complete SSR prerendering. You can give it a try here: <a href="https://samith.dev">samith.dev</a>
 
 ---
 
