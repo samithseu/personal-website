@@ -125,97 +125,97 @@ All featured projects are maintained by Samith Seu on GitHub with live deploymen
    - Issuer: HackerRank
    - Issue Date: May 26, 2025
    - Credential ID: e5e674e706e1
-   - Certificate Image: https://samith.dev/certs/frontend-react.png
+   - Certificate Image: https://samith.dev/certs/frontend-react.webp
 
 2. Java Programming I
    - Issuer: Brachñāsāstra Technology Institute (BTI)
    - Issue Date: September 7, 2024
    - Credential ID: BTI273
-   - Certificate Image: https://samith.dev/certs/java-i.jpg
+   - Certificate Image: https://samith.dev/certs/java-i.webp
 
 3. Software Engineering I
    - Issuer: Brachñāsāstra Technology Institute (BTI)
    - Issue Date: September 7, 2024
    - Credential ID: BTI276
-   - Certificate Image: https://samith.dev/certs/swe-i.jpg
+   - Certificate Image: https://samith.dev/certs/swe-i.webp
 
 4. Computer Graphic II
    - Issuer: Brachñāsāstra Technology Institute (BTI)
    - Issue Date: June 1, 2024
    - Credential ID: BTI272
-   - Certificate Image: https://samith.dev/certs/computer-graphic-ii.jpg
+   - Certificate Image: https://samith.dev/certs/computer-graphic-ii.webp
 
 5. Internet Programming II
    - Issuer: Brachñāsāstra Technology Institute (BTI)
    - Issue Date: June 1, 2024
    - Credential ID: BTI270
-   - Certificate Image: https://samith.dev/certs/html-ii.jpg
+   - Certificate Image: https://samith.dev/certs/html-ii.webp
 
 6. Information System Analysis and Design I
    - Issuer: Brachñāsāstra Technology Institute (BTI)
    - Issue Date: May 4, 2024
    - Credential ID: BTI264
-   - Certificate Image: https://samith.dev/certs/isad-i.jpg
+   - Certificate Image: https://samith.dev/certs/isad-i.webp
 
 7. Visual Basic Programming II
    - Issuer: Brachñāsāstra Technology Institute (BTI)
    - Issue Date: May 4, 2024
    - Credential ID: BTI269
-   - Certificate Image: https://samith.dev/certs/vb-ii.jpg
+   - Certificate Image: https://samith.dev/certs/vb-ii.webp
 
 8. Data Communication II
    - Issuer: Brachñāsāstra Technology Institute (BTI)
    - Issue Date: November 23, 2023
    - Credential ID: BTI255
-   - Certificate Image: https://samith.dev/certs/data-com-ii.jpg
+   - Certificate Image: https://samith.dev/certs/data-com-ii.webp
 
 9. Computer Graphic I
    - Issuer: Brachñāsāstra Technology Institute (BTI)
    - Issue Date: October 6, 2023
    - Credential ID: BTI265
-   - Certificate Image: https://samith.dev/certs/computer-graphic-i.jpg
+   - Certificate Image: https://samith.dev/certs/computer-graphic-i.webp
 
 10. Visual Basic Programming I
     - Issuer: Brachñāsāstra Technology Institute (BTI)
     - Issue Date: October 6, 2023
     - Credential ID: BTI262
-    - Certificate Image: https://samith.dev/certs/vb-i.jpg
+    - Certificate Image: https://samith.dev/certs/vb-i.webp
 
 11. Computer Network II
     - Issuer: Brachñāsāstra Technology Institute (BTI)
     - Issue Date: August 4, 2023
     - Credential ID: BTI268
-    - Certificate Image: https://samith.dev/certs/computer-network-ii.jpg
+    - Certificate Image: https://samith.dev/certs/computer-network-ii.webp
 
 12. Data Structures and Algorithms II
     - Issuer: Brachñāsāstra Technology Institute (BTI)
     - Issue Date: August 4, 2023
     - Credential ID: BTI257
-    - Certificate Image: https://samith.dev/certs/dsa-ii.jpg
+    - Certificate Image: https://samith.dev/certs/dsa-ii.webp
 
 13. CSS (Basic)
     - Issuer: HackerRank
     - Issue Date: July 14, 2023
     - Credential ID: 1105ab0d17cf
-    - Certificate Image: https://samith.dev/certs/css-basic.png
+    - Certificate Image: https://samith.dev/certs/css-basic.webp
 
 14. Computer Network I
     - Issuer: Brachñāsāstra Technology Institute (BTI)
     - Issue Date: April 22, 2023
     - Credential ID: BTI261
-    - Certificate Image: https://samith.dev/certs/computer-network-i.jpg
+    - Certificate Image: https://samith.dev/certs/computer-network-i.webp
 
 15. Project Management
     - Issuer: Brachñāsāstra Technology Institute (BTI)
     - Issue Date: December 31, 2022
     - Credential ID: BTI285
-    - Certificate Image: https://samith.dev/certs/project-mgmt-i.jpg
+    - Certificate Image: https://samith.dev/certs/project-mgmt-i.webp
 
 16. C++ Programming II
     - Issuer: Brachñāsāstra Technology Institute (BTI)
     - Issue Date: December 30, 2022
     - Credential ID: BTI258
-    - Certificate Image: https://samith.dev/certs/cpp-ii.jpg
+    - Certificate Image: https://samith.dev/certs/cpp-ii.webp
 
 ### Skill Badges
 

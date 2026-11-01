@@ -111,3 +111,12 @@ export type GitHubRepo = {
   html_url: string;
   updated_at: string;
 };
+
+export type ProjectItem = {
+  title: string;
+  description: string;
+  tags: string[];
+  liveUrl?: string;
+  sourceUrl?: string;
+};
+

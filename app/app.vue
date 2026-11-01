@@ -10,11 +10,6 @@ useHead({
     { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
     { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
   ],
-  script: [
-    {
-      innerHTML: `try { if (window.matchMedia('(prefers-color-scheme: dark)').matches) { document.documentElement.classList.add('dark'); } } catch (_) {}`,
-    },
-  ],
 });
 
 useSeoMeta({
@@ -22,33 +17,6 @@ useSeoMeta({
   title: "Samith Seu - Website",
   description:
     "Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces.",
-});
-
-let mediaQuery: MediaQueryList | null = null;
-let updateThemeFn: ((e: MediaQueryList | MediaQueryListEvent) => void) | null =
-  null;
-
-onMounted(() => {
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-  });
-
-  mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-  updateThemeFn = (e: MediaQueryList | MediaQueryListEvent) => {
-    if (e.matches) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
-  updateThemeFn(mediaQuery);
-  mediaQuery.addEventListener("change", updateThemeFn);
-});
-
-onBeforeUnmount(() => {
-  if (mediaQuery && updateThemeFn) {
-    mediaQuery.removeEventListener("change", updateThemeFn);
-  }
 });
 </script>
 
@@ -61,6 +29,6 @@ onBeforeUnmount(() => {
     <main class="flex-1 w-full max-w-prefer mx-auto px-6 py-10 sm:py-16">
       <NuxtPage />
     </main>
-    <Footer />
+    <LazyFooter hydrate-never />
   </div>
 </template>

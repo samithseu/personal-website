@@ -1,5 +1,3 @@
-import { getStoredSVG } from "~~/server/utils/getSVGs";
-
 const FILENAME_REGEX = /^[a-zA-Z0-9_.-]+\.svg$/;
 
 const normalizeHexColor = (color: unknown): string | null => {

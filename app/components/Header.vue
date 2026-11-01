@@ -16,7 +16,7 @@ const navLinks = [
       class="inline-flex items-center text-foreground hover:opacity-75 transition-opacity"
       aria-label="Samith Seu - Website"
     >
-      <M class="w-4.5 h-5" />
+      <LazyM hydrate-never class="w-4.5 h-5" />
     </NuxtLink>
 
     <nav

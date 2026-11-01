@@ -1,7 +1,9 @@
-export type Certificate = {
+export interface Certificate {
   id: string;
   issue_date: string;
   title: string;
-  org: string;
+  issuer: string;
+  year: string;
   url: string;
-};
+  featured?: boolean;
+}

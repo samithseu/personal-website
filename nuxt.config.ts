@@ -11,9 +11,16 @@ const ogTemplateHash = fs.existsSync(takumiTemplatePath)
       .slice(0, 8)
   : "v1";
 const homeOgImagePath = `/_og/s/c_EachPage.takumi,v_${ogTemplateHash},p_Ii8i.png`;
+
 const staticAssetRule = {
   headers: {
     "cache-control": "public, max-age=86400, stale-while-revalidate=604800",
+  },
+};
+
+const longLivedAssetRule = {
+  headers: {
+    "cache-control": "public, max-age=31536000, s-maxage=31536000, immutable",
   },
 };
 
@@ -30,6 +37,7 @@ export default defineNuxtConfig({
     },
     prerender: {
       routes: [homeOgImagePath],
+      crawlLinks: true,
     },
     serverAssets: [
       {
@@ -71,7 +79,7 @@ export default defineNuxtConfig({
     "/svg/**": {
       redirect: { to: "/logos/**", statusCode: 301 },
     },
-    "/certs/**": staticAssetRule,
+    "/certs/**": longLivedAssetRule,
     "/about-picture.jpg": staticAssetRule,
     "/favicon.svg": staticAssetRule,
     "/favicon.ico": staticAssetRule,
@@ -99,6 +107,13 @@ export default defineNuxtConfig({
     early404: true,
     prerenderErrorPages: true,
     stripNeverHydratedData: true,
+    extractAsyncDataHandlers: true,
+    defaults: {
+      nuxtLink: {
+        prefetch: true,
+        prefetchOn: { visibility: true, interaction: true },
+      },
+    },
   },
   app: { head: { titleTemplate: "%s" } },
   site: {
@@ -132,6 +147,7 @@ export default defineNuxtConfig({
         weights: [400, 500, 600],
         subsets: ["latin"],
         preload: true,
+        display: "swap",
       },
       {
         name: "Geist Mono",
@@ -140,6 +156,7 @@ export default defineNuxtConfig({
         subsets: ["latin"],
         preload: false,
         global: true,
+        display: "swap",
       },
     ],
   },
@@ -185,7 +202,6 @@ export default defineNuxtConfig({
             request.destination === "image" ||
             url.pathname.startsWith("/certs/") ||
             url.pathname.startsWith("/logos/") ||
-            url.pathname.startsWith("/svg/") ||
             /\.(?:png|jpg|jpeg|svg|webp|ico|gif)$/i.test(url.pathname),
           handler: "CacheFirst",
           options: {

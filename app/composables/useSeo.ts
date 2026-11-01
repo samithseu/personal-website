@@ -15,103 +15,90 @@ export interface SeoProps {
   pageType?: "WebPage" | "AboutPage" | "CollectionPage" | "ProfilePage";
 }
 
-// High-accuracy Schema.org Person & WebSite definitions cached to avoid repeated allocations
-const personCache = new Map<string, ReturnType<typeof definePerson>>();
-function getPersonNode(siteUrl: string) {
-  let node = personCache.get(siteUrl);
-  if (!node) {
-    node = definePerson({
-      "@id": `${siteUrl}/#person`,
-      "@type": "Person",
-      url: siteUrl,
-      name: "Samith Seu",
-      givenName: "Samith",
-      familyName: "Seu",
-      jobTitle: "Web Developer",
-      description:
-        "Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces and applications using modern technologies including Vue, Nuxt, React, TypeScript, and Tailwind CSS.",
-      image: `${siteUrl}/about-picture.jpg`,
-      email: "mailto:contact@samith.dev",
-      alternateName: [
-        "Seu Samith",
-        "Samith Seu",
-        "samithseu",
-        "seusamith",
-        "seumith",
-        "ស៊ឺ សាមីត",
-      ],
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Chbar Mon",
-        addressRegion: "Kampong Speu",
-        addressCountry: "KH",
+function createPersonNode(siteUrl: string) {
+  return definePerson({
+    "@id": `${siteUrl}/#person`,
+    "@type": "Person",
+    url: siteUrl,
+    name: "Samith Seu",
+    givenName: "Samith",
+    familyName: "Seu",
+    jobTitle: "Web Developer",
+    description:
+      "Web Developer specializing in crafting responsive, performant, and user-friendly web interfaces and applications using modern technologies including Vue, Nuxt, React, TypeScript, and Tailwind CSS.",
+    image: `${siteUrl}/about-picture.jpg`,
+    email: "mailto:contact@samith.dev",
+    alternateName: [
+      "Seu Samith",
+      "Samith Seu",
+      "samithseu",
+      "seusamith",
+      "seumith",
+      "ស៊ឺ សាមីត",
+    ],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Chbar Mon",
+      addressRegion: "Kampong Speu",
+      addressCountry: "KH",
+    },
+    alumniOf: [
+      {
+        "@type": "EducationalOrganization",
+        name: "Brachñāsāstra Technology Institute",
+        alternateName: "BTI",
+        url: "https://www.facebook.com/brachnasastraBTI/",
       },
-      alumniOf: [
-        {
-          "@type": "EducationalOrganization",
-          name: "Brachñāsāstra Technology Institute",
-          alternateName: "BTI",
-          url: "https://www.facebook.com/brachnasastraBTI/",
-        },
-        {
-          "@type": "EducationalOrganization",
-          name: "Kampong Speu High School",
-          url: "https://maps.app.goo.gl/v2CP1f6JuUVK6pUm8",
-        },
-      ],
-      knowsAbout: [
-        "Vue.js",
-        "Nuxt.js",
-        "React.js",
-        "Astro",
-        "TypeScript",
-        "JavaScript",
-        "Tailwind CSS",
-        "Node.js",
-        "Laravel",
-        "REST API Design",
-        "SQL",
-        "PostgreSQL",
-        "Supabase",
-        "Git",
-        "Docker",
-        "Figma",
-        "Frontend Engineering",
-        "Web Development",
-      ],
-      knowsLanguage: ["en", "km"],
-      sameAs: [
-        "https://github.com/samithseu",
-        "https://linkedin.com/in/samithseu/",
-        "https://x.com/seumith",
-        "https://t.me/samithseu",
-        "https://resume.samith.dev",
-      ],
-    } as any);
-    personCache.set(siteUrl, node);
-  }
-  return node;
+      {
+        "@type": "EducationalOrganization",
+        name: "Kampong Speu High School",
+        url: "https://maps.app.goo.gl/v2CP1f6JuUVK6pUm8",
+      },
+    ],
+    knowsAbout: [
+      "Vue.js",
+      "Nuxt.js",
+      "React.js",
+      "Astro",
+      "TypeScript",
+      "JavaScript",
+      "Tailwind CSS",
+      "Node.js",
+      "Laravel",
+      "REST API Design",
+      "SQL",
+      "PostgreSQL",
+      "Supabase",
+      "Git",
+      "Docker",
+      "Figma",
+      "Frontend Engineering",
+      "Web Development",
+    ],
+    knowsLanguage: ["en", "km"],
+    sameAs: [
+      "https://github.com/samithseu",
+      "https://linkedin.com/in/samithseu/",
+      "https://x.com/seumith",
+      "https://t.me/samithseu",
+      "https://resume.samith.dev",
+    ],
+  } as any);
 }
 
-const websiteCache = new Map<string, ReturnType<typeof defineWebSite>>();
-function getWebsiteNode(siteUrl: string, inLanguage: string) {
-  let node = websiteCache.get(siteUrl);
-  if (!node) {
-    node = defineWebSite({
-      "@id": `${siteUrl}/#website`,
-      "@type": "WebSite",
-      name: "Samith Seu - Website",
-      description:
-        "Welcome to my digital space. Explore my work, read the blog, and learn about my journey as a developer.",
-      url: siteUrl,
-      inLanguage,
-      publisher: { "@id": `${siteUrl}/#person` },
-      author: { "@id": `${siteUrl}/#person` },
-      datePublished: "2025-05-12T00:00:00.000Z",
-    });
-    websiteCache.set(siteUrl, node);
-  }
-  return node;
+function createWebsiteNode(siteUrl: string, inLanguage: string) {
+  return defineWebSite({
+    "@id": `${siteUrl}/#website`,
+    "@type": "WebSite",
+    name: "Samith Seu - Website",
+    description:
+      "Welcome to my digital space. Explore my work, read the blog, and learn about my journey as a developer.",
+    url: siteUrl,
+    inLanguage,
+    publisher: { "@id": `${siteUrl}/#person` },
+    author: { "@id": `${siteUrl}/#person` },
+    datePublished: "2025-05-12T00:00:00.000Z",
+  });
 }
 
 export const useSeo = ({
@@ -123,7 +110,6 @@ export const useSeo = ({
   ogImageUrl,
   pageType,
 }: SeoProps) => {
-  // Schema.org structured data & dynamic URLs
   const config = useRuntimeConfig();
   const siteUrl = (config.public.site?.url ||
     config.public.siteUrl ||
@@ -133,7 +119,6 @@ export const useSeo = ({
   const canonicalUrl =
     route.path === "/" ? `${siteUrl}/` : `${siteUrl}${route.path}`;
 
-  // Clean full title without duplicate prefixes or unparsed '%s' placeholders
   const fullTitle =
     noPrefix || title.startsWith("Samith Seu")
       ? title
@@ -148,8 +133,8 @@ export const useSeo = ({
     pageType || (route.path === "/" ? "ProfilePage" : "WebPage");
 
   useSchemaOrg([
-    getPersonNode(siteUrl),
-    getWebsiteNode(siteUrl, inLanguage),
+    createPersonNode(siteUrl),
+    createWebsiteNode(siteUrl, inLanguage),
     defineWebPage({
       "@id": webpageId,
       "@type": resolvedPageType,
@@ -189,11 +174,8 @@ export const useSeo = ({
         ...(route.path !== "/" ? [{ name: title, item: canonicalUrl }] : []),
       ],
     }),
-  ]);
+  ] as any);
 
-  // For non-prerendered pages like /projects (which has zeroRuntime: true and ISR),
-  // defineOgImage is tree-shaken away by nuxt-og-image at runtime. We supply the
-  // prerendered static OG image URL directly to useSeoMeta.
   const rawOgImage = ogImageUrl;
   const resolvedOgImageUrl = rawOgImage
     ? rawOgImage.startsWith("http")
@@ -209,11 +191,7 @@ export const useSeo = ({
     ogTitle: fullTitle,
     ogDescription: description,
     ogType: "website",
-    ...(resolvedOgImageUrl
-      ? {
-          ogImage: resolvedOgImageUrl,
-        }
-      : {}),
+    ...(resolvedOgImageUrl ? { ogImage: resolvedOgImageUrl } : {}),
   });
 
   if (ogImage) {

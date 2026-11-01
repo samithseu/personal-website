@@ -4,13 +4,24 @@ My digital space for other links and resources. <i>Also a personal Nuxt playgrou
 
 ## Technologies
 
-- Nuxt.js
-- Tailwind CSS
-- Nuxt modules (og-image, fonts)
+- Nuxt 4
+- Tailwind CSS v4
+- Nuxt modules (`@nuxt/fonts`, `nuxt-og-image`, `@nuxtjs/seo`, `@vite-pwa/nuxt`)
 
 ---
 
-Did anything to get best FCP & Performance. You can give it a try here! <a href="https://samith.dev">samith.dev</a>
+Optimized for first-class Core Web Vitals, performance, and best practices. You can give it a try here: <a href="https://samith.dev">samith.dev</a>
+
+---
+
+## Development
+
+```bash
+pnpm install
+pnpm dev
+pnpm typecheck
+pnpm build
+```
 
 ---
 

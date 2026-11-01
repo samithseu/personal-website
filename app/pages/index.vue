@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import type { GitHubRepo } from "#shared/types/project";
+import type { GitHubRepo, ProjectItem } from "#shared/types/project";
+import { CERTIFICATES } from "#shared/data/certificates";
 
 const { allContacts } = useContacts();
 const config = useRuntimeConfig();
@@ -11,180 +12,42 @@ useSeo({
   ogImageUrl: config.public.homeOgImage as string,
 });
 
-interface ProjectItem {
-  title: string;
-  description: string;
-  tags: string[];
-  liveUrl?: string;
-  sourceUrl?: string;
-}
-
-// Silently revalidate projects in background when user returns to the tab or mounts
-onMounted(() => {
-  refreshNuxtData("github-projects-list");
-
-  const onVisibilityChange = () => {
-    if (document.visibilityState === "visible") {
-      refreshNuxtData("github-projects-list");
+// Fetch repositories from /api/projects with SSR prerender payload and client SWR caching
+const { data: projects, status } = await useFetch("/api/projects", {
+  key: "github-projects-list",
+  dedupe: "defer",
+  default: (): ProjectItem[] => [],
+  transform: (rawProjects): ProjectItem[] => {
+    if (!Array.isArray(rawProjects)) {
+      return [];
     }
-  };
-  document.addEventListener("visibilitychange", onVisibilityChange);
-  onUnmounted(() => {
-    document.removeEventListener("visibilitychange", onVisibilityChange);
-  });
+    return rawProjects.map((p) => {
+      const filteredTopics = (p.topics || []).filter(
+        (t) => t.toLowerCase() !== "project",
+      );
+      const isInternal =
+        p.homepage === "https://samith.dev" ||
+        p.homepage === "http://localhost:3000";
+      return {
+        title: p.name,
+        description: p.description || "",
+        tags: filteredTopics.length > 0 ? filteredTopics : ["Web"],
+        liveUrl: isInternal ? "/" : p.homepage,
+        sourceUrl: p.html_url,
+      };
+    });
+  },
+  getCachedData(key, nuxtApp) {
+    return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+  },
 });
 
-// Fetch repositories from /api/projects with SSR prerender & client SWR revalidation
-const { data: apiProjects, status } = await useFetch<GitHubRepo[]>(
-  "/api/projects",
-  {
-    key: "github-projects-list",
-    getCachedData(key, nuxtApp) {
-      return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
-    },
-  },
-);
-
-const projects = computed<ProjectItem[]>(() => {
-  if (!apiProjects.value || !Array.isArray(apiProjects.value)) {
-    return [];
-  }
-  return apiProjects.value.map((p) => {
-    const filteredTopics = (p.topics || []).filter(
-      (t) => t.toLowerCase() !== "project",
-    );
-    const isInternal =
-      p.homepage === "https://samith.dev" ||
-      p.homepage === "http://localhost:3000";
-    return {
-      title: p.name,
-      description: p.description || "",
-      tags: filteredTopics.length > 0 ? filteredTopics : ["Web"],
-      liveUrl: isInternal ? "/" : p.homepage,
-      sourceUrl: p.html_url,
-    };
-  });
-});
-
-interface CredentialItem {
-  title: string;
-  issuer: string;
-  year: string;
-  url?: string;
-  featured?: boolean;
-}
-
-const allCredentials: CredentialItem[] = [
-  {
-    title: "Frontend Developer (React)",
-    issuer: "HackerRank",
-    year: "2025",
-    url: "/certs/frontend-react.png",
-    featured: true,
-  },
-  {
-    title: "Software Engineering I",
-    issuer: "BTI",
-    year: "2024",
-    url: "/certs/swe-i.jpg",
-    featured: true,
-  },
-  {
-    title: "Java Programming I",
-    issuer: "BTI",
-    year: "2024",
-    url: "/certs/java-i.jpg",
-    featured: true,
-  },
-  {
-    title: "Internet Programming II",
-    issuer: "BTI",
-    year: "2024",
-    url: "/certs/html-ii.jpg",
-  },
-  {
-    title: "Computer Graphic II",
-    issuer: "BTI",
-    year: "2024",
-    url: "/certs/computer-graphic-ii.jpg",
-  },
-  {
-    title: "Visual Basic Programming II",
-    issuer: "BTI",
-    year: "2024",
-    url: "/certs/vb-ii.jpg",
-  },
-  {
-    title: "Information System Analysis & Design I",
-    issuer: "BTI",
-    year: "2024",
-    url: "/certs/isad-i.jpg",
-  },
-  {
-    title: "Data Communication II",
-    issuer: "BTI",
-    year: "2023",
-    url: "/certs/data-com-ii.jpg",
-  },
-  {
-    title: "Computer Network II",
-    issuer: "BTI",
-    year: "2023",
-    url: "/certs/computer-network-ii.jpg",
-  },
-  {
-    title: "Computer Network I",
-    issuer: "BTI",
-    year: "2023",
-    url: "/certs/computer-network-i.jpg",
-  },
-  {
-    title: "Data Structures & Algorithms II",
-    issuer: "BTI",
-    year: "2023",
-    url: "/certs/dsa-ii.jpg",
-    featured: true,
-  },
-  {
-    title: "CSS (Basic)",
-    issuer: "HackerRank",
-    year: "2023",
-    url: "/certs/css-basic.png",
-    featured: true,
-  },
-  {
-    title: "Computer Graphic I",
-    issuer: "BTI",
-    year: "2023",
-    url: "/certs/computer-graphic-i.jpg",
-  },
-  {
-    title: "Visual Basic Programming I",
-    issuer: "BTI",
-    year: "2023",
-    url: "/certs/vb-i.jpg",
-  },
-  {
-    title: "Project Management",
-    issuer: "BTI",
-    year: "2022",
-    url: "/certs/project-mgmt-i.jpg",
-  },
-  {
-    title: "C++ Programming II",
-    issuer: "BTI",
-    year: "2022",
-    url: "/certs/cpp-ii.jpg",
-  },
-];
-
-const valuableCredentials: CredentialItem[] = allCredentials.filter(
-  (cert) => cert.featured,
-);
+const valuableCredentials = CERTIFICATES.filter((cert) => cert.featured);
+const totalCredentials = CERTIFICATES.length;
 
 const showAllCredentials = ref(false);
 const displayedCredentials = computed(() =>
-  showAllCredentials.value ? allCredentials : valuableCredentials,
+  showAllCredentials.value ? CERTIFICATES : valuableCredentials,
 );
 
 const copiedEmail = ref(false);
@@ -542,7 +405,7 @@ async function copyEmail() {
               Show fewer credentials
             </template>
             <template v-else>
-              Show full education & credentials ({{ allCredentials.length }})
+              Show full education & credentials ({{ totalCredentials }})
             </template>
           </button>
           <span class="text-border" aria-hidden="true">&middot;</span>

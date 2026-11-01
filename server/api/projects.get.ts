@@ -1,8 +1,6 @@
-import fs from "node:fs";
-import path from "node:path";
 import type { Project, GitHubRepo } from "#shared/types/project";
 
-const CACHE_TTL: number = 60 * 5; // 5 minutes
+const CACHE_TTL = 60 * 5; // 5 minutes
 
 async function getFallbackProjects(): Promise<GitHubRepo[]> {
   try {
@@ -11,19 +9,8 @@ async function getFallbackProjects(): Promise<GitHubRepo[]> {
       return typeof raw === "string" ? JSON.parse(raw) : (raw as GitHubRepo[]);
     }
   } catch {
-    // Ignore storage lookup error and try direct filesystem fallback
+    // Ignore storage lookup error and return empty array
   }
-
-  try {
-    const filePath = path.resolve(process.cwd(), "server/assets/projects.json");
-    if (fs.existsSync(filePath)) {
-      const content = fs.readFileSync(filePath, "utf8");
-      return JSON.parse(content) as GitHubRepo[];
-    }
-  } catch {
-    // Ignore filesystem read error
-  }
-
   return [];
 }
 
@@ -31,7 +18,6 @@ export default defineCachedEventHandler(
   async (event) => {
     const { githubToken } = useRuntimeConfig(event);
 
-    // Standard GitHub API headers
     const headers: Record<string, string> = {
       Accept: "application/vnd.github+json",
       "User-Agent": "samithseu-portfolio",
@@ -42,21 +28,47 @@ export default defineCachedEventHandler(
       headers.Authorization = `Bearer ${githubToken}`;
     }
 
-    // Fetch repositories with per_page=100 and sort=updated to prevent silent pagination cut-offs
-    let rawRepos: Project[] = [];
+    const cacheStorage = useStorage("cache");
+    const cachedEtag = await cacheStorage.getItem<string>("gh-etag");
+    if (cachedEtag) {
+      headers["If-None-Match"] = cachedEtag;
+    }
+
+    let rawRepos: Project[] | null = null;
     try {
-      rawRepos = await $fetch<Project[]>(
+      const response = await $fetch.raw<Project[]>(
         "https://api.github.com/users/samithseu/repos?per_page=100&sort=updated&direction=desc",
         { headers }
       );
+
+      if (response.status === 200 && Array.isArray(response._data)) {
+        rawRepos = response._data;
+        const newEtag = response.headers.get("etag");
+        if (newEtag) {
+          await cacheStorage.setItem("gh-etag", newEtag);
+          await cacheStorage.setItem("gh-repos", rawRepos);
+        }
+      }
     } catch (error: any) {
-      console.warn("Failed to fetch GitHub repositories:", error?.message || error);
+      // 304 Not Modified means cached repos are still valid
+      if (error?.status === 304) {
+        rawRepos = await cacheStorage.getItem<Project[]>("gh-repos");
+      } else {
+        console.warn(
+          "Failed to fetch GitHub repositories:",
+          error?.message || error
+        );
+      }
+    }
+
+    // If fetch failed or threw an error, check cache storage first
+    if (!rawRepos) {
+      rawRepos = await cacheStorage.getItem<Project[]>("gh-repos");
     }
 
     let projects: GitHubRepo[] = [];
 
     if (Array.isArray(rawRepos) && rawRepos.length > 0) {
-      // Filter for valid portfolio projects (non-forks, tagged with "project", having live demo URL)
       projects = rawRepos
         .filter(
           (project: Project) =>
@@ -70,7 +82,7 @@ export default defineCachedEventHandler(
           name: p.name,
           description: p.description ?? "",
           topics: p.topics ?? [],
-          homepage: p.homepage!,
+          homepage: p.homepage!.trim(),
           html_url: p.html_url,
           updated_at: p.updated_at,
         }))
@@ -85,7 +97,7 @@ export default defineCachedEventHandler(
       projects = await getFallbackProjects();
     }
 
-    // CDN / Edge cache: 1m browser max-age, 5m CDN s-maxage, 24h background stale-while-revalidate
+    // Edge CDN cache: 1m browser max-age, 5m CDN s-maxage, 24h background stale-while-revalidate
     setResponseHeader(
       event,
       "Cache-Control",
@@ -96,7 +108,7 @@ export default defineCachedEventHandler(
   },
   {
     maxAge: CACHE_TTL,
-    staleMaxAge: 60 * 60 * 24, // 24 hours stale fallback if upstream is down or rate-limited
+    staleMaxAge: 60 * 60 * 24, // 24 hours stale fallback
     swr: true,
     name: "github-projects",
     getKey: () => "github-projects",
