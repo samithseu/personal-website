@@ -26,6 +26,7 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "@vite-pwa/nuxt": "^1.1.1",
+    "nuxtseo-devtools-host": "^1.0.2",
     "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3"
   },
