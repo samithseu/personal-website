@@ -428,6 +428,9 @@ async function copyEmail() {
               :external="contact.external"
               :target="contact.external ? '_blank' : undefined"
               :rel="contact.external ? 'noopener noreferrer' : undefined"
+              :data-allow-mismatch="
+                contact.name === 'Email' ? 'attribute,children,text' : undefined
+              "
               class="prose-link"
             >
               {{ contact.label }}
