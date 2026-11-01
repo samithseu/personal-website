@@ -1,36 +1,22 @@
-<script lang="ts" setup>
-const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Credentials", href: "#credentials" },
-  { label: "Contact", href: "#contact" },
-] as const;
-</script>
-
 <template>
   <header
-    class="w-full max-w-prefer mx-auto px-6 pt-10 sm:pt-16 pb-4 flex items-center justify-between"
+    id="intro"
+    aria-labelledby="website-header"
+    class="space-y-4 scroll-mt-20"
   >
-    <NuxtLink
-      to="/"
-      class="inline-flex items-center text-foreground hover:opacity-75 transition-opacity"
-      aria-label="Samith Seu - Website"
-    >
-      <LazyM hydrate-never class="w-4.5 h-5" />
-    </NuxtLink>
-
-    <nav
-      aria-label="Main Navigation"
-      class="flex items-center gap-4 text-xs sm:text-sm text-muted-foreground"
-    >
-      <NuxtLink
-        v-for="link in navLinks"
-        :key="link.label"
-        :href="link.href"
-        class="transition-colors hover:text-foreground"
+    <div class="space-y-1">
+      <h1
+        id="website-header"
+        class="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground font-mono"
       >
-        {{ link.label }}
-      </NuxtLink>
-    </nav>
+        Samith Seu
+      </h1>
+      <p class="text-sm sm:text-base text-muted-foreground">Web Developer</p>
+    </div>
+
+    <p class="text-sm sm:text-base text-muted-foreground leading-relaxed pt-1">
+      I build websites with modern technologies, specializing in crafting
+      responsive, accessible, and user-friendly interfaces for web applications.
+    </p>
   </header>
 </template>

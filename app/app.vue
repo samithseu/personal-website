@@ -25,8 +25,7 @@ useSeoMeta({
     class="min-h-screen flex flex-col justify-between selection:bg-foreground/10"
   >
     <NuxtLoadingIndicator :throttle="150" color="hsl(var(--foreground))" />
-    <Header />
-    <main class="flex-1 w-full max-w-prefer mx-auto px-6 py-10 sm:py-16">
+    <main class="flex-1 w-full max-w-prefer mx-auto px-6 py-12 sm:py-20">
       <NuxtPage />
     </main>
     <LazyFooter hydrate-never />

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { GitHubRepo, ProjectItem } from "#shared/types/project";
+import type { ProjectItem } from "#shared/types/project";
 import { CERTIFICATES } from "#shared/data/certificates";
 
 const { allContacts } = useContacts();
@@ -86,33 +86,8 @@ async function copyEmail() {
 
 <template>
   <div class="space-y-16 sm:space-y-20">
-    <!-- Intro / Hero -->
-    <section
-      id="hero"
-      aria-labelledby="intro-heading"
-      class="space-y-4 scroll-mt-20"
-    >
-      <div class="space-y-1.5">
-        <h1
-          id="intro-heading"
-          class="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground"
-        >
-          Samith Seu
-        </h1>
-        <p class="text-sm sm:text-base text-muted-foreground">Web Developer</p>
-        <p class="text-xs font-mono text-muted-foreground/80">
-          Kampong Speu, Cambodia
-        </p>
-      </div>
-
-      <p
-        class="text-sm sm:text-base text-muted-foreground leading-relaxed pt-1"
-      >
-        I build websites with modern technologies, specializing in crafting
-        responsive, accessible, and user-friendly interfaces for web
-        applications.
-      </p>
-    </section>
+    <!-- Header / Hero -->
+    <Header />
 
     <!-- About Section (Summarized, preserving original meaning) -->
     <section
@@ -120,12 +95,7 @@ async function copyEmail() {
       aria-labelledby="about-heading"
       class="space-y-3 scroll-mt-20"
     >
-      <h2
-        id="about-heading"
-        class="text-xs font-mono uppercase tracking-wider text-muted-foreground"
-      >
-        About
-      </h2>
+      <SectionTitle id="about-heading">About</SectionTitle>
       <div
         class="space-y-3 text-sm sm:text-base text-muted-foreground leading-relaxed"
       >
@@ -169,12 +139,9 @@ async function copyEmail() {
       class="space-y-6 scroll-mt-20"
     >
       <div class="flex items-baseline justify-between">
-        <h2
-          id="projects-heading"
-          class="text-xs font-mono uppercase tracking-wider text-muted-foreground"
-        >
-          Selected Projects
-        </h2>
+        <div class="flex-1">
+          <SectionTitle id="projects-heading">Projects</SectionTitle>
+        </div>
         <span
           v-if="projects.length > 0"
           class="text-xs text-muted-foreground font-mono"
@@ -300,12 +267,7 @@ async function copyEmail() {
       aria-labelledby="skills-heading"
       class="space-y-4 scroll-mt-20"
     >
-      <h2
-        id="skills-heading"
-        class="text-xs font-mono uppercase tracking-wider text-muted-foreground"
-      >
-        Technologies
-      </h2>
+      <SectionTitle id="skills-heading">Technologies</SectionTitle>
 
       <div class="space-y-3 text-xs sm:text-sm">
         <div class="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-1 sm:gap-4">
@@ -336,12 +298,9 @@ async function copyEmail() {
       class="space-y-4 scroll-mt-20"
     >
       <div id="certificates" class="scroll-mt-20" aria-hidden="true" />
-      <h2
-        id="credentials-heading"
-        class="text-xs font-mono uppercase tracking-wider text-muted-foreground"
-      >
+      <SectionTitle id="credentials-heading">
         Education &amp; Credentials
-      </h2>
+      </SectionTitle>
 
       <div class="space-y-3.5 text-xs sm:text-sm">
         <!-- Education -->
@@ -448,12 +407,7 @@ async function copyEmail() {
       aria-labelledby="contact-heading"
       class="space-y-4 scroll-mt-20"
     >
-      <h2
-        id="contact-heading"
-        class="text-xs font-mono uppercase tracking-wider text-muted-foreground"
-      >
-        Contact
-      </h2>
+      <SectionTitle id="contact-heading"> Contact </SectionTitle>
 
       <p class="text-sm text-muted-foreground leading-relaxed">
         My accounts on other platforms:
