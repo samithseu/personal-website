@@ -423,14 +423,25 @@ async function copyEmail() {
             contact.name
           }}</span>
           <div class="flex items-center gap-2">
+            <ClientOnly v-if="contact.name === 'Email'">
+              <NuxtLink
+                :href="contact.link"
+                class="prose-link"
+              >
+                {{ contact.label }}
+              </NuxtLink>
+              <template #fallback>
+                <span class="prose-link cursor-pointer">
+                  {{ contact.label.replace('@', ' [at] ') }}
+                </span>
+              </template>
+            </ClientOnly>
             <NuxtLink
+              v-else
               :href="contact.link"
               :external="contact.external"
               :target="contact.external ? '_blank' : undefined"
               :rel="contact.external ? 'noopener noreferrer' : undefined"
-              :data-allow-mismatch="
-                contact.name === 'Email' ? 'attribute,children,text' : undefined
-              "
               class="prose-link"
             >
               {{ contact.label }}
